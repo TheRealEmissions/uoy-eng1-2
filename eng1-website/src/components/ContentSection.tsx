@@ -1,6 +1,7 @@
 import React from 'react'
 import { ArrowUpRight } from 'lucide-react';
 
+// Links section showcasing pdfs and github repository
 const HeroSection = () => {
   return (
     <section id="Content Section" className="xl:p-24 md:p-24 lg:p-24 p-5 bg-[#f4f4f4] flex justify-center items-center ">
@@ -9,6 +10,7 @@ const HeroSection = () => {
                 Our work
             </h2>
 
+            {/* Desktop version */}
             <div className="p-5 hidden md:flex flex-row gap-10 pt-16">
                 <div className="flex flex-col gap-5">
                     <div className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 ">
@@ -67,7 +69,7 @@ const HeroSection = () => {
                 
             </div>
             
-
+            {/* Phone version  */}
             <div className="md:hidden p-5 gap-10 pt-16">
                 <div className="flex gap-5 pb-6">
                     <div className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 ">
