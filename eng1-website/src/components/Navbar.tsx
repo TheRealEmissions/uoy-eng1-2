@@ -3,8 +3,7 @@ import React, { useState } from "react"
 import Link from "next/link"
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai'
 import { Icons } from "@/components/icons"
-import { RiMoonFill, RiSunLine } from "react-icons/ri"
-import { LuText } from "react-icons/lu"
+
 
 interface NavItem{
     label: string
@@ -70,7 +69,7 @@ export function Navbar() {
       
       <div className={
         menuOpen 
-        ? "fixed left-0 top-0 w-[65%] sm:hidden h-screen bg-[#ecf0f3] dark:bg-neutral-700 p-10 ease-in duration-300"
+        ? "fixed left-0 top-0 w-[65%] sm:hidden h-screen bg-[#ecf0f3] p-10 ease-in duration-300"
       : "fixed left-[-100%] top-0 p-10 ease-in duartion-300"
       }
       >
@@ -92,29 +91,13 @@ export function Navbar() {
                 <li onClick = {() => setMenuOpen(false)}
                 className = "py-4 cursor-pointer"
                 >
-                  About
-                </li>
-              </Link>
-
-              <Link href="/articles">
-                <li onClick = {() => setMenuOpen(false)}
-                className = "py-4 cursor-pointer"
-                >
-                  Articles
-                </li>
-              </Link> 
-              <Link href="/pricing">
-                <li onClick = {() => setMenuOpen(false)}
-                className = "py-4 cursor-pointer"
-                >
-                  Pricing
+                  Documents
                 </li>
               </Link>
             </ul>
         </div>
         <div className="flex gap-5">
-        <Icons.twitter className="h-5 w-5" />
-        <Icons.instagram className="h-5 w-5" />
+        <Icons.gitHub className="h-5 w-5" />
 
         </div>
       </div>
