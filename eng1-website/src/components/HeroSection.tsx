@@ -3,10 +3,7 @@ import React from 'react'
 const HeroSection = () => {
   return (
     <section id="Hero Section" className="pb-32">
-        <div>
-
-        </div>
-        <div className = "container md:mt-20 mt-12 xl:p-24 md:p-24 lg:p-24 p-10 flex gap-20 ">
+        <div className = "container md:mt-20 mt-12 xl:p-24 md:p-24 lg:p-24 p-10 flex gap-20 flex justify-center items-center">
             <div className="md:pt-10 pt-1">
                 <div className="max-w-xl md:max-w-3xl">
                     <p className="text-2xl">hello!</p>
