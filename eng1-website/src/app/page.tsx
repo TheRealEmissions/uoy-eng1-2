@@ -1,13 +1,14 @@
 import HeroSection from "@/components/HeroSection"
 import ContentSection from "@/components/ContentSection"
-import Footer from "@/components/Footer";
+import DownloadSection from "@/components/DownloadSection"
+
 
 export default function Home() {
   return (
    <main className="min-h-screen">
     <HeroSection />
     <ContentSection />
-    <Footer />
+    <DownloadSection />
     </main>
   );
 }
