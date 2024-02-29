@@ -1,2 +1,10 @@
-# ENG1
-ENG 1 - Group 1 - Cohort 1
+run the development server:
+
+```bash
+npm install
+npm run dev
+```
+
+open [http://localhost:3000](http://localhost:3000) with your browser 
+
+
