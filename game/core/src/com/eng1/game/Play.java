@@ -45,7 +45,7 @@ public class Play implements Screen {
 //        right.setPlayMode(Animation.PlayMode.LOOP);
 // still, left, right,
         player =  new Player(new Sprite(new Texture("playerCharacters/playerCharacter1.png")), (TiledMapTileLayer) map.getLayers().get(0));
-        player.setPosition(79 * player.getCollisionLayer().getTileWidth(), 53 * player.getCollisionLayer().getTileHeight());
+        player.setPosition(65 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 56) * player.getCollisionLayer().getTileHeight());
 
         Gdx.input.setInputProcessor(player);
     }

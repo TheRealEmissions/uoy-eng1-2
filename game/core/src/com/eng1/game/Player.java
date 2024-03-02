@@ -18,6 +18,7 @@ public class Player extends Sprite implements InputProcessor {
     private Animation still, left, right;
     private TiledMapTileLayer collisionLayer;
     private String blockedKey = "blocked";
+    private String transitionKey = "transition";
    // Animation still, Animation left, Animation right,
     public Player(Sprite sprite, TiledMapTileLayer collisionLayer) {
         super(sprite);
@@ -43,14 +44,17 @@ public class Player extends Sprite implements InputProcessor {
 
         boolean collisionX = false;
         boolean collisionY = false;
+        boolean transition = false;
 
         //move x
         setX(getX() + velocity.x * delta);
 
         if (velocity.x < 0) {// going left
             collisionX = collidesLeft();
+            transition = transitionLeft();
         } else if (velocity.x > 0) {// going right
             collisionX = collidesRight();
+            transition = transitionRight();
         }
 
         //react to x collision
@@ -58,16 +62,25 @@ public class Player extends Sprite implements InputProcessor {
             setX(oldX);
             velocity.x = 0;
         }
+        else if (transition) {
+            velocity.x = 0;
+        }
+
         //move y
         setY(getY() + velocity.y * delta);
         if (velocity.y < 0) { // going down
             collisionY = collidesBottom();
-        } else if (velocity.y > 0) // going up
+            transition = transitionBottom();
+        } else if (velocity.y > 0) { // going up
             collisionY = collidesTop();
-
+            transition = transitionTop();
+        }
         //react to y collision
         if (collisionY) {
             setY(oldY);
+            velocity.y = 0;
+        }
+        else if (transition) {
             velocity.y = 0;
         }
 //
@@ -142,6 +155,11 @@ public class Player extends Sprite implements InputProcessor {
         return cell != null && cell.getTile() != null && cell.getTile().getProperties().containsKey(blockedKey);
     }
 
+    private boolean isCellTransition (float x, float y) {
+        Cell cell = collisionLayer.getCell((int) (x / collisionLayer.getTileWidth()), (int) (y / collisionLayer.getTileHeight()));
+        return cell != null && cell.getTile() != null && cell.getTile().getProperties().containsKey(transitionKey);
+    }
+
     public boolean collidesRight () {
         boolean collides = false;
         for (float step = 0; step < getHeight(); step += collisionLayer.getTileHeight() / 2) {
@@ -152,10 +170,30 @@ public class Player extends Sprite implements InputProcessor {
         return collides;
     }
 
+    public boolean transitionRight () {
+        boolean collides = false;
+        for (float step = 0; step < getHeight(); step += collisionLayer.getTileHeight() / 2) {
+            if (collides = isCellTransition(getX() + getWidth(), getY() + step)) {
+                break;
+            }
+        }
+        return collides;
+    }
+
     public boolean collidesLeft () {
         boolean collides = false;
         for (float step = 0; step < getHeight(); step += collisionLayer.getTileHeight() / 2) {
-            if (collides = isCellBlocked(getX(), getY() + step)) {
+            if (collides = isCellBlocked(getX() + getWidth(), getY() + step)) {
+                break;
+            }
+        }
+        return collides;
+    }
+
+    public boolean transitionLeft () {
+        boolean collides = false;
+        for (float step = 0; step < getHeight(); step += collisionLayer.getTileHeight() / 2) {
+            if (collides = isCellTransition(getX() + getWidth(), getY() + step)) {
                 break;
             }
         }
@@ -165,7 +203,17 @@ public class Player extends Sprite implements InputProcessor {
     public boolean collidesTop () {
         boolean collides = false;
         for (float step = 0; step < getWidth(); step += collisionLayer.getTileWidth() / 2) {
-            if (collides = isCellBlocked(getX() + step, getY() + getHeight())) {
+            if (collides = isCellBlocked(getX() + getWidth(), getY() + step)) {
+                break;
+            }
+        }
+        return collides;
+    }
+
+    public boolean transitionTop() {
+        boolean collides = false;
+        for (float step = 0; step < getHeight(); step += collisionLayer.getTileHeight() / 2) {
+            if (collides = isCellTransition(getX() + getWidth(), getY() + step)) {
                 break;
             }
         }
@@ -175,7 +223,17 @@ public class Player extends Sprite implements InputProcessor {
     public boolean collidesBottom() {
         boolean collides = false;
         for(float step = 0; step < getWidth(); step += collisionLayer.getTileWidth() / 2) {
-            if(collides = isCellBlocked(getX() + step, getY())) {
+            if (collides = isCellBlocked(getX() + getWidth(), getY() + step)) {
+                break;
+            }
+        }
+        return collides;
+    }
+
+    public boolean transitionBottom() {
+        boolean collides = false;
+        for (float step = 0; step < getHeight(); step += collisionLayer.getTileHeight() / 2) {
+            if (collides = isCellTransition(getX() + getWidth(), getY() + step)) {
                 break;
             }
         }
