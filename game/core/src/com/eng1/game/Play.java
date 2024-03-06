@@ -57,10 +57,13 @@ public class Play implements Screen {
             case ("maps/map1/map1.tmx"):
                 switch (oldMapPath) {
                     case (""):
-                        player.setPosition(116 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
+                        player.setPosition(65 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
                         break;
                     case ("maps/map2/map2.tmx"):
                         player.setPosition(115  * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
+                        break;
+                    case ("maps/map3/map3.txm"):
+                        player.setPosition(5  * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
                         break;
                 }
                 break;
@@ -68,6 +71,13 @@ public class Play implements Screen {
                 switch (oldMapPath) {
                     case ("maps/map1/map1.tmx"):
                         player.setPosition(5 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
+                        break;
+                }
+            break;
+            case ("maps/map3/map2.tmx"):
+                switch (oldMapPath) {
+                    case ("maps/map1/map1.tmx"):
+                        player.setPosition(115 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
                         break;
                 }
         }
