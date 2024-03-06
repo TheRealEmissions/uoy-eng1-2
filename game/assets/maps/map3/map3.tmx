@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="120" height="68" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="1">
  <tileset firstgid="1" name="grass" tilewidth="16" tileheight="16" tilecount="1728" columns="48">
-  <image source="../../../../../../../../Downloads/Modern_Exteriors_RPG_Maker_MV_v31.7/Modern_Exteriors_RPG_Maker_MV/A2_Floors_MV_TILESET.png" width="768" height="576"/>
+  <image source="A2_Floors_MV_TILESET.png" width="768" height="576"/>
  </tileset>
  <tileset firstgid="1729" name="library" tilewidth="16" tileheight="16" tilecount="2304" columns="48">
-  <image source="../../../../../../../../Downloads/Modern_Exteriors_RPG_Maker_MV_v31.7/Modern_Exteriors_RPG_Maker_MV/Tileset_41_MV.png" width="768" height="768"/>
+  <image source="Tileset_41_MV.png" width="768" height="768"/>
  </tileset>
  <tileset firstgid="4033" name="buildings" tilewidth="16" tileheight="16" tilecount="2304" columns="48">
-  <image source="../../../../../../../../Downloads/Modern_Exteriors_RPG_Maker_MV_v31.7/Modern_Exteriors_RPG_Maker_MV/Tileset_45_MV.png" width="768" height="768"/>
+  <image source="Tileset_45_MV.png" width="768" height="768"/>
  </tileset>
  <tileset firstgid="6337" name="buildings2" tilewidth="16" tileheight="16" tilecount="2304" columns="48">
-  <image source="../../../../../../../../Downloads/Modern_Exteriors_RPG_Maker_MV_v31.7/Modern_Exteriors_RPG_Maker_MV/Tileset_44_MV.png" width="768" height="768"/>
+  <image source="Tileset_44_MV.png" width="768" height="768"/>
  </tileset>
  <tileset firstgid="8641" name="roof" tilewidth="16" tileheight="16" tilecount="2304" columns="48">
-  <image source="../../../../../../../../Downloads/Modern_Exteriors_RPG_Maker_MV_v31.7/Modern_Exteriors_RPG_Maker_MV/Tileset_43_MV.png" width="768" height="768"/>
+  <image source="Tileset_43_MV.png" width="768" height="768"/>
  </tileset>
  <tileset firstgid="10945" name="background" tilewidth="16" tileheight="16" tilecount="2304" columns="48">
-  <image source="../../../../../../../../Downloads/Modern_Exteriors_RPG_Maker_MV_v31.7/Modern_Exteriors_RPG_Maker_MV/Tileset_1_MV.png" width="768" height="768"/>
+  <image source="Tileset_1_MV.png" width="768" height="768"/>
   <tile id="111">
    <properties>
     <property name="blocked" value=""/>
@@ -24,30 +24,30 @@
   </tile>
   <tile id="591">
    <properties>
-    <property name="transition" value="transition3"/>
+    <property name="transition" value="3"/>
    </properties>
   </tile>
   <tile id="596">
    <properties>
-    <property name="transition" value="transition4"/>
+    <property name="transition" value="4"/>
    </properties>
   </tile>
   <tile id="831">
    <properties>
-    <property name="transition" value="transition2"/>
+    <property name="transition" value="2"/>
    </properties>
   </tile>
   <tile id="836">
    <properties>
-    <property name="transition" value="transition1"/>
+    <property name="transition" value="1"/>
    </properties>
   </tile>
  </tileset>
  <tileset firstgid="13249" name="trees" tilewidth="16" tileheight="16" tilecount="2304" columns="48">
-  <image source="../../../../../../../../Downloads/Modern_Exteriors_RPG_Maker_MV_v31.7/Modern_Exteriors_RPG_Maker_MV/Tileset_17_MV.png" width="768" height="768"/>
+  <image source="Tileset_17_MV.png" width="768" height="768"/>
  </tileset>
  <tileset firstgid="15553" name="moreTrees" tilewidth="16" tileheight="16" tilecount="2304" columns="48">
-  <image source="../../../../../../../../Downloads/Modern_Exteriors_RPG_Maker_MV_v31.7/Modern_Exteriors_RPG_Maker_MV/Tileset_20_MV.png" width="768" height="768"/>
+  <image source="Tileset_20_MV.png" width="768" height="768"/>
  </tileset>
  <layer id="1" name="collisions" width="120" height="68">
   <data encoding="csv">

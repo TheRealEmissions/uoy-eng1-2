@@ -3,7 +3,6 @@ package com.eng1.game;
 import com.badlogic.gdx.Game;
 
 public class ENG1 extends Game {
-	
 	@Override
 	public void create () {
 		setScreen(new Play());
@@ -31,4 +30,6 @@ public class ENG1 extends Game {
 	public void resume() {
 		super.resume();
 	}
+
+
 }

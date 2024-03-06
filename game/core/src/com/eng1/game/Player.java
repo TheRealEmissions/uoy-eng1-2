@@ -3,13 +3,13 @@ package com.eng1.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.math.Vector2;
+
 
 public class Player extends Sprite implements InputProcessor {
     private Vector2 velocity = new Vector2();
@@ -19,6 +19,7 @@ public class Player extends Sprite implements InputProcessor {
     private TiledMapTileLayer collisionLayer;
     private String blockedKey = "blocked";
     private String transitionKey = "transition";
+    public static String transitionValue = "";
    // Animation still, Animation left, Animation right,
     public Player(Sprite sprite, TiledMapTileLayer collisionLayer) {
         super(sprite);
@@ -61,9 +62,11 @@ public class Player extends Sprite implements InputProcessor {
         if (collisionX) {
             setX(oldX);
             velocity.x = 0;
-        }
-        else if (transition) {
+        } else if (transition) {
             velocity.x = 0;
+            Play.changeMap(transitionValue);
+            setX(oldX);
+            transition = false;
         }
 
         //move y
@@ -79,9 +82,11 @@ public class Player extends Sprite implements InputProcessor {
         if (collisionY) {
             setY(oldY);
             velocity.y = 0;
-        }
-        else if (transition) {
+        } else if (transition) {
             velocity.y = 0;
+            Play.changeMap(transitionValue);
+            setY(oldY);
+            transition = false;
         }
 //
 //        animationTime += delta;
@@ -92,26 +97,18 @@ public class Player extends Sprite implements InputProcessor {
     public boolean keyDown(int keycode) {
         switch (keycode) {
             case Keys.W:
-                velocity.y = speed;
-                break;
-            case Keys.A:
-                velocity.x = -speed;
-                break;
-            case Keys.S:
-                velocity.y = -speed;
-                break;
-            case Keys.D:
-                velocity.x = speed;
-                break;
             case Keys.UP:
                 velocity.y = speed;
                 break;
+            case Keys.A:
             case Keys.LEFT:
                 velocity.x = -speed;
                 break;
+            case Keys.S:
             case Keys.DOWN:
                 velocity.y = -speed;
                 break;
+            case Keys.D:
             case Keys.RIGHT:
                 velocity.x = speed;
                 break;
@@ -123,26 +120,14 @@ public class Player extends Sprite implements InputProcessor {
     public boolean keyUp(int keycode) {
         switch (keycode) {
             case Keys.W:
-                velocity.y = 0;
-                break;
-            case Keys.A:
-                velocity.x = 0;
-                break;
             case Keys.S:
-                velocity.y = 0;
-                break;
-            case Keys.D:
-                velocity.x = 0;
-                break;
             case Keys.UP:
-                velocity.y = 0;
-                break;
-            case Keys.LEFT:
-                velocity.x = 0;
-                break;
             case Keys.DOWN:
                 velocity.y = 0;
                 break;
+            case Keys.A:
+            case Keys.D:
+            case Keys.LEFT:
             case Keys.RIGHT:
                 velocity.x = 0;
                 break;
@@ -160,6 +145,16 @@ public class Player extends Sprite implements InputProcessor {
         return cell != null && cell.getTile() != null && cell.getTile().getProperties().containsKey(transitionKey);
     }
 
+    private void getTransition (float x, float y) {
+        Cell cell = collisionLayer.getCell((int) (x / collisionLayer.getTileWidth()), (int) (y / collisionLayer.getTileHeight()));
+        if (cell.getTile().getProperties().containsKey(transitionKey)) {
+            Object value = cell.getTile().getProperties().get("transition");
+            if (value != null) {
+                transitionValue = value.toString();
+            }
+        }
+    }
+
     public boolean collidesRight () {
         boolean collides = false;
         for (float step = 0; step < getHeight(); step += collisionLayer.getTileHeight() / 2) {
@@ -174,6 +169,7 @@ public class Player extends Sprite implements InputProcessor {
         boolean collides = false;
         for (float step = 0; step < getHeight(); step += collisionLayer.getTileHeight() / 2) {
             if (collides = isCellTransition(getX() + getWidth(), getY() + step)) {
+                getTransition(getX() + getWidth(), getY() + step);
                 break;
             }
         }
@@ -194,6 +190,7 @@ public class Player extends Sprite implements InputProcessor {
         boolean collides = false;
         for (float step = 0; step < getHeight(); step += collisionLayer.getTileHeight() / 2) {
             if (collides = isCellTransition(getX() + getWidth(), getY() + step)) {
+                getTransition(getX() + getWidth(), getY() + step);
                 break;
             }
         }
@@ -214,6 +211,7 @@ public class Player extends Sprite implements InputProcessor {
         boolean collides = false;
         for (float step = 0; step < getHeight(); step += collisionLayer.getTileHeight() / 2) {
             if (collides = isCellTransition(getX() + getWidth(), getY() + step)) {
+                getTransition(getX() + getWidth(), getY() + step);
                 break;
             }
         }
@@ -234,6 +232,7 @@ public class Player extends Sprite implements InputProcessor {
         boolean collides = false;
         for (float step = 0; step < getHeight(); step += collisionLayer.getTileHeight() / 2) {
             if (collides = isCellTransition(getX() + getWidth(), getY() + step)) {
+                getTransition(getX() + getWidth(), getY() + step);
                 break;
             }
         }
