@@ -16103,7 +16103,7 @@
   </tile>
   <tile id="831">
    <properties>
-    <property name="transition" value="maps/map3/map3.txm"/>
+    <property name="transition" value="maps/map3/map3.tmx"/>
    </properties>
   </tile>
   <tile id="836">

@@ -74,7 +74,7 @@ public class Play implements Screen {
                         break;
                 }
             break;
-            case ("maps/map3/map2.tmx"):
+            case ("maps/map3/map3.tmx"):
                 switch (oldMapPath) {
                     case ("maps/map1/map1.tmx"):
                         player.setPosition(115 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
