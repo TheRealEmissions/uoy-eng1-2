@@ -15943,7 +15943,7 @@
   </tile>
   <tile id="591">
    <properties>
-    <property name="transition" value="3"/>
+    <property name="transition" value="maps/map4/map4.tmx"/>
    </properties>
   </tile>
   <tile id="596">

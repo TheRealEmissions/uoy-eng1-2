@@ -24,12 +24,12 @@
   </tile>
   <tile id="591">
    <properties>
-    <property name="transition" value="3"/>
+    <property name="transition" value="maps/map6/map6.tmx"/>
    </properties>
   </tile>
   <tile id="596">
    <properties>
-    <property name="transition" value="4"/>
+    <property name="transition" value="maps/map5/map5.tmx"/>
    </properties>
   </tile>
   <tile id="831">
@@ -39,7 +39,7 @@
   </tile>
   <tile id="836">
    <properties>
-    <property name="transition" value="1"/>
+    <property name="transition" value="maps/map1/map1.tmx"/>
    </properties>
   </tile>
  </tileset>
