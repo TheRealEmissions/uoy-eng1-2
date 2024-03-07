@@ -108,6 +108,16 @@ public class Play implements Screen {
                     case ("maps/map3/map3.tmx"):
                         player.setPosition(116 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
                         break;
+                    case ("maps/map7/map7.tmx"):
+                        player.setPosition(5 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
+                        break;
+                }
+                break;
+            case ("maps/map7/map7.tmx"):
+                switch (oldMapPath){
+                    case ("maps/map6/map6.tmx"):
+                        player.setPosition(116 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
+                        break;
                 }
                 break;
         }
