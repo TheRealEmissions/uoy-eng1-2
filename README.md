@@ -8,11 +8,11 @@ The project structure is organised as follows:
 
 ```
 ENG1/
-├── src/app/				# Contains Next.js pages
-│   ├── page.tsx				# Home page
-│   ├── layout.tsx				# Home page layout
+├── src/app/			# Contains Next.js pages
+│   ├── page.tsx			# Home page
+│   ├── layout.tsx			# Home page layout
 │
-├── src/components/			# Reusable components
+├── src/components/		# Reusable components
 │   ├── ContentSection.tsx		# Links to documents component
 │   ├── DownloadSection.tsx		# Game download component
 │   ├── Footer.js			# Footer component
