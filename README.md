@@ -22,8 +22,8 @@ ENG1/
 ├── public/				# Static assets
 │   └── ...				# Other assets
 │
-├── styles/					# Global styles
-│   └── globals.css				# Global CSS file
+├── styles/				# Global styles
+│   └── globals.css			# Global CSS file
 │
 ├── README.md				# Project documentation
 ├── package.json			# Node.js dependencies and scripts
