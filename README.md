@@ -15,18 +15,18 @@ ENG1/
 ├── src/components/			# Reusable components
 │   ├── ContentSection.tsx		# Links to documents component
 │   ├── DownloadSection.tsx		# Game download component
-│   ├── Footer.js				# Footer component
+│   ├── Footer.js			# Footer component
 │   ├── HeroSection.tsx			# Hero component
-│   ├── Navbar.tsx				# Navbar component (both phone and desktop)
+│   ├── Navbar.tsx			# Navbar component (both phone and desktop)
 │
-├── public/						# Static assets
-│   └── ...						# Other assets
+├── public/				# Static assets
+│   └── ...				# Other assets
 │
-├── styles/						# Global styles
+├── styles/					# Global styles
 │   └── globals.css				# Global CSS file
 │
-├── README.md					# Project documentation
-├── package.json				# Node.js dependencies and scripts
+├── README.md				# Project documentation
+├── package.json			# Node.js dependencies and scripts
 └── ...
 ```
 
