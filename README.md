@@ -3,15 +3,6 @@
 The **[website](https://charliepiper.github.io)** (for ENG1 cohort1/group1)
  
 
-## Technologies / Frameworks
-
--- **[Next.js](https://nextjs.org)** 
-
--- **[TailwindCSS](https://tailwindcss.com)**
-
-
-
-
 ## Project Structure 
 The project structure is organised as follows:
 
@@ -38,6 +29,13 @@ ENG1/
 ├── package.json				# Node.js dependencies and scripts
 └── ...
 ```
+
+## Technologies / Frameworks
+
+-- **[Next.js](https://nextjs.org)** 
+
+-- **[TailwindCSS](https://tailwindcss.com)**
+
 
 ## Setup
 
