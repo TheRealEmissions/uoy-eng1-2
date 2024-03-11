@@ -1,8 +1,7 @@
 package eng1.model.views;
-import com.eng1.game.ENG1;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Event;
@@ -16,8 +15,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.eng1.game.ENG1;
 
-public class PreferencesScreen implements Screen{
+public class PreferencesScreen implements Screen {
 
     private ENG1 parent;
     private Stage stage;
@@ -27,12 +27,10 @@ public class PreferencesScreen implements Screen{
     private Label musicOnOffLabel;
     private Label soundOnOffLabel;
 
-
-    public PreferencesScreen(ENG1 eng1){
+    public PreferencesScreen(ENG1 eng1) {
         parent = eng1;
-        /// create stage and set it as input processor
+        // create stage and set it as input processor
         stage = new Stage(new ScreenViewport());
-
     }
 
     @Override
@@ -40,11 +38,9 @@ public class PreferencesScreen implements Screen{
         stage.clear();
         Gdx.input.setInputProcessor(stage);
 
-        // Create a table that fills the screen. Everything else will go inside
-        // this table.
+        // Create a table that fills the screen. Everything else will go inside this table.
         Table table = new Table();
         table.setFillParent(true);
-        //table.setDebug(true);
         stage.addActor(table);
 
         // temporary until we have asset manager in
@@ -104,31 +100,43 @@ public class PreferencesScreen implements Screen{
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 parent.changeScreen(ENG1.MENU);
-
             }
         });
 
-        titleLabel = new Label( "Preferences", skin );
-        volumeMusicLabel = new Label( "Music Volume", skin );
-        volumeSoundLabel = new Label( "Sound Volume", skin );
-        musicOnOffLabel = new Label( "Music", skin );
-        soundOnOffLabel = new Label( "Sound Effect", skin );
+        // quit game button
+        final TextButton quitButton = new TextButton("Quit", skin);
+        quitButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                Gdx.app.exit();
+            }
+        });
+
+        titleLabel = new Label("Preferences", skin);
+        volumeMusicLabel = new Label("Music Volume", skin);
+        volumeSoundLabel = new Label("Sound Volume", skin);
+        musicOnOffLabel = new Label("Music", skin);
+        soundOnOffLabel = new Label("Sound Effect", skin);
 
         table.add(titleLabel).colspan(2);
-        table.row().pad(10,0,0,10);
+        table.row().pad(10, 0, 0, 10);
         table.add(volumeMusicLabel).left();
         table.add(volumeMusicSlider);
-        table.row().pad(10,0,0,10);
+        table.row().pad(10, 0, 0, 10);
         table.add(musicOnOffLabel).left();
         table.add(musicCheckbox);
-        table.row().pad(10,0,0,10);
+        table.row().pad(10, 0, 0, 10);
         table.add(volumeSoundLabel).left();
         table.add(soundMusicSlider);
-        table.row().pad(10,0,0,10);
+        table.row().pad(10, 0, 0, 10);
         table.add(soundOnOffLabel).left();
         table.add(soundEffectsCheckbox);
-        table.row().pad(10,0,0,10);
+        table.row().pad(10, 0, 0, 10);
         table.add(backButton).colspan(2);
+
+        table.row().pad(10, 0, 0, 10);
+        table.add(quitButton).colspan(50);
+
 
     }
 
@@ -153,25 +161,21 @@ public class PreferencesScreen implements Screen{
     @Override
     public void pause() {
         // TODO Auto-generated method stub
-
     }
 
     @Override
     public void resume() {
         // TODO Auto-generated method stub
-
     }
 
     @Override
     public void hide() {
         // TODO Auto-generated method stub
-
     }
 
     @Override
     public void dispose() {
         // TODO Auto-generated method stub
-
     }
 
 }

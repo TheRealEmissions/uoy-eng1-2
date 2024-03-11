@@ -1,48 +1,79 @@
 package eng1.model.views;
 
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.*;
+
 import com.eng1.game.ENG1;
+import com.eng1.game.Play; // Import the Play class
+
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.InputAdapter;
+
 
 public class MainScreen implements Screen {
     private ENG1 parent; // a field to store our orchestrator
+    private Play play;
 
     // our constructor with a ENG1 argument
     public MainScreen(ENG1 eng1){
-        parent = eng1;     // setting the argument to our field.
+        parent = eng1;     // setting the argument to our field
+
+        // Add input listener to handle escape key press
+        Gdx.input.setInputProcessor(new InputAdapter() {
+            @Override
+            public boolean keyDown(int keycode) {
+                if (keycode == Keys.ESCAPE) {
+                    // Navigate to preferences screen or quit game
+                    parent.changeScreen(ENG1.PREFERENCES); // or ENG1.ENDGAME for quitting
+                    return true; // Key press handled
+                }
+                return false; // Key press not handled
+            }
+        });
     }
+
     @Override
     public void show() {
-        // TODO Auto-generated method stub
+        // This method is called when the screen is first shown.
+        // Here, you can initialize any resources or set up the screen.
+        play = new Play(); // Instantiate the Play class
+        parent.setScreen(play); // Switch to the Play screen
     }
 
     @Override
     public void render(float delta) {
-        // TODO Auto-generated method stub
-        parent.changeScreen(ENG1.MENU);
+        // This method is called every frame to render the screen.
+        // You can put your rendering code here.
+        // This can be left empty for now if you don't have any rendering to do.
     }
 
     @Override
     public void resize(int width, int height) {
-        // TODO Auto-generated method stub
+        // This method is called when the screen size is changed.
+        // You can handle resizing of your screen here.
     }
 
     @Override
     public void pause() {
-        // TODO Auto-generated method stub
+        // This method is called when the game is paused.
+        // You can pause any ongoing processes or animations here.
     }
 
     @Override
     public void resume() {
-        // TODO Auto-generated method stub
+        // This method is called when the game is resumed from a paused state.
+        // You can resume any paused processes or animations here.
     }
 
     @Override
     public void hide() {
-        // TODO Auto-generated method stub
+        // This method is called when the screen is hidden or switched to another screen.
+        // You can dispose of any resources associated with the screen here.
     }
 
     @Override
     public void dispose() {
-        // TODO Auto-generated method stub
+        // This method is called when the screen is about to be disposed.
+        // You can dispose of any resources associated with the screen here.
     }
 }
