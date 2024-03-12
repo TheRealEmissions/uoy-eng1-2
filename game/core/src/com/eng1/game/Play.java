@@ -33,6 +33,7 @@ public class Play implements Screen {
     private static final float MAP_SCALE = 1000f;
 
     private static final List<String> scaledMaps = Arrays.asList("maps/map8/home.tmx","maps/map9/gym.tmx");
+    private static final List<String> largeScaledMaps = Arrays.asList("maps/map10/computer-science-building.tmx", "maps/map11/piazza.tmx");
 
     public Play() {
         // Initialize camera here
@@ -70,9 +71,13 @@ public class Play implements Screen {
         if (scaledMaps.contains(currentMapPath)) {
             // Set a different zoom level for scaled maps
             camera.zoom = 0.35f; // You can adjust this value as needed
+        } else if (largeScaledMaps.contains(currentMapPath)) {
+            camera.zoom = 0.55f; // Default zoom level for other maps
         } else {
-            camera.zoom = 1f; // Default zoom level for other maps
+            camera.zoom = 1f;
         }
+
+
 
         // Center the camera
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
@@ -124,6 +129,9 @@ public class Play implements Screen {
                     case ("maps/map6/map6.tmx"):
                         player.setPosition(5 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
                         break;
+                    case ("maps/map11/piazza.tmx"):
+                        player.setPosition(30 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 54) * player.getCollisionLayer().getTileHeight());
+                        break;
 
                 }
                 break;
@@ -132,12 +140,16 @@ public class Play implements Screen {
                     case ("maps/map1/map1.tmx"):
                         player.setPosition(67 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 64) * player.getCollisionLayer().getTileHeight());
                         break;
+
                 }
                 break;
             case ("maps/map5/map5.tmx"):
                 switch (oldMapPath) {
                     case ("maps/map3/map3.tmx"):
                         player.setPosition(62 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 66) * player.getCollisionLayer().getTileHeight());
+                        break;
+                    case ("maps/map10/computer-science-building.tmx"):
+                        player.setPosition(45 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 65) * player.getCollisionLayer().getTileHeight());
                         break;
                 }
                 break;
@@ -171,6 +183,24 @@ public class Play implements Screen {
                 switch (oldMapPath) {
                     case ("maps/map2/map2.tmx"):
                         player.setPosition(60 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 41) * player.getCollisionLayer().getTileHeight());
+                        player.setScale(1); // Set size to 1
+                        player.setSpeed(60 * 1.7f); // Set speed to 5
+                        break;
+                }
+                break;
+            case ("maps/map10/computer-science-building.tmx"):
+                switch (oldMapPath) {
+                    case ("maps/map5/map5.tmx"):
+                        player.setPosition(60 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 39) * player.getCollisionLayer().getTileHeight());
+                        player.setScale(1); // Set size to 1
+                        player.setSpeed(60 * 1.7f); // Set speed to 5
+                        break;
+                }
+                break;
+            case ("maps/map11/piazza.tmx"):
+                switch (oldMapPath) {
+                    case ("maps/map3/map3.tmx"):
+                        player.setPosition(58 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 45) * player.getCollisionLayer().getTileHeight());
                         player.setScale(1); // Set size to 1
                         player.setSpeed(60 * 1.7f); // Set speed to 5
                         break;

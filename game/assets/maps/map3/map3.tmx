@@ -34,7 +34,7 @@
   </tile>
   <tile id="831">
    <properties>
-    <property name="transition" value="maps/map8/home.tmx"/>
+    <property name="transition" value="maps/map11/piazza.tmx"/>
    </properties>
   </tile>
   <tile id="836">
