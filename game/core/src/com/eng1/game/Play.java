@@ -29,9 +29,6 @@ public class Play implements Screen {
     private static TiledMap oldMap;
     private static String currentMapPath = "maps/map1/map1.tmx";
     private static String oldMapPath = "";
-
-    private static final float MAP_SCALE = 1000f;
-
     private static final List<String> scaledMaps = Arrays.asList("maps/map8/home.tmx","maps/map9/gym.tmx");
     private static final List<String> largeScaledMaps = Arrays.asList("maps/map10/computer-science-building.tmx", "maps/map11/piazza.tmx");
 

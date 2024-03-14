@@ -13,7 +13,7 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Player extends Sprite implements InputProcessor {
     private Vector2 velocity = new Vector2();
-    private float speed = 60 * 10;
+    private float speed = 60 * 5;
     private float animationTime = 0;
     private Animation still, left, right;
     private TiledMapTileLayer collisionLayer;
