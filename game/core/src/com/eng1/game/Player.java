@@ -20,8 +20,12 @@ public class Player extends Sprite implements InputProcessor {
     private String blockedKey = "blocked";
     private String transitionKey = "transition";
     public static String transitionValue = "";
+<<<<<<< HEAD
 
     // Animation still, Animation left, Animation right,
+=======
+   // Animation still, Animation left, Animation right,
+>>>>>>> c78bd13548ef38d8da02d0c29dfe0f9ccb7042ae
     public Player(Sprite sprite, TiledMapTileLayer collisionLayer) {
         super(sprite);
 //        super((Texture) still.getKeyFrame(0));
@@ -30,9 +34,12 @@ public class Player extends Sprite implements InputProcessor {
 //        this.right = right;
         this.collisionLayer = collisionLayer;
         setScale(3);
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> c78bd13548ef38d8da02d0c29dfe0f9ccb7042ae
     }
 
     @Override
@@ -116,7 +123,10 @@ public class Player extends Sprite implements InputProcessor {
             case Keys.RIGHT:
                 velocity.x = speed;
                 break;
+<<<<<<< HEAD
 
+=======
+>>>>>>> c78bd13548ef38d8da02d0c29dfe0f9ccb7042ae
         }
         return true;
     }
