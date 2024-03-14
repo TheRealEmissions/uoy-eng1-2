@@ -170,7 +170,7 @@ public class Play implements Screen {
             case ("maps/map8/home.tmx"):
                 switch (oldMapPath) {
                     case ("maps/map1/map1.tmx"):
-                        player.setPosition(61 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 40) * player.getCollisionLayer().getTileHeight());
+                        player.setPosition(56 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 40) * player.getCollisionLayer().getTileHeight());
                         player.setScale(1); // Set size to 1
                         player.setSpeed(60 * 1.7f); // Set speed to 5
                         break;
