@@ -62,7 +62,7 @@ public class MenuScreen extends ScreenAdapter {
         newGame.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                parent.changeScreen(HeslingtonHustle.APPLICATION);
+                parent.changeScreen(HeslingtonHustle.CHARACTER);
             }
         });
 

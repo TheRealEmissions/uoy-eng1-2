@@ -12,11 +12,15 @@ public class HeslingtonHustle extends Game {
 	private MainScreen mainScreen;
 	private EndScreen endScreen;
 	private AppPreferences preferences;
+	private CharacterScreen characterScreen;
+
 
 	public final static int MENU = 0;
 	public final static int PREFERENCES = 1;
 	public final static int APPLICATION = 2;
 	public final static int ENDGAME = 3;
+	public final static int CHARACTER = 4;
+
 
 	@Override
 	public void create() {
@@ -46,6 +50,10 @@ public class HeslingtonHustle extends Game {
 			case ENDGAME:
 				if (endScreen == null) endScreen = new EndScreen(this);
 				setScreen(endScreen);
+				break;
+			case CHARACTER:
+				if (characterScreen == null) characterScreen = new CharacterScreen(this);
+				setScreen(characterScreen);
 				break;
 		}
 	}

@@ -32,6 +32,8 @@ public class Play implements Screen {
     private static final List<String> scaledMaps = Arrays.asList("maps/map8/home.tmx","maps/map9/gym.tmx");
     private static final List<String> largeScaledMaps = Arrays.asList("maps/map10/computer-science-building.tmx", "maps/map11/piazza.tmx");
 
+    private static String selectedCharacter;
+
     public Play() {
         // Initialize camera here
         camera = new OrthographicCamera();
@@ -83,8 +85,22 @@ public class Play implements Screen {
 
 
 
+    public static void setSelectedCharacter(String character) {
+        selectedCharacter = character;
+    }
+
     private static void setPlayerPosition() {
-        player =  new Player(new Sprite(new Texture("playerCharacters/playerCharacter1.png")), (TiledMapTileLayer) currentMap.getLayers().get(0));
+//
+        // Initialize the player based on the selected character
+        if (selectedCharacter.equals("Character1")) {
+            player =  new Player(new Sprite(new Texture("playerCharacters/playerCharacter1.png")), (TiledMapTileLayer) currentMap.getLayers().get(0));
+        } else if (selectedCharacter.equals("Character2")) {
+            player =  new Player(new Sprite(new Texture("playerCharacters/playerCharacter2.png")), (TiledMapTileLayer) currentMap.getLayers().get(0));
+        } else if (selectedCharacter.equals("Character3")) {
+            player =  new Player(new Sprite(new Texture("playerCharacters/playerCharacter3.png")), (TiledMapTileLayer) currentMap.getLayers().get(0));
+        }
+
+//        player =  new Player(new Sprite(new Texture("playerCharacters/playerCharacter2.png")), (TiledMapTileLayer) currentMap.getLayers().get(0));
         switch (currentMapPath) {
             case ("maps/map1/map1.tmx"):
                 switch (oldMapPath) {
