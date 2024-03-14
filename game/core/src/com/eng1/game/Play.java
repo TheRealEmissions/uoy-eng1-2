@@ -72,7 +72,7 @@ public class Play implements Screen {
             // Set a different zoom level for scaled maps
             camera.zoom = 0.35f; // You can adjust this value as needed
         } else if (largeScaledMaps.contains(currentMapPath)) {
-            camera.zoom = 0.55f; // Default zoom level for other maps
+            camera.zoom = 0.45f; // Default zoom level for other maps
         } else {
             camera.zoom = 1f;
         }
@@ -104,7 +104,7 @@ public class Play implements Screen {
                         player.setPosition(67 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 5) * player.getCollisionLayer().getTileHeight());
                         break;
                     case ("maps/map8/home.tmx"):
-                        player.setPosition(42 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 53) * player.getCollisionLayer().getTileHeight());
+                        player.setPosition(105 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 53) * player.getCollisionLayer().getTileHeight());
                         break;
                 }
                 break;
@@ -191,7 +191,7 @@ public class Play implements Screen {
             case ("maps/map10/computer-science-building.tmx"):
                 switch (oldMapPath) {
                     case ("maps/map5/map5.tmx"):
-                        player.setPosition(60 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 39) * player.getCollisionLayer().getTileHeight());
+                        player.setPosition(60 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 44) * player.getCollisionLayer().getTileHeight());
                         player.setScale(1); // Set size to 1
                         player.setSpeed(60 * 1.7f); // Set speed to 5
                         break;
@@ -246,13 +246,14 @@ public class Play implements Screen {
         camera.viewportWidth = width;
         camera.viewportHeight = height;
 //
-//        // Adjust zoom level based on the current map
-//        if (scaledMaps.contains(currentMapPath)) {
-//            // Set a different zoom level for scaled maps
-//            camera.zoom = 1f; // You can adjust this value as needed
-//        } else {
-//            camera.zoom = 1f; // Default zoom level for other maps
-//        }
+        if (scaledMaps.contains(currentMapPath)) {
+            // Set a different zoom level for scaled maps
+            camera.zoom = 0.35f; // You can adjust this value as needed
+        } else if (largeScaledMaps.contains(currentMapPath)) {
+            camera.zoom = 0.45f; // Default zoom level for other maps
+        } else {
+            camera.zoom = 1f;
+        }
 
         // Center the camera
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
