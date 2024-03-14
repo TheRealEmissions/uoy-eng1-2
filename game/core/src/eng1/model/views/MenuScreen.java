@@ -12,14 +12,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-import com.eng1.game.ENG1;
+import com.eng1.game.HeslingtonHustle;
 
 public class MenuScreen extends ScreenAdapter {
-    private ENG1 parent;
+    private HeslingtonHustle parent;
     private Stage stage;
     private Label titleLabel;
 
-    public MenuScreen(ENG1 game) {
+    public MenuScreen(HeslingtonHustle game) {
         parent = game;
         stage = new Stage(new ScreenViewport());
     }
@@ -37,7 +37,7 @@ public class MenuScreen extends ScreenAdapter {
         Skin skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
 
         // Create buttons
-        titleLabel = new Label("IDK GAME NAME", skin);
+        titleLabel = new Label("Heslington Hustle", skin);
         TextButton newGame = new TextButton("New Game", skin);
         TextButton preferences = new TextButton("Preferences", skin);
         TextButton exit = new TextButton("Exit", skin);
@@ -62,14 +62,14 @@ public class MenuScreen extends ScreenAdapter {
         newGame.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                parent.changeScreen(ENG1.APPLICATION);
+                parent.changeScreen(HeslingtonHustle.APPLICATION);
             }
         });
 
         preferences.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                parent.changeScreen(ENG1.PREFERENCES);
+                parent.changeScreen(HeslingtonHustle.PREFERENCES);
             }
         });
     }

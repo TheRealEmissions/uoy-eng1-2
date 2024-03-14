@@ -1,14 +1,14 @@
 package eng1.model.views;
 
 import com.badlogic.gdx.Screen;
-import com.eng1.game.ENG1;
+import com.eng1.game.HeslingtonHustle;
 
 public class EndScreen implements Screen {
-    private ENG1 parent; // a field to store our orchestrator
+    private HeslingtonHustle parent; // a field to store our orchestrator
 
     // our constructor with a ENG1 argument
-    public EndScreen(ENG1 eng1){
-        parent = eng1;     // setting the argument to our field.
+    public EndScreen(HeslingtonHustle heslingtonHustle){
+        parent = heslingtonHustle;     // setting the argument to our field.
     }
     @Override
     public void show() {
@@ -18,7 +18,7 @@ public class EndScreen implements Screen {
     @Override
     public void render(float delta) {
         // TODO Auto-generated method stub
-        parent.changeScreen(ENG1.MENU);
+        parent.changeScreen(HeslingtonHustle.MENU);
     }
 
     @Override

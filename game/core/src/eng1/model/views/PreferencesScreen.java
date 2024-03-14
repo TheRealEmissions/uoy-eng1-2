@@ -15,11 +15,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.eng1.game.ENG1;
+import com.eng1.game.HeslingtonHustle;
 
 public class PreferencesScreen implements Screen {
 
-    private ENG1 parent;
+    private HeslingtonHustle parent;
     private Stage stage;
     private Label titleLabel;
     private Label volumeMusicLabel;
@@ -27,7 +27,7 @@ public class PreferencesScreen implements Screen {
     private Label musicOnOffLabel;
     private Label soundOnOffLabel;
 
-    public PreferencesScreen(ENG1 eng1) {
+    public PreferencesScreen(HeslingtonHustle eng1) {
         parent = eng1;
         // create stage and set it as input processor
         stage = new Stage(new ScreenViewport());
@@ -99,7 +99,7 @@ public class PreferencesScreen implements Screen {
         backButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                parent.changeScreen(ENG1.MENU);
+                parent.changeScreen(HeslingtonHustle.MENU);
             }
         });
 
