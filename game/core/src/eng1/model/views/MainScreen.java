@@ -3,7 +3,7 @@ package eng1.model.views;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.*;
 
-import com.eng1.game.ENG1;
+import com.eng1.game.HeslingtonHustle;
 import com.eng1.game.Play; // Import the Play class
 
 import com.badlogic.gdx.Input.Keys;
@@ -11,12 +11,12 @@ import com.badlogic.gdx.InputAdapter;
 
 
 public class MainScreen implements Screen {
-    private ENG1 parent; // a field to store our orchestrator
+    private HeslingtonHustle parent; // a field to store our orchestrator
     private Play play;
 
     // our constructor with a ENG1 argument
-    public MainScreen(ENG1 eng1){
-        parent = eng1;     // setting the argument to our field
+    public MainScreen(HeslingtonHustle heslingtonHustle){
+        parent = heslingtonHustle;     // setting the argument to our field
 
         // Add input listener to handle escape key press
         Gdx.input.setInputProcessor(new InputAdapter() {
@@ -24,7 +24,7 @@ public class MainScreen implements Screen {
             public boolean keyDown(int keycode) {
                 if (keycode == Keys.ESCAPE) {
                     // Navigate to preferences screen or quit game
-                    parent.changeScreen(ENG1.PREFERENCES); // or ENG1.ENDGAME for quitting
+                    parent.changeScreen(HeslingtonHustle.PREFERENCES); // or ENG1.ENDGAME for quitting
                     return true; // Key press handled
                 }
                 return false; // Key press not handled

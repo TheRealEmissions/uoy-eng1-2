@@ -5,7 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import eng1.model.views.*;
 
-public class ENG1 extends Game {
+public class HeslingtonHustle extends Game {
 	private LoadingScreen loadingScreen;
 	private PreferencesScreen preferencesScreen;
 	private MenuScreen menuScreen;
