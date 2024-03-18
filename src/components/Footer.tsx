@@ -77,7 +77,7 @@ const Footer: React.FC = () => {
                     Architecture
                   </a>
                 </li>
-                <li className="mb-2">
+                <li className="mb-1">
                   <a
                     className={`text-sm hover:text-blue-400 cursor-pointer ${
                       activeLink === "contact" ? "text-blue-400" : ""
@@ -88,7 +88,7 @@ const Footer: React.FC = () => {
                     Method selection and planning
                   </a>
                 </li>
-                <li className="mb-2">
+                <li className="mb-1">
                   <a
                     className={`text-sm hover:text-blue-400 cursor-pointer ${
                       activeLink === "contact" ? "text-blue-400" : ""

@@ -1,6 +1,6 @@
-import HeroSection from "../components/HeroSection"
-import ContentSection from "../components/ContentSection"
-import DownloadSection from "../components/DownloadSection"
+import HeroSection from "@/components/HeroSection"
+import ContentSection from "@/components/ContentSection"
+import DownloadSection from "@/components/DownloadSection"
 
 
 export default function Home() {
