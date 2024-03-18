@@ -5,6 +5,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import eng1.model.views.*;
 
+/**
+ * The main game class responsible for managing screens.
+ */
 public class HeslingtonHustle extends Game {
 	private LoadingScreen loadingScreen;
 	private PreferencesScreen preferencesScreen;
@@ -14,7 +17,7 @@ public class HeslingtonHustle extends Game {
 	private AppPreferences preferences;
 	private CharacterScreen characterScreen;
 
-
+	// Screen constants
 	public final static int MENU = 0;
 	public final static int PREFERENCES = 1;
 	public final static int APPLICATION = 2;
@@ -29,10 +32,19 @@ public class HeslingtonHustle extends Game {
 		preferences = new AppPreferences();
 	}
 
+	/**
+	 * Retrieves the preferences instance.
+	 * @return The preferences instance.
+	 */
 	public AppPreferences getPreferences() {
 		return this.preferences;
 	}
 
+	/**
+	 * Changes the current screen based on the specified screen constant.
+	 * @param screen The screen constant indicating the screen to switch to.
+	 *
+	 */
 	public void changeScreen(int screen) {
 		switch (screen) {
 			case MENU:

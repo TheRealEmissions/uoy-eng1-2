@@ -1,20 +1,25 @@
 package eng1.model.views;
 
+import com.eng1.game.HeslingtonHustle;
+import com.eng1.game.Play;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.*;
-
-import com.eng1.game.HeslingtonHustle;
-import com.eng1.game.Play; // Import the Play class
-
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 
-
+/**
+ * This class represents the main screen of the game.
+ * This screen serves as the playing point of the game and handles user interactions such as escape to go to a settings screen / quit.
+ */
 public class MainScreen implements Screen {
     private HeslingtonHustle parent; // a field to store our orchestrator
     private Play play;
 
-    // our constructor with a ENG1 argument
+    /**
+     * Constructs a new MainScreen instance.
+     * @param heslingtonHustle The orchestrator of the game.
+     *                         This parameter is used to navigate between screens.
+     */
     public MainScreen(HeslingtonHustle heslingtonHustle){
         parent = heslingtonHustle;     // setting the argument to our field
 
@@ -24,10 +29,10 @@ public class MainScreen implements Screen {
             public boolean keyDown(int keycode) {
                 if (keycode == Keys.ESCAPE) {
                     // Navigate to preferences screen or quit game
-                    parent.changeScreen(HeslingtonHustle.PREFERENCES); // or ENG1.ENDGAME for quitting
-                    return true; // Key press handled
+                    parent.changeScreen(HeslingtonHustle.PREFERENCES);
+                    return true; // Key press handled -> navigates to screen
                 }
-                return false; // Key press not handled
+                return false; // Key press not handled -> doesn't navigate to screen
             }
         });
     }
@@ -35,16 +40,18 @@ public class MainScreen implements Screen {
     @Override
     public void show() {
         // This method is called when the screen is first shown.
-        // Here, you can initialize any resources or set up the screen.
         play = new Play(); // Instantiate the Play class
-        parent.setScreen(play); // Switch to the Play screen
+        parent.setScreen(play); // Switch to the 'Play' screen (where the game is run / rendered)
     }
 
+
+    // Override methods from Screen interface
+    // These methods are called by the game framework at various stages of the screen lifecycle
+    // Not currently used / needed.
     @Override
     public void render(float delta) {
         // This method is called every frame to render the screen.
         // You can put your rendering code here.
-        // This can be left empty for now if you don't have any rendering to do.
     }
 
     @Override

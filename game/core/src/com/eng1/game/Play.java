@@ -17,7 +17,10 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import java.util.List;
 import java.util.Arrays;
 
-
+/**
+ * The Play class represents the screen where the gameplay takes place.
+ * It implements the Screen interface provided by LibGDX.
+ */
 public class Play implements Screen {
     private static OrthogonalTiledMapRenderer renderer;
 
@@ -34,11 +37,19 @@ public class Play implements Screen {
 
     private static String selectedCharacter;
 
+    /**
+     * Constructor for the Play class.
+     * Initializes the camera.
+     */
     public Play() {
         // Initialize camera here
         camera = new OrthographicCamera();
     }
 
+    /**
+     * Loads a TiledMap from the given path.
+     * @param path The path of the TiledMap file to load.
+     */
     private void loadMap(String path) {
         assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
         assetManager.load(path, TiledMap.class);
@@ -46,10 +57,12 @@ public class Play implements Screen {
         currentMapPath = path;
         currentMap = assetManager.get(currentMapPath, TiledMap.class);
         setPlayerPosition();
-
-
     }
 
+    /**
+     * Changes the current map to the one specified by the given path.
+     * @param path The path of the new map.
+     */
     static void changeMap(String path) {
         currentMap.dispose(); // Dispose the old map
 
@@ -84,13 +97,18 @@ public class Play implements Screen {
     }
 
 
-
+    /**
+     * Sets the selected character for the player.
+     * @param character The selected character.
+     */
     public static void setSelectedCharacter(String character) {
         selectedCharacter = character;
     }
 
+    /**
+     * Sets the position of the player based on the current and old map paths.
+     */
     private static void setPlayerPosition() {
-//
         // Initialize the player based on the selected character
         if (selectedCharacter.equals("Character1")) {
             player =  new Player(new Sprite(new Texture("playerCharacters/playerCharacter1.png")), (TiledMapTileLayer) currentMap.getLayers().get(0));
@@ -100,7 +118,12 @@ public class Play implements Screen {
             player =  new Player(new Sprite(new Texture("playerCharacters/playerCharacter3.png")), (TiledMapTileLayer) currentMap.getLayers().get(0));
         }
 
-//        player =  new Player(new Sprite(new Texture("playerCharacters/playerCharacter2.png")), (TiledMapTileLayer) currentMap.getLayers().get(0));
+        /**
+         * Sets the position of the player based on the current and old map paths.
+         * Various cases are handled to set the player position based on the current and old map paths.
+         * For example, for the case (maps/map1/map1.tmx), the default position is (65, 57).
+         * Then if a player comes from map2.tmx, the position is set to (115, 57), and so on.
+         */
         switch (currentMapPath) {
             case ("maps/map1/map1.tmx"):
                 switch (oldMapPath) {
@@ -289,7 +312,7 @@ public class Play implements Screen {
 
     @Override
     public void hide() {
-        dispose();
+//        dispose();
     }
 
     @Override

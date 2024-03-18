@@ -11,14 +11,22 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-
 import com.eng1.game.HeslingtonHustle;
 
+/**
+ * Represents the main menu screen of the game.
+ * Provides options for starting a new game, accessing preferences, and exiting the game.
+ */
 public class MenuScreen extends ScreenAdapter {
-    private HeslingtonHustle parent;
-    private Stage stage;
-    private Label titleLabel;
+    private HeslingtonHustle parent; // Field to store the orchestrator of the game
+    private Stage stage; // Stage for handling UI elements
+    private Label titleLabel; // Label for displaying the game title
 
+    /**
+     * Constructor for the MenuScreen class.
+     * Initializes the parent orchestrator and creates a new stage for UI rendering.
+     * @param game The orchestrator of the game.
+     */
     public MenuScreen(HeslingtonHustle game) {
         parent = game;
         stage = new Stage(new ScreenViewport());
@@ -52,6 +60,8 @@ public class MenuScreen extends ScreenAdapter {
         table.add(exit).fillX().uniformX();
 
         // Create button listeners
+
+        // Exits the game when exit is clicked
         exit.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -59,6 +69,7 @@ public class MenuScreen extends ScreenAdapter {
             }
         });
 
+        // Changes to character screen when new game is clicked
         newGame.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -66,6 +77,7 @@ public class MenuScreen extends ScreenAdapter {
             }
         });
 
+        // Changes to preferences screen when preferences is clicked
         preferences.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {

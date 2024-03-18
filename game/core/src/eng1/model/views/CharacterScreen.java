@@ -18,20 +18,32 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.eng1.game.Play;
 
+/**
+ * Represents the character selection screen of the game.
+ * Allows the player to select their character from available choices.
+ */
 public class CharacterScreen extends ScreenAdapter {
     private HeslingtonHustle parent;
     private Stage stage;
     private Label titleLabel;
 
 
-
+    /**
+     * Constructs a new CharacterScreen.
+     *
+     * @param game The orchestrator of the game.
+     */
     public CharacterScreen(HeslingtonHustle game) {
         parent = game;
 
-        stage = new Stage(new StretchViewport(800, 600)); // Change the size as needed
+        stage = new Stage(new StretchViewport(800, 600)); // Changes the 'zoom' of the screen to be more readable
         Gdx.input.setInputProcessor(stage); // Set the input processor to the stage
     }
 
+    /**
+     * Called when this screen becomes the current screen.
+     * Sets up UI elements and handles input events.
+     */
     @Override
     public void show() {
         // Create table and skin
@@ -48,12 +60,12 @@ public class CharacterScreen extends ScreenAdapter {
         character1Button.setSize(1000f, 50f); // Set the width and height of the button
 
         TextButton character2Button = new TextButton("Character 2", skin);
-        character2Button.setSize(200f, 50f); // Set the width and height of the button
+        character2Button.setSize(200f, 50f);
 
         TextButton character3Button = new TextButton("Character 3", skin);
-        character3Button.setSize(200f, 50f); // Set the width and height of the button
+        character3Button.setSize(200f, 50f);
 
-        // Create character images
+        // Load character images from assets
         Texture character1Texture = new Texture(Gdx.files.internal("playerCharacters/playerCharacter1.png"));
         Texture character2Texture = new Texture(Gdx.files.internal("playerCharacters/playerCharacter2.png"));
         Texture character3Texture = new Texture(Gdx.files.internal("playerCharacters/playerCharacter3.png"));
@@ -62,17 +74,17 @@ public class CharacterScreen extends ScreenAdapter {
         character1Image.setSize(200f, 200f); // Set the width and height of the image
 
         Image character2Image = new Image(new TextureRegionDrawable(new TextureRegion(character2Texture)));
-        character2Image.setSize(200f, 200f); // Set the width and height of the image
+        character2Image.setSize(200f, 200f);
 
         Image character3Image = new Image(new TextureRegionDrawable(new TextureRegion(character3Texture)));
-        character3Image.setSize(200f, 200f); // Set the width and height of the image
+        character3Image.setSize(200f, 200f);
 
         // Add listeners to character selection buttons
         character1Button.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-//                selectedCharacter = "1"; // Set selected character choice
                 Play.setSelectedCharacter("Character1"); // Set selected character
+                // Change the screen to the main game screen
                 parent.changeScreen(HeslingtonHustle.APPLICATION);
             }
         });
@@ -80,8 +92,7 @@ public class CharacterScreen extends ScreenAdapter {
         character2Button.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-//                selectedCharacter = "2"; // Set selected character choice
-                Play.setSelectedCharacter("Character2"); // Set selected character
+                Play.setSelectedCharacter("Character2");
                 parent.changeScreen(HeslingtonHustle.APPLICATION);
             }
         });
@@ -89,15 +100,14 @@ public class CharacterScreen extends ScreenAdapter {
         character3Button.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-//                selectedCharacter = "3"; // Set selected character choice
-                Play.setSelectedCharacter("Character3"); // Set selected character
+                Play.setSelectedCharacter("Character3");
                 parent.changeScreen(HeslingtonHustle.APPLICATION);
             }
         });
 
         // Add padding and spacing between elements
-        table.pad(20f); // Add padding around the table
-        table.defaults().pad(10f); // Add default padding between elements
+        table.pad(20f);
+        table.defaults().pad(10f);
 
         // Add actors to the table with increased size
         table.add(titleLabel).colspan(3).padBottom(40f);
@@ -114,6 +124,12 @@ public class CharacterScreen extends ScreenAdapter {
         Gdx.input.setInputProcessor(stage);
     }
 
+    /**
+     * Renders the screen.
+     * Clears the screen and renders the stage.
+     *
+     * @param delta The time elapsed since the last frame.
+     */
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(0f, 0f, 0f, 1);
@@ -122,11 +138,21 @@ public class CharacterScreen extends ScreenAdapter {
         stage.draw();
     }
 
+    /**
+     * Called when the screen size is changed.
+     * Updates the viewport of the stage.
+     *
+     * @param width  The new width of the screen.
+     * @param height The new height of the screen.
+     */
     @Override
     public void resize(int width, int height) {
         stage.getViewport().update(width, height, true);
     }
 
+    /**
+     * Disposes of resources used by this screen.
+     */
     @Override
     public void dispose() {
         stage.dispose();

@@ -17,6 +17,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.eng1.game.HeslingtonHustle;
 
+/**
+ * Represents the preferences screen of the game.
+ * Allows the player to adjust game settings such as volume and enable/disable music and sound effects.
+ * Currently redundant apart from ability to quit game
+ */
 public class PreferencesScreen implements Screen {
 
     private HeslingtonHustle parent;
@@ -27,6 +32,12 @@ public class PreferencesScreen implements Screen {
     private Label musicOnOffLabel;
     private Label soundOnOffLabel;
 
+
+    /**
+     * Constructor for the PreferencesScreen class.
+     * Initializes the parent orchestrator and creates a new stage for UI rendering.
+     * @param eng1 The orchestrator of the game.
+     */
     public PreferencesScreen(HeslingtonHustle eng1) {
         parent = eng1;
         // create stage and set it as input processor
@@ -112,12 +123,14 @@ public class PreferencesScreen implements Screen {
             }
         });
 
+        // Add labels
         titleLabel = new Label("Preferences", skin);
         volumeMusicLabel = new Label("Music Volume", skin);
         volumeSoundLabel = new Label("Sound Volume", skin);
         musicOnOffLabel = new Label("Music", skin);
         soundOnOffLabel = new Label("Sound Effect", skin);
 
+        // Add actors to the table
         table.add(titleLabel).colspan(2);
         table.row().pad(10, 0, 0, 10);
         table.add(volumeMusicLabel).left();
@@ -160,22 +173,22 @@ public class PreferencesScreen implements Screen {
 
     @Override
     public void pause() {
-        // TODO Auto-generated method stub
+        // Not needed
     }
 
     @Override
     public void resume() {
-        // TODO Auto-generated method stub
+        // Not needed
     }
 
     @Override
     public void hide() {
-        // TODO Auto-generated method stub
+        // Not needed
     }
 
     @Override
     public void dispose() {
-        // TODO Auto-generated method stub
+        // Not needed
     }
 
 }
