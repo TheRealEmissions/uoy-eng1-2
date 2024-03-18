@@ -23,8 +23,7 @@ public class HeslingtonHustle extends Game {
 	public final static int APPLICATION = 2;
 	public final static int ENDGAME = 3;
 	public final static int CHARACTER = 4;
-
-
+	
 	@Override
 	public void create() {
 		loadingScreen = new LoadingScreen(this);
