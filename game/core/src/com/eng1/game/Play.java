@@ -30,7 +30,7 @@ public class Play implements Screen {
     private static Player player;
     private static TiledMap currentMap;
     private static TiledMap oldMap;
-    private static String currentMapPath = "maps/map1/map1.tmx";
+    private static String currentMapPath = "maps/map8/home.tmx";
     private static String oldMapPath = "";
     private static final List<String> scaledMaps = Arrays.asList("maps/map8/home.tmx","maps/map9/gym.tmx");
     private static final List<String> largeScaledMaps = Arrays.asList("maps/map10/computer-science-building.tmx", "maps/map11/piazza.tmx");
@@ -42,6 +42,8 @@ public class Play implements Screen {
      * Initializes the camera.
      */
     public Play() {
+        //create activities
+        Activity.createActivities();
         // Initialize camera here
         camera = new OrthographicCamera();
     }
@@ -127,9 +129,6 @@ public class Play implements Screen {
         switch (currentMapPath) {
             case ("maps/map1/map1.tmx"):
                 switch (oldMapPath) {
-                    case (""):
-                        player.setPosition(65 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
-                        break;
                     case ("maps/map2/map2.tmx"):
                         player.setPosition(115 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
                         break;
@@ -208,6 +207,7 @@ public class Play implements Screen {
                 break;
             case ("maps/map8/home.tmx"):
                 switch (oldMapPath) {
+                    case (""):
                     case ("maps/map1/map1.tmx"):
                         player.setPosition(56 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 40) * player.getCollisionLayer().getTileHeight());
                         player.setScale(1); // Set size to 1

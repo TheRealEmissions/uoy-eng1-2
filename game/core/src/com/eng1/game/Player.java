@@ -84,7 +84,7 @@ public class Player extends Sprite implements InputProcessor {
             transition = false;
         } else if (activity) {
             velocity.x = 0;
-            //chris call you method here
+            Activity.completeActivity(activityValue);
             setX(oldX);
         }
 
@@ -110,7 +110,7 @@ public class Player extends Sprite implements InputProcessor {
             transition = false;
         } else if (activity) {
             velocity.y = 0;
-            //chris call you method here
+            Activity.completeActivity(activityValue);
             setY(oldY);
         }
 //
