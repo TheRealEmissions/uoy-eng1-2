@@ -272,10 +272,13 @@ public class Play implements Screen {
         renderer.getBatch().begin();
         if (scaledMaps.contains(currentMapPath)) {
             // Set a different zoom level for scaled maps
+            displayDateTime.getData().setScale(1); // Adjust the scale as needed
             displayDateTime.draw(renderer.getBatch(), ("Day: " + GameStats.getDay() + " Time: " + GameStats.getTime() + " Energy: " + GameStats.getEnergy()), 630, 725);
         } else if (largeScaledMaps.contains(currentMapPath)) {
+            displayDateTime.getData().setScale(1); // Adjust the scale as needed
             displayDateTime.draw(renderer.getBatch(), ("Day: " + GameStats.getDay() + " Time: " + GameStats.getTime() + " Energy: " + GameStats.getEnergy()), 530, 780);
         } else {
+            displayDateTime.getData().setScale(2); // Adjust the scale as needed
             displayDateTime.draw(renderer.getBatch(), ("Day: " + GameStats.getDay() + " Time: " + GameStats.getTime() + " Energy: " + GameStats.getEnergy()), 12, 1070);
         }
         player.draw(renderer.getBatch());
