@@ -12,11 +12,11 @@ interface NavItem{
 const nav_items: Array<NavItem> = [
     {
         label: "Home",
-        page: "/ENG1/",
+        page: "/",
     },
     {
       label: "Documents",
-      page: "/ENG1/documents",
+      page: "/documents",
   },
 ]
 

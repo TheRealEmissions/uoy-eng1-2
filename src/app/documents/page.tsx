@@ -16,45 +16,105 @@ export default function Home() {
                 Our Diagrams
             </h2>
             
-            <div className="flex flex-col md:flex-row gap-10 pt-20">
-                <div className="max-w-xl min-w-xl md:min-w-xl">
-                    <img src="placeholder1.png" className="rounded-xl w-full" alt="Gannt Chart" />
-                </div>
+            <div className="flex flex-col md:flex-row gap-10 pt-16">
+
                 <div>
                     <h3 className="text-xl md:text-2xl font-semibold">
-                        Architecture figure 1.1
+                        Gannt chart 1
                     </h3>
-                    <p className="max-w-xl pt-5">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi commodo tellus sit amet <span className="font-bold">magna tempor </span>vestibulum. Sed lobortis laoreet sem, ut laoreet erat aliquam non.
+                    <p className="max-w-xl pt-5 text-sm">
+                        Week 1
+                        <br></br>
+                        <br></br>
+                        Key tasks:
+
+                        <h3 className="text-lg">Method Selection and Planning (High Priority) </h3>
+                        Start: 2024-02-19, End: 2024-03-15
+                        <br></br>
+                        Includes Research, Planning, Gantt Chart Creation
+                        <br></br>
+                        Dependencies: None
+                        <br></br>
+                        <br></br>
+                        <h3 className="text-lg">Website Creation (Medium Priority)</h3>
+                        Start: 2024-02-24, End: 2024-03-01
+                        <br></br>
+                        Includes Domain creation on Github, Website Design
+                        <br></br>
+                        Dependencies: None
+                        <br></br>
+                        Risk Management (Medium Priority)
+                        <br></br>
+                        Start: 2024-02-25, End: 2024-03-15
+                        <br></br>
+                        Includes Introduction, Writing Risks, Documentation
+                        <br></br>
+                        Dependencies: Product brief
+
                     </p>
+                </div>
+                <div className="max-w-xl min-w-xl md:min-w-xl">
+                    <img src="Gantchart1.jpeg" className="rounded-xl w-full" alt="Gannt Chart" />
                 </div>
             </div>
 
-            <div className="flex flex-col md:flex-row gap-10 pt-10">
-                <div className="max-w-xl min-w-xl md:min-w-xl">
-                    <img src="placeholder2.png" className="rounded-xl w-full" alt="Gannt Chart" />
-                </div>
+            <div className="flex flex-col md:flex-row gap-10 pt-16">
                 <div>
                     <h3 className="text-xl md:text-2xl font-semibold">
-                        Architecture figure 2.2
+                        Gannt chart 2
                     </h3>
-                    <p className="max-w-xl pt-5">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi commodo tellus sit amet <span className="font-bold">magna tempor </span>vestibulum. Sed lobortis laoreet sem, ut laoreet erat aliquam non.
+                    <p className="max-w-xl pt-5 text-sm">
+                        Week 2
+                        <br></br>
+                        <br></br>
+                        Key tasks:
+                        <h3 className="text-lg">Requirement Collection (High Priority)</h3>
+                        Start: 2024-03-06, End: 2024-03-19
+                        <br></br>
+                        Includes Customer Interviews, Writing User/System Requirements, Documentation
+                        <br></br>
+                        Dependencies: None
+                        <br></br>
+                        <br></br>
+                        <h3 className="text-lg">Implementation (Highest Priority)</h3>
+                        Start: 2024-02-28, End: 2024-04-11
+                        <br></br>
+                        Includes Menu Creation, Map/Navigation Design, Character Design/Movement, Collision Detection, Interior Design, Map Transitions, Integration
+                        <br></br>
+                        Dependencies: Requirement Collection
+
                     </p>
+                </div>
+                <div className="max-w-xl min-w-xl md:min-w-xl">
+                    <img src="Gantchart2.jpeg" className="rounded-xl w-full" alt="Gannt Chart" />
                 </div>
             </div>
 
-            <div className="flex flex-col md:flex-row gap-10 pt-10">
-                <div className="max-w-xl min-w-xl md:min-w-xl">
-                    <img src="placeholder3.png" className="rounded-xl w-full" alt="Gannt Chart" />
-                </div>
+            <div className="flex flex-col md:flex-row gap-10 pt-16">
                 <div>
                     <h3 className="text-xl md:text-2xl font-semibold">
-                        Gannt Chart
+                        Gannt Chart 3
                     </h3>
-                    <p className="max-w-xl pt-5">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi commodo tellus sit amet <span className="font-bold">magna tempor </span>vestibulum. Sed lobortis laoreet sem, ut laoreet erat aliquam non.
+                    <p className="max-w-xl pt-5 text-sm">
+                        Week 3
+                        <br></br>
+                        <br></br>
+                        Key Tasks:
+                        <h3 className="text-lg">Architecture (High Priority)</h3>
+                        Start: 2024-03-10, End: 2024-03-21
+                        <br></br>
+                        <h3 className="text-lg">Includes System Design, Database Design</h3>
+                        Dependencies: None
+                        <br></br>
+                        Links Creation (Low Priority)
+                        <br></br>
+                        Start: 2024-03-16, End: 2024-03-16
+                        <br></br>
+                        Dependencies: Implementation, Website Creation, Architecture, Risk management, Method selection and planning
                     </p>
+                </div>
+                <div className="max-w-xl min-w-xl md:min-w-xl">
+                    <img src="Gantchart3.jpeg" className="rounded-xl w-full" alt="Gannt Chart" />
                 </div>
             </div>
         </div>

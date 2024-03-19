@@ -10,8 +10,7 @@ const HeroSection = () => {
             <h2 className="font-semibold text-4xl md:text-5xl ">We&apos;re <span className=" font-bold">/cohort1/group1</span></h2>
             <p className="text-xs md:text-sm mt-4">All credits for,</p>
             <p className="text-sm md:text-base  mb-6">
-              Charlie Piper, Chris Oulton, Chris Oulton, Dillon Anthony, Kevin Thomas, 
-              Shirin Sitara Alok Kumar, Tom Haslam. <br></br>
+              Charlie Piper, Chris Oulton, Dillon Anthony, Ella Daramola, Kevin Thomas, Shirin Sitara Alok Kumar, Tom Haslam. <br></br>
             </p>
             <a href="documents">
               <button className="bg-slate-800  hover:bg-slate-900 text-white p-3 text-sm">
