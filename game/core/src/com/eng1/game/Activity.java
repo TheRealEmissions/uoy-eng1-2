@@ -1,5 +1,6 @@
 package com.eng1.game;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.math.Interpolation;
 
 import java.time.LocalTime;
@@ -10,11 +11,11 @@ public class Activity {
     private static Map<String, Map<String, Activity>> activities; // Map of the activity types
     // each activity type containing a map of the locations and activities within those locations
     // Activities can be called using the type then the location
-    private LocalTime timeNeeded; // Time required to complete the activity
-    private int energyNeeded; // Energy required to complete the activity
+    private final LocalTime timeNeeded; // Time required to complete the activity
+    private final int energyNeeded; // Energy required to complete the activity
     private int timesCompletedWeek; // Times the activity has been completed in the week (can be used to decrese the reward of an activity if it is completed multiple times)
     private int timesCompletedDay; // Times the activity has been completed that day (can be used to stop activites being completed too many times or to increase the reward i.e. eating 3 meals)
-    private int reward; // Score the activity gives for being completed
+    private final int reward; // Score the activity gives for being completed
 
     public Activity(LocalTime timeNeeded, int energyNeeded, int reward) {
         // Constructor for activities
@@ -59,7 +60,7 @@ public class Activity {
         System.out.println(location);
 
         activities.get(type).get(location).complete();
-        if (type == "Sleep") {
+        if (type.equals("Sleep")) {
             Activity.sleep();
         }
     }
@@ -83,11 +84,24 @@ public class Activity {
         this.timesCompletedWeek++;
         GameStats.increaseTime(this.timeNeeded);
         GameStats.decreaseEnergy(this.energyNeeded);
+
+        // Debugging
+        // ---
+        System.out.println("Current time: " + GameStats.getTime());
+        System.out.println("Current energy: " + GameStats.getEnergy());
+        System.out.println("Current score: " + GameStats.getScore());
+        // ---
+
         return "Activity Completed";
     }
 
 
     public static void sleep() {
+        // Debugging
+        // ---
+        System.out.println("Sleeping");
+        // ---
+
         // Calculate the days score and add to the total score
         GameStats.increaseScore(calculateDayScore());
 
@@ -102,31 +116,34 @@ public class Activity {
         //Reset stats
         GameStats.newDay();
 
+        System.out.println(Activity.countCompletedActivities());
+
         if (GameStats.getDay() == 8) {
-            //Call end screen
+            // Call end screen
         }
     }
 
-    public static int countCompletedActivities() {
-        //Count the completed activites for the end screen
-        int count = 0;
-        for (Map<String, Activity> typeActivities : activities.values()) {
+    public static Map<String, Integer> countCompletedActivities() {
+        // Count the completed activites for the end screen
+        Map<String, Integer> counts = new HashMap<>();
+        // Add in each type of activity
+        counts.put("Study", 0);
+        counts.put("Relax", 0);
+        counts.put("Eat", 0);
+        counts.put("Sleep", 0);
+        for (String type : activities.keySet()) {
             // typeActivities is the map for each type of activity
-            for (Activity activity : typeActivities.values()) {
-                count += activity.timesCompletedWeek;
+            for (Activity activity : activities.get(type).values()) {
+                counts.put(type, counts.get(type) + activity.timesCompletedWeek);
             }
         }
 
-        return count;
+        return counts;
     }
 
     public static int calculateDayScore() {
         // Score to be calculated here
         // Can be completed by iterating through the activites and checking if their timeCompletedDay is > 0
         return  0;
-    }
-
-    public static void main(String[] args) {
-
     }
 }

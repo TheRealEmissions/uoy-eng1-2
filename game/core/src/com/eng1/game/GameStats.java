@@ -6,7 +6,7 @@ public class GameStats {
     private static int energy = 100; //Keeps track of players current energy
     public static final int MAX_ENERGY = 100; //Max energy (energy is reset to this at the start of every day)
     private static int score = 0;
-    private static int day = 0; //Current day
+    private static int day = 1; //Current day
     private static LocalTime time = LocalTime.of(8, 0); //Current time
     public static final LocalTime DAY_START = LocalTime.of(8, 0); //When the player wakes up
     public static final LocalTime DAY_END = LocalTime.of(0, 0); //When the player has to sleep
