@@ -91,8 +91,6 @@ public class Play implements Screen {
             camera.zoom = 1f;
         }
 
-
-
         // Center the camera
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
         camera.update();
