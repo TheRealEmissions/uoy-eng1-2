@@ -13,6 +13,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.eng1.game.HeslingtonHustle;
 
+import com.eng1.game.Activity;
+
 /**
  * Represents the Endscreen screen of the game.
  * Allows the player see their final score
@@ -22,7 +24,10 @@ public class EndScreen implements Screen {
     private HeslingtonHustle parent;
     private Stage stage;
     private Label titleLabel;
-    private Label score;
+    private Label scoreLabel;
+
+
+
 
 
 
@@ -65,13 +70,13 @@ public class EndScreen implements Screen {
 
         // Add labels
         titleLabel = new Label("Heslington Hustle", skin);
-        score = new Label("Score: ", skin);
+        scoreLabel = new Label("Score: " + Activity.getFinalScore(), skin); // Retrieve the final score from Activity
 
 
         // Add actors to the table
         table.add(titleLabel).colspan(2);
         table.row().pad(10, 0, 0, 10);
-        table.add(score).left();
+        table.add(scoreLabel).left();
 
         table.row().pad(10, 0, 0, 10);
         table.add(quitButton).colspan(50);
