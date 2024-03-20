@@ -13,6 +13,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.eng1.game.HeslingtonHustle;
 
+import com.eng1.game.Activity;
+
+import java.util.Map;
+
 /**
  * Represents the Endscreen screen of the game.
  * Allows the player see their final score
@@ -22,7 +26,10 @@ public class EndScreen implements Screen {
     private HeslingtonHustle parent;
     private Stage stage;
     private Label titleLabel;
-    private Label score;
+    private Label scoreLabel;
+
+    private static Map<String, Map<String, Activity>> activities; // Map of the activity types
+
 
 
 
@@ -51,8 +58,25 @@ public class EndScreen implements Screen {
         // temporary until we have asset manager in
         Skin skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
 
+        // Add labels
+        titleLabel = new Label("Heslington Hustle", skin);
+        scoreLabel = new Label("Score: " + Activity.getFinalScore(), skin); // Retrieve the final score from Activity
 
 
+
+        // Add actors to the table
+        table.add(titleLabel).colspan(2);
+        table.row().pad(10, 0, 0, 10);
+
+        // Display completed activities
+        Map<String, Integer> completedActivities = Activity.countCompletedActivities();
+        for (String type : completedActivities.keySet()) {
+            table.add(new Label(type + ": " + completedActivities.get(type), skin)).left().pad(10);
+            table.row();
+        }
+        table.row().pad(10, 0, 0, 10);
+
+        table.add(scoreLabel).row();
 
         // quit game button
         final TextButton quitButton = new TextButton("Quit", skin);
@@ -63,21 +87,10 @@ public class EndScreen implements Screen {
             }
         });
 
-        // Add labels
-        titleLabel = new Label("Heslington Hustle", skin);
-        score = new Label("Score: ", skin);
-
-
-        // Add actors to the table
-        table.add(titleLabel).colspan(2);
-        table.row().pad(10, 0, 0, 10);
-        table.add(score).left();
-
         table.row().pad(10, 0, 0, 10);
         table.add(quitButton).colspan(50);
-
-
     }
+
 
     @Override
     public void render(float delta) {

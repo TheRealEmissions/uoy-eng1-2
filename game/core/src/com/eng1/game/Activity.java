@@ -7,7 +7,11 @@ import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.eng1.game.HeslingtonHustle;
+
+
 public class Activity {
+
     private static Map<String, Map<String, Activity>> activities; // Map of the activity types
     // each activity type containing a map of the locations and activities within those locations
     // Activities can be called using the type then the location
@@ -17,6 +21,10 @@ public class Activity {
     private int timesCompletedDay; // Times the activity has been completed that day (can be used to stop activites being completed too many times or to increase the reward i.e. eating 3 meals)
     private final int reward; // Score the activity gives for being completed
 
+    private static HeslingtonHustle gameInstance; // Reference to the HeslingtonHustle instance
+
+    private static int finalScore;
+
     public Activity(LocalTime timeNeeded, int energyNeeded, int reward) {
         // Constructor for activities
         this.timeNeeded = timeNeeded;
@@ -24,6 +32,11 @@ public class Activity {
         this.timesCompletedWeek = 0;
         this.timesCompletedDay = 0;
         this.reward = reward;
+    }
+
+    // Method to set the game instance
+    public static void setGameInstance(HeslingtonHustle game) {
+        gameInstance = game;
     }
 
     public static void createActivities() {
@@ -118,8 +131,11 @@ public class Activity {
 
         System.out.println(Activity.countCompletedActivities());
 
-        if (GameStats.getDay() == 8) {
-            // Call end screen
+        if (GameStats.getDay() >= 7) {
+            // Pass the score and activities completed to EndScreen
+            Map<String, Integer> activitiesCompleted = Activity.countCompletedActivities();
+            int score = calculateDayScore();
+            gameInstance.changeScreen(HeslingtonHustle.ENDGAME);
         }
     }
 
@@ -145,5 +161,13 @@ public class Activity {
         // Score to be calculated here
         // Can be completed by iterating through the activites and checking if their timeCompletedDay is > 0
         return  0;
+    }
+
+    public static int getFinalScore() {
+        return finalScore;
+    }
+
+    public static void setFinalScore(int score) {
+        finalScore = score;
     }
 }

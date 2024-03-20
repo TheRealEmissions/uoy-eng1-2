@@ -29,6 +29,7 @@ public class HeslingtonHustle extends Game {
 		loadingScreen = new LoadingScreen(this);
 		setScreen(loadingScreen);
 		preferences = new AppPreferences();
+		Activity.setGameInstance(this); // Set the game instance in Activity
 	}
 
 	/**
