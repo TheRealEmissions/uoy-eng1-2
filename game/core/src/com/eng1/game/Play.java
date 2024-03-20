@@ -4,15 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 import java.util.List;
 import java.util.Arrays;
@@ -34,9 +34,8 @@ public class Play implements Screen {
     private static String oldMapPath = "";
     private static final List<String> scaledMaps = Arrays.asList("maps/map8/home.tmx","maps/map9/gym.tmx");
     private static final List<String> largeScaledMaps = Arrays.asList("maps/map10/computer-science-building.tmx", "maps/map11/piazza.tmx");
-
     private static String selectedCharacter;
-
+    BitmapFont displayDateTime = new BitmapFont();
     /**
      * Constructor for the Play class.
      * Initializes the camera.
@@ -86,12 +85,10 @@ public class Play implements Screen {
             // Set a different zoom level for scaled maps
             camera.zoom = 0.35f; // You can adjust this value as needed
         } else if (largeScaledMaps.contains(currentMapPath)) {
-            camera.zoom = 0.45f; // Default zoom level for other maps
+            camera.zoom = 0.5f; // Default zoom level for other maps
         } else {
             camera.zoom = 1f;
         }
-
-
 
         // Center the camera
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
@@ -227,7 +224,7 @@ public class Play implements Screen {
             case ("maps/map10/computer-science-building.tmx"):
                 switch (oldMapPath) {
                     case ("maps/map5/map5.tmx"):
-                        player.setPosition(60 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 44) * player.getCollisionLayer().getTileHeight());
+                        player.setPosition(60 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 45) * player.getCollisionLayer().getTileHeight());
                         player.setScale(1); // Set size to 1
                         player.setSpeed(60 * 1.7f); // Set speed to 5
                         break;
@@ -236,7 +233,7 @@ public class Play implements Screen {
             case ("maps/map11/piazza.tmx"):
                 switch (oldMapPath) {
                     case ("maps/map3/map3.tmx"):
-                        player.setPosition(58 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 45) * player.getCollisionLayer().getTileHeight());
+                        player.setPosition(58 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 48) * player.getCollisionLayer().getTileHeight());
                         player.setScale(1); // Set size to 1
                         player.setSpeed(60 * 1.7f); // Set speed to 5
                         break;
@@ -273,6 +270,17 @@ public class Play implements Screen {
         renderer.setView(camera);
         renderer.render();
         renderer.getBatch().begin();
+        if (scaledMaps.contains(currentMapPath)) {
+            // Set a different zoom level for scaled maps
+            displayDateTime.getData().setScale(1); // Adjust the scale as needed
+            displayDateTime.draw(renderer.getBatch(), ("Day: " + GameStats.getDay() + " Time: " + GameStats.getTime() + " Energy: " + GameStats.getEnergy()), 630, 725);
+        } else if (largeScaledMaps.contains(currentMapPath)) {
+            displayDateTime.getData().setScale(1); // Adjust the scale as needed
+            displayDateTime.draw(renderer.getBatch(), ("Day: " + GameStats.getDay() + " Time: " + GameStats.getTime() + " Energy: " + GameStats.getEnergy()), 530, 780);
+        } else {
+            displayDateTime.getData().setScale(2); // Adjust the scale as needed
+            displayDateTime.draw(renderer.getBatch(), ("Day: " + GameStats.getDay() + " Time: " + GameStats.getTime() + " Energy: " + GameStats.getEnergy()), 12, 1070);
+        }
         player.draw(renderer.getBatch());
         renderer.getBatch().end();
     }
@@ -286,7 +294,7 @@ public class Play implements Screen {
             // Set a different zoom level for scaled maps
             camera.zoom = 0.35f; // You can adjust this value as needed
         } else if (largeScaledMaps.contains(currentMapPath)) {
-            camera.zoom = 0.45f; // Default zoom level for other maps
+            camera.zoom = 0.5f; // Default zoom level for other maps
         } else {
             camera.zoom = 1f;
         }

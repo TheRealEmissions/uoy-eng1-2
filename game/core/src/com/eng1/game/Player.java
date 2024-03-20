@@ -172,22 +172,42 @@ public class Player extends Sprite implements InputProcessor {
         }
         return true;
     }
-
+    /**
+     * Checks whether the tile contains a property called blocked.
+     * @param x which is the x coord of the player.
+     * @param y which is the y coord of the player.
+     * @return True if it does contain it and false if not.
+     */
     private boolean isCellBlocked (float x, float y){
         Cell cell = collisionLayer.getCell((int) (x / collisionLayer.getTileWidth()), (int) (y / collisionLayer.getTileHeight()));
         return cell != null && cell.getTile() != null && cell.getTile().getProperties().containsKey(blockedKey);
     }
-
+    /**
+     * Checks whether the tile contains a property called transition.
+     * @param x which is the x coord of the player.
+     * @param y which is the y coord of the player.
+     * @return True if it does contain it and false if not.
+     */
     private boolean isCellTransition (float x, float y) {
         Cell cell = collisionLayer.getCell((int) (x / collisionLayer.getTileWidth()), (int) (y / collisionLayer.getTileHeight()));
         return cell != null && cell.getTile() != null && cell.getTile().getProperties().containsKey(transitionKey);
     }
-
+    /**
+     * Checks whether the tile contains a property called activity.
+     * @param x which is the x coord of the player.
+     * @param y which is the y coord of the player.
+     * @return True if it does contain it and false if not.
+     */
     public boolean isCellActivity (float x, float y) {
         Cell cell = collisionLayer.getCell((int) (x / collisionLayer.getTileWidth()), (int) (y / collisionLayer.getTileHeight()));
         return cell != null && cell.getTile() != null && cell.getTile().getProperties().containsKey(activityKey);
     }
-
+    /**
+     * Gets the value of the property from the transition tile.
+     * @param x which is the x coord of the player.
+     * @param y which is the y coord of the player.
+     * @return the string value of the property.
+     */
     private void getTransition (float x, float y) {
         Cell cell = collisionLayer.getCell((int) (x / collisionLayer.getTileWidth()), (int) (y / collisionLayer.getTileHeight()));
         if (cell.getTile().getProperties().containsKey(transitionKey)) {
@@ -197,7 +217,12 @@ public class Player extends Sprite implements InputProcessor {
             }
         }
     }
-
+    /**
+     * Gets the value of the property from the activity tile.
+     * @param x which is the x coord of the player.
+     * @param y which is the y coord of the player.
+     * @return the string value of the property.
+     */
     private void getActivity (float x, float y) {
         Cell cell = collisionLayer.getCell((int) (x / collisionLayer.getTileWidth()), (int) (y / collisionLayer.getTileHeight()));
         if (cell.getTile().getProperties().containsKey(activityKey)) {
@@ -236,7 +261,10 @@ public class Player extends Sprite implements InputProcessor {
         }
         return collides;
     }
-
+    /**
+     * Checks if the cell to the right of the player is an activity.
+     * @return True if the cell is an activity, false otherwise.
+     */
     public boolean activityRight () {
         boolean collides = false;
         for (float step = 0; step < getHeight(); step += collisionLayer.getTileHeight() / 2) {
@@ -276,7 +304,10 @@ public class Player extends Sprite implements InputProcessor {
         }
         return collides;
     }
-
+    /**
+     * Checks if the cell to the left of the player is an activity.
+     * @return True if the cell is an activity, false otherwise.
+     */
     public boolean activityLeft () {
         boolean collides = false;
         for (float step = 0; step < getHeight(); step += collisionLayer.getTileHeight() / 2) {
@@ -316,7 +347,10 @@ public class Player extends Sprite implements InputProcessor {
         }
         return collides;
     }
-
+    /**
+     * Checks if the cell above of the player is an activity.
+     * @return True if the cell is an activity, false otherwise.
+     */
     public boolean activityTop() {
         boolean collides = false;
         for (float step = 0; step < getHeight(); step += collisionLayer.getTileHeight() / 2) {
@@ -356,7 +390,10 @@ public class Player extends Sprite implements InputProcessor {
         }
         return collides;
     }
-
+    /**
+     * Checks if the cell below of the player is an activity.
+     * @return True if the cell is an activity, false otherwise.
+     */
     public boolean activityBottom() {
         boolean collides = false;
         for (float step = 0; step < getHeight(); step += collisionLayer.getTileHeight() / 2) {
