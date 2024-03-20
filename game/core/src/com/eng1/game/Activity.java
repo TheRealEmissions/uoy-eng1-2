@@ -39,7 +39,7 @@ public class Activity {
 
         // Add activties to their activity type
         // Study: CompSci Building
-        activities.get("Study").put("CompSci Building", new Activity(LocalTime.of(1,0), 10, 0));
+        activities.get("Study").put("CompSci", new Activity(LocalTime.of(1,0), 10, 0));
 
         // Relax: Gym
         activities.get("Relax").put("Gym", new Activity(LocalTime.of(1,0), 10, 0));
