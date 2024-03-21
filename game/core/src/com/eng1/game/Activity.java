@@ -52,10 +52,10 @@ public class Activity {
 
         // Add activties to their activity type
         // Study: CompSci Building
-        activities.get("Study").put("CompSci", new Activity(LocalTime.of(1,0), 10, 0));
+        activities.get("Study").put("CompSci", new Activity(LocalTime.of(3,0), 30, 0));
 
         // Relax: Gym
-        activities.get("Relax").put("Gym", new Activity(LocalTime.of(1,0), 10, 0));
+        activities.get("Relax").put("Gym", new Activity(LocalTime.of(1,0), 20, 0));
 
         // Eat: Piazza Building
         activities.get("Eat").put("Piazza", new Activity(LocalTime.of(1,0), 10, 0));
@@ -131,7 +131,7 @@ public class Activity {
 
         System.out.println(Activity.countCompletedActivities());
 
-        if (GameStats.getDay() >= 7) {
+        if (GameStats.getDay() > 7) {
             // Pass the score and activities completed to EndScreen
             Map<String, Integer> activitiesCompleted = Activity.countCompletedActivities();
             int score = calculateDayScore();
