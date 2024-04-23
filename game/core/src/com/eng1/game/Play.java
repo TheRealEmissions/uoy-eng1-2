@@ -36,6 +36,11 @@ public class Play implements Screen {
     private static final List<String> largeScaledMaps = Arrays.asList("maps/map10/computer-science-building.tmx", "maps/map11/piazza.tmx");
     private static String selectedCharacter;
     BitmapFont displayDateTime = new BitmapFont();
+
+    public static final String CHAR1 = "playerCharacters/playerCharacter1.png";
+    public static final String CHAR2 = "playerCharacters/playerCharacter2.png";
+    public static final String CHAR3 = "playerCharacters/playerCharacter3.png";
+
     /**
      * Constructor for the Play class.
      * Initializes the camera.
@@ -110,11 +115,11 @@ public class Play implements Screen {
     private static void setPlayerPosition() {
         // Initialize the player based on the selected character
         if (selectedCharacter.equals("Character1")) {
-            player =  new Player(new Sprite(new Texture("playerCharacters/playerCharacter1.png")), (TiledMapTileLayer) currentMap.getLayers().get(0));
+            player =  new Player(new Sprite(new Texture(CHAR1)), (TiledMapTileLayer) currentMap.getLayers().get(0));
         } else if (selectedCharacter.equals("Character2")) {
-            player =  new Player(new Sprite(new Texture("playerCharacters/playerCharacter2.png")), (TiledMapTileLayer) currentMap.getLayers().get(0));
+            player =  new Player(new Sprite(new Texture(CHAR2)), (TiledMapTileLayer) currentMap.getLayers().get(0));
         } else if (selectedCharacter.equals("Character3")) {
-            player =  new Player(new Sprite(new Texture("playerCharacters/playerCharacter3.png")), (TiledMapTileLayer) currentMap.getLayers().get(0));
+            player =  new Player(new Sprite(new Texture(CHAR3)), (TiledMapTileLayer) currentMap.getLayers().get(0));
         }
 
         /**
