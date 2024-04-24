@@ -12,7 +12,8 @@ public class DesktopLauncher {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
 		config.setTitle("ENG1 Game");
-		config.setFullscreenMode(Lwjgl3ApplicationConfiguration.getDisplayMode());
+		config.setResizable(true);
+		//config.setFullscreenMode(Lwjgl3ApplicationConfiguration.getDisplayMode());
 		new Lwjgl3Application(new HeslingtonHustle(), config);
 	}
 }
