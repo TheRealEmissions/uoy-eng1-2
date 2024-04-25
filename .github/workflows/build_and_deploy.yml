@@ -45,6 +45,6 @@ jobs:
           overwrite: true
           file_glob: true
           body: |
-            ## ${{ github.ref_name }}
+            ## ${{ github.ref_name }} (${{ github.sha }})
             
             ${{ github.event.head_commit.message }}
