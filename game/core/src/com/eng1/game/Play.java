@@ -255,6 +255,7 @@ public class Play implements Screen {
 
         // set camera to players position
         camera.position.set(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2, 0);
+        camera.update();
 
         final String stats = ("Day: " + GameStats.getDay() + " Time: " + GameStats.getTime() + " Energy: " + GameStats.getEnergy());
         if (scaledMaps.contains(currentMapPath)) {
