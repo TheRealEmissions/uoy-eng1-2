@@ -11,7 +11,9 @@ Collision Detection and Transitions:
 Create a new layer where the collisions will occur. Edit a tileset and select a pixel that you do not use and add a property called blocked and place this pixel where you want collisions to occur and where the play can't go.
 For transitions edit a tileset and select a different pixel that you don't use and add a property called transition and give it a value of the file path of where you want the transition to take you.
 
+# Tests
 
+The testing part of this code is derived from [TomGrill's libGDX Testing Skeleton](https://github.com/TomGrill/gdx-testing).
 
 # Website
 
