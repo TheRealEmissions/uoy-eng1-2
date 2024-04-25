@@ -33,7 +33,7 @@ public class LoadingScreen implements Screen {
      */
     @Override
     public void render(float delta) {
-        parent.changeScreen(HeslingtonHustle.MENU);
+        parent.changeScreen(HeslingtonHustle.Screens.MENU);
 
     }
 

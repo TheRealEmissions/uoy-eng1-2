@@ -135,7 +135,7 @@ public class Activity {
             // Pass the score and activities completed to EndScreen
             Map<String, Integer> activitiesCompleted = Activity.countCompletedActivities();
             int score = calculateDayScore();
-            gameInstance.changeScreen(HeslingtonHustle.ENDGAME);
+            gameInstance.changeScreen(HeslingtonHustle.Screens.ENDGAME);
         }
     }
 

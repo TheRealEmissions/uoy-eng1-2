@@ -85,7 +85,7 @@ public class CharacterScreen extends ScreenAdapter {
             public void changed(ChangeEvent event, Actor actor) {
                 Play.setSelectedCharacter("Character1"); // Set selected character
                 // Change the screen to the main game screen
-                parent.changeScreen(HeslingtonHustle.APPLICATION);
+                parent.changeScreen(HeslingtonHustle.Screens.APPLICATION);
             }
         });
 
@@ -93,7 +93,7 @@ public class CharacterScreen extends ScreenAdapter {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 Play.setSelectedCharacter("Character2");
-                parent.changeScreen(HeslingtonHustle.APPLICATION);
+                parent.changeScreen(HeslingtonHustle.Screens.APPLICATION);
             }
         });
 
@@ -101,7 +101,7 @@ public class CharacterScreen extends ScreenAdapter {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 Play.setSelectedCharacter("Character3");
-                parent.changeScreen(HeslingtonHustle.APPLICATION);
+                parent.changeScreen(HeslingtonHustle.Screens.APPLICATION);
             }
         });
 

@@ -110,7 +110,7 @@ public class PreferencesScreen implements Screen {
         backButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                parent.changeScreen(HeslingtonHustle.MENU);
+                parent.changeScreen(HeslingtonHustle.Screens.MENU);
             }
         });
 
