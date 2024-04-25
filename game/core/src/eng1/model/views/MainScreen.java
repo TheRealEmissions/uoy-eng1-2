@@ -29,7 +29,7 @@ public class MainScreen implements Screen {
             public boolean keyDown(int keycode) {
                 if (keycode == Keys.ESCAPE) {
                     // Navigate to preferences screen or quit game
-                    parent.changeScreen(HeslingtonHustle.PREFERENCES);
+                    parent.changeScreen(HeslingtonHustle.Screens.PREFERENCES);
                     return true; // Key press handled -> navigates to screen
                 }
                 return false; // Key press not handled -> doesn't navigate to screen
