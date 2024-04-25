@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1e1637c-3604-4615-b2f3-79e2afe0ead4" name="Changes" comment="qodana recommendations" />
+    <list default="true" id="d1e1637c-3604-4615-b2f3-79e2afe0ead4" name="Changes" comment="sonarlint cleanup">
+      <change afterPath="$PROJECT_DIR$/.github/workflows/build_and_deploy.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,34 +58,11 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="ENG1" type="f1a62948:ProjectNode" />
-                <item name="game" type="2d1252cf:ModuleNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="ENG1" type="f1a62948:ProjectNode" />
-                <item name="game" type="2d1252cf:ModuleNode" />
-                <item name="desktop" type="2d1252cf:ModuleNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="ENG1" type="f1a62948:ProjectNode" />
-                <item name="game" type="2d1252cf:ModuleNode" />
-                <item name="desktop" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="ENG1" type="f1a62948:ProjectNode" />
-                <item name="game" type="2d1252cf:ModuleNode" />
-                <item name="desktop" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="ENG1" type="f1a62948:ProjectNode" />
-                <item name="game" type="2d1252cf:ModuleNode" />
-                <item name="desktop" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="other" type="c8890929:TasksNode$1" />
               </path>
@@ -124,14 +113,17 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Gradle.Download Sources.executor": "Run",
     "Gradle.uoy-eng1-2 [build].executor": "Run",
     "Gradle.uoy-eng1-2 [check].executor": "Run",
     "Gradle.uoy-eng1-2 [clean].executor": "Run",
+    "Gradle.uoy-eng1-2 [dist].executor": "Run",
     "Gradle.uoy-eng1-2 [init].executor": "Run",
     "Gradle.uoy-eng1-2 [projects].executor": "Run",
     "Gradle.uoy-eng1-2:game [build].executor": "Run",
     "Gradle.uoy-eng1-2:game [jar].executor": "Run",
     "Gradle.uoy-eng1-2:game:desktop [build].executor": "Run",
+    "Gradle.uoy-eng1-2:game:desktop [dist].executor": "Run",
     "Gradle.uoy-eng1-2:game:desktop [jar].executor": "Run",
     "Gradle.uoy-eng1-2:game:desktop [run].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -152,12 +144,14 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "settings.qodana",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.2.3\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="QodanaCloudProjectLink">
-    <option name="lastReportId" value="baMo9" />
+    <option name="lastReportId" value="9Q0Bl" />
     <option name="linkedProjectId" value="ANnj2" />
     <option name="linkedProjectName" value="uoy-eng1-2" />
     <option name="organizationId" value="pnmll" />
@@ -167,7 +161,7 @@
     <option name="cloudReportPersistedInfo">
       <CloudReportPersistedInfo>
         <option name="projectId" value="ANnj2" />
-        <option name="reportId" value="baMo9" />
+        <option name="reportId" value="9Q0Bl" />
       </CloudReportPersistedInfo>
     </option>
   </component>
@@ -182,11 +176,11 @@
       <recent name="C:\Users\lm2171\IdeaProjects\uoy-eng1-2" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.uoy-eng1-2:game [jar]">
-    <configuration name="uoy-eng1-2:game [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.uoy-eng1-2 [dist]">
+    <configuration name="uoy-eng1-2 [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/game" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" />
         <option name="taskDescriptions">
@@ -205,7 +199,29 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="uoy-eng1-2:game [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="uoy-eng1-2 [dist]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="dist" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="uoy-eng1-2:game [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/game" />
@@ -216,7 +232,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="jar" />
+            <option value="build" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -249,7 +265,7 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="uoy-eng1-2:game:desktop [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="uoy-eng1-2:game:desktop [dist]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/game/desktop" />
@@ -260,29 +276,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="jar" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="uoy-eng1-2:game:desktop [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/game/desktop" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="run" />
+            <option value="dist" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -295,11 +289,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.uoy-eng1-2:game [jar]" />
+        <item itemvalue="Gradle.uoy-eng1-2 [dist]" />
         <item itemvalue="Gradle.uoy-eng1-2:game [build]" />
-        <item itemvalue="Gradle.uoy-eng1-2:game:desktop [jar]" />
+        <item itemvalue="Gradle.uoy-eng1-2:game:desktop [dist]" />
+        <item itemvalue="Gradle.uoy-eng1-2 [build]" />
         <item itemvalue="Gradle.uoy-eng1-2:game:desktop [build]" />
-        <item itemvalue="Gradle.uoy-eng1-2:game:desktop [run]" />
       </list>
     </recent_temporary>
   </component>
@@ -353,7 +347,23 @@
       <option name="project" value="LOCAL" />
       <updated>1714052485860</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="cleanup">
+      <option name="closed" value="true" />
+      <created>1714052627921</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1714052627921</updated>
+    </task>
+    <task id="LOCAL-00005" summary="sonarlint cleanup">
+      <option name="closed" value="true" />
+      <created>1714052918416</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1714052918416</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -375,7 +385,9 @@
     <MESSAGE value="Fixed Gradle to work from root dir" />
     <MESSAGE value="more gradle dependencies &amp; ci for code quality &amp; build testing" />
     <MESSAGE value="qodana recommendations" />
-    <option name="LAST_COMMIT_MESSAGE" value="qodana recommendations" />
+    <MESSAGE value="cleanup" />
+    <MESSAGE value="sonarlint cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="sonarlint cleanup" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
