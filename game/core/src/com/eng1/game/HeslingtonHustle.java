@@ -3,7 +3,7 @@ package com.eng1.game;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import eng1.model.views.*;
+import com.eng1.game.screens.*;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 

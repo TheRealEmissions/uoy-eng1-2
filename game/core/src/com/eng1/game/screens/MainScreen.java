@@ -1,4 +1,4 @@
-package eng1.model.views;
+package com.eng1.game.screens;
 
 import com.eng1.game.HeslingtonHustle;
 import com.eng1.game.Play;
