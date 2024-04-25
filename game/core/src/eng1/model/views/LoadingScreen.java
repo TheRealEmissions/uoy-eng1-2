@@ -11,8 +11,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
  * ((redundant for now because loading takes a negligible amount of time))
  */
 public class LoadingScreen implements Screen {
-    private HeslingtonHustle parent; // a field to store our orchestrator
-    private Stage stage;
+    private final HeslingtonHustle parent; // a field to store our orchestrator
+    private final Stage stage;
 
     /**
      * Constructor for the LoadingScreen class.

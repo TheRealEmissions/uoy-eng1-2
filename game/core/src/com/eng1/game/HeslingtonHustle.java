@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import eng1.model.views.*;
+import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -15,7 +16,14 @@ public class HeslingtonHustle extends Game {
 	private MenuScreen menuScreen;
 	private MainScreen mainScreen;
 	private EndScreen endScreen;
-	private AppPreferences preferences;
+    /**
+     * -- GETTER --
+     *  Retrieves the preferences instance.
+     *
+     * @return The preferences instance.
+     */
+    @Getter
+    private AppPreferences preferences;
 	private CharacterScreen characterScreen;
 
 	public enum Screens {
@@ -34,15 +42,7 @@ public class HeslingtonHustle extends Game {
 		Activity.setGameInstance(this); // Set the game instance in Activity
 	}
 
-	/**
-	 * Retrieves the preferences instance.
-	 * @return The preferences instance.
-	 */
-	public AppPreferences getPreferences() {
-		return this.preferences;
-	}
-
-	/**
+    /**
 	 * Changes the current screen based on the specified screen constant.
 	 * @param screen The screen constant indicating the screen to switch to.
 	 *

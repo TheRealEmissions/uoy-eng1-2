@@ -9,20 +9,23 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.math.Vector2;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * A class that represents the player character in the game.
  */
 public class Player extends Sprite implements InputProcessor {
     private Vector2 velocity = new Vector2();
+    @Setter
     private float speed = 60 * 5;
-    private float animationTime = 0;
+    private final float animationTime = 0;
     private Animation still, left, right;
+    @Getter
     private TiledMapTileLayer collisionLayer;
-    private String blockedKey = "blocked";
-    private String transitionKey = "transition";
+    private final String transitionKey = "transition";
     public static String transitionValue = "";
-    private String activityKey = "activity";
+    private final String activityKey = "activity";
     public static String activityValue = "";
 
     /**
@@ -180,6 +183,7 @@ public class Player extends Sprite implements InputProcessor {
      */
     private boolean isCellBlocked (float x, float y){
         Cell cell = collisionLayer.getCell((int) (x / collisionLayer.getTileWidth()), (int) (y / collisionLayer.getTileHeight()));
+        String blockedKey = "blocked";
         return cell != null && cell.getTile() != null && cell.getTile().getProperties().containsKey(blockedKey);
     }
     /**
@@ -206,7 +210,6 @@ public class Player extends Sprite implements InputProcessor {
      * Gets the value of the property from the transition tile.
      * @param x which is the x coord of the player.
      * @param y which is the y coord of the player.
-     * @return the string value of the property.
      */
     private void getTransition (float x, float y) {
         Cell cell = collisionLayer.getCell((int) (x / collisionLayer.getTileWidth()), (int) (y / collisionLayer.getTileHeight()));
@@ -221,7 +224,6 @@ public class Player extends Sprite implements InputProcessor {
      * Gets the value of the property from the activity tile.
      * @param x which is the x coord of the player.
      * @param y which is the y coord of the player.
-     * @return the string value of the property.
      */
     private void getActivity (float x, float y) {
         Cell cell = collisionLayer.getCell((int) (x / collisionLayer.getTileWidth()), (int) (y / collisionLayer.getTileHeight()));
@@ -237,57 +239,53 @@ public class Player extends Sprite implements InputProcessor {
      * Checks if the cell to the right of the player is blocked.
      * @return True if the cell is blocked, false otherwise.
      */
-    public boolean collidesRight () {
-        boolean collides = false;
-        for (float step = 0; step < getHeight(); step += collisionLayer.getTileHeight() / 2) {
-            if (collides = isCellBlocked(getX() + getWidth(), getY() + step)) {
-                break;
+    public boolean collidesRight() {
+        for (float step = 0; step < getHeight(); step += (float) collisionLayer.getTileHeight() / 2) {
+            if (isCellBlocked(getX() + getWidth(), getY() + step)) {
+                return true;
             }
         }
-        return collides;
+        return false;
     }
 
     /**
      * Checks if the cell to the right the player is a transition.
      * @return True if the cell is a transition, false otherwise.
      */
-    public boolean transitionRight () {
-        boolean collides = false;
-        for (float step = 0; step < getHeight(); step += collisionLayer.getTileHeight() / 2) {
-            if (collides = isCellTransition(getX() + getWidth(), getY() + step)) {
+    public boolean transitionRight() {
+        for (float step = 0; step < getHeight(); step += (float) collisionLayer.getTileHeight() / 2) {
+            if (isCellTransition(getX() + getWidth(), getY() + step)) {
                 getTransition(getX() + getWidth(), getY() + step);
-                break;
+                return true;
             }
         }
-        return collides;
+        return false;
     }
     /**
      * Checks if the cell to the right of the player is an activity.
      * @return True if the cell is an activity, false otherwise.
      */
     public boolean activityRight () {
-        boolean collides = false;
-        for (float step = 0; step < getHeight(); step += collisionLayer.getTileHeight() / 2) {
-            if (collides = isCellActivity(getX() + getWidth(), getY() + step)) {
+        for (float step = 0; step < getHeight(); step += (float) collisionLayer.getTileHeight() / 2) {
+            if (isCellActivity(getX() + getWidth(), getY() + step)) {
                 getActivity(getX() + getWidth(), getY() + step);
-                break;
+                return true;
             }
         }
-        return collides;
+        return false;
     }
 
     /**
      * Checks if the cell to the left of the player is blocked.
      * @return True if the cell is blocked, false otherwise.
      */
-    public boolean collidesLeft () {
-        boolean collides = false;
-        for (float step = 0; step < getHeight(); step += collisionLayer.getTileHeight() / 2) {
-            if (collides = isCellBlocked(getX() + getWidth(), getY() + step)) {
-                break;
+    public boolean collidesLeft() {
+        for (float step = 0; step < getHeight(); step += (float) collisionLayer.getTileHeight() / 2) {
+            if (isCellBlocked(getX() + getWidth(), getY() + step)) {
+                return true;
             }
         }
-        return collides;
+        return false;
     }
 
     /**
@@ -295,28 +293,26 @@ public class Player extends Sprite implements InputProcessor {
      * @return True if the cell is a transition, false otherwise.
      */
     public boolean transitionLeft () {
-        boolean collides = false;
-        for (float step = 0; step < getHeight(); step += collisionLayer.getTileHeight() / 2) {
-            if (collides = isCellTransition(getX() + getWidth(), getY() + step)) {
+        for (float step = 0; step < getHeight(); step += (float) collisionLayer.getTileHeight() / 2) {
+            if (isCellTransition(getX() + getWidth(), getY() + step)) {
                 getTransition(getX() + getWidth(), getY() + step);
-                break;
+                return true;
             }
         }
-        return collides;
+        return false;
     }
     /**
      * Checks if the cell to the left of the player is an activity.
      * @return True if the cell is an activity, false otherwise.
      */
     public boolean activityLeft () {
-        boolean collides = false;
-        for (float step = 0; step < getHeight(); step += collisionLayer.getTileHeight() / 2) {
-            if (collides = isCellActivity(getX() + getWidth(), getY() + step)) {
+        for (float step = 0; step < getHeight(); step += (float) collisionLayer.getTileHeight() / 2) {
+            if (isCellActivity(getX() + getWidth(), getY() + step)) {
                 getActivity(getX() + getWidth(), getY() + step);
-                break;
+                return true;
             }
         }
-        return collides;
+        return false;
     }
 
     /**
@@ -324,13 +320,12 @@ public class Player extends Sprite implements InputProcessor {
      * @return True if the cell is blocked, false otherwise.
      */
     public boolean collidesTop () {
-        boolean collides = false;
-        for (float step = 0; step < getWidth(); step += collisionLayer.getTileWidth() / 2) {
-            if (collides = isCellBlocked(getX() + getWidth(), getY() + step)) {
-                break;
+        for (float step = 0; step < getWidth(); step += (float) collisionLayer.getTileWidth() / 2) {
+            if (isCellBlocked(getX() + getWidth(), getY() + step)) {
+                return true;
             }
         }
-        return collides;
+        return false;
     }
 
     /**
@@ -338,28 +333,26 @@ public class Player extends Sprite implements InputProcessor {
      * @return True if the cell is a transition, false otherwise.
      */
     public boolean transitionTop() {
-        boolean collides = false;
-        for (float step = 0; step < getHeight(); step += collisionLayer.getTileHeight() / 2) {
-            if (collides = isCellTransition(getX() + getWidth(), getY() + step)) {
+        for (float step = 0; step < getHeight(); step += (float) collisionLayer.getTileHeight() / 2) {
+            if (isCellTransition(getX() + getWidth(), getY() + step)) {
                 getTransition(getX() + getWidth(), getY() + step);
-                break;
+                return true;
             }
         }
-        return collides;
+        return false;
     }
     /**
      * Checks if the cell above of the player is an activity.
      * @return True if the cell is an activity, false otherwise.
      */
     public boolean activityTop() {
-        boolean collides = false;
-        for (float step = 0; step < getHeight(); step += collisionLayer.getTileHeight() / 2) {
-            if (collides = isCellActivity(getX() + getWidth(), getY() + step)) {
+        for (float step = 0; step < getHeight(); step += (float) collisionLayer.getTileHeight() / 2) {
+            if (isCellActivity(getX() + getWidth(), getY() + step)) {
                 getActivity(getX() + getWidth(), getY() + step);
-                break;
+                return true;
             }
         }
-        return collides;
+        return false;
     }
 
     /**
@@ -367,13 +360,12 @@ public class Player extends Sprite implements InputProcessor {
      * @return True if the cell is blocked, false otherwise.
      */
     public boolean collidesBottom() {
-        boolean collides = false;
-        for(float step = 0; step < getWidth(); step += collisionLayer.getTileWidth() / 2) {
-            if (collides = isCellBlocked(getX() + getWidth(), getY() + step)) {
-                break;
+        for(float step = 0; step < getWidth(); step += (float) collisionLayer.getTileWidth() / 2) {
+            if (isCellBlocked(getX() + getWidth(), getY() + step)) {
+                return true;
             }
         }
-        return collides;
+        return false;
     }
 
     /**
@@ -381,48 +373,26 @@ public class Player extends Sprite implements InputProcessor {
      * @return True if the cell is a transition, false otherwise.
      */
     public boolean transitionBottom() {
-        boolean collides = false;
-        for (float step = 0; step < getHeight(); step += collisionLayer.getTileHeight() / 2) {
-            if (collides = isCellTransition(getX() + getWidth(), getY() + step)) {
+        for (float step = 0; step < getHeight(); step += (float) collisionLayer.getTileHeight() / 2) {
+            if (isCellTransition(getX() + getWidth(), getY() + step)) {
                 getTransition(getX() + getWidth(), getY() + step);
-                break;
+                return true;
             }
         }
-        return collides;
+        return false;
     }
     /**
      * Checks if the cell below of the player is an activity.
      * @return True if the cell is an activity, false otherwise.
      */
     public boolean activityBottom() {
-        boolean collides = false;
-        for (float step = 0; step < getHeight(); step += collisionLayer.getTileHeight() / 2) {
-            if (collides = isCellActivity(getX() + getWidth(), getY() + step)) {
+        for (float step = 0; step < getHeight(); step += (float) collisionLayer.getTileHeight() / 2) {
+            if (isCellActivity(getX() + getWidth(), getY() + step)) {
                 getActivity(getX() + getWidth(), getY() + step);
-                break;
+                return true;
             }
         }
-        return collides;
-    }
-
-    // Getters and Setters for speed, velocity and collisions
-    public float getSpeed() {
-        return speed;
-    }
-    public void setSpeed(float speed) {
-        this.speed = speed;
-    }
-    public Vector2 getVelocity() {
-        return velocity;
-    }
-    public void setVelocity(Vector2 velocity) {
-        this.velocity = velocity;
-    }
-    public TiledMapTileLayer getCollisionLayer() {
-        return collisionLayer;
-    }
-    public void setCollisionLayer(TiledMapTileLayer collisionLayer) {
-        this.collisionLayer = collisionLayer;
+        return false;
     }
 
     // Checks for inputs

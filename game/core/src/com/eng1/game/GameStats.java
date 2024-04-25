@@ -1,19 +1,21 @@
 package com.eng1.game;
 
+import lombok.Getter;
+
 import java.time.LocalTime;
 
 public class GameStats {
+    @Getter
     private static int energy = 100; //Keeps track of players current energy
     public static final int MAX_ENERGY = 100; //Max energy (energy is reset to this at the start of every day)
+    @Getter
     private static int score = 0;
+    @Getter
     private static int day = 1; //Current day
+    @Getter
     private static LocalTime time = LocalTime.of(8, 0); //Current time
     public static final LocalTime DAY_START = LocalTime.of(8, 0); //When the player wakes up
     public static final LocalTime DAY_END = LocalTime.of(0, 0); //When the player has to sleep
-
-    public static int getEnergy() {
-        return energy;
-    }
 
     public static void setEnergy(int energy) {
         GameStats.energy = energy;
@@ -21,10 +23,6 @@ public class GameStats {
 
     public static void decreaseEnergy(int energy) {
         GameStats.energy -= energy;
-    }
-
-    public static LocalTime getTime() {
-        return time;
     }
 
     public static void setTime(LocalTime time) {
@@ -43,19 +41,11 @@ public class GameStats {
         GameStats.time = GameStats.time.plusMinutes(time.getMinute());
     }
 
-    public static int getScore() {
-        return score;
-    }
-
     public static void setScore(int score) {
         GameStats.score = score;
     }
     public static void increaseScore(int score) {
         GameStats.score += score;
-    }
-
-    public static int getDay() {
-        return day;
     }
 
     public static void setDay(int day) {

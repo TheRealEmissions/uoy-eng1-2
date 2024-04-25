@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -13,6 +12,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.Arrays;
@@ -25,15 +25,21 @@ public class Play implements Screen {
     private static OrthogonalTiledMapRenderer renderer;
 
     private static OrthographicCamera camera;
-    private static AssetManager assetManager = new AssetManager();
+    private static final AssetManager assetManager = new AssetManager();
     private TextureAtlas playerAtlas;
     private static Player player;
     private static TiledMap currentMap;
-    private static TiledMap oldMap;
     private static String currentMapPath = "maps/map8/home.tmx";
     private static String oldMapPath = "";
     private static final List<String> scaledMaps = Arrays.asList("maps/map8/home.tmx","maps/map9/gym.tmx");
     private static final List<String> largeScaledMaps = Arrays.asList("maps/map10/computer-science-building.tmx", "maps/map11/piazza.tmx");
+    /**
+     * -- SETTER --
+     *  Sets the selected character for the player.
+     *
+     * @param character The selected character.
+     */
+    @Setter
     private static String selectedCharacter;
     BitmapFont displayDateTime = new BitmapFont();
 
@@ -73,7 +79,7 @@ public class Play implements Screen {
         currentMap.dispose(); // Dispose the old map
 
         // Change the current and old map variables
-        oldMap = currentMap;
+        TiledMap oldMap = currentMap;
         oldMapPath = currentMapPath;
         currentMapPath = path;
 
@@ -102,14 +108,6 @@ public class Play implements Screen {
 
 
     /**
-     * Sets the selected character for the player.
-     * @param character The selected character.
-     */
-    public static void setSelectedCharacter(String character) {
-        selectedCharacter = character;
-    }
-
-    /**
      * Sets the position of the player based on the current and old map paths.
      */
     private static void setPlayerPosition() {
@@ -133,11 +131,11 @@ public class Play implements Screen {
             (TiledMapTileLayer) currentMap.getLayers().get(0)
         );
 
-        /**
+        /*
          * Sets the position of the player based on the current and old map paths.
          * Various cases are handled to set the player position based on the current and old map paths.
          * For example, for the case (maps/map1/map1.tmx), the default position is (65, 57).
-         * Then if a player comes from map2.tmx, the position is set to (115, 57), and so on.
+         * Then, if a player comes from map2.tmx, the position is set to (115, 57), and so on.
          */
         switch (currentMapPath) {
             case ("maps/map1/map1.tmx"):

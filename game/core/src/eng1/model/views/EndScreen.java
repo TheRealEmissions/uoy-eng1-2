@@ -23,10 +23,7 @@ import java.util.Map;
  */
 public class EndScreen implements Screen {
 
-    private HeslingtonHustle parent;
-    private Stage stage;
-    private Label titleLabel;
-    private Label scoreLabel;
+    private final Stage stage;
 
     private static Map<String, Map<String, Activity>> activities; // Map of the activity types
 
@@ -40,7 +37,6 @@ public class EndScreen implements Screen {
      * @param eng1 The orchestrator of the game.
      */
     public EndScreen(HeslingtonHustle eng1) {
-        parent = eng1;
         // create stage and set it as input processor
         stage = new Stage(new ScreenViewport());
     }
@@ -59,9 +55,8 @@ public class EndScreen implements Screen {
         Skin skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
 
         // Add labels
-        titleLabel = new Label("Heslington Hustle", skin);
-        scoreLabel = new Label("Score: " + Activity.getFinalScore(), skin); // Retrieve the final score from Activity
-
+        Label titleLabel = new Label("Heslington Hustle", skin);
+        Label scoreLabel = new Label("Score: " + Activity.getFinalScore(), skin); // Retrieve the final score from Activity
 
 
         // Add actors to the table

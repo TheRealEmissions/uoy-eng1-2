@@ -18,9 +18,8 @@ import com.eng1.game.HeslingtonHustle;
  * Provides options for starting a new game, accessing preferences, and exiting the game.
  */
 public class MenuScreen extends ScreenAdapter {
-    private HeslingtonHustle parent; // Field to store the orchestrator of the game
-    private Stage stage; // Stage for handling UI elements
-    private Label titleLabel; // Label for displaying the game title
+    private final HeslingtonHustle parent; // Field to store the orchestrator of the game
+    private final Stage stage; // Stage for handling UI elements
 
     /**
      * Constructor for the MenuScreen class.
@@ -45,7 +44,8 @@ public class MenuScreen extends ScreenAdapter {
         Skin skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
 
         // Create buttons
-        titleLabel = new Label("Heslington Hustle", skin);
+        // Label for displaying the game title
+        Label titleLabel = new Label("Heslington Hustle", skin);
         TextButton newGame = new TextButton("New Game", skin);
         TextButton preferences = new TextButton("Preferences", skin);
         TextButton exit = new TextButton("Exit", skin);

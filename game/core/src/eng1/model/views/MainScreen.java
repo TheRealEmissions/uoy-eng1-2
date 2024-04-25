@@ -12,8 +12,7 @@ import com.badlogic.gdx.InputAdapter;
  * This screen serves as the playing point of the game and handles user interactions such as escape to go to a settings screen / quit.
  */
 public class MainScreen implements Screen {
-    private HeslingtonHustle parent; // a field to store our orchestrator
-    private Play play;
+    private final HeslingtonHustle parent; // a field to store our orchestrator
 
     /**
      * Constructs a new MainScreen instance.
@@ -40,7 +39,7 @@ public class MainScreen implements Screen {
     @Override
     public void show() {
         // This method is called when the screen is first shown.
-        play = new Play(); // Instantiate the Play class
+        Play play = new Play(); // Instantiate the Play class
         parent.setScreen(play); // Switch to the 'Play' screen (where the game is run / rendered)
     }
 

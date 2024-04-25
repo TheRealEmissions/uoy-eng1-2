@@ -1,13 +1,11 @@
 package com.eng1.game;
 
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.math.Interpolation;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
-
-import com.eng1.game.HeslingtonHustle;
 
 
 public class Activity {
@@ -19,10 +17,13 @@ public class Activity {
     private final int energyNeeded; // Energy required to complete the activity
     private int timesCompletedWeek; // Times the activity has been completed in the week (can be used to decrese the reward of an activity if it is completed multiple times)
     private int timesCompletedDay; // Times the activity has been completed that day (can be used to stop activites being completed too many times or to increase the reward i.e. eating 3 meals)
-    private final int reward; // Score the activity gives for being completed
 
+    // Method to set the game instance
+    @Setter
     private static HeslingtonHustle gameInstance; // Reference to the HeslingtonHustle instance
 
+    @Setter
+    @Getter
     private static int finalScore;
 
     public Activity(LocalTime timeNeeded, int energyNeeded, int reward) {
@@ -31,12 +32,7 @@ public class Activity {
         this.energyNeeded = energyNeeded;
         this.timesCompletedWeek = 0;
         this.timesCompletedDay = 0;
-        this.reward = reward;
-    }
-
-    // Method to set the game instance
-    public static void setGameInstance(HeslingtonHustle game) {
-        gameInstance = game;
+        // Score the activity gives for being completed
     }
 
     public static void createActivities() {
@@ -163,11 +159,4 @@ public class Activity {
         return  0;
     }
 
-    public static int getFinalScore() {
-        return finalScore;
-    }
-
-    public static void setFinalScore(int score) {
-        finalScore = score;
-    }
 }

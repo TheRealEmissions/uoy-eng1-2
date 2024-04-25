@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.eng1.game.HeslingtonHustle;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Represents the preferences screen of the game.
@@ -24,13 +25,8 @@ import com.eng1.game.HeslingtonHustle;
  */
 public class PreferencesScreen implements Screen {
 
-    private HeslingtonHustle parent;
-    private Stage stage;
-    private Label titleLabel;
-    private Label volumeMusicLabel;
-    private Label volumeSoundLabel;
-    private Label musicOnOffLabel;
-    private Label soundOnOffLabel;
+    private final HeslingtonHustle parent;
+    private final Stage stage;
 
 
     /**
@@ -94,16 +90,7 @@ public class PreferencesScreen implements Screen {
         });
 
         // sound on/off
-        final CheckBox soundEffectsCheckbox = new CheckBox(null, skin);
-        soundEffectsCheckbox.setChecked(parent.getPreferences().isSoundEffectsEnabled());
-        soundEffectsCheckbox.addListener(new EventListener() {
-            @Override
-            public boolean handle(Event event) {
-                boolean enabled = soundEffectsCheckbox.isChecked();
-                parent.getPreferences().setSoundEffectsEnabled(enabled);
-                return false;
-            }
-        });
+        final CheckBox soundEffectsCheckbox = getCheckBox(skin);
 
         // return to main screen button
         final TextButton backButton = new TextButton("Back", skin);
@@ -124,11 +111,11 @@ public class PreferencesScreen implements Screen {
         });
 
         // Add labels
-        titleLabel = new Label("Preferences", skin);
-        volumeMusicLabel = new Label("Music Volume", skin);
-        volumeSoundLabel = new Label("Sound Volume", skin);
-        musicOnOffLabel = new Label("Music", skin);
-        soundOnOffLabel = new Label("Sound Effect", skin);
+        Label titleLabel = new Label("Preferences", skin);
+        Label volumeMusicLabel = new Label("Music Volume", skin);
+        Label volumeSoundLabel = new Label("Sound Volume", skin);
+        Label musicOnOffLabel = new Label("Music", skin);
+        Label soundOnOffLabel = new Label("Sound Effect", skin);
 
         // Add actors to the table
         table.add(titleLabel).colspan(2);
@@ -151,6 +138,20 @@ public class PreferencesScreen implements Screen {
         table.add(quitButton).colspan(50);
 
 
+    }
+
+    private @NotNull CheckBox getCheckBox(Skin skin) {
+        final CheckBox soundEffectsCheckbox = new CheckBox(null, skin);
+        soundEffectsCheckbox.setChecked(parent.getPreferences().isSoundEffectsEnabled());
+        soundEffectsCheckbox.addListener(new EventListener() {
+            @Override
+            public boolean handle(Event event) {
+                boolean enabled = soundEffectsCheckbox.isChecked();
+                parent.getPreferences().setSoundEffectsEnabled(enabled);
+                return false;
+            }
+        });
+        return soundEffectsCheckbox;
     }
 
     @Override

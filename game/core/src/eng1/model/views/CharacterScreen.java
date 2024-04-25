@@ -23,9 +23,8 @@ import com.eng1.game.Play;
  * Allows the player to select their character from available choices.
  */
 public class CharacterScreen extends ScreenAdapter {
-    private HeslingtonHustle parent;
-    private Stage stage;
-    private Label titleLabel;
+    private final HeslingtonHustle parent;
+    private final Stage stage;
 
 
     /**
@@ -53,7 +52,7 @@ public class CharacterScreen extends ScreenAdapter {
         Skin skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
 
         // Create title label
-        titleLabel = new Label("Character Selection", skin);
+        Label titleLabel = new Label("Character Selection", skin);
 
         // Create character selection buttons
         TextButton character1Button = new TextButton("Character 1", skin);
