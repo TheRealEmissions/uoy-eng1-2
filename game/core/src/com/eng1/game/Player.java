@@ -16,17 +16,16 @@ import lombok.Setter;
  * A class that represents the player character in the game.
  */
 public class Player extends Sprite implements InputProcessor {
-    private Vector2 velocity = new Vector2();
+    private final Vector2 velocity = new Vector2();
     @Setter
     private float speed = 60 * 5;
-    private final float animationTime = 0;
-    private Animation still, left, right;
+    private Animation<?> still, left, right;
     @Getter
-    private TiledMapTileLayer collisionLayer;
-    private final String transitionKey = "transition";
-    public static String transitionValue = "";
-    private final String activityKey = "activity";
-    public static String activityValue = "";
+    private final TiledMapTileLayer collisionLayer;
+    private static final String transitionKey = "transition";
+    public static final String transitionValue = "";
+    private static final String activityKey = "activity";
+    public static final String activityValue = "";
 
     /**
      * Constructs a new player with the given sprite and collision layer.
