@@ -73,7 +73,7 @@ public class MenuScreen extends ScreenAdapter {
         newGame.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                parent.changeScreen(HeslingtonHustle.CHARACTER);
+                parent.changeScreen(HeslingtonHustle.Screens.CHARACTER);
             }
         });
 
@@ -81,7 +81,7 @@ public class MenuScreen extends ScreenAdapter {
         preferences.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                parent.changeScreen(HeslingtonHustle.PREFERENCES);
+                parent.changeScreen(HeslingtonHustle.Screens.PREFERENCES);
             }
         });
     }

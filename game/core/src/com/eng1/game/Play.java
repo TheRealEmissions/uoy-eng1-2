@@ -114,13 +114,24 @@ public class Play implements Screen {
      */
     private static void setPlayerPosition() {
         // Initialize the player based on the selected character
-        if (selectedCharacter.equals("Character1")) {
-            player =  new Player(new Sprite(new Texture(CHAR1)), (TiledMapTileLayer) currentMap.getLayers().get(0));
-        } else if (selectedCharacter.equals("Character2")) {
-            player =  new Player(new Sprite(new Texture(CHAR2)), (TiledMapTileLayer) currentMap.getLayers().get(0));
-        } else if (selectedCharacter.equals("Character3")) {
-            player =  new Player(new Sprite(new Texture(CHAR3)), (TiledMapTileLayer) currentMap.getLayers().get(0));
+        String character;
+        switch (selectedCharacter) {
+            case "Character1":
+                character = CHAR1;
+                break;
+            case "Character2":
+                character = CHAR2;
+                break;
+            case "Character3":
+                character = CHAR3;
+                break;
+            default:
+                throw new IllegalArgumentException();
         }
+        player = new Player(
+            new Sprite(new Texture(character)),
+            (TiledMapTileLayer) currentMap.getLayers().get(0)
+        );
 
         /**
          * Sets the position of the player based on the current and old map paths.
@@ -130,118 +141,84 @@ public class Play implements Screen {
          */
         switch (currentMapPath) {
             case ("maps/map1/map1.tmx"):
-                switch (oldMapPath) {
-                    case ("maps/map2/map2.tmx"):
-                        player.setPosition(115 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
-                        break;
-                    case ("maps/map3/map3.tmx"):
-                        player.setPosition(5 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
-                        break;
-                    case ("maps/map4/map4.tmx"):
-                        player.setPosition(67 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 5) * player.getCollisionLayer().getTileHeight());
-                        break;
-                    case ("maps/map8/home.tmx"):
-                        player.setPosition(105 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 53) * player.getCollisionLayer().getTileHeight());
-                        break;
+                if (oldMapPath.equals("maps/map2/map2.tmx")) {
+                    player.setPosition(115 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
+                } else if (oldMapPath.equals("maps/map3/map3.tmx")) {
+                    player.setPosition(5 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
+                } else if (oldMapPath.equals("maps/map4/map4.tmx")) {
+                    player.setPosition(67 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 5) * player.getCollisionLayer().getTileHeight());
+                } else if (oldMapPath.equals("maps/map8/home.tmx")) {
+                    player.setPosition(105 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 53) * player.getCollisionLayer().getTileHeight());
                 }
                 break;
             case ("maps/map2/map2.tmx"):
-                switch (oldMapPath) {
-                    case ("maps/map1/map1.tmx"):
-                        player.setPosition(5 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
-                        break;
-                    case ("maps/map9/gym.tmx"):
-                        player.setPosition(105 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
-                        break;
+                if (oldMapPath.equals("maps/map1/map1.tmx")) {
+                    player.setPosition(5 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
+                } else if (oldMapPath.equals("maps/map9/gym.tmx")) {
+                    player.setPosition(105 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
                 }
                 break;
             case ("maps/map3/map3.tmx"):
-                switch (oldMapPath) {
-                    case ("maps/map1/map1.tmx"):
-                        player.setPosition(115 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
-                        break;
-                    case ("maps/map5/map5.tmx"):
-                        player.setPosition(62 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 5) * player.getCollisionLayer().getTileHeight());
-                        break;
-                    case ("maps/map6/map6.tmx"):
-                        player.setPosition(5 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
-                        break;
-                    case ("maps/map11/piazza.tmx"):
-                        player.setPosition(30 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 54) * player.getCollisionLayer().getTileHeight());
-                        break;
-
+                if (oldMapPath.equals("maps/map1/map1.tmx")) {
+                    player.setPosition(115 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
+                } else if (oldMapPath.equals("maps/map5/map5.tmx")) {
+                    player.setPosition(62 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 5) * player.getCollisionLayer().getTileHeight());
+                } else if (oldMapPath.equals("maps/map6/map6.tmx")) {
+                    player.setPosition(5 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
+                } else if (oldMapPath.equals("maps/map11/piazza.tmx")) {
+                    player.setPosition(30 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 54) * player.getCollisionLayer().getTileHeight());
                 }
                 break;
             case ("maps/map4/map4.tmx"):
-                switch (oldMapPath) {
-                    case ("maps/map1/map1.tmx"):
-                        player.setPosition(67 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 64) * player.getCollisionLayer().getTileHeight());
-                        break;
-
+                if (oldMapPath.equals("maps/map1/map1.tmx")) {
+                    player.setPosition(67 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 64) * player.getCollisionLayer().getTileHeight());
                 }
                 break;
             case ("maps/map5/map5.tmx"):
-                switch (oldMapPath) {
-                    case ("maps/map3/map3.tmx"):
-                        player.setPosition(62 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 66) * player.getCollisionLayer().getTileHeight());
-                        break;
-                    case ("maps/map10/computer-science-building.tmx"):
-                        player.setPosition(45 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 65) * player.getCollisionLayer().getTileHeight());
-                        break;
+                if (oldMapPath.equals("maps/map3/map3.tmx")) {
+                    player.setPosition(62 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 66) * player.getCollisionLayer().getTileHeight());
+                } else if (oldMapPath.equals("maps/map10/computer-science-building.tmx")) {
+                    player.setPosition(45 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 65) * player.getCollisionLayer().getTileHeight());
                 }
                 break;
             case ("maps/map6/map6.tmx"):
-                switch (oldMapPath) {
-                    case ("maps/map3/map3.tmx"):
-                        player.setPosition(116 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
-                        break;
-                    case ("maps/map7/map7.tmx"):
-                        player.setPosition(5 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
-                        break;
+                if (oldMapPath.equals("maps/map3/map3.tmx")) {
+                    player.setPosition(116 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
+                } else if (oldMapPath.equals("maps/map7/map7.tmx")) {
+                    player.setPosition(5 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
                 }
                 break;
             case ("maps/map7/map7.tmx"):
-                switch (oldMapPath) {
-                    case ("maps/map6/map6.tmx"):
-                        player.setPosition(116 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
-                        break;
+                if (oldMapPath.equals("maps/map6/map6.tmx")) {
+                    player.setPosition(116 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
                 }
                 break;
             case ("maps/map8/home.tmx"):
-                switch (oldMapPath) {
-                    case (""):
-                    case ("maps/map1/map1.tmx"):
-                        player.setPosition(56 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 40) * player.getCollisionLayer().getTileHeight());
-                        player.setScale(1); // Set size to 1
-                        player.setSpeed(60 * 1.7f); // Set speed to 5
-                        break;
+                if (oldMapPath.isEmpty() || oldMapPath.equals("maps/map1/map1.tmx")) {
+                    player.setPosition(56 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 40) * player.getCollisionLayer().getTileHeight());
+                    player.setScale(1); // Set size to 1
+                    player.setSpeed(60 * 1.7f); // Set speed to 5
                 }
                 break;
             case ("maps/map9/gym.tmx"):
-                switch (oldMapPath) {
-                    case ("maps/map2/map2.tmx"):
-                        player.setPosition(60 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 41) * player.getCollisionLayer().getTileHeight());
-                        player.setScale(1); // Set size to 1
-                        player.setSpeed(60 * 1.7f); // Set speed to 5
-                        break;
+                if (oldMapPath.equals("maps/map2/map2.tmx")) {
+                    player.setPosition(60 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 41) * player.getCollisionLayer().getTileHeight());
+                    player.setScale(1); // Set size to 1
+                    player.setSpeed(60 * 1.7f); // Set speed to 5
                 }
                 break;
             case ("maps/map10/computer-science-building.tmx"):
-                switch (oldMapPath) {
-                    case ("maps/map5/map5.tmx"):
-                        player.setPosition(60 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 45) * player.getCollisionLayer().getTileHeight());
-                        player.setScale(1); // Set size to 1
-                        player.setSpeed(60 * 1.7f); // Set speed to 5
-                        break;
+                if (oldMapPath.equals("maps/map5/map5.tmx")) {
+                    player.setPosition(60 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 45) * player.getCollisionLayer().getTileHeight());
+                    player.setScale(1); // Set size to 1
+                    player.setSpeed(60 * 1.7f); // Set speed to 5
                 }
                 break;
             case ("maps/map11/piazza.tmx"):
-                switch (oldMapPath) {
-                    case ("maps/map3/map3.tmx"):
-                        player.setPosition(58 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 48) * player.getCollisionLayer().getTileHeight());
-                        player.setScale(1); // Set size to 1
-                        player.setSpeed(60 * 1.7f); // Set speed to 5
-                        break;
+                if (oldMapPath.equals("maps/map3/map3.tmx")) {
+                    player.setPosition(58 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 48) * player.getCollisionLayer().getTileHeight());
+                    player.setScale(1); // Set size to 1
+                    player.setSpeed(60 * 1.7f); // Set speed to 5
                 }
                 break;
         }
@@ -275,16 +252,22 @@ public class Play implements Screen {
         renderer.setView(camera);
         renderer.render();
         renderer.getBatch().begin();
+
+        // set camera to players position
+        camera.position.set(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2, 0);
+        camera.update();
+
+        final String stats = ("Day: " + GameStats.getDay() + " Time: " + GameStats.getTime() + " Energy: " + GameStats.getEnergy());
         if (scaledMaps.contains(currentMapPath)) {
             // Set a different zoom level for scaled maps
             displayDateTime.getData().setScale(1); // Adjust the scale as needed
-            displayDateTime.draw(renderer.getBatch(), ("Day: " + GameStats.getDay() + " Time: " + GameStats.getTime() + " Energy: " + GameStats.getEnergy()), 630, 725);
+            displayDateTime.draw(renderer.getBatch(), stats, 630, 725);
         } else if (largeScaledMaps.contains(currentMapPath)) {
             displayDateTime.getData().setScale(1); // Adjust the scale as needed
-            displayDateTime.draw(renderer.getBatch(), ("Day: " + GameStats.getDay() + " Time: " + GameStats.getTime() + " Energy: " + GameStats.getEnergy()), 530, 780);
+            displayDateTime.draw(renderer.getBatch(), stats, 530, 780);
         } else {
             displayDateTime.getData().setScale(2); // Adjust the scale as needed
-            displayDateTime.draw(renderer.getBatch(), ("Day: " + GameStats.getDay() + " Time: " + GameStats.getTime() + " Energy: " + GameStats.getEnergy()), 12, 1070);
+            displayDateTime.draw(renderer.getBatch(), stats, 12, 1070);
         }
         player.draw(renderer.getBatch());
         renderer.getBatch().end();
