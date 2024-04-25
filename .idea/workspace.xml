@@ -4,25 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1e1637c-3604-4615-b2f3-79e2afe0ead4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/checksums/checksums.lock" afterDir="false" />
+    <list default="true" id="d1e1637c-3604-4615-b2f3-79e2afe0ead4" name="Changes" comment="Fixed Gradle to work from root dir">
       <change beforePath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/game/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/core/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/game/core/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/desktop/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/game/desktop/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,12 +66,6 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="ENG1" type="f1a62948:ProjectNode" />
                 <item name="game" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="ENG1" type="f1a62948:ProjectNode" />
-                <item name="game" type="2d1252cf:ModuleNode" />
                 <item name="desktop" type="2d1252cf:ModuleNode" />
               </path>
               <path>
@@ -85,6 +74,14 @@
                 <item name="game" type="2d1252cf:ModuleNode" />
                 <item name="desktop" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ENG1" type="f1a62948:ProjectNode" />
+                <item name="game" type="2d1252cf:ModuleNode" />
+                <item name="desktop" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
@@ -143,10 +140,15 @@
     "Gradle.uoy-eng1-2 [clean].executor": "Run",
     "Gradle.uoy-eng1-2 [init].executor": "Run",
     "Gradle.uoy-eng1-2 [projects].executor": "Run",
+    "Gradle.uoy-eng1-2:game [build].executor": "Run",
+    "Gradle.uoy-eng1-2:game [jar].executor": "Run",
+    "Gradle.uoy-eng1-2:game:desktop [build].executor": "Run",
+    "Gradle.uoy-eng1-2:game:desktop [jar].executor": "Run",
     "Gradle.uoy-eng1-2:game:desktop [run].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "WebServerToolWindowFactoryState": "false",
     "android.gradle.sync.needed": "true",
     "git-widget-placeholder": "master",
@@ -159,7 +161,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
+    "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
     "vue.rearranger.settings.migration": "true"
@@ -170,11 +172,11 @@
       <recent name="C:\Users\lm2171\IdeaProjects\uoy-eng1-2" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.uoy-eng1-2:game:desktop [run]">
-    <configuration name="uoy-eng1-2 [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.uoy-eng1-2:game [jar]">
+    <configuration name="uoy-eng1-2:game [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/game" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" />
         <option name="taskDescriptions">
@@ -193,10 +195,10 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="uoy-eng1-2 [check]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="uoy-eng1-2:game [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/game" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" />
         <option name="taskDescriptions">
@@ -204,7 +206,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="check" />
+            <option value="jar" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -215,10 +217,10 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="uoy-eng1-2 [init]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="uoy-eng1-2:game:desktop [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/game/desktop" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" />
         <option name="taskDescriptions">
@@ -226,7 +228,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="init" />
+            <option value="build" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -237,10 +239,10 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="uoy-eng1-2 [projects]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="uoy-eng1-2:game:desktop [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/game/desktop" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" />
         <option name="taskDescriptions">
@@ -248,7 +250,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="projects" />
+            <option value="jar" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -283,11 +285,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.uoy-eng1-2:game [jar]" />
+        <item itemvalue="Gradle.uoy-eng1-2:game [build]" />
+        <item itemvalue="Gradle.uoy-eng1-2:game:desktop [jar]" />
+        <item itemvalue="Gradle.uoy-eng1-2:game:desktop [build]" />
         <item itemvalue="Gradle.uoy-eng1-2:game:desktop [run]" />
-        <item itemvalue="Gradle.uoy-eng1-2 [build]" />
-        <item itemvalue="Gradle.uoy-eng1-2 [check]" />
-        <item itemvalue="Gradle.uoy-eng1-2 [projects]" />
-        <item itemvalue="Gradle.uoy-eng1-2 [init]" />
       </list>
     </recent_temporary>
   </component>
@@ -317,6 +319,15 @@
       <workItem from="1714037345766" duration="65000" />
       <workItem from="1714037445214" duration="867000" />
     </task>
+    <task id="LOCAL-00001" summary="Fixed Gradle to work from root dir">
+      <option name="closed" value="true" />
+      <created>1714050560125</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1714050560125</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -335,5 +346,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Fixed Gradle to work from root dir" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Gradle to work from root dir" />
   </component>
 </project>

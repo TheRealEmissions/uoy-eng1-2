@@ -30,3 +30,11 @@ S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
 ]
 -.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
+L
+website/workflows/nextjs.yml,1\1\115177cfbb960b92970abdc1eda8ec0bdd8f8aa7
+Y
+).github/workflows/qodana_code_quality.yml,4\f\4f751ec70a5e7dcf5d05ba8965348b627e7b3e80
+L
+.github/workflows/gradle.yml,c\3\c36c878e4a824e41b1b476ece36b9a80ca94ffec
+;
+qodana.yaml,8\5\85c3a901608a6b9adf48d245fa84828b66304e51
