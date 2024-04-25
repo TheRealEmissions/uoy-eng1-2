@@ -26,7 +26,7 @@ public class Activity {
     @Getter
     private static int finalScore;
 
-    public Activity(LocalTime timeNeeded, int energyNeeded, int reward) {
+    public Activity(LocalTime timeNeeded, int energyNeeded) {
         // Constructor for activities
         this.timeNeeded = timeNeeded;
         this.energyNeeded = energyNeeded;
@@ -48,16 +48,16 @@ public class Activity {
 
         // Add activties to their activity type
         // Study: CompSci Building
-        activities.get("Study").put("CompSci", new Activity(LocalTime.of(3,0), 30, 0));
+        activities.get("Study").put("CompSci", new Activity(LocalTime.of(3,0), 30));
 
         // Relax: Gym
-        activities.get("Relax").put("Gym", new Activity(LocalTime.of(1,0), 20, 0));
+        activities.get("Relax").put("Gym", new Activity(LocalTime.of(1,0), 20));
 
         // Eat: Piazza Building
-        activities.get("Eat").put("Piazza", new Activity(LocalTime.of(1,0), 10, 0));
+        activities.get("Eat").put("Piazza", new Activity(LocalTime.of(1,0), 10));
 
         // Sleep: Home
-        activities.get("Sleep").put("Home", new Activity(LocalTime.of(0,0),0, 0));
+        activities.get("Sleep").put("Home", new Activity(LocalTime.of(0,0),0));
     }
 
     public static void completeActivity(String activityIdentifier) {
@@ -74,18 +74,18 @@ public class Activity {
         }
     }
 
-    public String complete() {
+    public void complete() {
         // Returns whether the activity has been completed
         // Checks whether there is enough time left in the day to complete the activity
         LocalTime tempTime = GameStats.getTime().plusHours(this.timeNeeded.getHour());
         tempTime = tempTime.plusMinutes(this.timeNeeded.getMinute());
         if (tempTime.isAfter(GameStats.DAY_END) && tempTime.isBefore(GameStats.DAY_START)) {
-            return "Insufficient Time";
+            return;
         }
 
         // Checks whether there is enough energy left to complete the activity
         if (GameStats.getEnergy() - this.energyNeeded < 0) {
-            return "Insufficient Energy";
+            return;
         }
 
         // Increase the relevent trackers
@@ -101,7 +101,6 @@ public class Activity {
         System.out.println("Current score: " + GameStats.getScore());
         // ---
 
-        return "Activity Completed";
     }
 
 
@@ -129,8 +128,6 @@ public class Activity {
 
         if (GameStats.getDay() > 7) {
             // Pass the score and activities completed to EndScreen
-            Map<String, Integer> activitiesCompleted = Activity.countCompletedActivities();
-            int score = calculateDayScore();
             gameInstance.changeScreen(HeslingtonHustle.Screens.ENDGAME);
         }
     }

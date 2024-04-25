@@ -11,8 +11,7 @@ import org.jetbrains.annotations.NotNull;
  * The main game class responsible for managing screens.
  */
 public class HeslingtonHustle extends Game {
-	private LoadingScreen loadingScreen;
-	private PreferencesScreen preferencesScreen;
+    private PreferencesScreen preferencesScreen;
 	private MenuScreen menuScreen;
 	private MainScreen mainScreen;
 	private EndScreen endScreen;
@@ -20,7 +19,6 @@ public class HeslingtonHustle extends Game {
      * -- GETTER --
      *  Retrieves the preferences instance.
      *
-     * @return The preferences instance.
      */
     @Getter
     private AppPreferences preferences;
@@ -36,7 +34,7 @@ public class HeslingtonHustle extends Game {
 	
 	@Override
 	public void create() {
-		loadingScreen = new LoadingScreen(this);
+        LoadingScreen loadingScreen = new LoadingScreen(this);
 		setScreen(loadingScreen);
 		preferences = new AppPreferences();
 		Activity.setGameInstance(this); // Set the game instance in Activity
@@ -62,7 +60,7 @@ public class HeslingtonHustle extends Game {
 				setScreen(mainScreen);
 				break;
 			case ENDGAME:
-				if (endScreen == null) endScreen = new EndScreen(this);
+				if (endScreen == null) endScreen = new EndScreen();
 				setScreen(endScreen);
 				break;
 			case CHARACTER:

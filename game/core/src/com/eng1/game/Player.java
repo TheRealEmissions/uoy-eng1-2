@@ -19,13 +19,12 @@ public class Player extends Sprite implements InputProcessor {
     private final Vector2 velocity = new Vector2();
     @Setter
     private float speed = 60 * 5;
-    private Animation<?> still, left, right;
     @Getter
     private final TiledMapTileLayer collisionLayer;
     private static final String transitionKey = "transition";
-    public static final String transitionValue = "";
+    public static String transitionValue = "";
     private static final String activityKey = "activity";
-    public static final String activityValue = "";
+    public static String activityValue = "";
 
     /**
      * Constructs a new player with the given sprite and collision layer.
@@ -34,10 +33,6 @@ public class Player extends Sprite implements InputProcessor {
      */
     public Player(Sprite sprite, TiledMapTileLayer collisionLayer) {
         super(sprite);
-//        super((Texture) still.getKeyFrame(0));
-//        this.still = still;
-//        this.left = left;
-//        this.right = right;
         this.collisionLayer = collisionLayer;
         setScale(3);
     }
@@ -109,15 +104,11 @@ public class Player extends Sprite implements InputProcessor {
             velocity.y = 0;
             Play.changeMap(transitionValue);
             setY(oldY);
-            transition = false;
         } else if (activity) {
             velocity.y = 0;
             Activity.completeActivity(activityValue);
             setY(oldY);
         }
-//
-//        animationTime += delta;
-//        setRegion(velocity.x < 0 ? left.getKeyFrame(animationTime) : velocity.x > 0 ? right.getKeyFrame(animationTime) : still.getKeyFrame(animationTime));
     }
 
     /**

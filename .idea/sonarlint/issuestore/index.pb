@@ -60,3 +60,7 @@ a
 1game/core/src/eng1/model/views/LoadingScreen.java,1\f\1f12aeca9affdc74cc911432a5c67662e4e7dacf
 Z
 *game/core/src/com/eng1/game/GameStats.java,e\d\ed70f1428b0a8f570d4adfdb0b02035b87f792c7
+c
+3game/desktop/src/com/eng1/game/DesktopLauncher.java,1\7\1735d5ee685de7074e776a241dbf907024516f68
+_
+/game/core/src/com/eng1/game/AppPreferences.java,4\c\4c35c5216a02c89cb0b6f97d7503c401a9c1d085

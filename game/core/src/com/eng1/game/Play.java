@@ -26,7 +26,6 @@ public class Play implements Screen {
 
     private static OrthographicCamera camera;
     private static final AssetManager assetManager = new AssetManager();
-    private TextureAtlas playerAtlas;
     private static Player player;
     private static TiledMap currentMap;
     private static String currentMapPath = "maps/map8/home.tmx";
@@ -37,11 +36,10 @@ public class Play implements Screen {
      * -- SETTER --
      *  Sets the selected character for the player.
      *
-     * @param character The selected character.
      */
     @Setter
     private static String selectedCharacter;
-    BitmapFont displayDateTime = new BitmapFont();
+    private final BitmapFont displayDateTime = new BitmapFont();
 
     public static final String CHAR1 = "playerCharacters/playerCharacter1.png";
     public static final String CHAR2 = "playerCharacters/playerCharacter2.png";
@@ -79,7 +77,6 @@ public class Play implements Screen {
         currentMap.dispose(); // Dispose the old map
 
         // Change the current and old map variables
-        TiledMap oldMap = currentMap;
         oldMapPath = currentMapPath;
         currentMapPath = path;
 
@@ -139,14 +136,19 @@ public class Play implements Screen {
          */
         switch (currentMapPath) {
             case ("maps/map1/map1.tmx"):
-                if (oldMapPath.equals("maps/map2/map2.tmx")) {
-                    player.setPosition(115 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
-                } else if (oldMapPath.equals("maps/map3/map3.tmx")) {
-                    player.setPosition(5 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
-                } else if (oldMapPath.equals("maps/map4/map4.tmx")) {
-                    player.setPosition(67 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 5) * player.getCollisionLayer().getTileHeight());
-                } else if (oldMapPath.equals("maps/map8/home.tmx")) {
-                    player.setPosition(105 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 53) * player.getCollisionLayer().getTileHeight());
+                switch (oldMapPath) {
+                    case "maps/map2/map2.tmx":
+                        player.setPosition(115 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
+                        break;
+                    case "maps/map3/map3.tmx":
+                        player.setPosition(5 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
+                        break;
+                    case "maps/map4/map4.tmx":
+                        player.setPosition(67 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 5) * player.getCollisionLayer().getTileHeight());
+                        break;
+                    case "maps/map8/home.tmx":
+                        player.setPosition(105 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 53) * player.getCollisionLayer().getTileHeight());
+                        break;
                 }
                 break;
             case ("maps/map2/map2.tmx"):
@@ -157,14 +159,19 @@ public class Play implements Screen {
                 }
                 break;
             case ("maps/map3/map3.tmx"):
-                if (oldMapPath.equals("maps/map1/map1.tmx")) {
-                    player.setPosition(115 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
-                } else if (oldMapPath.equals("maps/map5/map5.tmx")) {
-                    player.setPosition(62 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 5) * player.getCollisionLayer().getTileHeight());
-                } else if (oldMapPath.equals("maps/map6/map6.tmx")) {
-                    player.setPosition(5 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
-                } else if (oldMapPath.equals("maps/map11/piazza.tmx")) {
-                    player.setPosition(30 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 54) * player.getCollisionLayer().getTileHeight());
+                switch (oldMapPath) {
+                    case "maps/map1/map1.tmx":
+                        player.setPosition(115 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
+                        break;
+                    case "maps/map5/map5.tmx":
+                        player.setPosition(62 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 5) * player.getCollisionLayer().getTileHeight());
+                        break;
+                    case "maps/map6/map6.tmx":
+                        player.setPosition(5 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
+                        break;
+                    case "maps/map11/piazza.tmx":
+                        player.setPosition(30 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 54) * player.getCollisionLayer().getTileHeight());
+                        break;
                 }
                 break;
             case ("maps/map4/map4.tmx"):
@@ -306,14 +313,12 @@ public class Play implements Screen {
 
     @Override
     public void hide() {
-//        dispose();
+
     }
 
     @Override
     public void dispose() {
-//        assetManager.dispose();
-//        renderer.dispose();
-//        playerAtlas.dispose();
+
     }
 
 

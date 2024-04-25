@@ -11,7 +11,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.eng1.game.HeslingtonHustle;
 
 import com.eng1.game.Activity;
 
@@ -25,18 +24,12 @@ public class EndScreen implements Screen {
 
     private final Stage stage;
 
-    private static Map<String, Map<String, Activity>> activities; // Map of the activity types
-
-
-
-
 
     /**
      * Constructor for the EndScreen class.
      * Initializes the parent orchestrator and creates a new stage for UI rendering.
-     * @param eng1 The orchestrator of the game.
      */
-    public EndScreen(HeslingtonHustle eng1) {
+    public EndScreen() {
         // create stage and set it as input processor
         stage = new Stage(new ScreenViewport());
     }
