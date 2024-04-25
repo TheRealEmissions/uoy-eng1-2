@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1e1637c-3604-4615-b2f3-79e2afe0ead4" name="Changes" comment="chmod for deploy workflow" />
+    <list default="true" id="d1e1637c-3604-4615-b2f3-79e2afe0ead4" name="Changes" comment="deploy on master push" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -139,7 +139,7 @@
   }
 }]]></component>
   <component name="QodanaCloudProjectLink">
-    <option name="lastReportId" value="eYy0V" />
+    <option name="lastReportId" value="g07N1" />
     <option name="linkedProjectId" value="ANnj2" />
     <option name="linkedProjectName" value="uoy-eng1-2" />
     <option name="organizationId" value="pnmll" />
@@ -149,7 +149,7 @@
     <option name="cloudReportPersistedInfo">
       <CloudReportPersistedInfo>
         <option name="projectId" value="ANnj2" />
-        <option name="reportId" value="eYy0V" />
+        <option name="reportId" value="g07N1" />
       </CloudReportPersistedInfo>
     </option>
   </component>
@@ -367,7 +367,31 @@
       <option name="project" value="LOCAL" />
       <updated>1714060204661</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="deploy on master push">
+      <option name="closed" value="true" />
+      <created>1714060260940</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1714060260940</updated>
+    </task>
+    <task id="LOCAL-00009" summary="deploy on master push">
+      <option name="closed" value="true" />
+      <created>1714060407697</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1714060407697</updated>
+    </task>
+    <task id="LOCAL-00010" summary="deploy on master push">
+      <option name="closed" value="true" />
+      <created>1714060574650</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1714060574650</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -393,7 +417,8 @@
     <MESSAGE value="sonarlint cleanup" />
     <MESSAGE value="build and deploy workflow (hopefully it works)" />
     <MESSAGE value="chmod for deploy workflow" />
-    <option name="LAST_COMMIT_MESSAGE" value="chmod for deploy workflow" />
+    <MESSAGE value="deploy on master push" />
+    <option name="LAST_COMMIT_MESSAGE" value="deploy on master push" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

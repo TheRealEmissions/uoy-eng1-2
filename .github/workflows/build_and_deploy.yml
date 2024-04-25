@@ -34,12 +34,6 @@ jobs:
           name: release
           path: |
             game/desktop/build/libs/desktop-1.0.jar
-      - name: test
-        run: |
-          ls
-          cd release
-          ls
-          cd ..
       - name: Upload binaries to GitHub Release
         continue-on-error: true
         uses: svenstaro/upload-release-action@v2
