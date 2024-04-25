@@ -15,3 +15,18 @@ A
 game/gradlew,a\6\a6966c5a781b4ace1ca87c4dd7285fcb22464006
 @
 game/gradlew.bat,f\3\f3e37802480fa4018ae366ed1a923e8ec09d78fe
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+F
+game/core/build.gradle,5\e\5e2e8170ff6721d6888dbedae76af104331d252f
+I
+game/desktop/build.gradle,2\d\2d833553c611cd0ae4187e3faa7f2c0f731e8cb9
+?
+game/.gitignore,4\4\444a0dbf5f88ec270e58f69394beaa6677610c5e
+=
+game/test.txt,e\a\eaf8b439cab7d023a49663b81fb12370c5b66a02
+S
+#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
+]
+-.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
