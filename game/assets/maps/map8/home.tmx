@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="22" height="14" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="1">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="22" height="14" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="7">
  <tileset firstgid="1" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="17024" columns="16">
   <image source="Interiors_16x16.png" trans="000000" width="256" height="17024"/>
  </tileset>
@@ -188,4 +188,51 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="10" name="activities">
+  <object id="1" name="Read A Book" x="31.0201" y="126.739" width="49.679" height="16.4431">
+   <properties>
+    <property name="activityStr" value="read a book"/>
+    <property name="activityTime" type="int" value="1"/>
+    <property name="activityType" value="entertain"/>
+    <property name="changeAmount" value="0.1,0.2"/>
+    <property name="isActivity" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="3" name="Make A Meal" x="175.485" y="32" width="48" height="17.8194">
+   <properties>
+    <property name="activityStr" value="make some food"/>
+    <property name="activityTime" type="int" value="2"/>
+    <property name="activityType" value="eat"/>
+    <property name="changeAmount" value=".3"/>
+    <property name="isActivity" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="4" name="Have A Snack" x="108.547" y="32.1046" width="21.3177" height="19.102">
+   <properties>
+    <property name="activityStr" value="have a snack"/>
+    <property name="activityTime" type="int" value="1"/>
+    <property name="activityType" value="eat"/>
+    <property name="changeAmount" value="0.1"/>
+    <property name="isActivity" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="5" name="Go To Bed" x="225.094" y="127.381" width="31.9532" height="35.9415">
+   <properties>
+    <property name="activityStr" value="go to bed"/>
+    <property name="activityTime" type="int" value="8"/>
+    <property name="activityType" value="sleep"/>
+    <property name="changeAmount" value="0,0"/>
+    <property name="isActivity" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="6" name="Study At Desk" x="300.429" y="171.695" width="21.3177" height="35.9415">
+   <properties>
+    <property name="activityStr" value="study at your desk"/>
+    <property name="activityTime" type="int" value="3"/>
+    <property name="activityType" value="study"/>
+    <property name="changeAmount" value=".2,0.3,0.2"/>
+    <property name="isActivity" type="bool" value="true"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

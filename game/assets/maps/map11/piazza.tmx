@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="20" height="33" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="1">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="20" height="33" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="4">
  <tileset firstgid="1" name="Room_Builder_16x16" tilewidth="16" tileheight="16" tilecount="8284" columns="76">
   <image source="Room_Builder_16x16.png" trans="000000" width="1216" height="1744"/>
   <tile id="392">
@@ -292,7 +292,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,16301,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,14832,14833,14835,14835,14835,14834,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,15738,14849,14851,14851,14851,14850,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -311,7 +311,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16301,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -319,4 +319,33 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="8" name="activities">
+  <object id="1" name="college meal" x="89.8627" y="234.851" width="28.6957" height="39.2677">
+   <properties>
+    <property name="activityStr" value="get college meal"/>
+    <property name="activityTime" type="int" value="1"/>
+    <property name="activityType" value="eat"/>
+    <property name="changeAmount" value=".3"/>
+    <property name="isActivity" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="2" name="get a snack" x="191.808" y="119.314" width="84.7185" height="23.5515">
+   <properties>
+    <property name="activityStr" value="have a snack"/>
+    <property name="activityTime" type="int" value="1"/>
+    <property name="activityType" value="eat"/>
+    <property name="changeAmount" value="0.1"/>
+    <property name="isActivity" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="3" name="tiktok and chill" x="256.302" y="429.231" width="45.4508" height="34.1236">
+   <properties>
+    <property name="activityStr" value="watch tiktoks"/>
+    <property name="activityTime" type="int" value="1"/>
+    <property name="activityType" value="nap"/>
+    <property name="changeAmount" value="0.1"/>
+    <property name="isActivity" type="bool" value="true"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>
