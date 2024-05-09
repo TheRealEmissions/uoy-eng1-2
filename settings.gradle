@@ -1,4 +1,5 @@
 rootProject.name = 'ENG1'
 include 'game'
 include 'game:desktop'
+include 'game:tests'
 include 'game:core'
