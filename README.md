@@ -58,7 +58,7 @@ To set up the project locally, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url> (for now (will change) https://github.com/charliepiper/charliepiper.github.io.git)
+   git clone <repository-url> (for this fork (will change) https://github.com/TheRealEmissions/uoy-eng1-2.git)
    ```
 
 2. Install dependencies:
