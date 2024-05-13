@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.eng1.game.HeslingtonHustle;
+import com.eng1.game.assets.skins.SkinAssets;
 
 /**
  * Represents the main menu screen of the game.
@@ -20,6 +20,7 @@ import com.eng1.game.HeslingtonHustle;
  */
 public class MenuScreen extends ScreenAdapter {
     private final Stage stage; // Stage for handling UI elements
+    private final Skin uiSkin = SkinAssets.UI.get(); // Skin for UI elements
 
     /**
      * Constructor for the MenuScreen class.
@@ -38,24 +39,48 @@ public class MenuScreen extends ScreenAdapter {
         table.setFillParent(true);
         stage.addActor(table);
 
-        // Temporary until we have asset manager in
-        Skin skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
-
         // Create buttons
         // Label for displaying the game title
-        Label titleLabel = new Label("Heslington Hustle", skin);
-        TextButton newGame = new TextButton("New Game", skin);
-        TextButton preferences = new TextButton("Preferences", skin);
-        TextButton exit = new TextButton("Exit", skin);
+        Label titleLabel = new Label("Heslington Hustle", uiSkin);
+        TextButton newGame = new TextButton("New Game", uiSkin);
+        TextButton preferences = new TextButton("Preferences", uiSkin);
+        TextButton exit = new TextButton("Exit", uiSkin);
 
-        // Add buttons to table
-        table.add(titleLabel).colspan(2);
-        table.row().pad(10, 0, 0, 0);
-        table.add(newGame).fillX().uniformX();
-        table.row().pad(10, 0, 10, 0);
-        table.add(preferences).fillX().uniformX();
-        table.row();
-        table.add(exit).fillX().uniformX();
+        table.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+        // Add elements to the table
+        table
+            .add(titleLabel)
+            .colspan(4);
+        table
+            .row()
+            .pad(10, 0, 0, 0);
+        table
+            .add(newGame)
+            .fillX()
+            .fillY()
+            .uniformX()
+            .uniformY()
+            .pad(10, 150, 10, 150);
+        table
+            .row()
+            .pad(10, 0, 10, 0);
+        table
+            .add(preferences)
+            .fillX()
+            .fillY()
+            .uniformX()
+            .uniformY()
+            .pad(10, 150, 10, 150);
+        table
+            .row();
+        table
+            .add(exit)
+            .fillX()
+            .fillY()
+            .uniformX()
+            .uniformY()
+            .pad(10, 150, 10, 150);
 
         // Create button listeners
 
@@ -120,5 +145,6 @@ public class MenuScreen extends ScreenAdapter {
     public void dispose() {
         // Dispose of assets when not needed anymore
         stage.dispose();
+        uiSkin.dispose();
     }
 }
