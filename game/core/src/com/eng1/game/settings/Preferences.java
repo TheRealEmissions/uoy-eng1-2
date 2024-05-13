@@ -14,10 +14,14 @@ public class Preferences {
     public static final String PREF_MUSIC_ENABLED = "music.enabled";
     public static final String PREF_SOUND_ENABLED = "sound.enabled";
     public static final String PREF_SOUND_VOL = "sound";
-    public static final String PREFS_NAME = "HeslingtonHustle";
+    /**
+     * Represents the name of the preferences file where the game settings are stored.
+     * @since v2 -- renamed to NAME for consistency
+     */
+    public static final String NAME = "HeslingtonHustle";
 
     protected com.badlogic.gdx.Preferences getPrefs() {
-        return Gdx.app.getPreferences(PREFS_NAME);
+        return Gdx.app.getPreferences(NAME);
     }
 
     public boolean isSoundEffectsEnabled() {

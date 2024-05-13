@@ -18,7 +18,7 @@ public class PreferencesUnitTests {
     public void testIsSoundEffectsEnabled() {
         assertEquals(
                 "Testing whether AppPreferences.isSoundEffectsEnabled() works as expected.",
-                (Boolean) Gdx.app.getPreferences(Preferences.PREFS_NAME)
+                (Boolean) Gdx.app.getPreferences(Preferences.NAME)
                         .getBoolean(Preferences.PREF_SOUND_ENABLED),
                 (Boolean) preferences.isSoundEffectsEnabled()
         );
@@ -26,7 +26,7 @@ public class PreferencesUnitTests {
 
     @Test
     public void testSetSoundEffectsEnabled() {
-        boolean initialValue = Gdx.app.getPreferences(Preferences.PREFS_NAME)
+        boolean initialValue = Gdx.app.getPreferences(Preferences.NAME)
                                     .getBoolean(Preferences.PREF_SOUND_ENABLED);
 
         boolean workingAsExpected = true;
@@ -35,7 +35,7 @@ public class PreferencesUnitTests {
         for(byte i = 0; i < 2; i++) {
             preferences.setSoundEffectsEnabled(!initialValue);
 
-            boolean newValue = Gdx.app.getPreferences(Preferences.PREFS_NAME)
+            boolean newValue = Gdx.app.getPreferences(Preferences.NAME)
                                     .getBoolean(Preferences.PREF_SOUND_ENABLED);
             if(!(initialValue != newValue)) {
                 workingAsExpected = false;
@@ -53,7 +53,7 @@ public class PreferencesUnitTests {
     public void testIsMusicEnabled() {
         assertEquals(
                 "Testing whether AppPreferences.isMusicEnabled() works as expected.",
-                Gdx.app.getPreferences(Preferences.PREFS_NAME)
+                Gdx.app.getPreferences(Preferences.NAME)
                         .getBoolean(Preferences.PREF_MUSIC_ENABLED),
                 preferences.isMusicEnabled()
         );
@@ -61,7 +61,7 @@ public class PreferencesUnitTests {
 
     @Test
     public void testSetMusicEnabled() {
-        boolean initialValue = Gdx.app.getPreferences(Preferences.PREFS_NAME)
+        boolean initialValue = Gdx.app.getPreferences(Preferences.NAME)
                                     .getBoolean(Preferences.PREF_MUSIC_ENABLED);
 
         boolean workingAsExpected = true;
@@ -70,7 +70,7 @@ public class PreferencesUnitTests {
         for(byte i = 0; i < 2; i++) {
             preferences.setMusicEnabled(!initialValue);
 
-            boolean newValue = Gdx.app.getPreferences(Preferences.PREFS_NAME)
+            boolean newValue = Gdx.app.getPreferences(Preferences.NAME)
                                     .getBoolean(Preferences.PREF_MUSIC_ENABLED);
             if(!(initialValue != newValue)) {
                 workingAsExpected = false;
@@ -89,7 +89,7 @@ public class PreferencesUnitTests {
         assertEquals(
                 "Checks whether AppPreferences.getSoundVolume()"
                 + "returns the correct volume from Gdx.app as expected.",
-                Gdx.app.getPreferences(Preferences.PREFS_NAME)
+                Gdx.app.getPreferences(Preferences.NAME)
                         .getFloat(Preferences.PREF_MUSIC_VOLUME),
                 preferences.getMusicVolume(),
                 0.0f // Delta = 0 as no floating point error is expected
@@ -98,7 +98,7 @@ public class PreferencesUnitTests {
 
     @Test
     public void testSetMusicVolume() {
-        float initialVolume = Gdx.app.getPreferences(Preferences.PREFS_NAME)
+        float initialVolume = Gdx.app.getPreferences(Preferences.NAME)
                                     .getFloat(Preferences.PREF_MUSIC_VOLUME);
 
         if(initialVolume != 0.7f) {
@@ -108,7 +108,7 @@ public class PreferencesUnitTests {
                     + "As the initial volume wasn't 0.7, this test set the volume"
                     + " to 0.7 to check that it changes as expected.",
                     0.7f,
-                    Gdx.app.getPreferences(Preferences.PREFS_NAME)
+                    Gdx.app.getPreferences(Preferences.NAME)
                             .getFloat(Preferences.PREF_MUSIC_VOLUME),
                     0.0f // Delta = 0 as no floating point error is expected
             );
@@ -119,7 +119,7 @@ public class PreferencesUnitTests {
                             + "As the initial volume was 0.7, this test set the volume"
                             + " to 0.4 to check that it changes as expected.",
                     0.4f,
-                    Gdx.app.getPreferences(Preferences.PREFS_NAME)
+                    Gdx.app.getPreferences(Preferences.NAME)
                             .getFloat(Preferences.PREF_MUSIC_VOLUME),
                     0.0f // Delta = 0 as no floating point error is expected
             );
@@ -131,7 +131,7 @@ public class PreferencesUnitTests {
         assertEquals(
                 "Checks whether AppPreferences.getSoundVolume()"
                         + "returns the correct volume from Gdx.app as expected.",
-                Gdx.app.getPreferences(Preferences.PREFS_NAME)
+                Gdx.app.getPreferences(Preferences.NAME)
                         .getFloat(Preferences.PREF_SOUND_VOL),
                 preferences.getSoundVolume(),
                 0.0f // Delta = 0 as no floating point error is expected
@@ -140,7 +140,7 @@ public class PreferencesUnitTests {
 
     @Test
     public void testSetSoundVolume() {
-        float initialVolume = Gdx.app.getPreferences(Preferences.PREFS_NAME)
+        float initialVolume = Gdx.app.getPreferences(Preferences.NAME)
                 .getFloat(Preferences.PREF_SOUND_VOL);
 
         if(initialVolume != 0.7f) {
@@ -150,7 +150,7 @@ public class PreferencesUnitTests {
                             + "As the initial volume wasn't 0.7, this test set the volume"
                             + " to 0.7 to check that it changes as expected.",
                     0.7f,
-                    Gdx.app.getPreferences(Preferences.PREFS_NAME)
+                    Gdx.app.getPreferences(Preferences.NAME)
                             .getFloat(Preferences.PREF_SOUND_VOL),
                     0.0f // Delta = 0 as no floating point error is expected
             );
@@ -161,7 +161,7 @@ public class PreferencesUnitTests {
                             + "As the initial volume was 0.7, this test set the volume"
                             + " to 0.4 to check that it changes as expected.",
                     0.4f,
-                    Gdx.app.getPreferences(Preferences.PREFS_NAME)
+                    Gdx.app.getPreferences(Preferences.NAME)
                             .getFloat(Preferences.PREF_SOUND_VOL),
                     0.0f // Delta = 0 as no floating point error is expected
             );
