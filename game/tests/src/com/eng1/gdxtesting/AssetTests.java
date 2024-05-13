@@ -2,14 +2,11 @@ package com.eng1.gdxtesting;
 
 import static org.junit.Assert.assertTrue;
 
-import com.eng1.game.Play;
-import com.eng1.game.Player;
+import com.eng1.game.player.Player;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.badlogic.gdx.Gdx;
-
-import com.eng1.gdxtesting.GdxTestRunner;
 
 @RunWith(GdxTestRunner.class)
 public class AssetTests {

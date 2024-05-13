@@ -16,8 +16,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.eng1.game.Play;
-import com.eng1.game.Player;
+import com.eng1.game.player.Player;
 
 /**
  * Represents the character selection screen of the game.
@@ -81,7 +80,7 @@ public class CharacterScreen extends ScreenAdapter {
         character1Button.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Play.setSelectedCharacter("Character1"); // Set selected character
+                PlayScreen.setSelectedCharacter("Character1"); // Set selected character
                 // Change the screen to the main game screen
                 parent.changeScreen(Screens.MAIN);
             }
@@ -90,7 +89,7 @@ public class CharacterScreen extends ScreenAdapter {
         character2Button.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Play.setSelectedCharacter("Character2");
+                PlayScreen.setSelectedCharacter("Character2");
                 parent.changeScreen(Screens.MAIN);
             }
         });
@@ -98,7 +97,7 @@ public class CharacterScreen extends ScreenAdapter {
         character3Button.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Play.setSelectedCharacter("Character3");
+                PlayScreen.setSelectedCharacter("Character3");
                 parent.changeScreen(Screens.MAIN);
             }
         });

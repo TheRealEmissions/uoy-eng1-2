@@ -1,7 +1,6 @@
 package com.eng1.game.screens;
 
 import com.eng1.game.HeslingtonHustle;
-import com.eng1.game.Play;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.Input.Keys;
@@ -38,8 +37,8 @@ public class MainScreen implements Screen {
     @Override
     public void show() {
         // This method is called when the screen is first shown.
-        Play play = new Play(); // Instantiate the Play class
-        parent.setScreen(play); // Switch to the 'Play' screen (where the game is run / rendered)
+        PlayScreen playScreen = new PlayScreen(); // Instantiate the Play class
+        parent.setScreen(playScreen); // Switch to the 'Play' screen (where the game is run / rendered)
     }
 
 

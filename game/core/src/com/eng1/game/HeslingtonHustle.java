@@ -13,7 +13,8 @@ import org.jetbrains.annotations.NotNull;
  *
  * @since v2 <p>
  * -- now uses a singleton pattern to ensure only one instance of the game is running. <p>
- * -- now uses the {@link Screens} enum to switch screens and this class no longer stores all the screens
+ * -- now uses the {@link Screens} enum to switch screens and this class no longer stores all the screens <p>
+ * -- removed changeScreen() as {@link Screens} enum now handles screen switching <p>
  */
 public class HeslingtonHustle extends Game {
 	@Getter
@@ -33,20 +34,8 @@ public class HeslingtonHustle extends Game {
 
 	@Override
 	public void create() {
-        LoadingScreen loadingScreen = new LoadingScreen();
-		setScreen(loadingScreen);
+		Screens.LOADING.setAsCurrent();
 		preferences = new Preferences();
-	}
-
-    /**
-	 * Changes the current screen based on the specified screen constant.
-	 * @param screen The screen constant indicating the screen to switch to.
-     *
-     * @since v2 -- now uses the {@link Screens} enum to switch screens.
-	 *
-	 */
-	public void changeScreen(@NotNull Screens screen) {
-		screen.change();
 	}
 
 	/**
@@ -57,12 +46,13 @@ public class HeslingtonHustle extends Game {
 		super.render();
 		// Handle input events
 		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-			if (getScreen().equals(Screens.PREFERENCES.get())) {
+			Screens preferencesScreen = Screens.PREFERENCES;
+			if (preferencesScreen.isCurrent()) {
 				// If currently on preferences screen, switch to the game screen
-				changeScreen(Screens.MAIN);
+				Screens.MAIN.setAsCurrent();
 			} else {
 				// Otherwise, switch to preferences screen
-				changeScreen(Screens.PREFERENCES);
+				preferencesScreen.setAsCurrent();
 			}
 		}
 	}

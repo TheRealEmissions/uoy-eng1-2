@@ -2,7 +2,7 @@ package com.eng1.gdxtesting;
 
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import com.eng1.game.GameStats;
+import com.eng1.game.player.GameStats;
 import java.time.LocalTime;
 
 // Be aware that when adding tests you may need to clean and rebuild
