@@ -25,6 +25,11 @@ public class Player extends Sprite implements InputProcessor {
     private static final String activityKey = "activity";
     public static String activityValue = "";
 
+    // Player Sprite Images Location
+    public static final String CHAR1 = "playerCharacters/playerCharacter1.png";
+    public static final String CHAR2 = "playerCharacters/playerCharacter2.png";
+    public static final String CHAR3 = "playerCharacters/playerCharacter3.png";
+
     /**
      * Constructs a new player with the given sprite and collision layer.
      * @param sprite The sprite representing the player character.
