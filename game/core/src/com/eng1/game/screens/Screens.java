@@ -20,7 +20,9 @@ public enum Screens {
     PREFERENCES(PreferencesScreen::new),
     MAIN(MainScreen::new),
     END(EndScreen::new),
-    CHARACTER(CharacterScreen::new);
+    CHARACTER(CharacterScreen::new),
+    LOADING(LoadingScreen::new),
+    PLAY(PlayScreen::new);
 
     private static final HeslingtonHustle parent = HeslingtonHustle.getInstance();
 
@@ -38,7 +40,11 @@ public enum Screens {
         return screen;
     }
 
-    public void change() {
+    public void setAsCurrent() {
         parent.setScreen(get());
+    }
+
+    public boolean isCurrent() {
+        return parent.getScreen().equals(get());
     }
 }
