@@ -1,4 +1,4 @@
-package com.eng1.game;
+package com.eng1.game.player;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -9,6 +9,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.math.Vector2;
 import com.eng1.game.game.activity.Activity;
+import com.eng1.game.screens.PlayScreen;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -81,7 +82,7 @@ public class Player extends Sprite implements InputProcessor {
             velocity.x = 0;
         } else if (transition) {
             velocity.x = 0;
-            Play.changeMap(transitionValue);
+            PlayScreen.changeMap(transitionValue);
             setX(oldX);
             transition = false;
         } else if (activity) {
@@ -107,7 +108,7 @@ public class Player extends Sprite implements InputProcessor {
             velocity.y = 0;
         } else if (transition) {
             velocity.y = 0;
-            Play.changeMap(transitionValue);
+            PlayScreen.changeMap(transitionValue);
             setY(oldY);
         } else if (activity) {
             velocity.y = 0;
