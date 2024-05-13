@@ -1,0 +1,23 @@
+apply plugin: "java"
+
+sourceCompatibility = 11
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+// Gradle throws a "Duplicate content roots" warning for
+// the first line but the tests won't run without it
+sourceSets.main.resources.srcDirs = ["../assets"]
+project.ext.assetsDir = new File("../assets")
+
+sourceSets {
+	test {
+        java {
+            srcDir 'src'
+        }
+    }
+    
+    
+}
+
+eclipse.project {
+    name = appName + "-tests"
+}

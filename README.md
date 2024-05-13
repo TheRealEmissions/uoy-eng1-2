@@ -12,6 +12,9 @@ Create a new layer where the collisions will occur. Edit a tileset and select a 
 For transitions edit a tileset and select a different pixel that you don't use and add a property called transition and give it a value of the file path of where you want the transition to take you.
 
 
+# Tests
+
+The testing part of this code is derived from [TomGrill's libGDX Testing Skeleton](https://github.com/TomGrill/gdx-testing).
 
 # Website
 
