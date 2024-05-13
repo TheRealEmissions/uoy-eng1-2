@@ -11,7 +11,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
  * This screen is displayed while the game is loading resources or preparing for the main menu.
  * ((redundant for now because loading takes a negligible amount of time))
  *
- * @since v2 -- the screen now uses the {@link HeslingtonHustle#getInstance()} method to access the orchestrator
  */
 public class LoadingScreen implements Screen {
     private final Stage stage;
