@@ -10,10 +10,6 @@ import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @since v2 <p>
- *     -- {@link Activity#gameInstance} is now referenced via {@link HeslingtonHustle#getInstance()}
- */
 public class Activity {
 
     private static Map<String, Map<String, Activity>> activities; // Map of the activity types
