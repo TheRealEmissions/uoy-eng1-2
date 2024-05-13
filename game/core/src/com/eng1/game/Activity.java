@@ -130,7 +130,7 @@ public class Activity {
 
         if (GameStats.getDay() > 7) {
             // Pass the score and activities completed to EndScreen
-            gameInstance.changeScreen(Screens.ENDGAME);
+            gameInstance.changeScreen(Screens.END);
         }
     }
 

@@ -58,7 +58,7 @@ public class HeslingtonHustle extends Game {
 		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
 			if (getScreen().equals(Screens.PREFERENCES.get())) {
 				// If currently on preferences screen, switch to the game screen
-				changeScreen(Screens.APPLICATION);
+				changeScreen(Screens.MAIN);
 			} else {
 				// Otherwise, switch to preferences screen
 				changeScreen(Screens.PREFERENCES);

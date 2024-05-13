@@ -1,9 +1,7 @@
 package com.eng1.game.screens;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.eng1.game.HeslingtonHustle;
-import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -20,8 +18,8 @@ import java.util.function.Supplier;
 public enum Screens {
     MENU(MenuScreen::new),
     PREFERENCES(PreferencesScreen::new),
-    APPLICATION(MainScreen::new),
-    ENDGAME(EndScreen::new),
+    MAIN(MainScreen::new),
+    END(EndScreen::new),
     CHARACTER(CharacterScreen::new);
 
     private static final HeslingtonHustle parent = HeslingtonHustle.getInstance();
