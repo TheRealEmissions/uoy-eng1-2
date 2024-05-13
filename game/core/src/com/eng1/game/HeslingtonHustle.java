@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.eng1.game.screens.*;
+import com.eng1.game.settings.Preferences;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
@@ -23,7 +24,7 @@ public class HeslingtonHustle extends Game {
      *
      */
     @Getter
-    private AppPreferences preferences;
+    private Preferences preferences;
 
 	public HeslingtonHustle() {
 		super();
@@ -34,7 +35,7 @@ public class HeslingtonHustle extends Game {
 	public void create() {
         LoadingScreen loadingScreen = new LoadingScreen();
 		setScreen(loadingScreen);
-		preferences = new AppPreferences();
+		preferences = new Preferences();
 	}
 
     /**
