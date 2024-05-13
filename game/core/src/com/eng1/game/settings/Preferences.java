@@ -16,16 +16,19 @@ public final class Preferences {
     public static final String PREF_SOUND_VOL = "sound";
     /**
      * Represents the name of the preferences file where the game settings are stored.
-     * @since v2 -- renamed to NAME for consistency
+     * @since v2 <p>
+     *     -- renamed to NAME for consistency <p>
+     *     -- changed to private access modifier
      */
-    public static final String NAME = "HeslingtonHustle";
+    private static final String NAME = "HeslingtonHustle";
+    public static final MusicPreferences MUSIC = new MusicPreferences();
 
     /**
      * Retrieves the preferences object from GDX.
      * @return The preferences object.
      * @since v2 -- renamed to getPreferences from getPrefs for clarity
      */
-    protected com.badlogic.gdx.Preferences getPreferences() {
+    private com.badlogic.gdx.Preferences getPreferences() {
         return Gdx.app.getPreferences(NAME);
     }
 
