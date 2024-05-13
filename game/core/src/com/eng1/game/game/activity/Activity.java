@@ -24,8 +24,6 @@ public class Activity {
     private int timesCompletedWeek; // Times the activity has been completed in the week (can be used to decrese the reward of an activity if it is completed multiple times)
     private int timesCompletedDay; // Times the activity has been completed that day (can be used to stop activites being completed too many times or to increase the reward i.e. eating 3 meals)
 
-    private static final HeslingtonHustle gameInstance = HeslingtonHustle.getInstance();
-
     @Setter
     @Getter
     private static int finalScore;
@@ -132,7 +130,7 @@ public class Activity {
 
         if (GameStats.getDay() > 7) {
             // Pass the score and activities completed to EndScreen
-            gameInstance.changeScreen(Screens.END);
+            Screens.END.setAsCurrent();
         }
     }
 
