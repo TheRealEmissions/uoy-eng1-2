@@ -8,7 +8,10 @@ import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * @since v2 <p>
+ *     -- {@link Activity#gameInstance} is now referenced via {@link HeslingtonHustle#getInstance()}
+ */
 public class Activity {
 
     private static Map<String, Map<String, Activity>> activities; // Map of the activity types
@@ -19,9 +22,7 @@ public class Activity {
     private int timesCompletedWeek; // Times the activity has been completed in the week (can be used to decrese the reward of an activity if it is completed multiple times)
     private int timesCompletedDay; // Times the activity has been completed that day (can be used to stop activites being completed too many times or to increase the reward i.e. eating 3 meals)
 
-    // Method to set the game instance
-    @Setter
-    private static HeslingtonHustle gameInstance; // Reference to the HeslingtonHustle instance
+    private static final HeslingtonHustle gameInstance = HeslingtonHustle.getInstance();
 
     @Setter
     @Getter

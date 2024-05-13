@@ -1,6 +1,11 @@
 package com.eng1.game.screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.eng1.game.HeslingtonHustle;
+import lombok.Getter;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
 
@@ -19,9 +24,23 @@ public enum Screens {
     ENDGAME(EndScreen::new),
     CHARACTER(CharacterScreen::new);
 
+    private static final HeslingtonHustle parent = HeslingtonHustle.getInstance();
+
     private final Supplier<Screen> screenSupplier;
+    private @Nullable Screen screen = null;
 
     Screens(Supplier<Screen> screenSupplier) {
         this.screenSupplier = screenSupplier;
+    }
+
+    public @NotNull Screen get() {
+        if (screen == null) {
+            screen = screenSupplier.get();
+        }
+        return screen;
+    }
+
+    public void change() {
+        parent.setScreen(get());
     }
 }
