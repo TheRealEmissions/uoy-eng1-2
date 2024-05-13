@@ -15,6 +15,8 @@ public class DesktopLauncher {
 		config.setTitle("ENG1 Game");
 		config.setResizable(true);
 		config.setHdpiMode(HdpiMode.Logical);
+		config.setWindowSizeLimits(800, 480, -1, -1);
+		config.setWindowedMode(800, 480);
 		//config.setFullscreenMode(Lwjgl3ApplicationConfiguration.getDisplayMode());
 		new Lwjgl3Application(new HeslingtonHustle(), config);
 	}

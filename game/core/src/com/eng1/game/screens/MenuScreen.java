@@ -10,7 +10,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.eng1.game.assets.skins.SkinAssets;
 
 /**
@@ -21,13 +23,42 @@ import com.eng1.game.assets.skins.SkinAssets;
 public class MenuScreen extends ScreenAdapter {
     private final Stage stage; // Stage for handling UI elements
     private final Skin uiSkin = SkinAssets.UI.get(); // Skin for UI elements
+    private final Table table = new Table(); // Table for organizing UI elements
+
+    private static final float DEFAULT_WIDTH = 800f;
+    private static final float DEFAULT_HEIGHT = 480f;
+
+    private static class TableContents {
+        public static final Label TITLE = new Label("Heslington Hustle", SkinAssets.UI.get());
+        public static final TextButton NEW_GAME = new TextButton("New Game", SkinAssets.UI.get());
+        public static final TextButton PREFERENCES = new TextButton("Preferences", SkinAssets.UI.get());
+        public static final TextButton EXIT = new TextButton("Exit", SkinAssets.UI.get());
+
+        static {
+            TITLE.setAlignment(Align.center);
+            TITLE.setOrigin(Align.center);
+            NEW_GAME.setOrigin(Align.center);
+            NEW_GAME.setTransform(true);
+            PREFERENCES.setOrigin(Align.center);
+            PREFERENCES.setTransform(true);
+            EXIT.setOrigin(Align.center);
+            EXIT.setTransform(true);
+        }
+
+        public static void setSize(float width, float height) {
+            TITLE.setSize(width * 0.6f, height * 0.6f);
+            NEW_GAME.setSize(width * 0.3f, height * 0.3f);
+            PREFERENCES.setSize(width * 0.3f, height * 0.3f);
+            EXIT.setSize(width * 0.3f, height * 0.3f);
+        }
+    }
 
     /**
      * Constructor for the MenuScreen class.
      * Initializes the parent orchestrator and creates a new stage for UI rendering.
      */
     public MenuScreen() {
-        stage = new Stage(new ScreenViewport());
+        this.stage = new Stage(new ScreenViewport());
     }
 
     @Override
@@ -35,57 +66,20 @@ public class MenuScreen extends ScreenAdapter {
         Gdx.input.setInputProcessor(stage); // Set the input processor to the stage
 
         // Create a table that fills the screen. Everything else will go inside this table.
-        Table table = new Table();
         table.setFillParent(true);
         stage.addActor(table);
-
-        // Create buttons
-        // Label for displaying the game title
-        Label titleLabel = new Label("Heslington Hustle", uiSkin);
-        TextButton newGame = new TextButton("New Game", uiSkin);
-        TextButton preferences = new TextButton("Preferences", uiSkin);
-        TextButton exit = new TextButton("Exit", uiSkin);
+        table.setOrigin(Align.center);
+        table.setTransform(true);
 
         table.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         // Add elements to the table
-        table
-            .add(titleLabel)
-            .colspan(4);
-        table
-            .row()
-            .pad(10, 0, 0, 0);
-        table
-            .add(newGame)
-            .fillX()
-            .fillY()
-            .uniformX()
-            .uniformY()
-            .pad(10, 150, 10, 150);
-        table
-            .row()
-            .pad(10, 0, 10, 0);
-        table
-            .add(preferences)
-            .fillX()
-            .fillY()
-            .uniformX()
-            .uniformY()
-            .pad(10, 150, 10, 150);
-        table
-            .row();
-        table
-            .add(exit)
-            .fillX()
-            .fillY()
-            .uniformX()
-            .uniformY()
-            .pad(10, 150, 10, 150);
+        setTableContents();
 
         // Create button listeners
 
         // Exits the game when exit is clicked
-        exit.addListener(new ChangeListener() {
+        TableContents.EXIT.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 Gdx.app.exit();
@@ -93,7 +87,7 @@ public class MenuScreen extends ScreenAdapter {
         });
 
         // Changes to character screen when new game is clicked
-        newGame.addListener(new ChangeListener() {
+        TableContents.NEW_GAME.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 Screens.CHARACTER.setAsCurrent();
@@ -101,12 +95,61 @@ public class MenuScreen extends ScreenAdapter {
         });
 
         // Changes to preferences screen when preferences is clicked
-        preferences.addListener(new ChangeListener() {
+        TableContents.PREFERENCES.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 Screens.PREFERENCES.setAsCurrent();
             }
         });
+    }
+
+    private void setTableContents() {
+        setTableContents(true);
+    }
+
+    private void setTableContents(boolean reset) {
+        if (reset) {
+            table.clear();
+        }
+
+        float width = Gdx.graphics.getWidth();
+        float widthPadding = width * 0.2f;
+
+        table
+            .add(TableContents.TITLE)
+            .colspan(4);
+        table
+            .row()
+            .pad(10, 0, 0, 0);
+        table
+            .add(TableContents.NEW_GAME)
+            .fillX()
+            .fillY()
+            .uniformX()
+            .uniformY()
+            .expandX()
+            .pad(10, widthPadding, 10, widthPadding);
+        table
+            .row()
+            .pad(10, 0, 10, 0);
+        table
+            .add(TableContents.PREFERENCES)
+            .fillX()
+            .fillY()
+            .uniformX()
+            .uniformY()
+            .expandX()
+            .pad(10, widthPadding, 10, widthPadding);
+        table
+            .row();
+        table
+            .add(TableContents.EXIT)
+            .fillX()
+            .fillY()
+            .uniformX()
+            .uniformY()
+            .expandX()
+            .pad(10, widthPadding, 10, widthPadding);
     }
 
     @Override
@@ -123,7 +166,12 @@ public class MenuScreen extends ScreenAdapter {
     @Override
     public void resize(int width, int height) {
         // Change the stage's viewport when the screen size is changed
-        stage.getViewport().update(width, height, true);
+        Viewport viewport = stage.getViewport();
+        viewport.update(width, height, true);
+        TableContents.setSize(width, height);
+        table.setFillParent(true);
+        table.invalidate();
+        setTableContents();
     }
 
     @Override
