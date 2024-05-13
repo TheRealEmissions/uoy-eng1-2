@@ -20,43 +20,43 @@ public class Preferences {
      */
     public static final String NAME = "HeslingtonHustle";
 
-    protected com.badlogic.gdx.Preferences getPrefs() {
+    protected com.badlogic.gdx.Preferences getPreferences() {
         return Gdx.app.getPreferences(NAME);
     }
 
     public boolean isSoundEffectsEnabled() {
-        return getPrefs().getBoolean(PREF_SOUND_ENABLED, true);
+        return getPreferences().getBoolean(PREF_SOUND_ENABLED, true);
     }
 
     public void setSoundEffectsEnabled(boolean soundEffectsEnabled) {
-        getPrefs().putBoolean(PREF_SOUND_ENABLED, soundEffectsEnabled);
-        getPrefs().flush();
+        getPreferences().putBoolean(PREF_SOUND_ENABLED, soundEffectsEnabled);
+        getPreferences().flush();
     }
 
     public boolean isMusicEnabled() {
-        return getPrefs().getBoolean(PREF_MUSIC_ENABLED, true);
+        return getPreferences().getBoolean(PREF_MUSIC_ENABLED, true);
     }
 
     public void setMusicEnabled(boolean musicEnabled) {
-        getPrefs().putBoolean(PREF_MUSIC_ENABLED, musicEnabled);
-        getPrefs().flush();
+        getPreferences().putBoolean(PREF_MUSIC_ENABLED, musicEnabled);
+        getPreferences().flush();
     }
 
     public float getMusicVolume() {
-        return getPrefs().getFloat(PREF_MUSIC_VOLUME, 0.5f);
+        return getPreferences().getFloat(PREF_MUSIC_VOLUME, 0.5f);
     }
 
     public void setMusicVolume(float volume) {
-        getPrefs().putFloat(PREF_MUSIC_VOLUME, volume);
-        getPrefs().flush();
+        getPreferences().putFloat(PREF_MUSIC_VOLUME, volume);
+        getPreferences().flush();
     }
 
     public float getSoundVolume() {
-        return getPrefs().getFloat(PREF_SOUND_VOL, 0.5f);
+        return getPreferences().getFloat(PREF_SOUND_VOL, 0.5f);
     }
 
     public void setSoundVolume(float volume) {
-        getPrefs().putFloat(PREF_SOUND_VOL, volume);
-        getPrefs().flush();
+        getPreferences().putFloat(PREF_SOUND_VOL, volume);
+        getPreferences().flush();
     }
 }
