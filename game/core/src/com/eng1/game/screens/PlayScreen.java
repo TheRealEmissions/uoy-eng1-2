@@ -1,4 +1,4 @@
-package com.eng1.game;
+package com.eng1.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -12,7 +12,9 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.eng1.game.player.Player;
 import com.eng1.game.game.activity.Activity;
+import com.eng1.game.player.GameStats;
 import lombok.Setter;
 
 import java.util.List;
@@ -21,8 +23,10 @@ import java.util.Arrays;
 /**
  * The Play class represents the screen where the gameplay takes place.
  * It implements the Screen interface provided by LibGDX.
+ *
+ * @since v2 -- renamed from Play to PlayScreen for consistency
  */
-public class Play implements Screen {
+public class PlayScreen implements Screen {
     private static OrthogonalTiledMapRenderer renderer;
 
     private static OrthographicCamera camera;
@@ -46,7 +50,7 @@ public class Play implements Screen {
      * Constructor for the Play class.
      * Initializes the camera.
      */
-    public Play() {
+    public PlayScreen() {
         //create activities
         Activity.createActivities();
         // Initialize camera here
@@ -70,7 +74,7 @@ public class Play implements Screen {
      * Changes the current map to the one specified by the given path.
      * @param path The path of the new map.
      */
-    static void changeMap(String path) {
+    public static void changeMap(String path) {
         currentMap.dispose(); // Dispose the old map
 
         // Change the current and old map variables
