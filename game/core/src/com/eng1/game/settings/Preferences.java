@@ -8,10 +8,9 @@ import com.badlogic.gdx.Gdx;
  *
  * @since v2
  * -- renamed from AppPreferences to Preferences as it is more concise
+ * -- preference handling has been moved to its own classes, such as {@link MusicPreferences} which can be accessed with {@link Preferences#MUSIC}
  */
 public final class Preferences {
-    public static final String PREF_MUSIC_VOLUME = "volume";
-    public static final String PREF_MUSIC_ENABLED = "music.enabled";
     public static final String PREF_SOUND_ENABLED = "sound.enabled";
     public static final String PREF_SOUND_VOL = "sound";
     /**
@@ -26,9 +25,12 @@ public final class Preferences {
     /**
      * Retrieves the preferences object from GDX.
      * @return The preferences object.
-     * @since v2 -- renamed to getPreferences from getPrefs for clarity
+     * @since v2 <p>
+     *     -- renamed to getPreferences from getPrefs for clarity <p>
+     *     -- changed to package-private access modifier <p>
+     *     -- changed to static method
      */
-    private com.badlogic.gdx.Preferences getPreferences() {
+    static com.badlogic.gdx.Preferences getPreferences() {
         return Gdx.app.getPreferences(NAME);
     }
 
@@ -38,24 +40,6 @@ public final class Preferences {
 
     public void setSoundEffectsEnabled(boolean soundEffectsEnabled) {
         getPreferences().putBoolean(PREF_SOUND_ENABLED, soundEffectsEnabled);
-        getPreferences().flush();
-    }
-
-    public boolean isMusicEnabled() {
-        return getPreferences().getBoolean(PREF_MUSIC_ENABLED, true);
-    }
-
-    public void setMusicEnabled(boolean musicEnabled) {
-        getPreferences().putBoolean(PREF_MUSIC_ENABLED, musicEnabled);
-        getPreferences().flush();
-    }
-
-    public float getMusicVolume() {
-        return getPreferences().getFloat(PREF_MUSIC_VOLUME, 0.5f);
-    }
-
-    public void setMusicVolume(float volume) {
-        getPreferences().putFloat(PREF_MUSIC_VOLUME, volume);
         getPreferences().flush();
     }
 
