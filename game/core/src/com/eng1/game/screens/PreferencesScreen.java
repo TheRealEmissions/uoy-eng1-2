@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.eng1.game.HeslingtonHustle;
+import com.eng1.game.settings.Preferences;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -53,9 +54,9 @@ public class PreferencesScreen implements Screen {
 
         // music volume
         final Slider volumeMusicSlider = new Slider(0f, 1f, 0.1f, false, skin);
-        volumeMusicSlider.setValue(parent.getPreferences().getMusicVolume());
+        volumeMusicSlider.setValue(Preferences.MUSIC.getVolume());
         volumeMusicSlider.addListener(event -> {
-            parent.getPreferences().setMusicVolume(volumeMusicSlider.getValue());
+            Preferences.MUSIC.setVolume(volumeMusicSlider.getValue());
             // updateVolumeLabel();
             return false;
         });
@@ -71,10 +72,10 @@ public class PreferencesScreen implements Screen {
 
         // music on/off
         final CheckBox musicCheckbox = new CheckBox(null, skin);
-        musicCheckbox.setChecked(parent.getPreferences().isMusicEnabled());
+        musicCheckbox.setChecked(Preferences.MUSIC.isEnabled());
         musicCheckbox.addListener(event -> {
             boolean enabled = musicCheckbox.isChecked();
-            parent.getPreferences().setMusicEnabled(enabled);
+            Preferences.MUSIC.setEnabled(enabled);
             return false;
         });
 
@@ -86,7 +87,7 @@ public class PreferencesScreen implements Screen {
         backButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                parent.changeScreen(Screens.MENU);
+                Screens.MENU.setAsCurrent();
             }
         });
 
