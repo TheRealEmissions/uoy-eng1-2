@@ -41,10 +41,6 @@ public class Play implements Screen {
     private static String selectedCharacter;
     private final BitmapFont displayDateTime = new BitmapFont();
 
-    public static final String CHAR1 = "playerCharacters/playerCharacter1.png";
-    public static final String CHAR2 = "playerCharacters/playerCharacter2.png";
-    public static final String CHAR3 = "playerCharacters/playerCharacter3.png";
-
     /**
      * Constructor for the Play class.
      * Initializes the camera.
@@ -112,13 +108,13 @@ public class Play implements Screen {
         String character;
         switch (selectedCharacter) {
             case "Character1":
-                character = CHAR1;
+                character = Player.CHAR1;
                 break;
             case "Character2":
-                character = CHAR2;
+                character = Player.CHAR2;
                 break;
             case "Character3":
-                character = CHAR3;
+                character = Player.CHAR3;
                 break;
             default:
                 throw new IllegalArgumentException();

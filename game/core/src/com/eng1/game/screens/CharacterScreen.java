@@ -17,6 +17,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.eng1.game.Play;
+import com.eng1.game.Player;
 
 /**
  * Represents the character selection screen of the game.
@@ -65,9 +66,9 @@ public class CharacterScreen extends ScreenAdapter {
         character3Button.setSize(200f, 50f);
 
         // Load character images from assets
-        Texture character1Texture = new Texture(Gdx.files.internal("playerCharacters/playerCharacter1.png"));
-        Texture character2Texture = new Texture(Gdx.files.internal("playerCharacters/playerCharacter2.png"));
-        Texture character3Texture = new Texture(Gdx.files.internal("playerCharacters/playerCharacter3.png"));
+        Texture character1Texture = new Texture(Gdx.files.internal(Player.CHAR1));
+        Texture character2Texture = new Texture(Gdx.files.internal(Player.CHAR2));
+        Texture character3Texture = new Texture(Gdx.files.internal(Player.CHAR3));
 
         Image character1Image = new Image(new TextureRegionDrawable(new TextureRegion(character1Texture)));
         character1Image.setSize(200f, 200f); // Set the width and height of the image
