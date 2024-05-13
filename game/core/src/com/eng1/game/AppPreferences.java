@@ -8,11 +8,11 @@ import com.badlogic.gdx.Preferences;
  * Currently redundant as volume / sound ect isn't currently a feature
  */
 public class AppPreferences {
-    private static final String PREF_MUSIC_VOLUME = "volume";
-    private static final String PREF_MUSIC_ENABLED = "music.enabled";
-    private static final String PREF_SOUND_ENABLED = "sound.enabled";
-    private static final String PREF_SOUND_VOL = "sound";
-    private static final String PREFS_NAME = "HeslingtonHustle";
+    public static final String PREF_MUSIC_VOLUME = "volume";
+    public static final String PREF_MUSIC_ENABLED = "music.enabled";
+    public static final String PREF_SOUND_ENABLED = "sound.enabled";
+    public static final String PREF_SOUND_VOL = "sound";
+    public static final String PREFS_NAME = "HeslingtonHustle";
 
     protected Preferences getPrefs() {
         return Gdx.app.getPreferences(PREFS_NAME);
