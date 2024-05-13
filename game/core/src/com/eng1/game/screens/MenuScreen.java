@@ -17,10 +17,8 @@ import com.eng1.game.HeslingtonHustle;
  * Represents the main menu screen of the game.
  * Provides options for starting a new game, accessing preferences, and exiting the game.
  *
- * @since v2 -- the screen now uses the {@link HeslingtonHustle#getInstance()} method to access the orchestrator
  */
 public class MenuScreen extends ScreenAdapter {
-    private final HeslingtonHustle parent = HeslingtonHustle.getInstance(); // Field to store the orchestrator of the game
     private final Stage stage; // Stage for handling UI elements
 
     /**
