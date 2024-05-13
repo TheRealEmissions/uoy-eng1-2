@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.eng1.gdxtesting.AssetTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2024-05-13T18:31:02" hostname="LIAM" time="0.032">
+  <properties/>
+  <testcase name="testCharacter1AssetExists" classname="com.eng1.gdxtesting.AssetTests" time="0.004"/>
+  <testcase name="testCharacter2AssetExists" classname="com.eng1.gdxtesting.AssetTests" time="0.001"/>
+  <testcase name="testCharacter3AssetExists" classname="com.eng1.gdxtesting.AssetTests" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
