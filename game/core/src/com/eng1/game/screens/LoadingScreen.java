@@ -1,5 +1,6 @@
 package com.eng1.game.screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.eng1.game.HeslingtonHustle;
@@ -13,7 +14,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
  * @since v2 -- the screen now uses the {@link HeslingtonHustle#getInstance()} method to access the orchestrator
  */
 public class LoadingScreen implements Screen {
-    private final HeslingtonHustle parent = HeslingtonHustle.getInstance(); // a field to store our orchestrator
     private final Stage stage;
 
     /**
@@ -26,6 +26,7 @@ public class LoadingScreen implements Screen {
     }
     @Override
     public void show() {
+        Screens.MENU.setAsCurrent();
     }
 
     /**
@@ -33,29 +34,31 @@ public class LoadingScreen implements Screen {
      */
     @Override
     public void render(float delta) {
-        Screens.MENU.setAsCurrent();
-
+        Gdx.gl.glClearColor(0, 0, 0, 1);
     }
 
     @Override
     public void resize(int width, int height) {
         stage.getViewport().update(width, height, true);
-
     }
 
     @Override
     public void pause() {
+        // Not currently used
     }
 
     @Override
     public void resume() {
+        // Not currently used
     }
 
     @Override
     public void hide() {
+        // Not currently used
     }
 
     @Override
     public void dispose() {
+        stage.dispose();
     }
 }
