@@ -38,9 +38,6 @@ public class HeslingtonHustle extends Game {
 		preferences = new Preferences();
 	}
 
-	/**
-	 * @since v2 -- fixed wrong equality checking (== vs .equals)
-	 */
 	@Override
 	public void render() {
 		super.render();
