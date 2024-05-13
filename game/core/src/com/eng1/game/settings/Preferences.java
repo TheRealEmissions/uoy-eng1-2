@@ -9,7 +9,7 @@ import com.badlogic.gdx.Gdx;
  * @since v2
  * -- renamed from AppPreferences to Preferences as it is more concise
  */
-public class Preferences {
+public final class Preferences {
     public static final String PREF_MUSIC_VOLUME = "volume";
     public static final String PREF_MUSIC_ENABLED = "music.enabled";
     public static final String PREF_SOUND_ENABLED = "sound.enabled";
