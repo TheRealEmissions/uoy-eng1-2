@@ -1,4 +1,4 @@
-package com.eng1.game;
+package com.eng1.game.player;
 
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
