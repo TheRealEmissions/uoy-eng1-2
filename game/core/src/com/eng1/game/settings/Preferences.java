@@ -20,6 +20,11 @@ public class Preferences {
      */
     public static final String NAME = "HeslingtonHustle";
 
+    /**
+     * Retrieves the preferences object from GDX.
+     * @return The preferences object.
+     * @since v2 -- renamed to getPreferences from getPrefs for clarity
+     */
     protected com.badlogic.gdx.Preferences getPreferences() {
         return Gdx.app.getPreferences(NAME);
     }
