@@ -20,9 +20,9 @@ public class AppPreferencesUnitTests {
     public void testIsSoundEffectsEnabled() {
         assertEquals(
                 "Testing whether AppPreferences.isSoundEffectsEnabled() works as expected.",
-                (Boolean) Gdx.app.getPreferences(AppPreferences.PREFS_NAME)
+                Gdx.app.getPreferences(AppPreferences.PREFS_NAME)
                         .getBoolean(AppPreferences.PREF_SOUND_ENABLED),
-                (Boolean) appPreferences.isSoundEffectsEnabled()
+                appPreferences.isSoundEffectsEnabled()
         );
     }
 
