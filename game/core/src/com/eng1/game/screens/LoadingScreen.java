@@ -9,18 +9,18 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
  * Represents the loading screen of the game.
  * This screen is displayed while the game is loading resources or preparing for the main menu.
  * ((redundant for now because loading takes a negligible amount of time))
+ *
+ * @since v2 -- the screen now uses the {@link HeslingtonHustle#getInstance()} method to access the orchestrator
  */
 public class LoadingScreen implements Screen {
-    private final HeslingtonHustle parent; // a field to store our orchestrator
+    private final HeslingtonHustle parent = HeslingtonHustle.getInstance(); // a field to store our orchestrator
     private final Stage stage;
 
     /**
      * Constructor for the LoadingScreen class.
      * Initializes the parent orchestrator and creates a new stage for UI rendering.
-     * @param heslingtonHustle The orchestrator of the game.
      */
-    public LoadingScreen(HeslingtonHustle heslingtonHustle){
-        parent = heslingtonHustle;     // setting the argument to our field.
+    public LoadingScreen(){
         stage = new Stage(new ScreenViewport());
 
     }
@@ -33,7 +33,7 @@ public class LoadingScreen implements Screen {
      */
     @Override
     public void render(float delta) {
-        parent.changeScreen(HeslingtonHustle.Screens.MENU);
+        parent.changeScreen(Screens.MENU);
 
     }
 

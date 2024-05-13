@@ -9,8 +9,12 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * The main game class responsible for managing screens.
+ *
+ * @since v2 -- now uses a singleton pattern to ensure only one instance of the game is running.
  */
 public class HeslingtonHustle extends Game {
+	@Getter
+	private static HeslingtonHustle instance;
     private PreferencesScreen preferencesScreen;
 	private MenuScreen menuScreen;
 	private MainScreen mainScreen;
@@ -24,14 +28,11 @@ public class HeslingtonHustle extends Game {
     private AppPreferences preferences;
 	private CharacterScreen characterScreen;
 
-	public enum Screens {
-		MENU,
-		PREFERENCES,
-		APPLICATION,
-		ENDGAME,
-		CHARACTER
+	public HeslingtonHustle() {
+		super();
+		instance = this;
 	}
-	
+
 	@Override
 	public void create() {
         LoadingScreen loadingScreen = new LoadingScreen(this);

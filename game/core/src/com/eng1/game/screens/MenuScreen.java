@@ -16,18 +16,18 @@ import com.eng1.game.HeslingtonHustle;
 /**
  * Represents the main menu screen of the game.
  * Provides options for starting a new game, accessing preferences, and exiting the game.
+ *
+ * @since v2 -- the screen now uses the {@link HeslingtonHustle#getInstance()} method to access the orchestrator
  */
 public class MenuScreen extends ScreenAdapter {
-    private final HeslingtonHustle parent; // Field to store the orchestrator of the game
+    private final HeslingtonHustle parent = HeslingtonHustle.getInstance(); // Field to store the orchestrator of the game
     private final Stage stage; // Stage for handling UI elements
 
     /**
      * Constructor for the MenuScreen class.
      * Initializes the parent orchestrator and creates a new stage for UI rendering.
-     * @param game The orchestrator of the game.
      */
-    public MenuScreen(HeslingtonHustle game) {
-        parent = game;
+    public MenuScreen() {
         stage = new Stage(new ScreenViewport());
     }
 
@@ -73,7 +73,7 @@ public class MenuScreen extends ScreenAdapter {
         newGame.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                parent.changeScreen(HeslingtonHustle.Screens.CHARACTER);
+                parent.changeScreen(Screens.CHARACTER);
             }
         });
 
@@ -81,7 +81,7 @@ public class MenuScreen extends ScreenAdapter {
         preferences.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                parent.changeScreen(HeslingtonHustle.Screens.PREFERENCES);
+                parent.changeScreen(Screens.PREFERENCES);
             }
         });
     }

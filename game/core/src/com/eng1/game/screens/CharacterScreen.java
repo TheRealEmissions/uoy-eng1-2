@@ -21,20 +21,18 @@ import com.eng1.game.Play;
 /**
  * Represents the character selection screen of the game.
  * Allows the player to select their character from available choices.
+ *
+ * @since v2 -- the screen now uses the {@link HeslingtonHustle#getInstance()} method to access the orchestrator
  */
 public class CharacterScreen extends ScreenAdapter {
-    private final HeslingtonHustle parent;
+    private final HeslingtonHustle parent = HeslingtonHustle.getInstance();
     private final Stage stage;
 
 
     /**
      * Constructs a new CharacterScreen.
-     *
-     * @param game The orchestrator of the game.
      */
-    public CharacterScreen(HeslingtonHustle game) {
-        parent = game;
-
+    public CharacterScreen() {
         stage = new Stage(new StretchViewport(800, 600)); // Changes the 'zoom' of the screen to be more readable
         Gdx.input.setInputProcessor(stage); // Set the input processor to the stage
     }
@@ -84,7 +82,7 @@ public class CharacterScreen extends ScreenAdapter {
             public void changed(ChangeEvent event, Actor actor) {
                 Play.setSelectedCharacter("Character1"); // Set selected character
                 // Change the screen to the main game screen
-                parent.changeScreen(HeslingtonHustle.Screens.APPLICATION);
+                parent.changeScreen(Screens.APPLICATION);
             }
         });
 
@@ -92,7 +90,7 @@ public class CharacterScreen extends ScreenAdapter {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 Play.setSelectedCharacter("Character2");
-                parent.changeScreen(HeslingtonHustle.Screens.APPLICATION);
+                parent.changeScreen(Screens.APPLICATION);
             }
         });
 
@@ -100,7 +98,7 @@ public class CharacterScreen extends ScreenAdapter {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 Play.setSelectedCharacter("Character3");
-                parent.changeScreen(HeslingtonHustle.Screens.APPLICATION);
+                parent.changeScreen(Screens.APPLICATION);
             }
         });
 

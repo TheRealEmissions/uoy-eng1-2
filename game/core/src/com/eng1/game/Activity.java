@@ -1,5 +1,6 @@
 package com.eng1.game;
 
+import com.eng1.game.screens.Screens;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -128,7 +129,7 @@ public class Activity {
 
         if (GameStats.getDay() > 7) {
             // Pass the score and activities completed to EndScreen
-            gameInstance.changeScreen(HeslingtonHustle.Screens.ENDGAME);
+            gameInstance.changeScreen(Screens.ENDGAME);
         }
     }
 

@@ -10,17 +10,16 @@ import com.badlogic.gdx.InputAdapter;
 /**
  * This class represents the main screen of the game.
  * This screen serves as the playing point of the game and handles user interactions such as escape to go to a settings screen / quit.
+ *
+ * @since v2 -- the screen now uses the {@link HeslingtonHustle#getInstance()} method to access the orchestrator
  */
 public class MainScreen implements Screen {
-    private final HeslingtonHustle parent; // a field to store our orchestrator
+    private final HeslingtonHustle parent = HeslingtonHustle.getInstance(); // a field to store our orchestrator
 
     /**
      * Constructs a new MainScreen instance.
-     * @param heslingtonHustle The orchestrator of the game.
-     *                         This parameter is used to navigate between screens.
      */
-    public MainScreen(HeslingtonHustle heslingtonHustle){
-        parent = heslingtonHustle;     // setting the argument to our field
+    public MainScreen(){
 
         // Add input listener to handle escape key press
         Gdx.input.setInputProcessor(new InputAdapter() {
@@ -28,7 +27,7 @@ public class MainScreen implements Screen {
             public boolean keyDown(int keycode) {
                 if (keycode == Keys.ESCAPE) {
                     // Navigate to preferences screen or quit game
-                    parent.changeScreen(HeslingtonHustle.Screens.PREFERENCES);
+                    parent.changeScreen(Screens.PREFERENCES);
                     return true; // Key press handled -> navigates to screen
                 }
                 return false; // Key press not handled -> doesn't navigate to screen

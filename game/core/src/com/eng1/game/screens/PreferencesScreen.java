@@ -20,20 +20,20 @@ import org.jetbrains.annotations.NotNull;
  * Represents the preferences screen of the game.
  * Allows the player to adjust game settings such as volume and enable/disable music and sound effects.
  * Currently redundant apart from ability to quit game
+ *
+ * @since v2 -- the screen now uses the {@link HeslingtonHustle#getInstance()} method to access the orchestrator
  */
 public class PreferencesScreen implements Screen {
 
-    private final HeslingtonHustle parent;
+    private final HeslingtonHustle parent = HeslingtonHustle.getInstance();
     private final Stage stage;
 
 
     /**
      * Constructor for the PreferencesScreen class.
      * Initializes the parent orchestrator and creates a new stage for UI rendering.
-     * @param eng1 The orchestrator of the game.
      */
-    public PreferencesScreen(HeslingtonHustle eng1) {
-        parent = eng1;
+    public PreferencesScreen() {
         // create stage and set it as input processor
         stage = new Stage(new ScreenViewport());
     }
@@ -86,7 +86,7 @@ public class PreferencesScreen implements Screen {
         backButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                parent.changeScreen(HeslingtonHustle.Screens.MENU);
+                parent.changeScreen(Screens.MENU);
             }
         });
 
