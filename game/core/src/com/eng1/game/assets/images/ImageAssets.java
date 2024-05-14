@@ -9,7 +9,8 @@ import java.util.*;
 import java.util.function.Supplier;
 
 public enum ImageAssets implements Assets<Texture> {
-    MAIN_MENU_TITLE(() -> new Texture(Gdx.files.internal("images/main_menu_title.png")));
+    MAIN_MENU_TITLE(() -> new Texture(Gdx.files.internal("images/main_menu_title.png"))),
+    NEW_WORLD_MAP_OVERVIEW(() -> new Texture(Gdx.files.internal("maps/newWorldMap/newWorldMap.png")));
 
     private final List<Texture> loadedTextures = new ArrayList<>();
     private final Supplier<Texture> texture;

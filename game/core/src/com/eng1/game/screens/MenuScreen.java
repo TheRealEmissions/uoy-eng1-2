@@ -4,13 +4,20 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.eng1.game.assets.images.ImageAssets;
@@ -21,12 +28,15 @@ import com.eng1.game.assets.skins.SkinAssets;
  * Represents the main menu screen of the game.
  * Provides options for starting a new game, accessing preferences, and exiting the game.
  *
+ * @since v2 -- the screen now uses the {@link Screens} enum to switch screens and this class no longer stores all the screens
+ * -- the menu now shows the map in the background
  */
 public class MenuScreen extends ScreenAdapter {
     private final Stage stage; // Stage for handling UI elements
     private final Skin uiSkin = SkinAssets.UI.get(); // Skin for UI elements
     private final Table table = new Table(); // Table for organizing UI elements
-    private final TiledMap map = MapAssets.NEW_WORLD.get(); // Map for the background
+    private final Image mapOverview = new Image(ImageAssets.NEW_WORLD_MAP_OVERVIEW.get());
+    private final ShapeRenderer shapeRenderer = new ShapeRenderer();
 
     private static class TableContents {
         public static final Image TITLE = new Image(ImageAssets.MAIN_MENU_TITLE.get());
@@ -46,12 +56,12 @@ public class MenuScreen extends ScreenAdapter {
      * Initializes the parent orchestrator and creates a new stage for UI rendering.
      */
     public MenuScreen() {
-        this.stage = new Stage(new ScreenViewport(new OrthographicCamera()));
+        this.stage = new Stage(new ScreenViewport());
+        Gdx.input.setInputProcessor(stage); // Set the input processor to the stage
     }
 
     @Override
     public void show() {
-        Gdx.input.setInputProcessor(stage); // Set the input processor to the stage
 
         stage.addActor(table);
 
@@ -141,10 +151,28 @@ public class MenuScreen extends ScreenAdapter {
         // Clear the screen ready for the next set of images to be drawn
         Gdx.gl.glClearColor(0f, 0f, 0f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glActiveTexture(GL20.GL_TEXTURE0);
+
+        Batch batch = stage.getBatch();
+        batch.setProjectionMatrix(stage.getCamera().combined);
+        batch.begin();
+
+        // Draw the map overview
+        mapOverview.draw(batch, 1f);
+
+        batch.end();
+
+        Gdx.gl.glEnable(GL20.GL_BLEND);
+        Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.setColor(0, 0, 0, 0.5f);
+        shapeRenderer.rect(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        shapeRenderer.end();
 
         // Tell our stage to do actions and draw itself
-        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
+        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
     }
 
     @Override
@@ -174,6 +202,6 @@ public class MenuScreen extends ScreenAdapter {
         // Dispose of assets when not needed anymore
         stage.dispose();
         SkinAssets.UI.dispose(uiSkin);
-        MapAssets.NEW_WORLD.dispose(map);
+        ImageAssets.NEW_WORLD_MAP_OVERVIEW.dispose((Texture) mapOverview.getDrawable());
     }
 }

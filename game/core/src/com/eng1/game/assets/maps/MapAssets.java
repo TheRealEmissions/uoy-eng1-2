@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public enum MapAssets implements Assets<TiledMap> {
-    HOME(() -> MapLoader.get().load("maps/map8/home.tmx")),
-    GYM(() -> MapLoader.get().load("maps/map9/gym.tmx")),
-    CS_BUILDING(() -> MapLoader.get().load("maps/map10/computer-science-building.tmx")),
-    PIAZZA(() -> MapLoader.get().load("maps/map11/piazza.tmx")),
+    HOME(() -> MapLoader.get().load("maps/map8 (home)/home.tmx")),
+    GYM(() -> MapLoader.get().load("maps/map9 (gym)/gym.tmx")),
+    CS_BUILDING(() -> MapLoader.get().load("maps/map10 (cs-building)/computer-science-building.tmx")),
+    PIAZZA(() -> MapLoader.get().load("maps/map11 (piazza)/piazza.tmx")),
     NEW_WORLD(() -> MapLoader.get().load("maps/newWorldMap/newWorldMap.tmx"));
 
     private final List<TiledMap> loadedMaps = new ArrayList<>();
