@@ -32,8 +32,8 @@ public class PreferencesScreen implements Screen {
     @UtilityClass
     private class TableContents {
         private static final Skin UI_SKIN = SkinAssets.UI.get();
-        public static final Slider VOLUME_MUSIC_SLIDER = new Slider(0f, 1f, 0.1f, false, UI_SKIN);
-        public static final Slider SOUND_MUSIC_SLIDER = new Slider(0f, 1f, 0.1f, false, UI_SKIN);
+        public static final Slider VOLUME_MUSIC_SLIDER = new Slider(0f, 1f, 0.01f, false, UI_SKIN);
+        public static final Slider SOUND_MUSIC_SLIDER = new Slider(0f, 1f, 0.01f, false, UI_SKIN);
         public static final CheckBox MUSIC_CHECKBOX = new CheckBox(null, UI_SKIN);
         public static final CheckBox SOUND_EFFECTS_CHECKBOX = new CheckBox(null, UI_SKIN);
         public static final TextButton BACK_BUTTON = new TextButton("Back", UI_SKIN);
