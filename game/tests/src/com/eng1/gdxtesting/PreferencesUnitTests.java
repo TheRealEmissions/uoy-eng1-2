@@ -37,7 +37,7 @@ public class PreferencesUnitTests {
 
             boolean newValue = Gdx.app.getPreferences(Preferences.NAME)
                                     .getBoolean(Preferences.PREF_SOUND_ENABLED);
-            if(!(initialValue != newValue)) {
+            if(initialValue == newValue) {
                 workingAsExpected = false;
                 break;
             }
