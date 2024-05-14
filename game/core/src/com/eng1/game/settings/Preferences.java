@@ -18,7 +18,7 @@ public final class Preferences {
      * @since v2 <p>
      *     -- renamed to NAME for consistency <p>
      */
-    public static final String NAME = "HeslingtonHustle";
+    private static final String NAME = "HeslingtonHustle";
     public static final MusicPreferences MUSIC = new MusicPreferences();
 
     /**
