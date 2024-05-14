@@ -63,9 +63,9 @@ public class PreferencesScreen implements Screen {
 
         // sound volume
         final Slider soundMusicSlider = new Slider(0f, 1f, 0.1f, false, skin);
-        soundMusicSlider.setValue(parent.getPreferences().getSoundVolume());
+        soundMusicSlider.setValue(Preferences.SOUND.getVolume());
         soundMusicSlider.addListener(event -> {
-            parent.getPreferences().setSoundVolume(soundMusicSlider.getValue());
+            Preferences.SOUND.setVolume(soundMusicSlider.getValue());
             // updateVolumeLabel();
             return false;
         });
@@ -132,10 +132,10 @@ public class PreferencesScreen implements Screen {
 
     private @NotNull CheckBox getCheckBox(Skin skin) {
         final CheckBox soundEffectsCheckbox = new CheckBox(null, skin);
-        soundEffectsCheckbox.setChecked(parent.getPreferences().isSoundEffectsEnabled());
+        soundEffectsCheckbox.setChecked(Preferences.SOUND.isEnabled());
         soundEffectsCheckbox.addListener(event -> {
             boolean enabled = soundEffectsCheckbox.isChecked();
-            parent.getPreferences().setSoundEffectsEnabled(enabled);
+            Preferences.SOUND.setEnabled(enabled);
             return false;
         });
         return soundEffectsCheckbox;
