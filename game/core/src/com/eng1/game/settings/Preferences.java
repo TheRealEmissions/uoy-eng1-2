@@ -17,9 +17,8 @@ public final class Preferences {
      * Represents the name of the preferences file where the game settings are stored.
      * @since v2 <p>
      *     -- renamed to NAME for consistency <p>
-     *     -- changed to private access modifier
      */
-    private static final String NAME = "HeslingtonHustle";
+    public static final String NAME = "HeslingtonHustle";
     public static final MusicPreferences MUSIC = new MusicPreferences();
 
     /**
