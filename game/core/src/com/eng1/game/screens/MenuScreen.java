@@ -5,6 +5,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
@@ -13,6 +14,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.eng1.game.assets.images.ImageAssets;
+import com.eng1.game.assets.maps.MapAssets;
 import com.eng1.game.assets.skins.SkinAssets;
 
 /**
@@ -24,6 +26,7 @@ public class MenuScreen extends ScreenAdapter {
     private final Stage stage; // Stage for handling UI elements
     private final Skin uiSkin = SkinAssets.UI.get(); // Skin for UI elements
     private final Table table = new Table(); // Table for organizing UI elements
+    private final TiledMap map = MapAssets.NEW_WORLD.get(); // Map for the background
 
     private static class TableContents {
         public static final Image TITLE = new Image(ImageAssets.MAIN_MENU_TITLE.get());
@@ -170,6 +173,7 @@ public class MenuScreen extends ScreenAdapter {
     public void dispose() {
         // Dispose of assets when not needed anymore
         stage.dispose();
-        uiSkin.dispose();
+        SkinAssets.UI.dispose(uiSkin);
+        MapAssets.NEW_WORLD.dispose(map);
     }
 }
