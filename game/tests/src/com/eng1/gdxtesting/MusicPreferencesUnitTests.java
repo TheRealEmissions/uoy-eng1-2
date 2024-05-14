@@ -6,19 +6,39 @@ import com.eng1.game.settings.MusicPreferences;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.lang.reflect.Field;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(GdxTestRunner.class)
 public class MusicPreferencesUnitTests {
-    MusicPreferences musicPreferences = new MusicPreferences();
+    MusicPreferences musicPreferences = Preferences.MUSIC;
 
     @Test
     public void testGetKey() {
+        Class<? extends MusicPreferences> cl = musicPreferences.getClass();
+        Field enabledField;
+        try {
+            enabledField = cl.getDeclaredField("ENABLED");
+        } catch (NoSuchFieldException e) {
+            throw new RuntimeException(e);
+        }
+        enabledField.setAccessible(true);
+
+        String enabledFieldStr;
+        try {
+            enabledFieldStr = (String) enabledField.get(musicPreferences);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+
+        String expected = "music." + enabledFieldStr;
+
         assertEquals(
                 "Testing whether MusicPreferences.getKey() works as expected",
-                "music." + musicPreferences.ENABLED,
-                musicPreferences.getKey(musicPreferences.ENABLED)
+                expected,
+                musicPreferences.getKey(enabledFieldStr)
         );
     }
 
