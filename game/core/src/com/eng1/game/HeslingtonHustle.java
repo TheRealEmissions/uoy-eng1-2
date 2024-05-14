@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.eng1.game.assets.images.ImageAssets;
+import com.eng1.game.assets.maps.MapAssets;
 import com.eng1.game.assets.skins.SkinAssets;
 import com.eng1.game.screens.*;
 import com.eng1.game.settings.Preferences;
@@ -61,5 +62,6 @@ public class HeslingtonHustle extends Game {
 		super.dispose();
 		ImageAssets.disposeAll();
 		SkinAssets.disposeAll();
+		MapAssets.disposeAll();
 	}
 }
