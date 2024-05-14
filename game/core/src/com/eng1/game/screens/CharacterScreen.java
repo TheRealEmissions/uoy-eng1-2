@@ -188,6 +188,7 @@ public class CharacterScreen extends ScreenAdapter {
     @Override
     public void dispose() {
         stage.dispose();
-        uiSkin.dispose();
+        SkinAssets.UI.dispose(uiSkin);
+        TableContents.dispose();
     }
 }
