@@ -81,7 +81,6 @@ public class PreferencesScreen implements Screen {
         table.setPosition(0, 0);
 
         float width = Gdx.graphics.getWidth();
-        float widthPadding = width * 0.4f;
         float itemWidth = TableContents.BACK_BUTTON.getWidth() * 8f;
         float itemHeight = TableContents.BACK_BUTTON.getHeight() * 2f;
 
@@ -115,7 +114,7 @@ public class PreferencesScreen implements Screen {
 
         table.row().pad(10, 0, 0, 10);
         table.add(TableContents.QUIT_BUTTON)
-            .colspan(50)
+            .colspan(2) // this was 50 for some reason... v2 fixed this.
             .height(itemHeight)
             .width(itemWidth)
             .pad(10, 0, 10, 0);
