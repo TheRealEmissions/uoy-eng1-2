@@ -37,10 +37,10 @@ public class CharacterScreen extends ScreenAdapter {
     @UtilityClass
     private class TableContents {
         private static final Skin UI_SKIN = SkinAssets.UI.get();
-        public static final Label TITLE_LABEL = new Label("Character Selection", UI_SKIN);
-        public static final TextButton CHARACTER1_BUTTON = new TextButton("Character 1", UI_SKIN);
-        public static final TextButton CHARACTER2_BUTTON = new TextButton("Character 2", UI_SKIN);
-        public static final TextButton CHARACTER3_BUTTON = new TextButton("Character 3", UI_SKIN);
+        public static final Label TITLE_LABEL = new Label("I'd like to play as", UI_SKIN);
+        public static final TextButton CHARACTER1_BUTTON = new TextButton("Liam", UI_SKIN);
+        public static final TextButton CHARACTER2_BUTTON = new TextButton("Lucy", UI_SKIN);
+        public static final TextButton CHARACTER3_BUTTON = new TextButton("Sammy", UI_SKIN);
         public static final Image CHARACTER1_IMAGE = new Image(ImageAssets.PLAYER_CHARACTER_1.get());
         public static final Image CHARACTER2_IMAGE = new Image(ImageAssets.PLAYER_CHARACTER_2.get());
         public static final Image CHARACTER3_IMAGE = new Image(ImageAssets.PLAYER_CHARACTER_3.get());
