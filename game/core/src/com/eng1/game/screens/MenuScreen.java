@@ -3,27 +3,19 @@ package com.eng1.game.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.PerspectiveCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
-import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.eng1.game.assets.images.ImageAssets;
-import com.eng1.game.assets.maps.MapAssets;
 import com.eng1.game.assets.skins.SkinAssets;
+import lombok.experimental.UtilityClass;
 
 /**
  * Represents the main menu screen of the game.
@@ -39,16 +31,22 @@ public class MenuScreen extends ScreenAdapter {
     private final Image mapOverview = new Image(ImageAssets.NEW_WORLD_MAP_OVERVIEW.get());
     private final ShapeRenderer shapeRenderer = new ShapeRenderer();
 
-    private static class TableContents {
+    @UtilityClass
+    private class TableContents {
+        private static final Skin UI_SKIN = SkinAssets.UI.get();
         public static final Image TITLE = new Image(ImageAssets.MAIN_MENU_TITLE.get());
-        public static final TextButton NEW_GAME = new TextButton("New Game", SkinAssets.UI.get());
-        public static final TextButton PREFERENCES = new TextButton("Preferences", SkinAssets.UI.get());
-        public static final TextButton EXIT = new TextButton("Exit", SkinAssets.UI.get());
+        public static final TextButton NEW_GAME = new TextButton("New Game", UI_SKIN);
+        public static final TextButton PREFERENCES = new TextButton("Preferences", UI_SKIN);
+        public static final TextButton EXIT = new TextButton("Exit", UI_SKIN);
 
         static {
             NEW_GAME.getLabel().setFontScale(1.6f);
             PREFERENCES.getLabel().setFontScale(1.6f);
             EXIT.getLabel().setFontScale(1.6f);
+        }
+
+        public static void dispose() {
+            SkinAssets.UI.dispose(UI_SKIN);
         }
     }
 
@@ -58,12 +56,12 @@ public class MenuScreen extends ScreenAdapter {
      */
     public MenuScreen() {
         this.stage = new Stage(new ScreenViewport());
-        Gdx.input.setInputProcessor(stage); // Set the input processor to the stage
         mapOverview.setPosition(-1000, 0);
     }
 
     @Override
     public void show() {
+        Gdx.input.setInputProcessor(stage);
 
         stage.addActor(table);
 
@@ -75,8 +73,6 @@ public class MenuScreen extends ScreenAdapter {
         if (table.getChildren().isEmpty()) {
             setTableContents();
         }
-
-        // Create button listeners
 
         // Exits the game when exit is clicked
         TableContents.EXIT.addListener(new ChangeListener() {
@@ -206,5 +202,6 @@ public class MenuScreen extends ScreenAdapter {
         SkinAssets.UI.dispose(uiSkin);
         TextureRegionDrawable drawable = (TextureRegionDrawable) mapOverview.getDrawable();
         ImageAssets.NEW_WORLD_MAP_OVERVIEW.dispose(drawable.getRegion().getTexture());
+        TableContents.dispose();
     }
 }
