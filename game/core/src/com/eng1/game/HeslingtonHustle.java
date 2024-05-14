@@ -63,5 +63,6 @@ public class HeslingtonHustle extends Game {
 		ImageAssets.disposeAll();
 		SkinAssets.disposeAll();
 		MapAssets.disposeAll();
+		Screens.disposeAll();
 	}
 }

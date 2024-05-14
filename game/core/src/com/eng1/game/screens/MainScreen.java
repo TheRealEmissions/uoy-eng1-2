@@ -8,13 +8,9 @@ import com.badlogic.gdx.InputAdapter;
 
 /**
  * This class represents the main screen of the game.
- * This screen serves as the playing point of the game and handles user interactions such as escape to go to a settings screen / quit.
- *
- * @since v2 -- the screen now uses the {@link HeslingtonHustle#getInstance()} method to access the orchestrator
+ * This screen serves as the playing point of the game and handles user interactions such as escape to go to a settings screen / quit
  */
 public class MainScreen implements Screen {
-    private final HeslingtonHustle parent = HeslingtonHustle.getInstance(); // a field to store our orchestrator
-
     /**
      * Constructs a new MainScreen instance.
      */
@@ -34,11 +30,13 @@ public class MainScreen implements Screen {
         });
     }
 
+    /**
+     * @since v2 -- In v2, the screen is now loaded dynamically via the {@link Screens} enum
+     */
     @Override
     public void show() {
         // This method is called when the screen is first shown.
-        PlayScreen playScreen = new PlayScreen(); // Instantiate the Play class
-        parent.setScreen(playScreen); // Switch to the 'Play' screen (where the game is run / rendered)
+        Screens.PLAY.setAsCurrent(); // Set the play screen as the current screen
     }
 
 

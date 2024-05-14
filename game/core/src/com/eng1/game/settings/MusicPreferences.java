@@ -9,7 +9,7 @@ public final class MusicPreferences implements Preference {
     public static final String VOLUME = "volume";
     public static final float DEFAULT_VOLUME = 0.5f;
 
-    public MusicPreferences() {
+    MusicPreferences() {
         com.badlogic.gdx.Preferences preferences = Preferences.getPreferences();
         preferences.putBoolean(getKey(ENABLED), DEFAULT_ENABLED);
         preferences.putFloat(getKey(VOLUME), DEFAULT_VOLUME);

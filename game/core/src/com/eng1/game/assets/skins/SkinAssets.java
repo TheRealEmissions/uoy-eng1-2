@@ -3,7 +3,6 @@ package com.eng1.game.assets.skins;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.eng1.game.assets.Assets;
-import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;

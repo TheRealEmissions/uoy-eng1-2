@@ -14,7 +14,7 @@ public enum MapAssets implements Assets<TiledMap> {
     GYM(() -> MapLoader.get().load("maps/map9/gym.tmx")),
     CS_BUILDING(() -> MapLoader.get().load("maps/map10/computer-science-building.tmx")),
     PIAZZA(() -> MapLoader.get().load("maps/map11/piazza.tmx")),
-    NEW_WORLD(() -> MapLoader.get().load("maps/newWorldMap/newWorldMap.tx"));
+    NEW_WORLD(() -> MapLoader.get().load("maps/newWorldMap/newWorldMap.tmx"));
 
     private final List<TiledMap> loadedMaps = new ArrayList<>();
     private final Supplier<TiledMap> map;
