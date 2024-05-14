@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -58,6 +59,7 @@ public class MenuScreen extends ScreenAdapter {
     public MenuScreen() {
         this.stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage); // Set the input processor to the stage
+        mapOverview.setPosition(-1000, 0);
     }
 
     @Override
@@ -167,7 +169,7 @@ public class MenuScreen extends ScreenAdapter {
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(0, 0, 0, 0.5f);
-        shapeRenderer.rect(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        shapeRenderer.rect(0, 0, Gdx.graphics.getWidth() * 10, Gdx.graphics.getHeight() * 10);
         shapeRenderer.end();
 
         // Tell our stage to do actions and draw itself
@@ -202,6 +204,7 @@ public class MenuScreen extends ScreenAdapter {
         // Dispose of assets when not needed anymore
         stage.dispose();
         SkinAssets.UI.dispose(uiSkin);
-        ImageAssets.NEW_WORLD_MAP_OVERVIEW.dispose((Texture) mapOverview.getDrawable());
+        TextureRegionDrawable drawable = (TextureRegionDrawable) mapOverview.getDrawable();
+        ImageAssets.NEW_WORLD_MAP_OVERVIEW.dispose(drawable.getRegion().getTexture());
     }
 }
