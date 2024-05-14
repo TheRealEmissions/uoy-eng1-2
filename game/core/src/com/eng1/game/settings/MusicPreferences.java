@@ -4,10 +4,10 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 public final class MusicPreferences implements Preference {
-    private static final String ENABLED = "enabled";
-    private static final boolean DEFAULT_ENABLED = true;
-    private static final String VOLUME = "volume";
-    private static final float DEFAULT_VOLUME = 0.5f;
+    public static final String ENABLED = "enabled";
+    public static final boolean DEFAULT_ENABLED = true;
+    public static final String VOLUME = "volume";
+    public static final float DEFAULT_VOLUME = 0.5f;
 
     public MusicPreferences() {
         com.badlogic.gdx.Preferences preferences = Preferences.getPreferences();
