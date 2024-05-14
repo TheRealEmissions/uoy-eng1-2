@@ -1,4 +1,5 @@
 package com.eng1.game;
+import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.graphics.glutils.HdpiMode;
 import com.eng1.game.HeslingtonHustle;
 
@@ -16,7 +17,7 @@ public class DesktopLauncher {
 		config.setResizable(true);
 		config.setHdpiMode(HdpiMode.Logical);
 		config.setWindowSizeLimits(800, 480, -1, -1);
-		config.setWindowedMode(800, 480);
+		config.setWindowedMode(1920, 1080);
 		//config.setFullscreenMode(Lwjgl3ApplicationConfiguration.getDisplayMode());
 		new Lwjgl3Application(new HeslingtonHustle(), config);
 	}
