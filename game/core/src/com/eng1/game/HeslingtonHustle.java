@@ -3,6 +3,8 @@ package com.eng1.game;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.eng1.game.assets.images.ImageAssets;
+import com.eng1.game.assets.skins.SkinAssets;
 import com.eng1.game.screens.*;
 import com.eng1.game.settings.Preferences;
 import lombok.Getter;
@@ -52,5 +54,12 @@ public class HeslingtonHustle extends Game {
 				preferencesScreen.setAsCurrent();
 			}
 		}
+	}
+
+	@Override
+	public void dispose() {
+		super.dispose();
+		ImageAssets.disposeAll();
+		SkinAssets.disposeAll();
 	}
 }
