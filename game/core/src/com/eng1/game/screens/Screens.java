@@ -33,7 +33,7 @@ public enum Screens {
         this.screenSupplier = screenSupplier;
     }
 
-    private boolean isLoaded() {
+    public boolean isLoaded() {
         return screen != null;
     }
 
