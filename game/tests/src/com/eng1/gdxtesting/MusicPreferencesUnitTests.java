@@ -14,6 +14,15 @@ public class MusicPreferencesUnitTests {
     MusicPreferences musicPreferences = new MusicPreferences();
 
     @Test
+    public void testGetKey() {
+        assertEquals(
+                "Testing whether MusicPreferences.getKey() works as expected",
+                "music." + musicPreferences.ENABLED,
+                musicPreferences.getKey(musicPreferences.ENABLED)
+        );
+    }
+
+    @Test
     public void testIsEnabled() {
         assertEquals(
                 "Testing whether MusicPreferences.isEnabled() works as expected.",
