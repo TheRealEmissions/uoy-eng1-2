@@ -34,8 +34,8 @@ public class HeslingtonHustle extends Game {
 
 	@Override
 	public void create() {
-		Screens.LOADING.setAsCurrent();
 		preferences = new Preferences();
+		Screens.LOADING.setAsCurrent();
 	}
 
 	@Override
