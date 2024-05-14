@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="20" height="33" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="4">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="20" height="33" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="5">
  <tileset firstgid="1" name="Room_Builder_16x16" tilewidth="16" tileheight="16" tilecount="8284" columns="76">
   <image source="Room_Builder_16x16.png" trans="000000" width="1216" height="1744"/>
   <tile id="392">
@@ -43,7 +43,7 @@
   <image source="oie_1512512TG0HYYOf.png" width="16" height="16"/>
  </tileset>
  <tileset firstgid="16302" name="Room_Builder_16x16" tilewidth="16" tileheight="16" tilecount="8284" columns="76">
-  <image source="../map8/Room_Builder_16x16.png" trans="000000" width="1216" height="1744"/>
+  <image source="Room_Builder_16x16.png" trans="000000" width="1216" height="1744"/>
   <tile id="392">
    <properties>
     <property name="transition" value="maps/map1/map1.tmx"/>
@@ -345,6 +345,11 @@
     <property name="activityType" value="nap"/>
     <property name="changeAmount" value="0.1"/>
     <property name="isActivity" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="4" x="110.362" y="510.043" width="35.2077" height="17.8486">
+   <properties>
+    <property name="map_id" value="NEW_WORLD"/>
    </properties>
   </object>
  </objectgroup>

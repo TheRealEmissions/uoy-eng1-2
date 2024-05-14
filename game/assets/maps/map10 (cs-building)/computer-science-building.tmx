@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="22" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="4">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="22" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="5">
  <tileset firstgid="1" name="Room_Builder_16x16" tilewidth="16" tileheight="16" tilecount="8284" columns="76">
   <properties>
    <property name="blocked" value=""/>
@@ -343,6 +343,11 @@
     <property name="activityType" value="nap"/>
     <property name="changeAmount" value="0.15"/>
     <property name="isActivity" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="4" x="111.213" y="459.268" width="33.4325" height="19.7025">
+   <properties>
+    <property name="map_id" value="NEW_WORLD"/>
    </properties>
   </object>
  </objectgroup>
