@@ -30,6 +30,12 @@ public class MenuScreen extends ScreenAdapter {
         public static final TextButton NEW_GAME = new TextButton("New Game", SkinAssets.UI.get());
         public static final TextButton PREFERENCES = new TextButton("Preferences", SkinAssets.UI.get());
         public static final TextButton EXIT = new TextButton("Exit", SkinAssets.UI.get());
+
+        static {
+            NEW_GAME.getLabel().setFontScale(1.6f);
+            PREFERENCES.getLabel().setFontScale(1.6f);
+            EXIT.getLabel().setFontScale(1.6f);
+        }
     }
 
     /**
@@ -88,6 +94,7 @@ public class MenuScreen extends ScreenAdapter {
 
         float width = Gdx.graphics.getWidth();
         float widthPadding = width * 0.4f;
+        float widthButton = TableContents.PREFERENCES.getWidth() * 4f;
 
         table
             .add(TableContents.TITLE)
@@ -101,6 +108,7 @@ public class MenuScreen extends ScreenAdapter {
             .uniformX()
             .expandX()
             .height(TableContents.NEW_GAME.getHeight() * 2f)
+            .width(widthButton)
             .pad(10, widthPadding, 10, widthPadding);
         table
             .row()
@@ -111,6 +119,7 @@ public class MenuScreen extends ScreenAdapter {
             .uniformX()
             .expandX()
             .height(TableContents.PREFERENCES.getHeight() * 2f)
+            .width(widthButton)
             .pad(10, widthPadding, 10, widthPadding);
         table
             .row();
@@ -120,6 +129,7 @@ public class MenuScreen extends ScreenAdapter {
             .uniformX()
             .expandX()
             .height(TableContents.EXIT.getHeight() * 2f)
+            .width(widthButton)
             .pad(10, widthPadding, 10, widthPadding);
     }
 
