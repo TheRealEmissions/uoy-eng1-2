@@ -3,16 +3,16 @@ package com.eng1.game.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.eng1.game.assets.images.ImageAssets;
 import com.eng1.game.assets.skins.SkinAssets;
 
 /**
@@ -25,32 +25,11 @@ public class MenuScreen extends ScreenAdapter {
     private final Skin uiSkin = SkinAssets.UI.get(); // Skin for UI elements
     private final Table table = new Table(); // Table for organizing UI elements
 
-    private static final float DEFAULT_WIDTH = 800f;
-    private static final float DEFAULT_HEIGHT = 480f;
-
     private static class TableContents {
-        public static final Label TITLE = new Label("Heslington Hustle", SkinAssets.UI.get());
+        public static final Image TITLE = new Image(ImageAssets.MAIN_MENU_TITLE.get());
         public static final TextButton NEW_GAME = new TextButton("New Game", SkinAssets.UI.get());
         public static final TextButton PREFERENCES = new TextButton("Preferences", SkinAssets.UI.get());
         public static final TextButton EXIT = new TextButton("Exit", SkinAssets.UI.get());
-
-        static {
-            TITLE.setAlignment(Align.center);
-            TITLE.setOrigin(Align.center);
-            NEW_GAME.setOrigin(Align.center);
-            NEW_GAME.setTransform(true);
-            PREFERENCES.setOrigin(Align.center);
-            PREFERENCES.setTransform(true);
-            EXIT.setOrigin(Align.center);
-            EXIT.setTransform(true);
-        }
-
-        public static void setSize(float width, float height) {
-            TITLE.setSize(width * 0.6f, height * 0.6f);
-            NEW_GAME.setSize(width * 0.3f, height * 0.3f);
-            PREFERENCES.setSize(width * 0.3f, height * 0.3f);
-            EXIT.setSize(width * 0.3f, height * 0.3f);
-        }
     }
 
     /**
@@ -58,23 +37,23 @@ public class MenuScreen extends ScreenAdapter {
      * Initializes the parent orchestrator and creates a new stage for UI rendering.
      */
     public MenuScreen() {
-        this.stage = new Stage(new ScreenViewport());
+        this.stage = new Stage(new ScreenViewport(new OrthographicCamera()));
     }
 
     @Override
     public void show() {
         Gdx.input.setInputProcessor(stage); // Set the input processor to the stage
 
+        stage.addActor(table);
+
         // Create a table that fills the screen. Everything else will go inside this table.
         table.setFillParent(true);
-        stage.addActor(table);
-        table.setOrigin(Align.center);
         table.setTransform(true);
 
-        table.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-
         // Add elements to the table
-        setTableContents();
+        if (table.getChildren().isEmpty()) {
+            setTableContents();
+        }
 
         // Create button listeners
 
@@ -104,30 +83,24 @@ public class MenuScreen extends ScreenAdapter {
     }
 
     private void setTableContents() {
-        setTableContents(true);
-    }
-
-    private void setTableContents(boolean reset) {
-        if (reset) {
-            table.clear();
-        }
+        table.setOrigin(Align.center);
+        table.setPosition(0, 0);
 
         float width = Gdx.graphics.getWidth();
-        float widthPadding = width * 0.2f;
+        float widthPadding = width * 0.4f;
 
         table
             .add(TableContents.TITLE)
-            .colspan(4);
+            .colspan(2);
         table
             .row()
             .pad(10, 0, 0, 0);
         table
             .add(TableContents.NEW_GAME)
             .fillX()
-            .fillY()
             .uniformX()
-            .uniformY()
             .expandX()
+            .height(TableContents.NEW_GAME.getHeight() * 2f)
             .pad(10, widthPadding, 10, widthPadding);
         table
             .row()
@@ -135,20 +108,18 @@ public class MenuScreen extends ScreenAdapter {
         table
             .add(TableContents.PREFERENCES)
             .fillX()
-            .fillY()
             .uniformX()
-            .uniformY()
             .expandX()
+            .height(TableContents.PREFERENCES.getHeight() * 2f)
             .pad(10, widthPadding, 10, widthPadding);
         table
             .row();
         table
             .add(TableContents.EXIT)
             .fillX()
-            .fillY()
             .uniformX()
-            .uniformY()
             .expandX()
+            .height(TableContents.EXIT.getHeight() * 2f)
             .pad(10, widthPadding, 10, widthPadding);
     }
 
@@ -168,10 +139,6 @@ public class MenuScreen extends ScreenAdapter {
         // Change the stage's viewport when the screen size is changed
         Viewport viewport = stage.getViewport();
         viewport.update(width, height, true);
-        TableContents.setSize(width, height);
-        table.setFillParent(true);
-        table.invalidate();
-        setTableContents();
     }
 
     @Override
