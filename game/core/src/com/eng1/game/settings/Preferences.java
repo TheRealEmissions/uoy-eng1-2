@@ -6,8 +6,8 @@ import com.badlogic.gdx.Gdx;
  * Manages the preferences of the game, such as volume settings and enabling/disabling sound effects and music.
  * Currently redundant as volume / sound etc isn't currently a feature
  *
- * @since v2
- * -- renamed from AppPreferences to Preferences as it is more concise
+ * @since v2 <p>
+ * -- renamed from AppPreferences to Preferences as it is more concise <p>
  * -- preference handling has been moved to its own classes, such as {@link MusicPreferences} which can be accessed with {@link Preferences#MUSIC}
  */
 public final class Preferences {
