@@ -76,7 +76,7 @@ public class PlayScreen implements Screen {
     private void setPlayerPosition() {
         player = new Player(
             new Sprite(selectedCharacter.get()),
-            (TiledMapTileLayer) currentMap.getLayers().get(0)
+            (TiledMapTileLayer) currentMap.getLayers().get("collisions")
         );
         Gdx.input.setInputProcessor(player);
     }
@@ -106,7 +106,6 @@ public class PlayScreen implements Screen {
                 renderer.renderTileLayer((TiledMapTileLayer) mapLayer);
             }
         }
-        renderer.renderTileLayer((TiledMapTileLayer) currentMap.getLayers().get("buildings"));
 
         // set camera to players position
         camera.position.set(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2, 0);
