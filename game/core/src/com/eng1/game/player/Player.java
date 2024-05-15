@@ -27,11 +27,6 @@ public class Player extends Sprite implements InputProcessor {
     private static final String activityKey = "activity";
     public static String activityValue = "";
 
-    // Player Sprite Images Location
-    public static final String CHAR1 = "playerCharacters/playerCharacter1.png";
-    public static final String CHAR2 = "playerCharacters/playerCharacter2.png";
-    public static final String CHAR3 = "playerCharacters/playerCharacter3.png";
-
     /**
      * Constructs a new player with the given sprite and collision layer.
      * @param sprite The sprite representing the player character.
@@ -66,7 +61,7 @@ public class Player extends Sprite implements InputProcessor {
         //move x
         setX(getX() + velocity.x * delta);
 
-        if (velocity.x < 0) {// going left
+/*        if (velocity.x < 0) {// going left
             collisionX = collidesLeft();
             transition = transitionLeft();
             activity = activityLeft();
@@ -74,7 +69,7 @@ public class Player extends Sprite implements InputProcessor {
             collisionX = collidesRight();
             transition = transitionRight();
             activity = activityRight();
-        }
+        }*/
 
         //react to x collision
         if (collisionX) {
@@ -82,7 +77,7 @@ public class Player extends Sprite implements InputProcessor {
             velocity.x = 0;
         } else if (transition) {
             velocity.x = 0;
-            PlayScreen.changeMap(transitionValue);
+            /*PlayScreen.changeMap(transitionValue);*/
             setX(oldX);
             transition = false;
         } else if (activity) {
@@ -93,7 +88,7 @@ public class Player extends Sprite implements InputProcessor {
 
         //move y
         setY(getY() + velocity.y * delta);
-        if (velocity.y < 0) { // going down
+/*        if (velocity.y < 0) { // going down
             collisionY = collidesBottom();
             transition = transitionBottom();
             activity = activityBottom();
@@ -101,14 +96,14 @@ public class Player extends Sprite implements InputProcessor {
             collisionY = collidesTop();
             transition = transitionTop();
             activity = activityTop();
-        }
+        }*/
         //react to y collision
         if (collisionY) {
             setY(oldY);
             velocity.y = 0;
         } else if (transition) {
             velocity.y = 0;
-            PlayScreen.changeMap(transitionValue);
+            /*PlayScreen.changeMap(transitionValue);*/
             setY(oldY);
         } else if (activity) {
             velocity.y = 0;
