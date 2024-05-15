@@ -37,6 +37,7 @@ public class PlayScreen implements Screen {
 
     private Player player;
     private final BitmapFont displayDateTime = new BitmapFont();
+    private final SpriteBatch uiBatch = new SpriteBatch();
 
     /**
      * Constructor for the Play class.
@@ -95,12 +96,16 @@ public class PlayScreen implements Screen {
         // set camera to players position
         camera.position.set(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2, 0);
         camera.update();
+        player.draw(batch);
+        batch.end();
+
+        uiBatch.begin();
 
         final String stats = ("Day: " + GameStats.getDay() + " Time: " + GameStats.getTime() + " Energy: " + GameStats.getEnergy());
         displayDateTime.getData().setScale(2); // Adjust the scale as needed
-        displayDateTime.draw(batch, stats, 12, 1070);
-        player.draw(batch);
-        batch.end();
+        displayDateTime.draw(uiBatch, stats, 12, 1070);
+
+        uiBatch.end();
     }
 
     @Override
@@ -139,5 +144,6 @@ public class PlayScreen implements Screen {
         renderer.dispose();
         displayDateTime.dispose();
         selectedCharacter.dispose(selectedCharacterTexture);
+        uiBatch.dispose();
     }
 }
