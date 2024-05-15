@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -15,6 +16,8 @@ import com.eng1.game.player.Player;
 import com.eng1.game.game.activity.Activity;
 import com.eng1.game.player.GameStats;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 /**
  * The Play class represents the screen where the gameplay takes place.
@@ -89,9 +92,21 @@ public class PlayScreen implements Screen {
         Gdx.gl20.glClearColor(0, 0, 0, 1);
         Gdx.gl20.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
         renderer.setView(camera);
-        renderer.render();
         Batch batch = renderer.getBatch();
         batch.begin();
+
+        List<String> topLayer = List.of("trees", "background");
+
+        for (int i = 0; i < currentMap.getLayers().getCount(); i++) {
+            MapLayer mapLayer = currentMap.getLayers().get(i);
+            if (topLayer.contains(mapLayer.getName())) {
+                continue;
+            }
+            if (mapLayer instanceof TiledMapTileLayer) {
+                renderer.renderTileLayer((TiledMapTileLayer) mapLayer);
+            }
+        }
+        renderer.renderTileLayer((TiledMapTileLayer) currentMap.getLayers().get("buildings"));
 
         // set camera to players position
         camera.position.set(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2, 0);
@@ -106,6 +121,11 @@ public class PlayScreen implements Screen {
 
         camera.update();
         player.draw(batch);
+
+        for (String layerName : topLayer) {
+            renderer.renderTileLayer((TiledMapTileLayer) currentMap.getLayers().get(layerName));
+        }
+
         batch.end();
 
         uiBatch.begin();
