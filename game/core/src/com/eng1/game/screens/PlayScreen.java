@@ -2,23 +2,19 @@ package com.eng1.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.eng1.game.assets.images.ImageAssets;
+import com.eng1.game.assets.maps.MapAssets;
 import com.eng1.game.player.Player;
 import com.eng1.game.game.activity.Activity;
 import com.eng1.game.player.GameStats;
-import lombok.Setter;
-
-import java.util.List;
-import java.util.Arrays;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * The Play class represents the screen where the gameplay takes place.
@@ -27,23 +23,19 @@ import java.util.Arrays;
  * @since v2 -- renamed from Play to PlayScreen for consistency
  */
 public class PlayScreen implements Screen {
-    private static OrthogonalTiledMapRenderer renderer;
+    private static ImageAssets selectedCharacter = null;
+    private static Texture selectedCharacterTexture = null;
 
-    private static OrthographicCamera camera;
-    private static final AssetManager assetManager = new AssetManager();
-    private static Player player;
-    private static TiledMap currentMap;
-    private static String currentMapPath = "maps/map8/home.tmx";
-    private static String oldMapPath = "";
-    private static final List<String> scaledMaps = Arrays.asList("maps/map8/home.tmx","maps/map9/gym.tmx");
-    private static final List<String> largeScaledMaps = Arrays.asList("maps/map10/computer-science-building.tmx", "maps/map11/piazza.tmx");
-    /**
-     * -- SETTER --
-     *  Sets the selected character for the player.
-     *
-     */
-    @Setter
-    private static String selectedCharacter;
+    public static void setSelectedCharacter(@NotNull ImageAssets character) {
+        selectedCharacter = character;
+        selectedCharacterTexture = selectedCharacter.get();
+    }
+
+    private OrthogonalTiledMapRenderer renderer;
+    private TiledMap currentMap = MapAssets.NEW_WORLD.get();
+    private OrthographicCamera camera = new OrthographicCamera();
+
+    private Player player;
     private final BitmapFont displayDateTime = new BitmapFont();
 
     /**
@@ -53,51 +45,20 @@ public class PlayScreen implements Screen {
     public PlayScreen() {
         //create activities
         Activity.createActivities();
-        // Initialize camera here
-        camera = new OrthographicCamera();
     }
 
     /**
-     * Loads a TiledMap from the given path.
-     * @param path The path of the TiledMap file to load.
+     * Changes the current map to the new map.
+     * @param map the new map to change to
+     * @since v2 -- uses {@link MapAssets} to refer to the map instead of {@link String}
      */
-    private void loadMap(String path) {
-        assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
-        assetManager.load(path, TiledMap.class);
-        assetManager.finishLoading();
-        currentMapPath = path;
-        currentMap = assetManager.get(currentMapPath, TiledMap.class);
-        setPlayerPosition();
-    }
-
-    /**
-     * Changes the current map to the one specified by the given path.
-     * @param path The path of the new map.
-     */
-    public static void changeMap(String path) {
+    public void changeMap(@NotNull MapAssets map) {
         currentMap.dispose(); // Dispose the old map
-
-        // Change the current and old map variables
-        oldMapPath = currentMapPath;
-        currentMapPath = path;
-
-        assetManager.load(path, TiledMap.class); // Load the new map
-        assetManager.finishLoading();
-        currentMap = assetManager.get(path, TiledMap.class);
+        currentMap = map.get(); // Load the new map
 
         // Set the map in the renderer
         renderer.setMap(currentMap);
         setPlayerPosition(); // Set the location of the player
-
-        // Check if the new map requires a different zoom level
-        if (scaledMaps.contains(currentMapPath)) {
-            // Set a different zoom level for scaled maps
-            camera.zoom = 0.35f; // You can adjust this value as needed
-        } else if (largeScaledMaps.contains(currentMapPath)) {
-            camera.zoom = 0.5f; // Default zoom level for other maps
-        } else {
-            camera.zoom = 1f;
-        }
 
         // Center the camera
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
@@ -108,190 +69,45 @@ public class PlayScreen implements Screen {
     /**
      * Sets the position of the player based on the current and old map paths.
      */
-    private static void setPlayerPosition() {
-        // Initialize the player based on the selected character
-        String character;
-        switch (selectedCharacter) {
-            case "Character1":
-                character = Player.CHAR1;
-                break;
-            case "Character2":
-                character = Player.CHAR2;
-                break;
-            case "Character3":
-                character = Player.CHAR3;
-                break;
-            default:
-                throw new IllegalArgumentException();
-        }
+    private void setPlayerPosition() {
         player = new Player(
-            new Sprite(new Texture(character)),
+            new Sprite(selectedCharacter.get()),
             (TiledMapTileLayer) currentMap.getLayers().get(0)
         );
-
-        /*
-         * Sets the position of the player based on the current and old map paths.
-         * Various cases are handled to set the player position based on the current and old map paths.
-         * For example, for the case (maps/map1/map1.tmx), the default position is (65, 57).
-         * Then, if a player comes from map2.tmx, the position is set to (115, 57), and so on.
-         */
-        switch (currentMapPath) {
-            case ("maps/map1/map1.tmx"):
-                switch (oldMapPath) {
-                    case "maps/map2/map2.tmx":
-                        player.setPosition(115 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
-                        break;
-                    case "maps/map3/map3.tmx":
-                        player.setPosition(5 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
-                        break;
-                    case "maps/map4/map4.tmx":
-                        player.setPosition(67 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 5) * player.getCollisionLayer().getTileHeight());
-                        break;
-                    case "maps/map8/home.tmx":
-                        player.setPosition(105 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 53) * player.getCollisionLayer().getTileHeight());
-                        break;
-                }
-                break;
-            case ("maps/map2/map2.tmx"):
-                if (oldMapPath.equals("maps/map1/map1.tmx")) {
-                    player.setPosition(5 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
-                } else if (oldMapPath.equals("maps/map9/gym.tmx")) {
-                    player.setPosition(105 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
-                }
-                break;
-            case ("maps/map3/map3.tmx"):
-                switch (oldMapPath) {
-                    case "maps/map1/map1.tmx":
-                        player.setPosition(115 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
-                        break;
-                    case "maps/map5/map5.tmx":
-                        player.setPosition(62 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 5) * player.getCollisionLayer().getTileHeight());
-                        break;
-                    case "maps/map6/map6.tmx":
-                        player.setPosition(5 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
-                        break;
-                    case "maps/map11/piazza.tmx":
-                        player.setPosition(30 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 54) * player.getCollisionLayer().getTileHeight());
-                        break;
-                }
-                break;
-            case ("maps/map4/map4.tmx"):
-                if (oldMapPath.equals("maps/map1/map1.tmx")) {
-                    player.setPosition(67 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 64) * player.getCollisionLayer().getTileHeight());
-                }
-                break;
-            case ("maps/map5/map5.tmx"):
-                if (oldMapPath.equals("maps/map3/map3.tmx")) {
-                    player.setPosition(62 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 66) * player.getCollisionLayer().getTileHeight());
-                } else if (oldMapPath.equals("maps/map10/computer-science-building.tmx")) {
-                    player.setPosition(45 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 65) * player.getCollisionLayer().getTileHeight());
-                }
-                break;
-            case ("maps/map6/map6.tmx"):
-                if (oldMapPath.equals("maps/map3/map3.tmx")) {
-                    player.setPosition(116 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
-                } else if (oldMapPath.equals("maps/map7/map7.tmx")) {
-                    player.setPosition(5 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
-                }
-                break;
-            case ("maps/map7/map7.tmx"):
-                if (oldMapPath.equals("maps/map6/map6.tmx")) {
-                    player.setPosition(116 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 57) * player.getCollisionLayer().getTileHeight());
-                }
-                break;
-            case ("maps/map8/home.tmx"):
-                if (oldMapPath.isEmpty() || oldMapPath.equals("maps/map1/map1.tmx")) {
-                    player.setPosition(56 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 40) * player.getCollisionLayer().getTileHeight());
-                    player.setScale(1); // Set size to 1
-                    player.setSpeed(60 * 1.7f); // Set speed to 5
-                }
-                break;
-            case ("maps/map9/gym.tmx"):
-                if (oldMapPath.equals("maps/map2/map2.tmx")) {
-                    player.setPosition(60 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 41) * player.getCollisionLayer().getTileHeight());
-                    player.setScale(1); // Set size to 1
-                    player.setSpeed(60 * 1.7f); // Set speed to 5
-                }
-                break;
-            case ("maps/map10/computer-science-building.tmx"):
-                if (oldMapPath.equals("maps/map5/map5.tmx")) {
-                    player.setPosition(60 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 45) * player.getCollisionLayer().getTileHeight());
-                    player.setScale(1); // Set size to 1
-                    player.setSpeed(60 * 1.7f); // Set speed to 5
-                }
-                break;
-            case ("maps/map11/piazza.tmx"):
-                if (oldMapPath.equals("maps/map3/map3.tmx")) {
-                    player.setPosition(58 * player.getCollisionLayer().getTileWidth(), (player.getCollisionLayer().getHeight() - 48) * player.getCollisionLayer().getTileHeight());
-                    player.setScale(1); // Set size to 1
-                    player.setSpeed(60 * 1.7f); // Set speed to 5
-                }
-                break;
-        }
         Gdx.input.setInputProcessor(player);
     }
 
     @Override
     public void show() {
-        loadMap(currentMapPath);
-        // sets camera size to be correct
-
         camera = new OrthographicCamera();
         renderer = new OrthogonalTiledMapRenderer(currentMap);
-
-//        playerAtlas = new TextureAtlas("characterAnimation/playerCharacter1.png");
-//        Animation still, left, right;
-//        still = new Animation(1 / 2f, playerAtlas.findRegions("still"));
-//        left = new Animation(1 / 6f, playerAtlas.findRegions("left"));
-//        right = new Animation(1 / 6f, playerAtlas.findRegions("right"));
-//        still.setPlayMode(Animation.PlayMode.LOOP);
-//        left.setPlayMode(Animation.PlayMode.LOOP);
-//        right.setPlayMode(Animation.PlayMode.LOOP);
-//        still, left, right,
-
+        setPlayerPosition();
     }
     @Override
     public void render(float delta) {
-
         Gdx.gl20.glClearColor( 0, 0, 0, 1 );
         Gdx.gl20.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
         renderer.setView(camera);
         renderer.render();
-        renderer.getBatch().begin();
+        Batch batch = renderer.getBatch();
+        batch.begin();
 
         // set camera to players position
         camera.position.set(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2, 0);
         camera.update();
 
         final String stats = ("Day: " + GameStats.getDay() + " Time: " + GameStats.getTime() + " Energy: " + GameStats.getEnergy());
-        if (scaledMaps.contains(currentMapPath)) {
-            // Set a different zoom level for scaled maps
-            displayDateTime.getData().setScale(1); // Adjust the scale as needed
-            displayDateTime.draw(renderer.getBatch(), stats, 630, 725);
-        } else if (largeScaledMaps.contains(currentMapPath)) {
-            displayDateTime.getData().setScale(1); // Adjust the scale as needed
-            displayDateTime.draw(renderer.getBatch(), stats, 530, 780);
-        } else {
-            displayDateTime.getData().setScale(2); // Adjust the scale as needed
-            displayDateTime.draw(renderer.getBatch(), stats, 12, 1070);
-        }
-        player.draw(renderer.getBatch());
-        renderer.getBatch().end();
+        displayDateTime.getData().setScale(2); // Adjust the scale as needed
+        displayDateTime.draw(batch, stats, 12, 1070);
+        player.draw(batch);
+        batch.end();
     }
 
     @Override
     public void resize(int width, int height) {
         camera.viewportWidth = width;
         camera.viewportHeight = height;
-//
-        if (scaledMaps.contains(currentMapPath)) {
-            // Set a different zoom level for scaled maps
-            camera.zoom = 0.35f; // You can adjust this value as needed
-        } else if (largeScaledMaps.contains(currentMapPath)) {
-            camera.zoom = 0.5f; // Default zoom level for other maps
-        } else {
-            camera.zoom = 1f;
-        }
+        camera.zoom = 1f;
 
         // Center the camera
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
@@ -319,8 +135,9 @@ public class PlayScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        currentMap.dispose();
+        renderer.dispose();
+        displayDateTime.dispose();
+        selectedCharacter.dispose(selectedCharacterTexture);
     }
-
-
 }
