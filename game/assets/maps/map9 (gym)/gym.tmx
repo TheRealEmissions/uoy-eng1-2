@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="14" height="19" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="4">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="14" height="19" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="7">
  <tileset firstgid="1" name="Room_Builder_16x16" tilewidth="16" tileheight="16" tilecount="8284" columns="76">
   <image source="Room_Builder_16x16.png" trans="000000" width="1216" height="1744"/>
   <tile id="392">
@@ -193,6 +193,21 @@
   <object id="3" x="95.6522" y="287.087" width="32.6087" height="16.5217">
    <properties>
     <property name="map_id" value="NEW_WORLD"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="10" name="spawnpoint">
+  <object id="5" name="spawnpoint" x="94.6305" y="269.37" width="32.9129" height="34.3029">
+   <properties>
+    <property name="spawnpoint" type="bool" value="true"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="11" name="spawnpoints">
+  <object id="6" name="transition" x="95.8479" y="269.066" width="32.9129" height="34.3029">
+   <properties>
+    <property name="map_id" value="NEW_WORLD"/>
+    <property name="spawnpoint" value="73Hndnk"/>
    </properties>
   </object>
  </objectgroup>
