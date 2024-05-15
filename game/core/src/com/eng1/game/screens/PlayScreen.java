@@ -16,6 +16,7 @@ import com.eng1.game.player.Player;
 import com.eng1.game.game.activity.Activity;
 import com.eng1.game.player.GameStats;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -54,31 +55,85 @@ public class PlayScreen implements Screen {
     /**
      * Changes the current map to the new map.
      * @param map the new map to change to
-     * @since v2 -- uses {@link MapAssets} to refer to the map instead of {@link String}
+     * @param transitionKey the key for the spawnpoint
+     * @since v2 -- uses {@link MapAssets} to refer to the map instead of {@link String} -- also has a transition key parameter
      */
-    public void changeMap(@NotNull MapAssets map) {
+    public void changeMap(@NotNull MapAssets map, @Nullable String transitionKey) {
         currentMap.dispose(); // Dispose the old map
         currentMap = map.get(); // Load the new map
 
         // Set the map in the renderer
         renderer.setMap(currentMap);
-        setPlayerPosition(); // Set the location of the player
+        if (transitionKey == null) {
+            setPlayerPosition(); // Set the location of the player
+        } else {
+            setPlayerPosition(transitionKey); // Set the location of the player
+        }
 
         // Center the camera
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
         camera.update();
     }
 
-
     /**
-     * Sets the position of the player based on the current and old map paths.
+     * Sets the position of the player on the map based on the map's general spawnpoint
      */
     private void setPlayerPosition() {
+        TiledMapTileLayer layer = (TiledMapTileLayer) currentMap.getLayers().get("spawnpoint");
+        boolean found = false;
+        for (int x = 0; x < layer.getWidth(); x++) {
+            for (int y = 0; y < layer.getHeight(); y++) {
+                TiledMapTileLayer.Cell cell = layer.getCell(x, y);
+                if (cell == null || cell.getTile() == null) continue;
+                Boolean key = cell.getTile().getProperties().get("spawnpoint", Boolean.class);
+                if (Boolean.TRUE.equals(key)) {
+                    found = true;
+                    setPlayerPosition(x * layer.getTileWidth(), y * layer.getTileHeight());
+                    break;
+                }
+            }
+        }
+        if (!found) {
+            throw new RuntimeException("No spawnpoint found in map");
+        }
+    }
+
+    /**
+     * Sets the position of the player on the map based on the transition key
+     * @param transitionKey the key for the spawnpoint
+     */
+    private void setPlayerPosition(String transitionKey) {
+        TiledMapTileLayer layer = (TiledMapTileLayer) currentMap.getLayers().get("spawnpoints");
+        boolean found = false;
+
+        for (int x = 0; x < layer.getWidth(); x++) {
+            for (int y = 0; y < layer.getHeight(); y++) {
+                TiledMapTileLayer.Cell cell = layer.getCell(x, y);
+                if (cell == null || cell.getTile() == null) continue;
+                String key = cell.getTile().getProperties().get("spawnpoint", String.class);
+                if (transitionKey.equals(key)) {
+                    found = true;
+                    setPlayerPosition(x * layer.getTileWidth(), y * layer.getTileHeight());
+                    break;
+                }
+            }
+        }
+
+        if (!found) {
+            setPlayerPosition();
+        }
+    }
+
+
+    /**
+     * Sets the position of the player on the map.
+     */
+    private void setPlayerPosition(int x, int y) {
         player = new Player(
             new Sprite(selectedCharacter.get()),
             (TiledMapTileLayer) currentMap.getLayers().get("collisions")
         );
-        player.setPosition(100, 100);
+        player.setPosition(x, y);
         Gdx.input.setInputProcessor(player);
     }
 
