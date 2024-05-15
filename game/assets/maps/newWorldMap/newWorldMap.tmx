@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="360" height="136" tilewidth="16" tileheight="16" infinite="0" nextlayerid="24" nextobjectid="23">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="360" height="136" tilewidth="16" tileheight="16" infinite="0" nextlayerid="28" nextobjectid="26">
  <tileset firstgid="1" name="trees" tilewidth="16" tileheight="16" tilecount="2304" columns="48">
   <image source="Tileset_20_MV.png" width="768" height="768"/>
   <tile id="0">
@@ -30917,34 +30917,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="22" name="transitions">
-  <object id="5" name="piazza" x="2353.86" y="878.298" width="142.145" height="95.9049">
-   <properties>
-    <property name="map_id" value="PIAZZA"/>
-   </properties>
-  </object>
-  <object id="8" name="piazza" x="2640.54" y="880.571" width="159.998" height="95.9049">
-   <properties>
-    <property name="map_id" value="PIAZZA"/>
-   </properties>
-  </object>
-  <object id="9" name="cs building" x="416.051" y="1733.57" width="94.2172" height="132.569">
-   <properties>
-    <property name="map_id" value="CS_BUILDING"/>
-   </properties>
-  </object>
-  <object id="11" name="accomodation" x="3572.57" y="1819.36" width="84.4792" height="95.9049">
-   <properties>
-    <property name="map_id" value="HOME"/>
-   </properties>
-  </object>
-  <object id="12" name="gym" x="5518.09" y="1836.06" width="81.5304" height="95.9049">
-   <properties>
-    <property name="map_id" value="GYM"/>
-   </properties>
-  </object>
- </objectgroup>
- <objectgroup id="23" name="activities">
+ <objectgroup id="23" name="activities" visible="0">
   <object id="15" name="daydream" x="2895.75" y="1454.5" width="58.2859" height="120.546">
    <properties>
     <property name="activityStr" value="daydream"/>
@@ -30981,7 +30954,7 @@
     <property name="isActivity" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="20" name="hang out" x="2064.12" y="1844.88" width="130.3" height="113.754">
+  <object id="20" name="hang out" x="2065.66" y="1837.18" width="130.3" height="113.754">
    <properties>
     <property name="activityStr" value="hang out with friends"/>
     <property name="activityTime" type="int" value="3"/>
@@ -30990,13 +30963,51 @@
     <property name="isActivity" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="22" name="go to courtyard" x="1674.63" y="1832.95" width="130.3" height="113.754">
+  <object id="22" name="go to courtyard" x="1678.63" y="1832.95" width="130.3" height="113.754">
    <properties>
     <property name="activityStr" value="go to courtyard"/>
     <property name="activityTime" type="int" value="2"/>
     <property name="activityType" value="entertain"/>
     <property name="changeAmount" value="0.4,0.25"/>
     <property name="isActivity" type="bool" value="true"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="22" name="spawnpoints">
+  <object id="5" name="piazza" x="2361.94" y="888.401" width="142.145" height="95.9049">
+   <properties>
+    <property name="map_id" value="PIAZZA"/>
+   </properties>
+  </object>
+  <object id="8" name="piazza" x="2640.54" y="880.571" width="159.998" height="95.9049">
+   <properties>
+    <property name="map_id" value="PIAZZA"/>
+    <property name="spawpoint" value="P7hdS"/>
+   </properties>
+  </object>
+  <object id="11" name="accomodation" x="3572.57" y="1825.36" width="84.4792" height="95.9049">
+   <properties>
+    <property name="map_id" value="HOME"/>
+    <property name="spawnpoint" value="Yh83J"/>
+   </properties>
+  </object>
+  <object id="12" name="gym" x="5518.09" y="1852.06" width="81.5304" height="95.9049">
+   <properties>
+    <property name="map_id" value="GYM"/>
+    <property name="spawn_id" value="73Hndnk"/>
+   </properties>
+  </object>
+  <object id="23" name="cs building" x="418.049" y="1760.76" width="94.2172" height="132.569">
+   <properties>
+    <property name="map_id" value="CS_BUILDING"/>
+    <property name="spawnpoint" value="C97Sbh"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="27" name="spawnpoint">
+  <object id="25" name="spawnpoint" x="2950.79" y="1955.8" width="94.2172" height="87.3464">
+   <properties>
+    <property name="spawnpoint" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>
