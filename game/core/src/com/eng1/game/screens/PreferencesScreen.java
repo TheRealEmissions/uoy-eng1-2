@@ -167,7 +167,11 @@ public class PreferencesScreen implements Screen {
         TableContents.BACK_BUTTON.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Screens.MENU.setAsCurrent();
+                if (Screens.MAIN.isLoaded()) {
+                    Screens.MAIN.setAsCurrent();
+                } else {
+                    Screens.MENU.setAsCurrent();
+                }
             }
         });
 
