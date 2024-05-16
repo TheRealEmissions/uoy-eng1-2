@@ -1,10 +1,12 @@
-package com.eng1.game.player;
+package com.eng1.game.game.player;
 
 import lombok.Getter;
+import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalTime;
 
+@UtilityClass
 public class GameStats {
     @Getter
     private static int energy = 100; //Keeps track of players current energy

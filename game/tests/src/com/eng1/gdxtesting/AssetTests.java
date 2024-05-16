@@ -2,7 +2,7 @@ package com.eng1.gdxtesting;
 
 import static org.junit.Assert.assertTrue;
 
-import com.eng1.game.player.Player;
+import com.eng1.game.game.player.Player;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

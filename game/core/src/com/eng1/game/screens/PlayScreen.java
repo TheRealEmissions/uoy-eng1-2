@@ -15,9 +15,9 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.eng1.game.assets.images.ImageAssets;
 import com.eng1.game.assets.maps.MapAssets;
-import com.eng1.game.player.Player;
+import com.eng1.game.game.player.Player;
 import com.eng1.game.game.activity.Activity;
-import com.eng1.game.player.GameStats;
+import com.eng1.game.game.player.GameStats;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

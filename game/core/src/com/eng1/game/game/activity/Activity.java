@@ -1,7 +1,6 @@
 package com.eng1.game.game.activity;
 
-import com.eng1.game.player.GameStats;
-import com.eng1.game.HeslingtonHustle;
+import com.eng1.game.game.player.GameStats;
 import com.eng1.game.screens.Screens;
 import lombok.Getter;
 import lombok.Setter;
