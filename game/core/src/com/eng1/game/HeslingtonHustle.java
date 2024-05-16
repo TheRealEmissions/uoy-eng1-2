@@ -6,10 +6,9 @@ import com.badlogic.gdx.Input;
 import com.eng1.game.assets.images.ImageAssets;
 import com.eng1.game.assets.maps.MapAssets;
 import com.eng1.game.assets.skins.SkinAssets;
+import com.eng1.game.game.player.Statistics;
 import com.eng1.game.screens.*;
-import com.eng1.game.settings.Preferences;
 import lombok.Getter;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * The main game class responsible for managing screens.
@@ -58,5 +57,6 @@ public class HeslingtonHustle extends Game {
 		SkinAssets.disposeAll();
 		MapAssets.disposeAll();
 		Screens.disposeAll();
+		Statistics.dispose();
 	}
 }
