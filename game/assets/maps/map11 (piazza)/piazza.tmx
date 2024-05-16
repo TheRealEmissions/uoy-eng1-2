@@ -349,7 +349,7 @@
   </object>
  </objectgroup>
  <objectgroup id="10" name="spawnpoints">
-  <object id="6" name="transition" x="110.303" y="509.099" width="35.2077" height="17.8486">
+  <object id="6" name="transition" x="112.813" y="506.231" width="30.1882" height="20.7169">
    <properties>
     <property name="map_id" value="NEW_WORLD"/>
     <property name="spawnpoint" value="P7hdS"/>
@@ -357,7 +357,7 @@
   </object>
  </objectgroup>
  <objectgroup id="11" name="spawnpoint">
-  <object id="7" name="spawnpoint" x="112.249" y="496.43" width="32.4781" height="30.3951">
+  <object id="7" name="spawnpoint" x="49.8633" y="479.579" width="2" height="2">
    <properties>
     <property name="spawnpoint" type="bool" value="true"/>
    </properties>

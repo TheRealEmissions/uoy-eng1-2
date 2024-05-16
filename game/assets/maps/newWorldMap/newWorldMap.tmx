@@ -30974,30 +30974,30 @@
   </object>
  </objectgroup>
  <objectgroup id="22" name="spawnpoints">
-  <object id="5" name="piazza" x="2361.94" y="888.401" width="142.145" height="95.9049">
+  <object id="5" name="piazza" x="2375.17" y="888.401" width="123.62" height="101.198">
    <properties>
     <property name="map_id" value="PIAZZA"/>
    </properties>
   </object>
-  <object id="8" name="piazza" x="2640.54" y="880.571" width="159.998" height="95.9049">
+  <object id="8" name="piazza" x="2659.07" y="880.571" width="130.887" height="108.255">
    <properties>
     <property name="map_id" value="PIAZZA"/>
     <property name="spawpoint" value="P7hdS"/>
    </properties>
   </object>
-  <object id="11" name="accomodation" x="3572.57" y="1825.36" width="84.4792" height="95.9049">
+  <object id="11" name="accomodation" x="3592.57" y="1835.36" width="55.3281" height="50.8847">
    <properties>
     <property name="map_id" value="HOME"/>
     <property name="spawnpoint" value="Yh83J"/>
    </properties>
   </object>
-  <object id="12" name="gym" x="5518.09" y="1852.06" width="81.5304" height="95.9049">
+  <object id="12" name="gym" x="5524.62" y="1850.75" width="75.0021" height="89.3766">
    <properties>
     <property name="map_id" value="GYM"/>
     <property name="spawn_id" value="73Hndnk"/>
    </properties>
   </object>
-  <object id="23" name="cs building" x="418.049" y="1760.76" width="94.2172" height="132.569">
+  <object id="23" name="cs building" x="409.162" y="1790.75" width="116.434" height="105.908">
    <properties>
     <property name="map_id" value="CS_BUILDING"/>
     <property name="spawnpoint" value="C97Sbh"/>
@@ -31005,7 +31005,7 @@
   </object>
  </objectgroup>
  <objectgroup id="27" name="spawnpoint">
-  <object id="25" name="spawnpoint" x="2950.79" y="1955.8" width="94.2172" height="87.3464">
+  <object id="25" name="spawnpoint" x="2988.61" y="1983.89" width="16" height="16">
    <properties>
     <property name="spawnpoint" type="bool" value="true"/>
    </properties>
