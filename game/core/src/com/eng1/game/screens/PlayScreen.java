@@ -7,6 +7,9 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -79,18 +82,19 @@ public class PlayScreen implements Screen {
      * Sets the position of the player on the map based on the map's general spawnpoint
      */
     private void setPlayerPosition() {
-        TiledMapTileLayer layer = (TiledMapTileLayer) currentMap.getLayers().get("spawnpoint");
+        MapLayer layer = currentMap.getLayers().get("spawnpoint");
         boolean found = false;
-        for (int x = 0; x < layer.getWidth(); x++) {
-            for (int y = 0; y < layer.getHeight(); y++) {
-                TiledMapTileLayer.Cell cell = layer.getCell(x, y);
-                if (cell == null || cell.getTile() == null) continue;
-                Boolean key = cell.getTile().getProperties().get("spawnpoint", Boolean.class);
-                if (Boolean.TRUE.equals(key)) {
-                    found = true;
-                    setPlayerPosition(x * layer.getTileWidth(), y * layer.getTileHeight());
-                    break;
-                }
+        MapObjects objects = layer.getObjects();
+        for (int i = 0; i < objects.getCount(); i++) {
+            MapObject mapObject = objects.get(i);
+            if (mapObject.getName().equals("spawnpoint")) {
+                MapProperties properties = mapObject.getProperties();
+                setPlayerPosition(
+                    (float) properties.get("x"),
+                    (float) properties.get("y")
+                );
+                found = true;
+                break;
             }
         }
         if (!found) {
@@ -103,22 +107,21 @@ public class PlayScreen implements Screen {
      * @param transitionKey the key for the spawnpoint
      */
     private void setPlayerPosition(String transitionKey) {
-        TiledMapTileLayer layer = (TiledMapTileLayer) currentMap.getLayers().get("spawnpoints");
+        MapLayer layer = currentMap.getLayers().get("spawnpoints");
         boolean found = false;
-
-        for (int x = 0; x < layer.getWidth(); x++) {
-            for (int y = 0; y < layer.getHeight(); y++) {
-                TiledMapTileLayer.Cell cell = layer.getCell(x, y);
-                if (cell == null || cell.getTile() == null) continue;
-                String key = cell.getTile().getProperties().get("spawnpoint", String.class);
-                if (transitionKey.equals(key)) {
-                    found = true;
-                    setPlayerPosition(x * layer.getTileWidth(), y * layer.getTileHeight());
-                    break;
-                }
+        MapObjects objects = layer.getObjects();
+        for (int i = 0; i < objects.getCount(); i++) {
+            MapObject mapObject = objects.get(i);
+            if (mapObject.getName().equals(transitionKey)) {
+                MapProperties properties = mapObject.getProperties();
+                setPlayerPosition(
+                    (float) properties.get("x"),
+                    (float) properties.get("y")
+                );
+                found = true;
+                break;
             }
         }
-
         if (!found) {
             setPlayerPosition();
         }
@@ -128,9 +131,9 @@ public class PlayScreen implements Screen {
     /**
      * Sets the position of the player on the map.
      */
-    private void setPlayerPosition(int x, int y) {
+    private void setPlayerPosition(float x, float y) {
         player = new Player(
-            new Sprite(selectedCharacter.get()),
+            new Sprite(selectedCharacterTexture),
             (TiledMapTileLayer) currentMap.getLayers().get("collisions")
         );
         player.setPosition(x, y);
