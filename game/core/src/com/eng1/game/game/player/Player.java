@@ -121,6 +121,9 @@ public class Player extends Sprite implements InputProcessor {
             case Keys.RIGHT:
                 velocity.x = speed;
                 break;
+            case Keys.E:
+                // todo: activity
+                break;
             default:
                 return false;
         }
