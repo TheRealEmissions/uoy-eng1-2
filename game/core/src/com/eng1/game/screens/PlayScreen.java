@@ -17,7 +17,7 @@ import com.eng1.game.assets.images.ImageAssets;
 import com.eng1.game.assets.maps.MapAssets;
 import com.eng1.game.game.player.Player;
 import com.eng1.game.game.activity.Activity;
-import com.eng1.game.game.player.GameStats;
+import com.eng1.game.game.player.Statistics;
 import com.eng1.game.utils.Pair;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -197,7 +197,8 @@ public class PlayScreen implements Screen {
         player = new Player(
             new Sprite(selectedCharacterTexture),
             (TiledMapTileLayer) currentMap.getLayers().get("collisions"),
-            currentMap.getLayers().get("spawnpoints")
+            currentMap.getLayers().get("spawnpoints"),
+            currentMap.getLayers().get("activities")
         );
         player.setPosition(x, y);
         Gdx.input.setInputProcessor(player);
@@ -255,7 +256,7 @@ public class PlayScreen implements Screen {
 
         uiBatch.begin();
 
-        final String stats = ("Day: " + GameStats.getDay() + " Time: " + GameStats.getTime() + " Energy: " + GameStats.getEnergy());
+        final String stats = ("Day: " + Statistics.getDay() + " Time: " + Statistics.getTime() + " Energy: " + Statistics.PlayerStatistics.ENERGY.get());
         displayDateTime.getData().setScale(2); // Adjust the scale as needed
         displayDateTime.draw(uiBatch, stats, 12, 1070);
 
