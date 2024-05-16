@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="22" height="33" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="8">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="22" height="33" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="10">
  <tileset firstgid="1" name="Room_Builder_16x16" tilewidth="16" tileheight="16" tilecount="8284" columns="76">
   <image source="Room_Builder_16x16.png" trans="000000" width="1216" height="1744"/>
   <tile id="392">
@@ -322,29 +322,29 @@
  <objectgroup id="8" name="activities">
   <object id="1" name="college meal" x="105.863" y="234.851" width="28.6957" height="39.2677">
    <properties>
-    <property name="activityStr" value="get college meal"/>
-    <property name="activityTime" type="int" value="1"/>
-    <property name="activityType" value="ENERGY"/>
-    <property name="changeAmount" value="0.3,0.0"/>
-    <property name="isActivity" type="bool" value="true"/>
+    <property name="activity_str" value="get college meal"/>
+    <property name="activity_time" type="int" value="1"/>
+    <property name="activity_type" value="eat"/>
+    <property name="change_stats" value="0.1,0.15"/>
+    <property name="is_activity" type="bool" value="true"/>
    </properties>
   </object>
   <object id="2" name="get a snack" x="207.808" y="119.314" width="84.7185" height="23.5515">
    <properties>
-    <property name="activityStr" value="have a snack"/>
-    <property name="activityTime" type="int" value="1"/>
-    <property name="activityType" value="ENERGY"/>
-    <property name="changeAmount" value="0.1,0.1"/>
-    <property name="isActivity" type="bool" value="true"/>
+    <property name="activity_str" value="have a snack"/>
+    <property name="activity_time" type="int" value="1"/>
+    <property name="activity_type" value="eat"/>
+    <property name="change_stats" value="0.1,0.1"/>
+    <property name="is_activity" type="bool" value="true"/>
    </properties>
   </object>
   <object id="3" name="tiktok and chill" x="272.302" y="429.231" width="45.4508" height="34.1236">
    <properties>
-    <property name="activityStr" value="watch tiktoks"/>
-    <property name="activityTime" type="int" value="1"/>
-    <property name="activityType" value="HAPPINESS"/>
-    <property name="changeAmount" value="0.1,0.15"/>
-    <property name="isActivity" type="bool" value="true"/>
+    <property name="activity_str" value="watch tiktoks"/>
+    <property name="activity_time" type="int" value="1"/>
+    <property name="activity_type" value="relax"/>
+    <property name="change_stats" value="0.1,0.15"/>
+    <property name="is_activity" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>

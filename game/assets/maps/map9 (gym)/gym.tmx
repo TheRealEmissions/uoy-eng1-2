@@ -258,20 +258,20 @@
  <objectgroup id="9" name="activities">
   <object id="1" name="lift some weights" x="150.087" y="174.609" width="32.8696" height="21.2174">
    <properties>
-    <property name="activityStr" value="lift some weights"/>
-    <property name="activityTime" type="int" value="2"/>
-    <property name="activityType" value="HAPPINESS"/>
-    <property name="changeAmount" value="0.3,0.2"/>
-    <property name="isActivity" type="bool" value="true"/>
+    <property name="activity_str" value="do some cardio"/>
+    <property name="activity_time" type="int" value="2"/>
+    <property name="activity_type" value="relax"/>
+    <property name="change_stats" value="0.3,0.2"/>
+    <property name="is_activity" type="bool" value="true"/>
    </properties>
   </object>
   <object id="2" name="do some cardio" x="114" y="238.957" width="29.0435" height="49.8261">
    <properties>
-    <property name="activityStr" value="do some cardio"/>
-    <property name="activityTime" type="int" value="1"/>
-    <property name="activityType" value="HAPPINESS"/>
-    <property name="changeAmount" value="0.2,0.2"/>
-    <property name="isActivity" type="bool" value="true"/>
+    <property name="activity_str" value="do some cardio"/>
+    <property name="activity_time" type="int" value="1"/>
+    <property name="activity_type" value="relax"/>
+    <property name="change_stats" value="0.2,0.2"/>
+    <property name="is_activity" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>
