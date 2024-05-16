@@ -30917,12 +30917,12 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="23" name="activities" visible="0">
+ <objectgroup id="23" name="activities">
   <object id="15" name="daydream" x="2895.75" y="1454.5" width="58.2859" height="120.546">
    <properties>
     <property name="activityStr" value="daydream"/>
     <property name="activityTime" type="int" value="1"/>
-    <property name="activityType" value="entertain"/>
+    <property name="activityType" value="ENERGY"/>
     <property name="changeAmount" value="0.1,0.15"/>
     <property name="isActivity" type="bool" value="true"/>
    </properties>
@@ -30931,7 +30931,7 @@
    <properties>
     <property name="activityStr" value="daydream"/>
     <property name="activityTime" type="int" value="1"/>
-    <property name="activityType" value="entertain"/>
+    <property name="activityType" value="ENERGY"/>
     <property name="changeAmount" value="0.1,0.15"/>
     <property name="isActivity" type="bool" value="true"/>
    </properties>
@@ -30940,7 +30940,7 @@
    <properties>
     <property name="activityStr" value="play basketball"/>
     <property name="activityTime" type="int" value="1"/>
-    <property name="activityType" value="entertain"/>
+    <property name="activityType" value="HAPPINESS"/>
     <property name="changeAmount" value="0.2,0.2"/>
     <property name="isActivity" type="bool" value="true"/>
    </properties>
@@ -30949,8 +30949,8 @@
    <properties>
     <property name="activityStr" value="play football"/>
     <property name="activityTime" type="int" value="2"/>
-    <property name="activityType" value="entertain"/>
-    <property name="changeAmount" value="0.3,0.2"/>
+    <property name="activityType" value="HAPPINESS"/>
+    <property name="changeAmount" value="0.2,0.3"/>
     <property name="isActivity" type="bool" value="true"/>
    </properties>
   </object>
@@ -30958,7 +30958,7 @@
    <properties>
     <property name="activityStr" value="hang out with friends"/>
     <property name="activityTime" type="int" value="3"/>
-    <property name="activityType" value="entertain"/>
+    <property name="activityType" value="HAPPINESS"/>
     <property name="changeAmount" value="0.2,0.2"/>
     <property name="isActivity" type="bool" value="true"/>
    </properties>
@@ -30967,8 +30967,8 @@
    <properties>
     <property name="activityStr" value="go to courtyard"/>
     <property name="activityTime" type="int" value="2"/>
-    <property name="activityType" value="entertain"/>
-    <property name="changeAmount" value="0.4,0.25"/>
+    <property name="activityType" value="HAPPINESS"/>
+    <property name="changeAmount" value="0.25,0.4"/>
     <property name="isActivity" type="bool" value="true"/>
    </properties>
   </object>
