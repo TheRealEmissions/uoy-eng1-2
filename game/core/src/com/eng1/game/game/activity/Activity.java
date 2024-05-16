@@ -1,6 +1,6 @@
 package com.eng1.game.game.activity;
 
-import com.eng1.game.game.player.GameStats;
+import com.eng1.game.game.player.Statistics;
 import com.eng1.game.screens.Screens;
 import lombok.Getter;
 import lombok.Setter;
@@ -74,28 +74,28 @@ public class Activity {
     public void complete() {
         // Returns whether the activity has been completed
         // Checks whether there is enough time left in the day to complete the activity
-        LocalTime tempTime = GameStats.getTime().plusHours(this.timeNeeded.getHour());
+        LocalTime tempTime = Statistics.getTime().plusHours(this.timeNeeded.getHour());
         tempTime = tempTime.plusMinutes(this.timeNeeded.getMinute());
-        if (tempTime.isAfter(GameStats.DAY_END) && tempTime.isBefore(GameStats.DAY_START)) {
+        if (tempTime.isAfter(Statistics.DAY_END) && tempTime.isBefore(Statistics.DAY_START)) {
             return;
         }
 
         // Checks whether there is enough energy left to complete the activity
-        if (GameStats.getEnergy() - this.energyNeeded < 0) {
+        if (Statistics.getEnergy() - this.energyNeeded < 0) {
             return;
         }
 
         // Increase the relevent trackers
         this.timesCompletedDay++;
         this.timesCompletedWeek++;
-        GameStats.increaseTime(this.timeNeeded);
-        GameStats.decreaseEnergy(this.energyNeeded);
+        Statistics.increaseTime(this.timeNeeded);
+        Statistics.decreaseEnergy(this.energyNeeded);
 
         // Debugging
         // ---
-        System.out.println("Current time: " + GameStats.getTime());
-        System.out.println("Current energy: " + GameStats.getEnergy());
-        System.out.println("Current score: " + GameStats.getScore());
+        System.out.println("Current time: " + Statistics.getTime());
+        System.out.println("Current energy: " + Statistics.getEnergy());
+        System.out.println("Current score: " + Statistics.getScore());
         // ---
 
     }
@@ -108,7 +108,7 @@ public class Activity {
         // ---
 
         // Calculate the days score and add to the total score
-        GameStats.increaseScore(calculateDayScore());
+        Statistics.increaseScore(calculateDayScore());
 
         // Reset activity day counts
         for (Map<String, Activity> typeActivities : activities.values()) {
@@ -119,11 +119,11 @@ public class Activity {
         }
 
         //Reset stats
-        GameStats.newDay();
+        Statistics.newDay();
 
         System.out.println(Activity.countCompletedActivities());
 
-        if (GameStats.getDay() > 7) {
+        if (Statistics.getDay() > 7) {
             // Pass the score and activities completed to EndScreen
             Screens.END.setAsCurrent();
         }
