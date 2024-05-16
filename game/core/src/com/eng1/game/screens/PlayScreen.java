@@ -18,9 +18,11 @@ import com.eng1.game.assets.maps.MapAssets;
 import com.eng1.game.game.player.Player;
 import com.eng1.game.game.activity.Activity;
 import com.eng1.game.game.player.GameStats;
+import com.eng1.game.utils.Pair;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.EnumMap;
 import java.util.List;
 
 /**
@@ -39,12 +41,18 @@ public class PlayScreen implements Screen {
     }
 
     private OrthogonalTiledMapRenderer renderer;
-    private TiledMap currentMap = MapAssets.NEW_WORLD.get();
+    private MapAssets currentMapEnum = MapAssets.NEW_WORLD;
+    private TiledMap currentMap = currentMapEnum.get();
     private OrthographicCamera camera = new OrthographicCamera();
 
     private Player player;
     private final BitmapFont displayDateTime = new BitmapFont();
     private final SpriteBatch uiBatch = new SpriteBatch();
+
+    private final EnumMap<MapAssets, Float> defaultViewportWidth = new EnumMap<>(MapAssets.class);
+    private final EnumMap<MapAssets, Float> defaultViewportHeight = new EnumMap<>(MapAssets.class);
+    private final EnumMap<MapAssets, Pair<Float, Float>> playerSizes = new EnumMap<>(MapAssets.class);
+    private final EnumMap<MapAssets, Float> playerSpeeds = new EnumMap<>(MapAssets.class);
 
     /**
      * Constructor for the Play class.
@@ -62,8 +70,16 @@ public class PlayScreen implements Screen {
      * @since v2 -- uses {@link MapAssets} to refer to the map instead of {@link String} -- also has a transition key parameter
      */
     public void changeMap(@NotNull MapAssets map, @Nullable String transitionKey) {
-        currentMap.dispose(); // Dispose the old map
-        currentMap = map.get(); // Load the new map
+        TiledMap copy = currentMap;
+        MapAssets old = currentMapEnum;
+        currentMapEnum = map; // Set the new map
+        currentMap = currentMapEnum.get(); // Load the new map
+
+        // store player scale if it doesn't already exist
+        playerSizes.computeIfAbsent(old, k -> Pair.of(player.getWidth(), player.getHeight()));
+        playerSpeeds.computeIfAbsent(old, k -> player.getSpeed());
+        Pair<Float, Float> size = playerSizes.get(map);
+        Float speed = playerSpeeds.get(map);
 
         // Set the map in the renderer
         renderer.setMap(currentMap);
@@ -73,9 +89,57 @@ public class PlayScreen implements Screen {
             setPlayerPosition(transitionKey); // Set the location of the player
         }
 
+        TiledMapTileLayer layer = (TiledMapTileLayer) currentMap.getLayers().get(0);
+        float mapWidth = (float) layer.getWidth() * layer.getTileWidth();
+        float mapHeight = (float) layer.getHeight() * layer.getTileHeight();
+        float aspectRatio = (float) Gdx.graphics.getWidth() / (float) Gdx.graphics.getHeight();
+        float mapAspectRatio = mapWidth / mapHeight;
+        // scale map
+        defaultViewportWidth.computeIfAbsent(old, k -> camera.viewportWidth);
+        defaultViewportHeight.computeIfAbsent(old, k -> camera.viewportHeight);
+        if (defaultViewportWidth.get(map) != null) {
+            camera.viewportWidth = defaultViewportWidth.get(map);
+            camera.viewportHeight = defaultViewportHeight.get(map);
+        } else {
+            // use map width and height, but maintain aspect ratio
+            if (mapAspectRatio > aspectRatio) {
+                camera.viewportHeight = mapHeight;
+                camera.viewportWidth = mapHeight * aspectRatio;
+            } else {
+                camera.viewportWidth = mapWidth;
+                camera.viewportHeight = mapWidth / aspectRatio;
+            }
+        }
+
+        // calculate scale based on scale from previous map to new map
+        float scaleX = camera.viewportWidth / defaultViewportWidth.get(old);
+        float scaleY = camera.viewportHeight / defaultViewportHeight.get(old);
+        // scale player
+        if (size != null) {
+            player.setSize(size.getLeft(), size.getRight());
+        } else {
+            // calculate new size using that scale
+            player.setSize(player.getWidth() * scaleX, player.getHeight() * scaleY);
+            // store
+            playerSizes.put(map, Pair.of(player.getWidth(), player.getHeight()));
+        }
+
+        if (speed != null) {
+            player.setSpeed(speed);
+        } else {
+            // calculate new speed using that scale
+            float scaleCombined = (scaleX + scaleY) / 2;
+            player.setSpeed(player.getSpeed() * scaleCombined);
+            // store
+            playerSpeeds.put(map, player.getSpeed());
+        }
+        camera.zoom = 1f;
+
         // Center the camera
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
         camera.update();
+
+        copy.dispose(); // Dispose the old map
     }
 
     /**
@@ -134,7 +198,8 @@ public class PlayScreen implements Screen {
     private void setPlayerPosition(float x, float y) {
         player = new Player(
             new Sprite(selectedCharacterTexture),
-            (TiledMapTileLayer) currentMap.getLayers().get("collisions")
+            (TiledMapTileLayer) currentMap.getLayers().get("collisions"),
+            currentMap.getLayers().get("spawnpoints")
         );
         player.setPosition(x, y);
         Gdx.input.setInputProcessor(player);
@@ -154,10 +219,12 @@ public class PlayScreen implements Screen {
         Batch batch = renderer.getBatch();
         batch.begin();
 
-        List<String> topLayer = List.of("trees", "background");
+        boolean isNewWorld = currentMapEnum.equals(MapAssets.NEW_WORLD);
+        List<String> topLayer = isNewWorld ? List.of("trees", "background") : List.of();
 
         for (int i = 0; i < currentMap.getLayers().getCount(); i++) {
             MapLayer mapLayer = currentMap.getLayers().get(i);
+            if (mapLayer == null) continue;
             if (topLayer.contains(mapLayer.getName())) {
                 continue;
             }
@@ -181,7 +248,9 @@ public class PlayScreen implements Screen {
         player.draw(batch);
 
         for (String layerName : topLayer) {
-            renderer.renderTileLayer((TiledMapTileLayer) currentMap.getLayers().get(layerName));
+            MapLayer mapLayer = currentMap.getLayers().get(layerName);
+            if (mapLayer == null) continue;
+            renderer.renderTileLayer((TiledMapTileLayer) mapLayer);
         }
 
         batch.end();
