@@ -3,33 +3,46 @@ package com.eng1.game.game.player;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Null;
+import com.eng1.game.assets.maps.MapAssets;
+import com.eng1.game.screens.PlayScreen;
+import com.eng1.game.screens.Screens;
+import com.eng1.game.utils.Pair;
 import lombok.Getter;
 import lombok.Setter;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * A class that represents the player character in the game.
  */
 public class Player extends Sprite implements InputProcessor {
     private final Vector2 velocity = new Vector2();
-    @Setter
-    private float speed = 60 * 5;
+    @Setter @Getter
+    private float speed = 60 * 5f;
     @Getter
     private final TiledMapTileLayer collisionLayer;
+    private final MapLayer transitionLayer;
 
     /**
      * Constructs a new player with the given sprite and collision layer.
      * @param sprite The sprite representing the player character.
      * @param collisionLayer The collision layer for detecting collisions with tiles.
      */
-    public Player(Sprite sprite, TiledMapTileLayer collisionLayer) {
+    public Player(Sprite sprite, TiledMapTileLayer collisionLayer, MapLayer transitionLayer) {
         super(sprite);
         this.collisionLayer = collisionLayer;
+        this.transitionLayer = transitionLayer;
         setScale(3);
     }
 
@@ -73,6 +86,12 @@ public class Player extends Sprite implements InputProcessor {
         if (collisionY) {
             setY(oldY);
             velocity.y = 0;
+        }
+
+        @Nullable Pair<MapAssets, @Nullable String> cellTransition = getCellTransition(getX(), getY());
+        if (cellTransition != null) {
+            PlayScreen screen = ((PlayScreen) Screens.PLAY.get());
+            screen.changeMap(cellTransition.getLeft(), cellTransition.getRight());
         }
     }
 
@@ -153,7 +172,7 @@ public class Player extends Sprite implements InputProcessor {
      * Checks if the cell to the right of the player is blocked.
      * @return True if the cell is blocked, false otherwise.
      */
-    public boolean collidesHorizontal() {
+    private boolean collidesHorizontal() {
         for (float step = 0; step < getHeight(); step += (float) collisionLayer.getTileHeight() / 2) {
             if (isCellBlocked(getX() + getWidth(), getY() + step)) {
                 return true;
@@ -166,13 +185,29 @@ public class Player extends Sprite implements InputProcessor {
      * Checks if the cell above the player is blocked.
      * @return True if the cell is blocked, false otherwise.
      */
-    public boolean collidesVertical() {
+    private boolean collidesVertical() {
         for (float step = 0; step < getWidth(); step += (float) collisionLayer.getTileWidth() / 2) {
             if (isCellBlocked(getX() + getWidth(), getY() + step)) {
                 return true;
             }
         }
         return false;
+    }
+
+    private @Nullable Pair<MapAssets, @Nullable String> getCellTransition(float x, float y) {
+        MapObjects objects = transitionLayer.getObjects();
+        for (int i = 0; i < objects.getCount(); i++) {
+            MapObject mapObject = objects.get(i);
+            MapProperties properties = mapObject.getProperties();
+            float x1 = properties.get("x", float.class);
+            float y2 = properties.get("y", float.class);
+            float width = properties.get("width", float.class);
+            float height = properties.get("height", float.class);
+            if (x >= x1 && x <= x1 + width && y >= y2 && y <= y2 + height) {
+                return Pair.of(MapAssets.valueOf(properties.get("map_id", String.class)), properties.get("spawnpoint", String.class));
+            }
+        }
+        return null;
     }
 
     // Checks for inputs
@@ -211,4 +246,9 @@ public class Player extends Sprite implements InputProcessor {
         return false;
     }
 
+    @Override
+    public void setSize(float width, float height) {
+        super.setSize(width, height);
+        setScale(3);
+    }
 }
