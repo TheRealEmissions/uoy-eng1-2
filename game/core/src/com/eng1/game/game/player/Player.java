@@ -34,16 +34,18 @@ public class Player extends Sprite implements InputProcessor {
     @Getter
     private final TiledMapTileLayer collisionLayer;
     private final MapLayer transitionLayer;
+    private final MapLayer activityLayer;
 
     /**
      * Constructs a new player with the given sprite and collision layer.
      * @param sprite The sprite representing the player character.
      * @param collisionLayer The collision layer for detecting collisions with tiles.
      */
-    public Player(Sprite sprite, TiledMapTileLayer collisionLayer, MapLayer transitionLayer) {
+    public Player(Sprite sprite, TiledMapTileLayer collisionLayer, MapLayer transitionLayer, MapLayer activityLayer) {
         super(sprite);
         this.collisionLayer = collisionLayer;
         this.transitionLayer = transitionLayer;
+        this.activityLayer = activityLayer;
         setScale(3);
     }
 
@@ -209,6 +211,24 @@ public class Player extends Sprite implements InputProcessor {
             float height = properties.get("height", float.class);
             if (x >= x1 && x <= x1 + width && y >= y2 && y <= y2 + height) {
                 return Pair.of(MapAssets.valueOf(properties.get("map_id", String.class)), properties.get("spawnpoint", String.class));
+            }
+        }
+        return null;
+    }
+
+    private @Nullable String getCellActivity(float x, float y) {
+        MapObjects objects = activityLayer.getObjects();
+        for (int i = 0; i < objects.getCount(); i++) {
+            MapObject mapObject = objects.get(i);
+            MapProperties properties = mapObject.getProperties();
+            float x1 = properties.get("x", float.class);
+            float y2 = properties.get("y", float.class);
+            float width = properties.get("width", float.class);
+            float height = properties.get("height", float.class);
+            if (x >= x1 && x <= x1 + width && y >= y2 && y <= y2 + height) {
+                Boolean isActivity = properties.get("isActivity", boolean.class);
+                if (!Boolean.TRUE.equals(isActivity)) continue;
+                return properties.get("activity", String.class);
             }
         }
         return null;
