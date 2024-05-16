@@ -186,9 +186,7 @@ public class PlayScreen implements Screen {
                 break;
             }
         }
-        if (!found) {
-            setPlayerPosition();
-        }
+        if (!found) setPlayerPosition();
     }
 
 
