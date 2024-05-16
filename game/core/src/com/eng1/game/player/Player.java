@@ -9,8 +9,6 @@ import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.math.Vector2;
-import com.eng1.game.game.activity.Activity;
-import com.eng1.game.screens.PlayScreen;
 import lombok.Getter;
 import lombok.Setter;
 
