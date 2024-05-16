@@ -15,8 +15,8 @@ const nav_items: Array<NavItem> = [
         page: "/",
     },
     {
-      label: "Diagrams",
-      page: "/documents",
+      label: "Updated Diagrams",
+      page: "/updated_documents",
   },
 ]
 
@@ -36,7 +36,8 @@ export function Navbar() {
         <a href="/">
             <div className = "flex items-center gap-3">
                 {/* <img src="/logo-grayed.png"  className="mr-2 w-[40px] h-[40px]" /> */}
-                <h1 className="text-lg font-semibold">/eng1/cohort1group1</h1>
+                <h1 className="text-lg font-semibold">/eng1/cohort1/<span
+                    style={{textDecoration: 'line-through'}}>group1</span>group3</h1>
             </div>
           </a>
         </div>
@@ -45,7 +46,7 @@ export function Navbar() {
                 return <a href={item.page} key={idx}>{item.label}</a>
             })}
             <div className="flex gap-5 pl-4">
-            <a href="https://github.com/th1583/ENG1" target="_blank">
+            <a href="https://github.com/TheRealEmissions/uoy-eng1-2" target="_blank">
             <svg viewBox="0 0 438.549 438.549" className = "h-5 w-5 cursor-pointer">
               <path
                 fill="currentColor"
@@ -76,7 +77,7 @@ export function Navbar() {
       <div className={
         menuOpen 
         ? "fixed left-0 top-0 w-[65%] sm:hidden h-screen bg-[#ecf0f3] p-10 ease-in duration-300"
-      : "fixed left-[-100%] top-0 p-10 ease-in duartion-300"
+      : "fixed left-[-100%] top-0 p-10 ease-in duration-300"
       }
       >
         <div className="flex w-full items-center justify-end">
@@ -93,11 +94,11 @@ export function Navbar() {
                   Home
                 </li>
               </Link>
-              <Link href="/documents">
+              <Link href="/updated_documents">
                 <li onClick = {() => setMenuOpen(false)}
                 className = "py-4 cursor-pointer"
                 >
-                  Documents
+                  Updated Diagrams
                 </li>
               </Link>
             </ul>

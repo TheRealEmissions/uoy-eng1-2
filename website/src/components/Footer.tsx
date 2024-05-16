@@ -118,12 +118,12 @@ const Footer: React.FC = () => {
         <div className="container  mt-8">
           <div className="">
             <h3 className="scroll-m-20 text-xl font-bold tracking-tight mb-2">
-              /group1/cohort1
+              /group1/cohort3
             </h3>
           </div>
           <div className="hidden sm:flex">
             <p className="text-xs text-muted-foreground">
-              /group1/cohort1 © {new Date().getFullYear()} All rights reserved.{" "}
+              /group1/cohort3 © {new Date().getFullYear()} All rights reserved.{" "}
             </p>
           </div>
           <div className="flex space-x-4"></div>

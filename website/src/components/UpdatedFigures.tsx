@@ -7,7 +7,7 @@ const Figures = () => {
 <section id="Diagram section" className="xl:p-24 md:p-24 lg:p-24 p-5 flex justify-center items-center ">
         <div className="container p-3">
             <h2 className="font-semibold text-5xl pt-5 pb-10">
-                Our Diagrams (Group 1)
+                Our Diagrams (Group 3)
             </h2>
             <div className="flex flex-col md:flex-row md:gap-48 gap-10 pt-16">
                 <div>

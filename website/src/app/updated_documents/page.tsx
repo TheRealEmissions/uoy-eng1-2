@@ -1,5 +1,5 @@
 import React from 'react'
-import Figures from "@/components/Figures"
+import UpdatedFigures from "@/components/UpdatedFigures"
 
 
 export default function Home() {
@@ -7,7 +7,7 @@ export default function Home() {
    <main className="min-h-screen ">
 
     {/* <ContentSection /> */}
-    <Figures />
+    <UpdatedFigures />
 
     
     </main>
