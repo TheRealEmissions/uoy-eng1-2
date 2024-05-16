@@ -1,6 +1,6 @@
 "use client";
 // import { Icons } from "@/components/icons";
-import { useState } from "react";
+import React, { useState } from "react";
 
 const Footer: React.FC = () => {
   const [activeLink, setActiveLink] = useState("");
@@ -118,12 +118,14 @@ const Footer: React.FC = () => {
         <div className="container  mt-8">
           <div className="">
             <h3 className="scroll-m-20 text-xl font-bold tracking-tight mb-2">
-              /group1/cohort3
+              /eng1/cohort1/<span
+                style={{textDecoration: 'line-through'}}>group1</span>group3
             </h3>
           </div>
           <div className="hidden sm:flex">
             <p className="text-xs text-muted-foreground">
-              /group1/cohort3 © {new Date().getFullYear()} All rights reserved.{" "}
+              /eng1/cohort1/<span
+                style={{textDecoration: 'line-through'}}>group1</span>group3 © {new Date().getFullYear()} All rights reserved.{" "}
             </p>
           </div>
           <div className="flex space-x-4"></div>
