@@ -29,7 +29,7 @@ const HeroSection = () => {
           </div>
         </div>
         <div className="pt-12 lg:mt-0 w-full mx-auto max-w-md ">
-          <img className="rounded-xl w-full" src="/old_deliverables/map1.png" alt="main page"/>
+          <img className="rounded-xl w-full" src="/updated_deliverables/updated_map.png" alt="main page"/>
         </div>
 
       </div>

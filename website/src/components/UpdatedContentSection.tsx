@@ -92,8 +92,8 @@ const NewHeroSection = () => {
                     </div>
                     <div className="flex flex-row gap-3 pb-6">
                         <div className="block max-w-sm p-5 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 ">
-                            <h5 className="mb-2 text-md font-bold tracking-tight text-gray-900 ">Improved Architecture Overview</h5>
-                            <p className="text-xs font-normal text-gray-700 pb-5">Check out the updated version of our architecture overview.</p>
+                            <h5 className="mb-2 text-md font-bold tracking-tight text-gray-900 ">Improved Architecture</h5>
+                            <p className="text-xs font-normal text-gray-700 pb-5">Check out the updated version of our architecture.</p>
                             <a className="cursor-pointer" href="/updated_deliverables/updated_architecture.pdf" target="_blank" rel="noopener noreferrer" download>
                                 <h6 className="text-sm ghosted text-blue-500">/updated_architecture.pdf</h6>
                             </a>
@@ -118,7 +118,8 @@ const NewHeroSection = () => {
                             {/* <h6 className="text-sm ghosted">pdf</h6> */}
                             <h5 className="mb-2 text-md font-bold tracking-tight text-gray-900 ">Updated Implementation Details</h5>
                             <p className="text-xs font-normal text-gray-700 pb-5">Check out the latest version of our implementation details.</p>
-                            <a className="cursor-pointer" href="/updated_deliverables/updated_implementation.pdf" target="_blank" rel="noopener noreferrer" download>
+
+                            <a className=" mcursor-pointer" href="/updated_deliverables/updated_implementation.pdf" target="_blank" rel="noopener noreferrer" download>
                                 <h6 className="text-sm ghosted text-blue-500">/updated_implementation.pdf</h6>
                             </a>
                         </div>
