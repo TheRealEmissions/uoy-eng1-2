@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
                     className={`text-sm hover:text-blue-400 cursor-pointer ${
                       activeLink === "/" ? "text-blue-400" : ""
                     }`}
-                    href="/"
+                    href="#Content Section"
                     onClick={() => setActiveLink("/")}
                   >
                     game download
@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
                     className={`text-sm hover:text-blue-400 cursor-pointer ${
                       activeLink === "/" ? "text-blue-400" : ""
                     }`}
-                    href="/"
+                    href="#Hero Section"
                     onClick={() => setActiveLink("/")}
                   >
                     credits
@@ -49,7 +49,7 @@ const Footer: React.FC = () => {
                     className={`text-sm hover:text-blue-400 cursor-pointer ${
                       activeLink === "about" ? "text-blue-600" : ""
                     }`}
-                    href="/"
+                    href="#UpdatedContentSection"
                     onClick={() => setActiveLink("about")}
                   >
                     Requirements
@@ -71,7 +71,7 @@ const Footer: React.FC = () => {
                     className={`text-sm hover:text-blue-400 cursor-pointer ${
                       activeLink === "contact" ? "text-blue-400" : ""
                     }`}
-                    href="/"
+                    href="#UpdatedContentSection"
                     onClick={() => setActiveLink("contact")}
                   >
                     Architecture
@@ -82,7 +82,7 @@ const Footer: React.FC = () => {
                     className={`text-sm hover:text-blue-400 cursor-pointer ${
                       activeLink === "contact" ? "text-blue-400" : ""
                     }`}
-                    href="/"
+                    href="#UpdatedContentSection"
                     onClick={() => setActiveLink("contact")}
                   >
                     Method selection and planning
@@ -93,7 +93,7 @@ const Footer: React.FC = () => {
                     className={`text-sm hover:text-blue-400 cursor-pointer ${
                       activeLink === "contact" ? "text-blue-400" : ""
                     }`}
-                    href="/"
+                    href="#UpdatedContentSection"
                     onClick={() => setActiveLink("contact")}
                   >
                     Risk assessment and mitigation
@@ -104,7 +104,7 @@ const Footer: React.FC = () => {
                     className={`text-sm hover:text-blue-400 cursor-pointer ${
                       activeLink === "contact" ? "text-blue-400" : ""
                     }`}
-                    href="/"
+                    href="#UpdatedContentSection"
                     onClick={() => setActiveLink("contact")}
                   >
                     Implementation

@@ -15,9 +15,14 @@ const nav_items: Array<NavItem> = [
         page: "/",
     },
     {
-      label: "Updated Diagrams",
+        label: "v1 Diagrams",
+        page: "/documents",
+    },
+    {
+      label: "v2 Diagrams",
       page: "/updated_documents",
   },
+
 ]
 
 
@@ -95,12 +100,19 @@ export function Navbar() {
                 </li>
               </Link>
               <Link href="/updated_documents">
-                <li onClick = {() => setMenuOpen(false)}
+                  <li onClick = {() => setMenuOpen(false)}
                 className = "py-4 cursor-pointer"
                 >
-                  Updated Diagrams
+                   v2 Diagrams
                 </li>
               </Link>
+                <Link href="/documents">
+                    <li onClick = {() => setMenuOpen(false)}
+                        className = "py-4 cursor-pointer"
+                    >
+                        v1 Diagrams
+                    </li>
+                </Link>
             </ul>
         </div>
         <div className="flex gap-5">
