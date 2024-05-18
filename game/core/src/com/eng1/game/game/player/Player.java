@@ -27,7 +27,10 @@ import lombok.Getter;
 import lombok.Setter;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * A class that represents the player character in the game.
@@ -41,7 +44,8 @@ public class Player extends Sprite implements InputProcessor {
     private final TiledMapTileLayer collisionLayer;
     private final MapLayer transitionLayer;
     private final MapLayer activityLayer;
-    private volatile ActivityMapObject potentialActivity = null;
+    private ActivityMapObject potentialActivity = null;
+    private List<Statistics.PlayerStatistics> canDoActivity = null;
 
     /**
      * Constructs a new player with the given sprite and collision layer.
@@ -63,12 +67,19 @@ public class Player extends Sprite implements InputProcessor {
     }
 
     public void drawHud(Batch batch) {
-        if (potentialActivity != null) {
-            Label label = new Label("Press E to " + potentialActivity.getText(), uiSkin);
-            // set position to bottom middle
+        if (potentialActivity != null && canDoActivity != null) {
+            Label label;
+            if (canDoActivity.isEmpty()) {
+                label = new Label("Press E to " + potentialActivity.getText(), uiSkin);
+                // set position to bottom middle
+            } else {
+                label = new Label("Not enough " + canDoActivity.stream().map(Statistics.PlayerStatistics::getLabel).collect(Collectors.joining(", ")), uiSkin);
+                // set position to bottom middle
+            }
             label.setPosition(Gdx.graphics.getWidth() / 2f - label.getWidth() / 2f, 0);
             label.draw(batch, 1);
         }
+
 
         Statistics.PlayerStatistics[] statistics = Statistics.PlayerStatistics.values();
         for (int i = 0; i < statistics.length; i++) {
@@ -131,7 +142,9 @@ public class Player extends Sprite implements InputProcessor {
             screen.changeMap(cellTransition.getLeft(), cellTransition.getRight());
         }
 
-        potentialActivity = getCellActivity(getX(), getY());
+        ActivityMapObject cellActivity = getCellActivity(getX(), getY());
+        potentialActivity = cellActivity;
+        canDoActivity = cellActivity == null ? null : canDoActivity();
     }
 
     /**
@@ -162,12 +175,33 @@ public class Player extends Sprite implements InputProcessor {
             case Keys.E:
                 // todo: activity
                 if (potentialActivity == null) break;
+                if (canDoActivity == null) break;
+                if (!canDoActivity.isEmpty()) break;
                 doActivity();
                 break;
             default:
                 return false;
         }
         return true;
+    }
+
+    private @Nullable List<Statistics.PlayerStatistics> canDoActivity() {
+        if (potentialActivity == null) return null;
+        ActivityMapObject activity = Objects.requireNonNull(potentialActivity);
+        Activities activityRef = activity.getActivity();
+        List<Float> changeStats = activity.getChangeStats();
+        List<Statistics.PlayerStatistics> notEnough = new ArrayList<>();
+        Pair<Statistics.PlayerStatistics, Statistics.Effect>[] effects = activityRef.getEffects();
+        for (int i = 0; i < effects.length; i++) {
+            Pair<Statistics.PlayerStatistics, Statistics.Effect> effect = effects[i];
+            Statistics.PlayerStatistics statistic = effect.getLeft();
+            Statistics.Effect effectType = effect.getRight();
+            float change = changeStats.get(i);
+            if (effectType.equals(Statistics.Effect.DECREASE) && statistic.get() - change < 0) {
+                notEnough.add(statistic);
+            }
+        }
+        return notEnough;
     }
 
     private void doActivity() {

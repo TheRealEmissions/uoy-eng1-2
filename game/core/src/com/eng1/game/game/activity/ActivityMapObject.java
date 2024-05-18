@@ -25,8 +25,8 @@ public final class ActivityMapObject {
         this.text = properties.get("activity_str", String.class);
         this.activity = Activities.fromString(properties.get("activity_type", String.class));
         this.advanceTimeBy = properties.get("activity_time", Integer.class);
-        this.changeStats = Arrays.stream(properties.get("change_stats", String.class).split(","))
-                .map(Float::parseFloat)
+        this.changeStats = Arrays.stream(properties.get("change_stats", String.class).split(",", -1))
+                .map(x -> x.isEmpty() ? 0 : Float.parseFloat(x))
                 .collect(Collectors.toUnmodifiableList());
     }
 
