@@ -13,7 +13,10 @@ import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.eng1.game.assets.maps.MapAssets;
+import com.eng1.game.assets.skins.SkinAssets;
 import com.eng1.game.game.activity.ActivityMapObject;
 import com.eng1.game.screens.PlayScreen;
 import com.eng1.game.screens.Screens;
@@ -26,6 +29,7 @@ import org.jetbrains.annotations.Nullable;
  * A class that represents the player character in the game.
  */
 public class Player extends Sprite implements InputProcessor {
+    private static final Skin uiSkin = SkinAssets.UI.get();
     private final Vector2 velocity = new Vector2();
     @Setter @Getter
     private float speed = 60 * 5f;
@@ -52,6 +56,15 @@ public class Player extends Sprite implements InputProcessor {
     public void draw(Batch batch) {
         update(Gdx.graphics.getDeltaTime());
         super.draw(batch);
+    }
+
+    public void drawHud(Batch batch) {
+        if (potentialActivity != null) {
+            Label label = new Label("Press E to " + potentialActivity.getText(), uiSkin);
+            // set position to bottom middle
+            label.setPosition(Gdx.graphics.getWidth() / 2f - label.getWidth() / 2f, 0);
+            label.draw(batch, 1);
+        }
     }
 
     /**
@@ -228,9 +241,9 @@ public class Player extends Sprite implements InputProcessor {
             float width = properties.get("width", float.class);
             float height = properties.get("height", float.class);
             if (x >= x1 && x <= x1 + width && y >= y2 && y <= y2 + height) {
-                Boolean isActivity = properties.get("is_activity", boolean.class);
+                Boolean isActivity = properties.get("is_activity", Boolean.class);
                 if (!Boolean.TRUE.equals(isActivity)) continue;
-                return new ActivityMapObject(mapObject);
+                return ActivityMapObject.fromMapObject(mapObject);
             }
         }
         return null;
@@ -276,5 +289,9 @@ public class Player extends Sprite implements InputProcessor {
     public void setSize(float width, float height) {
         super.setSize(width, height);
         setScale(3);
+    }
+
+    public void dispose() {
+        uiSkin.dispose();
     }
 }

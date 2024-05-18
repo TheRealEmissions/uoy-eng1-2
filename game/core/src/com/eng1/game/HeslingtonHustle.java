@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input;
 import com.eng1.game.assets.images.ImageAssets;
 import com.eng1.game.assets.maps.MapAssets;
 import com.eng1.game.assets.skins.SkinAssets;
+import com.eng1.game.game.player.Player;
 import com.eng1.game.game.player.Statistics;
 import com.eng1.game.screens.*;
 import lombok.Getter;
