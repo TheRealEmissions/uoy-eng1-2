@@ -81,20 +81,20 @@ public class Activity {
         }
 
         // Checks whether there is enough energy left to complete the activity
-        if (Statistics.getEnergy() - this.energyNeeded < 0) {
+/*        if (Statistics.getEnergy() - this.energyNeeded < 0) {
             return;
-        }
+        }*/
 
         // Increase the relevent trackers
         this.timesCompletedDay++;
         this.timesCompletedWeek++;
         Statistics.increaseTime(this.timeNeeded);
-        Statistics.decreaseEnergy(this.energyNeeded);
+/*        Statistics.decreaseEnergy(this.energyNeeded);*/
 
         // Debugging
         // ---
         System.out.println("Current time: " + Statistics.getTime());
-        System.out.println("Current energy: " + Statistics.getEnergy());
+        System.out.println("Current energy: " + 0);
         System.out.println("Current score: " + Statistics.getScore());
         // ---
 
