@@ -45,7 +45,7 @@ public class Statistics {
         @Override
         public void set(@Range(from=0, to=1) float value) {
             this.value = value;
-            boolean b = this.progressBar.setValue(Math.max(PROGRESS_BAR_MINIMUM, Math.min(1, value)));
+            this.progressBar.setValue(Math.max(PROGRESS_BAR_MINIMUM, Math.min(1, value)));
         }
 
         @Override
