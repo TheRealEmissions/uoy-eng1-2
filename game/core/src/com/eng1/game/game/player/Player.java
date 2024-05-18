@@ -17,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.eng1.game.assets.maps.MapAssets;
 import com.eng1.game.assets.skins.SkinAssets;
+import com.eng1.game.game.activity.Activities;
 import com.eng1.game.game.activity.ActivityMapObject;
 import com.eng1.game.screens.PlayScreen;
 import com.eng1.game.screens.Screens;
@@ -24,6 +25,8 @@ import com.eng1.game.utils.Pair;
 import lombok.Getter;
 import lombok.Setter;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 /**
  * A class that represents the player character in the game.
@@ -140,11 +143,37 @@ public class Player extends Sprite implements InputProcessor {
             case Keys.E:
                 // todo: activity
                 if (potentialActivity == null) break;
+                doActivity();
                 break;
             default:
                 return false;
         }
         return true;
+    }
+
+    private void doActivity() {
+        if (potentialActivity == null) return;
+        ActivityMapObject activity = potentialActivity;
+        Activities activityRef = activity.getActivity();
+        List<Float> changeStats = activity.getChangeStats();
+        Pair<Statistics.PlayerStatistics, Statistics.Effect>[] effects = activityRef.getEffects();
+        for (int i = 0; i < effects.length; i++) {
+            Pair<Statistics.PlayerStatistics, Statistics.Effect> effect = effects[i];
+            Statistics.PlayerStatistics statistic = effect.getLeft();
+            Statistics.Effect effectType = effect.getRight();
+            float change = changeStats.get(i);
+            switch (effectType) {
+                case INCREASE:
+                    statistic.increase(change);
+                    break;
+                case DECREASE:
+                    statistic.decrease(change);
+                    break;
+                case RESET:
+                    statistic.reset();
+                    break;
+            }
+        }
     }
 
     /**

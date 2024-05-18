@@ -2,8 +2,10 @@ package com.eng1.game.game.activity;
 
 import com.eng1.game.game.player.Statistics;
 import com.eng1.game.utils.Pair;
+import lombok.Getter;
 import org.jetbrains.annotations.Nullable;
 
+@Getter
 public enum Activities {
     STUDY(
         Pair.of(Statistics.PlayerStatistics.STUDY, Statistics.Effect.INCREASE),
