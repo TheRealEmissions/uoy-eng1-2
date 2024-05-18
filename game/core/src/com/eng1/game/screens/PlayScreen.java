@@ -250,6 +250,8 @@ public class PlayScreen implements Screen {
         displayDateTime.getData().setScale(2); // Adjust the scale as needed
         displayDateTime.draw(uiBatch, stats, 12, 1070);
 
+        player.drawHud(uiBatch);
+
         uiBatch.end();
     }
 
@@ -290,5 +292,6 @@ public class PlayScreen implements Screen {
         displayDateTime.dispose();
         selectedCharacter.dispose(selectedCharacterTexture);
         uiBatch.dispose();
+        player.dispose();
     }
 }
