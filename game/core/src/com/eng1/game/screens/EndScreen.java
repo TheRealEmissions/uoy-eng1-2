@@ -47,7 +47,7 @@ public class EndScreen implements Screen {
 
         // Add labels
         Label titleLabel = new Label("Heslington Hustle", skin);
-        Label scoreLabel = new Label("Score: " + Activity.getFinalScore(), skin); // Retrieve the final score from Activity
+        Label scoreLabel = new Label("Score: " + "idk yet", skin); // Retrieve the final score from Activity
 
 
         // Add actors to the table
@@ -55,7 +55,7 @@ public class EndScreen implements Screen {
         table.row().pad(10, 0, 0, 10);
 
         // Display completed activities
-        Map<String, Integer> completedActivities = Activity.countCompletedActivities();
+        Map<String, Integer> completedActivities = Map.of();
         for (String type : completedActivities.keySet()) {
             table.add(new Label(type + ": " + completedActivities.get(type), skin)).left().pad(10);
             table.row();
