@@ -77,11 +77,6 @@ public class PlayScreen implements Screen {
 
         // Set the map in the renderer
         renderer.setMap(currentMap);
-        if (transitionKey == null) {
-            setPlayerPosition(); // Set the location of the player
-        } else {
-            setPlayerPosition(transitionKey); // Set the location of the player
-        }
 
         TiledMapTileLayer layer = (TiledMapTileLayer) currentMap.getLayers().get(0);
         float mapWidth = (float) layer.getWidth() * layer.getTileWidth();
@@ -118,6 +113,12 @@ public class PlayScreen implements Screen {
             playerSizes.put(map, Pair.of(player.getWidth(), player.getHeight()));
         }
 
+        if (transitionKey == null) {
+            setPlayerPosition(); // Set the location of the player
+        } else {
+            setPlayerPosition(transitionKey); // Set the location of the player
+        }
+
         if (speed != null) {
             player.setSpeed(speed);
         } else {
@@ -132,6 +133,7 @@ public class PlayScreen implements Screen {
         // Center the camera
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
         camera.update();
+        renderer.getBatch().setProjectionMatrix(camera.combined);
 
         copy.dispose(); // Dispose the old map
     }
