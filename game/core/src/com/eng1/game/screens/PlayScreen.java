@@ -13,8 +13,11 @@ import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.eng1.game.assets.images.ImageAssets;
 import com.eng1.game.assets.maps.MapAssets;
+import com.eng1.game.assets.skins.SkinAssets;
 import com.eng1.game.game.player.Player;
 import com.eng1.game.game.player.Statistics;
 import com.eng1.game.utils.Pair;
@@ -47,6 +50,7 @@ public class PlayScreen implements Screen {
     private Player player;
     private final BitmapFont displayDateTime = new BitmapFont();
     private final SpriteBatch uiBatch = new SpriteBatch();
+    private final Skin uiSkin = SkinAssets.UI.get();
 
     private final EnumMap<MapAssets, Float> defaultViewportWidth = new EnumMap<>(MapAssets.class);
     private final EnumMap<MapAssets, Float> defaultViewportHeight = new EnumMap<>(MapAssets.class);
@@ -246,9 +250,10 @@ public class PlayScreen implements Screen {
 
         uiBatch.begin();
 
-        final String stats = ("Day: " + Statistics.getDay() + " Time: " + Statistics.getTime().plusHours(1) + " Energy: " + Statistics.PlayerStatistics.ENERGY.get());
-        displayDateTime.getData().setScale(2); // Adjust the scale as needed
-        displayDateTime.draw(uiBatch, stats, 12, 1070);
+        final String stats = ("Day: " + Statistics.getDay() + " - Time: " + Statistics.getTime().plusHours(1));
+        Label statsLabel = new Label(stats, uiSkin);
+        statsLabel.setPosition(Gdx.graphics.getWidth() / 2f - statsLabel.getWidth() / 2f, Gdx.graphics.getHeight() - statsLabel.getHeight());
+        statsLabel.draw(uiBatch, 1);
 
         player.drawHud(uiBatch);
 
@@ -293,5 +298,6 @@ public class PlayScreen implements Screen {
         selectedCharacter.dispose(selectedCharacterTexture);
         uiBatch.dispose();
         player.dispose();
+        uiSkin.dispose();
     }
 }
