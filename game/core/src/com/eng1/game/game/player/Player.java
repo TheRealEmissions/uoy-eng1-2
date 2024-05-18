@@ -3,7 +3,6 @@ package com.eng1.game.game.player;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.MapLayer;
@@ -13,10 +12,9 @@ import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Null;
 import com.eng1.game.assets.maps.MapAssets;
+import com.eng1.game.game.activity.ActivityMapObject;
 import com.eng1.game.screens.PlayScreen;
 import com.eng1.game.screens.Screens;
 import com.eng1.game.utils.Pair;
@@ -35,6 +33,7 @@ public class Player extends Sprite implements InputProcessor {
     private final TiledMapTileLayer collisionLayer;
     private final MapLayer transitionLayer;
     private final MapLayer activityLayer;
+    private volatile ActivityMapObject potentialActivity = null;
 
     /**
      * Constructs a new player with the given sprite and collision layer.
@@ -96,6 +95,8 @@ public class Player extends Sprite implements InputProcessor {
             PlayScreen screen = ((PlayScreen) Screens.PLAY.get());
             screen.changeMap(cellTransition.getLeft(), cellTransition.getRight());
         }
+
+        potentialActivity = getCellActivity(getX(), getY());
     }
 
     /**
@@ -125,6 +126,7 @@ public class Player extends Sprite implements InputProcessor {
                 break;
             case Keys.E:
                 // todo: activity
+                if (potentialActivity == null) break;
                 break;
             default:
                 return false;
@@ -216,7 +218,7 @@ public class Player extends Sprite implements InputProcessor {
         return null;
     }
 
-    private @Nullable String getCellActivity(float x, float y) {
+    private @Nullable ActivityMapObject getCellActivity(float x, float y) {
         MapObjects objects = activityLayer.getObjects();
         for (int i = 0; i < objects.getCount(); i++) {
             MapObject mapObject = objects.get(i);
@@ -226,9 +228,9 @@ public class Player extends Sprite implements InputProcessor {
             float width = properties.get("width", float.class);
             float height = properties.get("height", float.class);
             if (x >= x1 && x <= x1 + width && y >= y2 && y <= y2 + height) {
-                Boolean isActivity = properties.get("isActivity", boolean.class);
+                Boolean isActivity = properties.get("is_activity", boolean.class);
                 if (!Boolean.TRUE.equals(isActivity)) continue;
-                return properties.get("activity", String.class);
+                return new ActivityMapObject(mapObject);
             }
         }
         return null;

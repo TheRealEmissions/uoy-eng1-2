@@ -32,6 +32,15 @@ public enum Activities {
         this.effects = effects;
     }
 
+    public static @Nullable Activities fromString(String string) {
+        for (Activities activity : values()) {
+            if (activity.name().equalsIgnoreCase(string)) {
+                return activity;
+            }
+        }
+        return null;
+    }
+
     public @Nullable Statistics.Effect getEffect(Statistics.PlayerStatistics statistic) {
         for (Pair<Statistics.PlayerStatistics, Statistics.Effect> effect : effects) {
             if (effect.getLeft().equals(statistic)) {

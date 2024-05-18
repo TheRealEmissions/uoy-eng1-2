@@ -16,7 +16,6 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.eng1.game.assets.images.ImageAssets;
 import com.eng1.game.assets.maps.MapAssets;
 import com.eng1.game.game.player.Player;
-import com.eng1.game.game.activity.Activity;
 import com.eng1.game.game.player.Statistics;
 import com.eng1.game.utils.Pair;
 import org.jetbrains.annotations.NotNull;
@@ -53,15 +52,6 @@ public class PlayScreen implements Screen {
     private final EnumMap<MapAssets, Float> defaultViewportHeight = new EnumMap<>(MapAssets.class);
     private final EnumMap<MapAssets, Pair<Float, Float>> playerSizes = new EnumMap<>(MapAssets.class);
     private final EnumMap<MapAssets, Float> playerSpeeds = new EnumMap<>(MapAssets.class);
-
-    /**
-     * Constructor for the Play class.
-     * Initializes the camera.
-     */
-    public PlayScreen() {
-        //create activities
-        Activity.createActivities();
-    }
 
     /**
      * Changes the current map to the new map.
