@@ -12,9 +12,9 @@ import java.time.LocalTime;
 public class Statistics {
 
     public enum PlayerStatistics implements PlayerStatistic {
-        ENERGY("Energy", 1f),
-        HAPPINESS("Happiness", 1f),
-        STUDY("Study Level", 0.1f);
+        ENERGY("Energy", 0.5f),
+        HAPPINESS("Happiness", 0.5f),
+        STUDY("Study Level", 0f);
 
         @Getter
         private final ProgressBar progressBar = new ProgressBar(0, 1, 0.1f, false, uiSkin);
@@ -44,11 +44,8 @@ public class Statistics {
 
         @Override
         public void set(@Range(from=0, to=1) float value) {
-            this.value = Math.max(PROGRESS_BAR_MINIMUM, Math.min(1, value));
-            boolean b = this.progressBar.setValue(this.value);
-            System.out.println("Value set: " + b);
-            System.out.println(progressBar.getValue());
-            System.out.println(progressBar.getVisualPercent());
+            this.value = value;
+            boolean b = this.progressBar.setValue(Math.max(PROGRESS_BAR_MINIMUM, Math.min(1, value)));
         }
 
         @Override
@@ -58,7 +55,7 @@ public class Statistics {
 
         @Override
         public void decrease(float amount) {
-            set(Math.max(PROGRESS_BAR_MINIMUM, value - amount));
+            set(Math.max(0, value - amount));
         }
 
         @Override
@@ -90,6 +87,10 @@ public class Statistics {
         public void reset() {
             set(getDefault());
         }
+
+        public static int getMaxScorePerDay() {
+            return values().length;
+        }
     }
 
     public enum Effect {
@@ -100,8 +101,9 @@ public class Statistics {
 
     @Getter
     private static int score = 0;
-    @Getter
     public static final int MAX_DAYS = 7;
+
+    public static final int MAX_SCORE = PlayerStatistics.getMaxScorePerDay() * MAX_DAYS;
     @Getter
     private static int day = 1; //Current day
     @Getter
