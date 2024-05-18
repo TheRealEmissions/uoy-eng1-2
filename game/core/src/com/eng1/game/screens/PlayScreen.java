@@ -230,8 +230,8 @@ public class PlayScreen implements Screen {
         camera.position.set(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2, 0);
 
         TiledMapTileLayer layer = (TiledMapTileLayer) currentMap.getLayers().get(0);
-        float mapWidth = layer.getWidth() * layer.getTileWidth();
-        float mapHeight = layer.getHeight() * layer.getTileHeight();
+        float mapWidth = (float) layer.getWidth() * layer.getTileWidth();
+        float mapHeight = (float) layer.getHeight() * layer.getTileHeight();
 
         // clamp camera to map
         camera.position.x = Math.min(mapWidth - camera.viewportWidth / 2, Math.max(camera.viewportWidth / 2, camera.position.x));
