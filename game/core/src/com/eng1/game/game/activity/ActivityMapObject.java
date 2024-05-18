@@ -7,24 +7,20 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
 public final class ActivityMapObject {
+    private static final HashMap<MapObject, ActivityMapObject> activityMap = new HashMap<>();
+
     private final String text;
     private final Activities activity;
     private final int advanceTimeBy;
     private final @Unmodifiable List<Float> changeStats;
 
-    public ActivityMapObject(String text, Activities activity, int advanceTimeBy, List<Float> changeStats) {
-        this.text = text;
-        this.activity = activity;
-        this.advanceTimeBy = advanceTimeBy;
-        this.changeStats = changeStats;
-    }
-
-    public ActivityMapObject(@NotNull MapObject object) {
+    private ActivityMapObject(@NotNull MapObject object) {
         MapProperties properties = object.getProperties();
         this.text = properties.get("activity_str", String.class);
         this.activity = Activities.fromString(properties.get("activity_type", String.class));
@@ -32,5 +28,9 @@ public final class ActivityMapObject {
         this.changeStats = Arrays.stream(properties.get("change_stats", String.class).split(","))
                 .map(Float::parseFloat)
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    public static ActivityMapObject fromMapObject(@NotNull MapObject object) {
+        return activityMap.computeIfAbsent(object, ActivityMapObject::new);
     }
 }
