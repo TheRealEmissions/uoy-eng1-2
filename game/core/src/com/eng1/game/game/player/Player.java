@@ -14,6 +14,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.eng1.game.assets.maps.MapAssets;
 import com.eng1.game.assets.skins.SkinAssets;
@@ -66,6 +67,24 @@ public class Player extends Sprite implements InputProcessor {
             Label label = new Label("Press E to " + potentialActivity.getText(), uiSkin);
             // set position to bottom middle
             label.setPosition(Gdx.graphics.getWidth() / 2f - label.getWidth() / 2f, 0);
+            label.draw(batch, 1);
+        }
+
+        Statistics.PlayerStatistics[] statistics = Statistics.PlayerStatistics.values();
+        for (int i = 0; i < statistics.length; i++) {
+            Statistics.PlayerStatistics statistic = statistics[i];
+            ProgressBar progressBar = statistic.getProgressBar();
+            progressBar.updateVisualValue();
+            Label label = new Label(statistic.getLabel() + ": " + (int) (statistic.get() * 100) + "%", uiSkin);
+
+            // Calculate the y position based on the index
+            float yPos = i * (progressBar.getHeight() + 10); // 10 is the margin between each statistic
+
+            // bottom right of screen
+            progressBar.setPosition(Gdx.graphics.getWidth() - progressBar.getWidth(), yPos);
+            label.setPosition(Gdx.graphics.getWidth() - progressBar.getWidth(), yPos + progressBar.getHeight());
+
+            progressBar.draw(batch, 1);
             label.draw(batch, 1);
         }
     }

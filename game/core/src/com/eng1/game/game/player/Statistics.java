@@ -23,15 +23,18 @@ public class Statistics {
         private final String label;
         private final float defaultValue;
 
-        private @Range(from=0, to=1) float value = getDefault();
+        private @Range(from=0, to=1) float value;
         private float total = 0f;
 
         PlayerStatistics(String label, float defaultValue) {
             this.label = label;
             this.defaultValue = defaultValue;
+            this.value = defaultValue;
+            progressBar.setValue(defaultValue);
             progressBar.setWidth(200);
             progressBar.setHeight(50);
             progressBar.setAnimateDuration(0.25f);
+            progressBar.setRound(false);
         }
 
         @Override
@@ -42,7 +45,10 @@ public class Statistics {
         @Override
         public void set(@Range(from=0, to=1) float value) {
             this.value = Math.max(PROGRESS_BAR_MINIMUM, Math.min(1, value));
-            this.progressBar.setValue(this.value);
+            boolean b = this.progressBar.setValue(this.value);
+            System.out.println("Value set: " + b);
+            System.out.println(progressBar.getValue());
+            System.out.println(progressBar.getVisualPercent());
         }
 
         @Override
