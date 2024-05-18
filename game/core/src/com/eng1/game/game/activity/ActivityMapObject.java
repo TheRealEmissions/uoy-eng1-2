@@ -9,11 +9,12 @@ import org.jetbrains.annotations.Unmodifiable;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Getter
 public final class ActivityMapObject {
-    private static final HashMap<MapObject, ActivityMapObject> activityMap = new HashMap<>();
+    private static final Map<MapObject, ActivityMapObject> activityMap = new HashMap<>();
 
     private final String text;
     private final Activities activity;
