@@ -246,7 +246,7 @@ public class PlayScreen implements Screen {
 
         uiBatch.begin();
 
-        final String stats = ("Day: " + Statistics.getDay() + " Time: " + Statistics.getTime() + " Energy: " + Statistics.PlayerStatistics.ENERGY.get());
+        final String stats = ("Day: " + Statistics.getDay() + " Time: " + Statistics.getTime().plusHours(1) + " Energy: " + Statistics.PlayerStatistics.ENERGY.get());
         displayDateTime.getData().setScale(2); // Adjust the scale as needed
         displayDateTime.draw(uiBatch, stats, 12, 1070);
 

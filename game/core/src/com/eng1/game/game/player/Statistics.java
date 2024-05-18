@@ -105,14 +105,22 @@ public class Statistics {
     @Getter
     private static int day = 1; //Current day
     @Getter
-    private static LocalTime time = LocalTime.of(8, 0); //Current time
-    public static final LocalTime DAY_START = LocalTime.of(8, 0); //When the player wakes up
-    public static final LocalTime DAY_END = LocalTime.of(0, 0); //When the player has to sleep
+    private static LocalTime time = LocalTime.of(7, 0); //Current time
+    public static final LocalTime DAY_START = LocalTime.of(7, 0); //When the player wakes up
+    public static final LocalTime DAY_END = LocalTime.of(23, 0); //When the player has to sleep
 
     public static void newDay() {
         //Sets time and energy for the new day, increases day count
         Statistics.time = DAY_START;
         Statistics.day++;
+    }
+
+    public static boolean isEndOfDay() {
+        return Statistics.time.equals(DAY_END);
+    }
+
+    public static boolean isEndOfDays() {
+        return Statistics.day == MAX_DAYS;
     }
 
     public static void increaseTime(@NotNull LocalTime time) {

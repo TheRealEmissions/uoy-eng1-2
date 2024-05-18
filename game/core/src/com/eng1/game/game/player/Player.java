@@ -27,6 +27,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.jetbrains.annotations.Nullable;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -69,12 +70,23 @@ public class Player extends Sprite implements InputProcessor {
     public void drawHud(Batch batch) {
         if (potentialActivity != null && canDoActivity != null) {
             Label label;
-            if (canDoActivity.isEmpty()) {
-                label = new Label("Press E to " + potentialActivity.getText(), uiSkin);
-                // set position to bottom middle
-            } else {
-                label = new Label("Not enough " + canDoActivity.stream().map(Statistics.PlayerStatistics::getLabel).collect(Collectors.joining(", ")), uiSkin);
-                // set position to bottom middle
+            labelCreation: {
+                if (Statistics.isEndOfDay()) {
+                    label = new Label("It's time to sleep!", uiSkin);
+                    break labelCreation;
+                }
+                if (!hasTimeForActivity()) {
+                    label = new Label("It's too late to " + potentialActivity.getText(), uiSkin);
+                    // set position to bottom middle
+                    break labelCreation;
+                }
+                if (canDoActivity.isEmpty()) {
+                    label = new Label("Press E to " + potentialActivity.getText(), uiSkin);
+                    // set position to bottom middle
+                } else {
+                    label = new Label("Not enough " + canDoActivity.stream().map(Statistics.PlayerStatistics::getLabel).collect(Collectors.joining(", ")), uiSkin);
+                    // set position to bottom middle
+                }
             }
             label.setPosition(Gdx.graphics.getWidth() / 2f - label.getWidth() / 2f, 0);
             label.draw(batch, 1);
@@ -173,7 +185,6 @@ public class Player extends Sprite implements InputProcessor {
                 velocity.x = speed;
                 break;
             case Keys.E:
-                // todo: activity
                 if (potentialActivity == null) break;
                 if (canDoActivity == null) break;
                 if (!canDoActivity.isEmpty()) break;
@@ -185,8 +196,17 @@ public class Player extends Sprite implements InputProcessor {
         return true;
     }
 
+    private boolean hasTimeForActivity() {
+        if (potentialActivity == null) return false;
+        if (Statistics.isEndOfDay()) return false;
+        ActivityMapObject activity = Objects.requireNonNull(potentialActivity);
+        return Statistics.getTime().plusHours(activity.getAdvanceTimeBy()).isBefore(Statistics.DAY_END);
+    }
+
     private @Nullable List<Statistics.PlayerStatistics> canDoActivity() {
         if (potentialActivity == null) return null;
+        if (Statistics.isEndOfDay()) return null;
+        if (!hasTimeForActivity()) return null;
         ActivityMapObject activity = Objects.requireNonNull(potentialActivity);
         Activities activityRef = activity.getActivity();
         List<Float> changeStats = activity.getChangeStats();
@@ -226,6 +246,19 @@ public class Player extends Sprite implements InputProcessor {
                     statistic.reset();
                     break;
             }
+        }
+        if (activityRef.equals(Activities.SLEEP)) {
+            for (Statistics.PlayerStatistics statistic : Statistics.PlayerStatistics.values()) {
+                statistic.increaseTotal(statistic.get());
+            }
+            if (Statistics.isEndOfDays()) {
+                Screens.END.setAsCurrent();
+                return;
+            } else {
+                Statistics.newDay();
+            }
+        } else {
+            Statistics.increaseTime(LocalTime.of(activity.getAdvanceTimeBy(), 0));
         }
     }
 
