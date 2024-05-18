@@ -256,7 +256,7 @@
 </data>
  </layer>
  <objectgroup id="9" name="activities">
-  <object id="1" name="lift some weights" x="150.087" y="174.609" width="32.8696" height="21.2174">
+  <object id="1" name="lift some weights" x="147.506" y="170.738" width="39.3212" height="27.669">
    <properties>
     <property name="activity_str" value="do some cardio"/>
     <property name="activity_time" type="int" value="2"/>
@@ -265,7 +265,7 @@
     <property name="is_activity" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="2" name="do some cardio" x="114" y="238.957" width="29.0435" height="49.8261">
+  <object id="2" name="do some cardio" x="114" y="256.376" width="32.9145" height="40.7938">
    <properties>
     <property name="activity_str" value="do some cardio"/>
     <property name="activity_time" type="int" value="1"/>

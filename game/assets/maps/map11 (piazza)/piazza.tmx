@@ -320,7 +320,7 @@
 </data>
  </layer>
  <objectgroup id="8" name="activities">
-  <object id="1" name="college meal" x="105.863" y="234.851" width="28.6957" height="39.2677">
+  <object id="1" name="college meal" x="105.863" y="229.665" width="29.56" height="44.4535">
    <properties>
     <property name="activity_str" value="get college meal"/>
     <property name="activity_time" type="int" value="1"/>
@@ -329,7 +329,7 @@
     <property name="is_activity" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="2" name="get a snack" x="207.808" y="119.314" width="84.7185" height="23.5515">
+  <object id="2" name="get a snack" x="207.808" y="119.314" width="84.7185" height="28.7373">
    <properties>
     <property name="activity_str" value="have a snack"/>
     <property name="activity_time" type="int" value="1"/>
@@ -338,7 +338,7 @@
     <property name="is_activity" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="3" name="tiktok and chill" x="272.302" y="429.231" width="45.4508" height="34.1236">
+  <object id="3" name="tiktok and chill" x="263.659" y="429.231" width="54.0938" height="39.3094">
    <properties>
     <property name="activity_str" value="watch tiktoks"/>
     <property name="activity_time" type="int" value="1"/>
