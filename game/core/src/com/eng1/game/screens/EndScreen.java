@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.eng1.game.game.player.Score;
+import com.eng1.game.game.Score;
 import com.eng1.game.game.player.Statistics;
 
 import java.util.Arrays;

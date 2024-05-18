@@ -1,4 +1,4 @@
-package com.eng1.game.game.player;
+package com.eng1.game.game;
 
 import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.Contract;

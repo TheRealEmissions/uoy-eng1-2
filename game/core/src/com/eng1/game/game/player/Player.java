@@ -71,14 +71,16 @@ public class Player extends Sprite implements InputProcessor {
         if (potentialActivity != null && canDoActivity != null) {
             Label label;
             labelCreation: {
-                if (Statistics.isEndOfDay()) {
-                    label = new Label("It's time to sleep!", uiSkin);
-                    break labelCreation;
-                }
-                if (!hasTimeForActivity()) {
-                    label = new Label("It's too late to " + potentialActivity.getText(), uiSkin);
-                    // set position to bottom middle
-                    break labelCreation;
+                if (!potentialActivity.getActivity().equals(Activities.SLEEP)) {
+                    if (Statistics.isEndOfDay()) {
+                        label = new Label("It's time to sleep!", uiSkin);
+                        break labelCreation;
+                    }
+                    if (!hasTimeForActivity()) {
+                        label = new Label("It's too late to " + potentialActivity.getText(), uiSkin);
+                        // set position to bottom middle
+                        break labelCreation;
+                    }
                 }
                 if (canDoActivity.isEmpty()) {
                     label = new Label("Press E to " + potentialActivity.getText(), uiSkin);
@@ -188,6 +190,10 @@ public class Player extends Sprite implements InputProcessor {
                 if (potentialActivity == null) break;
                 if (canDoActivity == null) break;
                 if (!canDoActivity.isEmpty()) break;
+                if (!potentialActivity.getActivity().equals(Activities.SLEEP)) {
+                    if (Statistics.isEndOfDay()) break;
+                    if (!hasTimeForActivity()) break;
+                }
                 doActivity();
                 break;
             default:
@@ -198,15 +204,17 @@ public class Player extends Sprite implements InputProcessor {
 
     private boolean hasTimeForActivity() {
         if (potentialActivity == null) return false;
+        if (potentialActivity.getActivity().equals(Activities.SLEEP)) return true;
         if (Statistics.isEndOfDay()) return false;
-        ActivityMapObject activity = Objects.requireNonNull(potentialActivity);
-        return Statistics.getTime().plusHours(activity.getAdvanceTimeBy()).isBefore(Statistics.DAY_END);
+        ActivityMapObject activity = potentialActivity;
+        LocalTime time = Statistics.getTime();
+        LocalTime dayEnd = Statistics.DAY_END;
+        int hoursBeforeEnd = dayEnd.getHour() - time.getHour();
+        return hoursBeforeEnd >= activity.getAdvanceTimeBy();
     }
 
     private @Nullable List<Statistics.PlayerStatistics> canDoActivity() {
         if (potentialActivity == null) return null;
-        if (Statistics.isEndOfDay()) return null;
-        if (!hasTimeForActivity()) return null;
         ActivityMapObject activity = Objects.requireNonNull(potentialActivity);
         Activities activityRef = activity.getActivity();
         List<Float> changeStats = activity.getChangeStats();
