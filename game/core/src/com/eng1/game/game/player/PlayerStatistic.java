@@ -5,7 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.eng1.game.assets.skins.SkinAssets;
 
 public interface PlayerStatistic {
-    float PROGRESS_BAR_MINIMUM = 0.1f;
+    float PROGRESS_BAR_MINIMUM = 0f;
     Skin uiSkin = SkinAssets.UI.get();
 
     ProgressBar getProgressBar();
