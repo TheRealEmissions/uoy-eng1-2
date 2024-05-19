@@ -22,6 +22,10 @@ const nav_items: Array<NavItem> = [
       label: "v2 Diagrams",
       page: "/updated_documents",
   },
+    {
+        label: "Testing",
+        page: "/testing",
+    }
 
 ]
 
@@ -111,6 +115,13 @@ export function Navbar() {
                         className = "py-4 cursor-pointer"
                     >
                         v1 Diagrams
+                    </li>
+                </Link>
+                <Link href="/testing">
+                    <li onClick = {() => setMenuOpen(false)}
+                        className = "py-4 cursor-pointer"
+                    >
+                        Testing
                     </li>
                 </Link>
             </ul>
