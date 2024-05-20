@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
+import static com.eng1.game.assets.skins.SkinAssetPaths.UISKIN_JSON_PATH;
+
 public enum SkinAssets implements Assets<Skin> {
-    UI(() -> new Skin(Gdx.files.internal("skin/uiskin.json")));
+    UI(() -> new Skin(Gdx.files.internal(UISKIN_JSON_PATH)));
 
     private final List<Skin> loadedSkins = new ArrayList<>();
     private final Supplier<Skin> skin;
