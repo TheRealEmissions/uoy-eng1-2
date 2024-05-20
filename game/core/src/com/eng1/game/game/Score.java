@@ -70,6 +70,7 @@ public class Score {
         file.writeString(json.prettyPrint(scores), false);
     }
 
+
     @Getter
     public static class ScoreEntry {
         private final String playerName;
@@ -84,12 +85,5 @@ public class Score {
             this.score = score;
         }
 
-        public String getPlayerName() {
-            return playerName;
-        }
-
-        public int getScore() {
-            return score;
-        }
     }
 }
