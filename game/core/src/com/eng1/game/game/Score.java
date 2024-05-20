@@ -46,7 +46,7 @@ public class Score {
         FileHandle file = Gdx.files.local(SCORE_FILE);
         if (file.exists()) {
             // Load scores from the JSON file
-            scores = json.fromJson(ArrayList.class, ScoreEntry.class, file);
+            scores = json.fromJson(ArrayList.class, Score.ScoreEntry.class, file);
         } else {
             System.out.println("File does not exist: " + SCORE_FILE);
         }
@@ -71,8 +71,8 @@ public class Score {
     }
 
     public static class ScoreEntry {
-        private String playerName;
-        private int score;
+        private final String playerName;
+        private final int score;
 
         public ScoreEntry() {
             this("", 0);
