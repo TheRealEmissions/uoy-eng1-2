@@ -8,37 +8,26 @@ import org.junit.runner.RunWith;
 
 import java.lang.reflect.Field;
 
+import static com.eng1.gdxtesting.ReflectionMethods.GeneralReflectionMethods.getFieldString;
+import static com.eng1.gdxtesting.ReflectionMethods.GeneralReflectionMethods.getStaticFieldString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(GdxTestRunner.class)
 public class MusicPreferencesUnitTests {
     MusicPreferences musicPreferences = Preferences.MUSIC;
+    String preferencesNameFieldStr = getStaticFieldString(Preferences.class, "NAME");
+    String musicPreferencesEnabledFieldStr = getFieldString(musicPreferences, "ENABLED");
+    String musicPreferencesVolumeFieldStr = getFieldString(musicPreferences, "VOLUME");
 
     @Test
     public void testGetKey() {
-        Class<? extends MusicPreferences> cl = musicPreferences.getClass();
-        Field enabledField;
-        try {
-            enabledField = cl.getDeclaredField("ENABLED");
-        } catch (NoSuchFieldException e) {
-            throw new RuntimeException(e);
-        }
-        enabledField.setAccessible(true);
-
-        String enabledFieldStr;
-        try {
-            enabledFieldStr = (String) enabledField.get(musicPreferences);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
-
-        String expected = "music." + enabledFieldStr;
+        String expected = "music." + musicPreferencesEnabledFieldStr;
 
         assertEquals(
                 "Testing whether MusicPreferences.getKey() works as expected",
                 expected,
-                musicPreferences.getKey(enabledFieldStr)
+                musicPreferences.getKey(musicPreferencesEnabledFieldStr)
         );
     }
 
@@ -46,10 +35,10 @@ public class MusicPreferencesUnitTests {
     public void testIsEnabled() {
         assertEquals(
                 "Testing whether MusicPreferences.isEnabled() works as expected.",
-                Gdx.app.getPreferences(Preferences.NAME)
+                Gdx.app.getPreferences(preferencesNameFieldStr)
                         .getBoolean(
                                 musicPreferences
-                                        .getKey(musicPreferences.ENABLED)
+                                        .getKey(musicPreferencesEnabledFieldStr)
                         ),
                 musicPreferences.isEnabled()
         );
@@ -57,10 +46,10 @@ public class MusicPreferencesUnitTests {
 
     @Test
     public void testSetEnabled() {
-        boolean initialValue = Gdx.app.getPreferences(Preferences.NAME)
+        boolean initialValue = Gdx.app.getPreferences(preferencesNameFieldStr)
                 .getBoolean(
                         musicPreferences
-                                .getKey(musicPreferences.ENABLED)
+                                .getKey(musicPreferencesEnabledFieldStr)
                 );
 
         boolean workingAsExpected = true;
@@ -69,10 +58,10 @@ public class MusicPreferencesUnitTests {
         for(byte i = 0; i < 2; i++) {
             musicPreferences.setEnabled(!initialValue);
 
-            boolean newValue = Gdx.app.getPreferences(Preferences.NAME)
+            boolean newValue = Gdx.app.getPreferences(preferencesNameFieldStr)
                     .getBoolean(
                             musicPreferences
-                                    .getKey(musicPreferences.ENABLED)
+                                    .getKey(musicPreferencesEnabledFieldStr)
                     );
             if(!(initialValue != newValue)) {
                 workingAsExpected = false;
@@ -91,10 +80,10 @@ public class MusicPreferencesUnitTests {
         assertEquals(
                 "Checks whether MusicPreferences.getVolume()"
                         + "returns the correct volume from Gdx.app as expected.",
-                Gdx.app.getPreferences(Preferences.NAME)
+                Gdx.app.getPreferences(preferencesNameFieldStr)
                         .getFloat(
                                 musicPreferences
-                                        .getKey(musicPreferences.VOLUME)
+                                        .getKey(musicPreferencesVolumeFieldStr)
                         ),
                 musicPreferences.getVolume(),
                 0.0f // Delta = 0 as no floating point error is expected
@@ -105,10 +94,10 @@ public class MusicPreferencesUnitTests {
     public void testSetVolume() {
         String baseMessage = "Checks MusicPreference.setVolume() works as expected";
 
-        float initialVolume = Gdx.app.getPreferences(Preferences.NAME)
+        float initialVolume = Gdx.app.getPreferences(preferencesNameFieldStr)
                 .getFloat(
                         musicPreferences
-                                .getKey(musicPreferences.VOLUME)
+                                .getKey(musicPreferencesVolumeFieldStr)
                 );
 
         if(initialVolume != 0.7f) {
@@ -118,10 +107,10 @@ public class MusicPreferencesUnitTests {
                             + "As the initial volume wasn't 0.7, this test set the volume"
                             + " to 0.7 to check that it changes as expected.",
                     0.7f,
-                    Gdx.app.getPreferences(Preferences.NAME)
+                    Gdx.app.getPreferences(preferencesNameFieldStr)
                             .getFloat(
                                     musicPreferences
-                                            .getKey(musicPreferences.VOLUME)
+                                            .getKey(musicPreferencesVolumeFieldStr)
                             ),
                     0.0f // Delta = 0 as no floating point error is expected
             );
@@ -132,10 +121,10 @@ public class MusicPreferencesUnitTests {
                             + "As the initial volume was 0.7, this test set the volume"
                             + " to 0.4 to check that it changes as expected.",
                     0.4f,
-                    Gdx.app.getPreferences(Preferences.NAME)
+                    Gdx.app.getPreferences(preferencesNameFieldStr)
                             .getFloat(
                                     musicPreferences
-                                            .getKey(musicPreferences.VOLUME)
+                                            .getKey(musicPreferencesVolumeFieldStr)
                             ),
                     0.0f // Delta = 0 as no floating point error is expected
             );
