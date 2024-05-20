@@ -1,5 +1,6 @@
 package com.eng1.game.assets.maps;
 
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import lombok.experimental.UtilityClass;
 
@@ -9,5 +10,9 @@ public final class MapLoader {
 
     public static TmxMapLoader get() {
         return mapLoader;
+    }
+
+    public static TiledMap load(String path) {
+        return mapLoader.load(path);
     }
 }

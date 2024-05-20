@@ -11,9 +11,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.eng1.game.game.Score;
+import com.eng1.game.game.player.Statistics;
 
-import com.eng1.game.game.activity.Activity;
-
+import java.util.Arrays;
 import java.util.Map;
 
 /**
@@ -47,9 +48,16 @@ public class EndScreen implements Screen {
         // temporary until we have asset manager in
         Skin skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
 
+        float scoreTotal = Arrays.stream(Statistics.PlayerStatistics.values()).map(Statistics.PlayerStatistics::getTotal).reduce(0f, Float::sum);
+        float maxTotal = Statistics.MAX_SCORE;
+
+        float score = (scoreTotal / maxTotal) * 0.8f;
+        int scorePercentage = (int) Math.floor(score * 100);
+
         // Add labels
         Label titleLabel = new Label("Heslington Hustle", skin);
-        Label scoreLabel = new Label("Score: " + Activity.getFinalScore(), skin); // Retrieve the final score from Activity
+        Label scoreLabel = new Label("Score: " + scorePercentage + "%", skin); // Retrieve the final score from Activity
+        Label classification = new Label("Classification: " + Score.getClassification(scorePercentage), skin);
 
 
         // Add actors to the table
@@ -57,7 +65,7 @@ public class EndScreen implements Screen {
         table.row().pad(10, 0, 0, 10);
 
         // Display completed activities
-        Map<String, Integer> completedActivities = Activity.countCompletedActivities();
+        Map<String, Integer> completedActivities = Map.of();
         for (String type : completedActivities.keySet()) {
             table.add(new Label(type + ": " + completedActivities.get(type), skin)).left().pad(10);
             table.row();
@@ -65,6 +73,7 @@ public class EndScreen implements Screen {
         table.row().pad(10, 0, 0, 10);
 
         table.add(scoreLabel).row();
+        table.add(classification).row();
 
         // quit game button
         final TextButton quitButton = new TextButton("Quit", skin);

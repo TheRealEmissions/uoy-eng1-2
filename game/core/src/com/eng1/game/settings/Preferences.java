@@ -11,8 +11,6 @@ import com.badlogic.gdx.Gdx;
  * -- preference handling has been moved to its own classes, such as {@link MusicPreferences} which can be accessed with {@link Preferences#MUSIC}
  */
 public final class Preferences {
-    public static final String PREF_SOUND_ENABLED = "sound.enabled";
-    public static final String PREF_SOUND_VOL = "sound";
     /**
      * Represents the name of the preferences file where the game settings are stored.
      * @since v2 <p>
@@ -20,6 +18,7 @@ public final class Preferences {
      */
     private static final String NAME = "HeslingtonHustle";
     public static final MusicPreferences MUSIC = new MusicPreferences();
+    public static final SoundPreferences SOUND = new SoundPreferences();
 
     /**
      * Retrieves the preferences object from GDX.
@@ -31,23 +30,5 @@ public final class Preferences {
      */
     static com.badlogic.gdx.Preferences getPreferences() {
         return Gdx.app.getPreferences(NAME);
-    }
-
-    public boolean isSoundEffectsEnabled() {
-        return getPreferences().getBoolean(PREF_SOUND_ENABLED, true);
-    }
-
-    public void setSoundEffectsEnabled(boolean soundEffectsEnabled) {
-        getPreferences().putBoolean(PREF_SOUND_ENABLED, soundEffectsEnabled);
-        getPreferences().flush();
-    }
-
-    public float getSoundVolume() {
-        return getPreferences().getFloat(PREF_SOUND_VOL, 0.5f);
-    }
-
-    public void setSoundVolume(float volume) {
-        getPreferences().putFloat(PREF_SOUND_VOL, volume);
-        getPreferences().flush();
     }
 }

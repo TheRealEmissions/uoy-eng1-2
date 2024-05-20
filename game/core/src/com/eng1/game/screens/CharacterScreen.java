@@ -1,6 +1,6 @@
 package com.eng1.game.screens;
 
-import com.eng1.game.HeslingtonHustle;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
@@ -12,29 +12,56 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.eng1.game.player.Player;
+import com.eng1.game.assets.images.ImageAssets;
+import com.eng1.game.assets.skins.SkinAssets;
+import lombok.experimental.UtilityClass;
 
 /**
  * Represents the character selection screen of the game.
  * Allows the player to select their character from available choices.
  *
- * @since v2 -- the screen now uses the {@link HeslingtonHustle#getInstance()} method to access the orchestrator
+ * @since v2 -- the screen no longer stretches to scale the UI elements, instead it uses more
+ * sophisticated methods, such as individual scaling and table width/height management
  */
 public class CharacterScreen extends ScreenAdapter {
-    private final HeslingtonHustle parent = HeslingtonHustle.getInstance();
     private final Stage stage;
+    private final Table table = new Table();
+    private final Skin uiSkin = SkinAssets.UI.get();
+
+    @UtilityClass
+    private class TableContents {
+        private static final Skin UI_SKIN = SkinAssets.UI.get();
+        public static final Label TITLE_LABEL = new Label("I'd like to play as", UI_SKIN);
+        public static final TextButton CHARACTER1_BUTTON = new TextButton("Liam", UI_SKIN);
+        public static final TextButton CHARACTER2_BUTTON = new TextButton("Lucy", UI_SKIN);
+        public static final TextButton CHARACTER3_BUTTON = new TextButton("Sammy", UI_SKIN);
+        public static final Image CHARACTER1_IMAGE = new Image(ImageAssets.PLAYER_CHARACTER_1.get());
+        public static final Image CHARACTER2_IMAGE = new Image(ImageAssets.PLAYER_CHARACTER_2.get());
+        public static final Image CHARACTER3_IMAGE = new Image(ImageAssets.PLAYER_CHARACTER_3.get());
+
+        static {
+            TITLE_LABEL.setFontScale(2f);
+            CHARACTER1_BUTTON.getLabel().setFontScale(1.6f);
+            CHARACTER2_BUTTON.getLabel().setFontScale(1.6f);
+            CHARACTER3_BUTTON.getLabel().setFontScale(1.6f);
+            final float width = 400f;
+            final float height = 400f;
+            CHARACTER1_IMAGE.setSize(width, height);
+            CHARACTER2_IMAGE.setSize(width, height);
+            CHARACTER3_IMAGE.setSize(width, height);
+        }
+
+        public static void dispose() {
+            SkinAssets.UI.dispose(UI_SKIN);
+        }
+    }
 
 
     /**
      * Constructs a new CharacterScreen.
      */
     public CharacterScreen() {
-        stage = new Stage(new StretchViewport(800, 600)); // Changes the 'zoom' of the screen to be more readable
-        Gdx.input.setInputProcessor(stage); // Set the input processor to the stage
+        stage = new Stage(new ScreenViewport());
     }
 
     /**
@@ -43,82 +70,84 @@ public class CharacterScreen extends ScreenAdapter {
      */
     @Override
     public void show() {
-        // Create table and skin
-        Table table = new Table();
-        table.setFillParent(true);
+        Gdx.input.setInputProcessor(stage);
         stage.addActor(table);
-        Skin skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
 
-        // Create title label
-        Label titleLabel = new Label("Character Selection", skin);
+        // Create table and skin
+        table.setFillParent(true);
+        table.setTransform(true);
 
-        // Create character selection buttons
-        TextButton character1Button = new TextButton("Character 1", skin);
-        character1Button.setSize(1000f, 50f); // Set the width and height of the button
-
-        TextButton character2Button = new TextButton("Character 2", skin);
-        character2Button.setSize(200f, 50f);
-
-        TextButton character3Button = new TextButton("Character 3", skin);
-        character3Button.setSize(200f, 50f);
-
-        // Load character images from assets
-        Texture character1Texture = new Texture(Gdx.files.internal(Player.CHAR1));
-        Texture character2Texture = new Texture(Gdx.files.internal(Player.CHAR2));
-        Texture character3Texture = new Texture(Gdx.files.internal(Player.CHAR3));
-
-        Image character1Image = new Image(new TextureRegionDrawable(new TextureRegion(character1Texture)));
-        character1Image.setSize(200f, 200f); // Set the width and height of the image
-
-        Image character2Image = new Image(new TextureRegionDrawable(new TextureRegion(character2Texture)));
-        character2Image.setSize(200f, 200f);
-
-        Image character3Image = new Image(new TextureRegionDrawable(new TextureRegion(character3Texture)));
-        character3Image.setSize(200f, 200f);
+        if (table.getChildren().isEmpty()) {
+            setTableContents();
+        }
 
         // Add listeners to character selection buttons
-        character1Button.addListener(new ChangeListener() {
+        TableContents.CHARACTER1_BUTTON.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                PlayScreen.setSelectedCharacter("Character1"); // Set selected character
+                PlayScreen.setSelectedCharacter(ImageAssets.PLAYER_CHARACTER_1); // Set selected character
                 // Change the screen to the main game screen
                 Screens.MAIN.setAsCurrent();
             }
         });
 
-        character2Button.addListener(new ChangeListener() {
+        TableContents.CHARACTER2_BUTTON.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                PlayScreen.setSelectedCharacter("Character2");
+                PlayScreen.setSelectedCharacter(ImageAssets.PLAYER_CHARACTER_2);
                 Screens.MAIN.setAsCurrent();
             }
         });
 
-        character3Button.addListener(new ChangeListener() {
+        TableContents.CHARACTER3_BUTTON.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                PlayScreen.setSelectedCharacter("Character3");
+                PlayScreen.setSelectedCharacter(ImageAssets.PLAYER_CHARACTER_3);
                 Screens.MAIN.setAsCurrent();
             }
         });
+    }
 
+    private void setTableContents() {
         // Add padding and spacing between elements
         table.pad(20f);
         table.defaults().pad(10f);
 
         // Add actors to the table with increased size
-        table.add(titleLabel).colspan(3).padBottom(40f);
+        table.add(TableContents.TITLE_LABEL)
+            .colspan(3)
+            .padBottom(40f);
         table.row();
-        table.add(character1Button).fillX().uniformX().padRight(20f);
-        table.add(character2Button).fillX().uniformX().padRight(20f);
-        table.add(character3Button).fillX().uniformX();
-        table.row().padTop(40f);
-        table.add(character1Image).center().padRight(20f);
-        table.add(character2Image).center().padRight(20f);
-        table.add(character3Image).center();
-
-        // Set the input processor to the stage
-        Gdx.input.setInputProcessor(stage);
+        table.add(TableContents.CHARACTER1_BUTTON)
+            .fillX()
+            .uniformX()
+            .padRight(20f);
+        table.add(TableContents.CHARACTER2_BUTTON)
+            .fillX()
+            .uniformX()
+            .padRight(20f);
+        table.add(TableContents.CHARACTER3_BUTTON)
+            .fillX()
+            .uniformX();
+        table.row()
+            .padTop(40f);
+        Image character1Image = TableContents.CHARACTER1_IMAGE;
+        table.add(character1Image)
+            .center()
+            .padRight(20f)
+            .width(character1Image.getWidth())
+            .height(character1Image.getHeight());
+        Image character2Image = TableContents.CHARACTER2_IMAGE;
+        table.add(character2Image)
+            .center()
+            .padRight(20f)
+            .width(character2Image.getWidth())
+            .height(character2Image.getHeight());
+        Image character3Image = TableContents.CHARACTER3_IMAGE;
+        table.add(character3Image)
+            .center()
+            .width(character3Image.getWidth())
+            .height(character3Image.getHeight());
     }
 
     /**
@@ -153,5 +182,7 @@ public class CharacterScreen extends ScreenAdapter {
     @Override
     public void dispose() {
         stage.dispose();
+        SkinAssets.UI.dispose(uiSkin);
+        TableContents.dispose();
     }
 }

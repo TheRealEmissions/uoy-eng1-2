@@ -6,10 +6,10 @@ import com.badlogic.gdx.Input;
 import com.eng1.game.assets.images.ImageAssets;
 import com.eng1.game.assets.maps.MapAssets;
 import com.eng1.game.assets.skins.SkinAssets;
+import com.eng1.game.game.player.Player;
+import com.eng1.game.game.player.Statistics;
 import com.eng1.game.screens.*;
-import com.eng1.game.settings.Preferences;
 import lombok.Getter;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * The main game class responsible for managing screens.
@@ -22,13 +22,6 @@ import org.jetbrains.annotations.NotNull;
 public class HeslingtonHustle extends Game {
 	@Getter
 	private static HeslingtonHustle instance;
-    /**
-     * -- GETTER --
-     *  Retrieves the preferences instance.
-     *
-     */
-    @Getter
-    private Preferences preferences;
 
 	public HeslingtonHustle() {
 		super();
@@ -37,7 +30,6 @@ public class HeslingtonHustle extends Game {
 
 	@Override
 	public void create() {
-		preferences = new Preferences();
 		Screens.LOADING.setAsCurrent();
 	}
 
@@ -46,10 +38,12 @@ public class HeslingtonHustle extends Game {
 		super.render();
 		// Handle input events
 		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+			Screens main = Screens.MAIN;
+			if (!main.isLoaded()) return;
 			Screens preferencesScreen = Screens.PREFERENCES;
 			if (preferencesScreen.isCurrent()) {
 				// If currently on preferences screen, switch to the game screen
-				Screens.MAIN.setAsCurrent();
+				main.setAsCurrent();
 			} else {
 				// Otherwise, switch to preferences screen
 				preferencesScreen.setAsCurrent();
@@ -64,5 +58,6 @@ public class HeslingtonHustle extends Game {
 		SkinAssets.disposeAll();
 		MapAssets.disposeAll();
 		Screens.disposeAll();
+		Statistics.dispose();
 	}
 }

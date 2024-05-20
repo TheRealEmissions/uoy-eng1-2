@@ -12,22 +12,59 @@ import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.eng1.game.HeslingtonHustle;
+import com.eng1.game.assets.skins.SkinAssets;
 import com.eng1.game.settings.Preferences;
-import org.jetbrains.annotations.NotNull;
+import lombok.experimental.UtilityClass;
 
 /**
  * Represents the preferences screen of the game.
  * Allows the player to adjust game settings such as volume and enable/disable music and sound effects.
  * Currently redundant apart from ability to quit game
  *
- * @since v2 -- the screen now uses the {@link HeslingtonHustle#getInstance()} method to access the orchestrator
  */
 public class PreferencesScreen implements Screen {
+    private final Stage stage; // Stage for handling UI elements
+    private final Skin uiSkin = SkinAssets.UI.get(); // Skin for UI elements
+    private final Table table = new Table(); // Table for organizing UI elements
 
-    private final HeslingtonHustle parent = HeslingtonHustle.getInstance();
-    private final Stage stage;
+    @UtilityClass
+    private class TableContents {
+        private static final Skin UI_SKIN = SkinAssets.UI.get();
+        public static final Slider VOLUME_MUSIC_SLIDER = new Slider(0f, 1f, 0.01f, false, UI_SKIN);
+        public static final Slider SOUND_MUSIC_SLIDER = new Slider(0f, 1f, 0.01f, false, UI_SKIN);
+        public static final CheckBox MUSIC_CHECKBOX = new CheckBox(null, UI_SKIN);
+        public static final CheckBox SOUND_EFFECTS_CHECKBOX = new CheckBox(null, UI_SKIN);
+        public static final TextButton BACK_BUTTON = new TextButton("Back", UI_SKIN);
+        public static final TextButton QUIT_BUTTON = new TextButton("Quit", UI_SKIN);
+        public static final Label TITLE_LABEL = new Label("Preferences", UI_SKIN);
+        public static final Label VOLUME_MUSIC_LABEL = new Label("Music Volume", UI_SKIN);
+        public static final Label VOLUME_SOUND_LABEL = new Label("Sound Volume", UI_SKIN);
+        public static final Label MUSIC_TOGGLE_LABEL = new Label("Music", UI_SKIN);
+        public static final Label SOUND_TOGGLE_LABEL = new Label("Sound Effect", UI_SKIN);
+
+        static {
+            VOLUME_MUSIC_SLIDER.setValue(Preferences.MUSIC.getVolume());
+            SOUND_MUSIC_SLIDER.setValue(Preferences.SOUND.getVolume());
+            MUSIC_CHECKBOX.setChecked(Preferences.MUSIC.isEnabled());
+            SOUND_EFFECTS_CHECKBOX.setChecked(Preferences.SOUND.isEnabled());
+
+            TITLE_LABEL.setFontScale(2f);
+            BACK_BUTTON.getLabel().setFontScale(1.6f);
+            QUIT_BUTTON.getLabel().setFontScale(1.6f);
+            VOLUME_MUSIC_LABEL.setFontScale(1.6f);
+            VOLUME_SOUND_LABEL.setFontScale(1.6f);
+            MUSIC_TOGGLE_LABEL.setFontScale(1.6f);
+            SOUND_TOGGLE_LABEL.setFontScale(1.6f);
+            MUSIC_CHECKBOX.getImage().setScale(2f);
+            SOUND_EFFECTS_CHECKBOX.getImage().setScale(2f);
+        }
+
+        public static void dispose() {
+            SkinAssets.UI.dispose(UI_SKIN);
+        }
+    }
 
 
     /**
@@ -39,40 +76,79 @@ public class PreferencesScreen implements Screen {
         stage = new Stage(new ScreenViewport());
     }
 
+    private void setTableContents() {
+        table.setOrigin(Align.center);
+        table.setPosition(0, 0);
+
+        float width = Gdx.graphics.getWidth();
+        float itemWidth = TableContents.BACK_BUTTON.getWidth() * 8f;
+        float itemHeight = TableContents.BACK_BUTTON.getHeight() * 2f;
+
+        table.add(TableContents.TITLE_LABEL).colspan(2);
+        table.row().pad(10, 0, 0, 10);
+        table.add(TableContents.VOLUME_MUSIC_LABEL).left();
+        table.add(TableContents.VOLUME_MUSIC_SLIDER)
+            .height(itemHeight)
+            .width(itemWidth)
+            .pad(10, 15, 10, 0);
+        table.row().pad(10, 0, 0, 10);
+        table.add(TableContents.MUSIC_TOGGLE_LABEL).left();
+        table.add(TableContents.MUSIC_CHECKBOX)
+            .pad(10, 0, 10, 0);
+        table.row().pad(10, 0, 0, 10);
+        table.add(TableContents.VOLUME_SOUND_LABEL).left();
+        table.add(TableContents.SOUND_MUSIC_SLIDER)
+            .height(itemHeight)
+            .width(itemWidth)
+            .pad(10, 15, 10, 0);
+        table.row().pad(10, 0, 25, 10);
+        table.add(TableContents.SOUND_TOGGLE_LABEL).left();
+        table.add(TableContents.SOUND_EFFECTS_CHECKBOX)
+            .pad(10, 0, 10, 0);
+        table.row().pad(10, 0, 0, 10);
+        table.add(TableContents.BACK_BUTTON)
+            .colspan(2)
+            .height(itemHeight)
+            .width(itemWidth)
+            .pad(10, 0, 10, 0);
+
+        table.row().pad(10, 0, 0, 10);
+        table.add(TableContents.QUIT_BUTTON)
+            .colspan(2) // this was 50 for some reason... v2 fixed this.
+            .height(itemHeight)
+            .width(itemWidth)
+            .pad(10, 0, 10, 0);
+    }
+
     @Override
     public void show() {
-        stage.clear();
         Gdx.input.setInputProcessor(stage);
 
-        // Create a table that fills the screen. Everything else will go inside this table.
-        Table table = new Table();
-        table.setFillParent(true);
         stage.addActor(table);
 
-        // temporary until we have asset manager in
-        Skin skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
+        // Create a table that fills the screen. Everything else will go inside this table.
+        table.setFillParent(true);
+        table.setTransform(true);
 
-        // music volume
-        final Slider volumeMusicSlider = new Slider(0f, 1f, 0.1f, false, skin);
-        volumeMusicSlider.setValue(Preferences.MUSIC.getVolume());
+        if (table.getChildren().isEmpty()) {
+            setTableContents();
+        }
+
+        final Slider volumeMusicSlider = TableContents.VOLUME_MUSIC_SLIDER;
         volumeMusicSlider.addListener(event -> {
             Preferences.MUSIC.setVolume(volumeMusicSlider.getValue());
-            // updateVolumeLabel();
             return false;
         });
 
         // sound volume
-        final Slider soundMusicSlider = new Slider(0f, 1f, 0.1f, false, skin);
-        soundMusicSlider.setValue(parent.getPreferences().getSoundVolume());
+        final Slider soundMusicSlider = TableContents.SOUND_MUSIC_SLIDER;
         soundMusicSlider.addListener(event -> {
-            parent.getPreferences().setSoundVolume(soundMusicSlider.getValue());
-            // updateVolumeLabel();
+            Preferences.SOUND.setVolume(soundMusicSlider.getValue());
             return false;
         });
 
         // music on/off
-        final CheckBox musicCheckbox = new CheckBox(null, skin);
-        musicCheckbox.setChecked(Preferences.MUSIC.isEnabled());
+        final CheckBox musicCheckbox = TableContents.MUSIC_CHECKBOX;
         musicCheckbox.addListener(event -> {
             boolean enabled = musicCheckbox.isChecked();
             Preferences.MUSIC.setEnabled(enabled);
@@ -80,65 +156,32 @@ public class PreferencesScreen implements Screen {
         });
 
         // sound on/off
-        final CheckBox soundEffectsCheckbox = getCheckBox(skin);
+        final CheckBox soundEffectsCheckbox = TableContents.SOUND_EFFECTS_CHECKBOX;
+        soundEffectsCheckbox.addListener(event -> {
+            boolean enabled = soundEffectsCheckbox.isChecked();
+            Preferences.SOUND.setEnabled(enabled);
+            return false;
+        });
 
         // return to main screen button
-        final TextButton backButton = new TextButton("Back", skin);
-        backButton.addListener(new ChangeListener() {
+        TableContents.BACK_BUTTON.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Screens.MENU.setAsCurrent();
+                if (Screens.MAIN.isLoaded()) {
+                    Screens.MAIN.setAsCurrent();
+                } else {
+                    Screens.MENU.setAsCurrent();
+                }
             }
         });
 
         // quit game button
-        final TextButton quitButton = new TextButton("Quit", skin);
-        quitButton.addListener(new ChangeListener() {
+        TableContents.QUIT_BUTTON.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 Gdx.app.exit();
             }
         });
-
-        // Add labels
-        Label titleLabel = new Label("Preferences", skin);
-        Label volumeMusicLabel = new Label("Music Volume", skin);
-        Label volumeSoundLabel = new Label("Sound Volume", skin);
-        Label musicOnOffLabel = new Label("Music", skin);
-        Label soundOnOffLabel = new Label("Sound Effect", skin);
-
-        // Add actors to the table
-        table.add(titleLabel).colspan(2);
-        table.row().pad(10, 0, 0, 10);
-        table.add(volumeMusicLabel).left();
-        table.add(volumeMusicSlider);
-        table.row().pad(10, 0, 0, 10);
-        table.add(musicOnOffLabel).left();
-        table.add(musicCheckbox);
-        table.row().pad(10, 0, 0, 10);
-        table.add(volumeSoundLabel).left();
-        table.add(soundMusicSlider);
-        table.row().pad(10, 0, 0, 10);
-        table.add(soundOnOffLabel).left();
-        table.add(soundEffectsCheckbox);
-        table.row().pad(10, 0, 0, 10);
-        table.add(backButton).colspan(2);
-
-        table.row().pad(10, 0, 0, 10);
-        table.add(quitButton).colspan(50);
-
-
-    }
-
-    private @NotNull CheckBox getCheckBox(Skin skin) {
-        final CheckBox soundEffectsCheckbox = new CheckBox(null, skin);
-        soundEffectsCheckbox.setChecked(parent.getPreferences().isSoundEffectsEnabled());
-        soundEffectsCheckbox.addListener(event -> {
-            boolean enabled = soundEffectsCheckbox.isChecked();
-            parent.getPreferences().setSoundEffectsEnabled(enabled);
-            return false;
-        });
-        return soundEffectsCheckbox;
     }
 
     @Override
@@ -176,7 +219,9 @@ public class PreferencesScreen implements Screen {
 
     @Override
     public void dispose() {
-        // Not needed
+        TableContents.dispose();
+        SkinAssets.UI.dispose(uiSkin);
+        stage.dispose();
     }
 
 }
