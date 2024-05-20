@@ -4,14 +4,13 @@ import static com.eng1.gdxtesting.ReflectionMethods.GeneralReflectionMethods.get
 import static org.junit.Assert.assertTrue;
 
 import com.eng1.game.assets.images.ImageAssetPaths;
-import com.eng1.game.game.player.Player;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.badlogic.gdx.Gdx;
 
 @RunWith(GdxTestRunner.class)
-public class AssetTests {
+public class ImageAssetTests {
     @Test
     public void testMainMenuTitleAssetExists() {
         String mainMenuTitlePath = getStaticFieldString(ImageAssetPaths.class, "MAIN_MENU_TITLE_PATH");
