@@ -1,10 +1,13 @@
 package com.eng1.game.game;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.utils.Json;
+
 import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Comparator;
@@ -12,7 +15,9 @@ import java.util.Comparator;
 @UtilityClass
 public class Score {
 
-    private static final String SCORE_FILE = "com/eng1/game/game/player/scores.txt";
+    private static final String SCORE_FILE = "scores.json"; // Change file extension to .json
+
+    private static final Json json = new Json(); // Create a Json instance
 
     @Contract(pure = true)
     public static @NotNull String getClassification(float scorePercentage) {
@@ -33,23 +38,22 @@ public class Score {
 
     /**
      * Retrieves the top 10 scores from the scores file.
+     *
      * @return A list of the top 10 scores in the format Name,Score
      */
-    public static List<String> getTop10Scores() {
-        List<String> scores = new ArrayList<>();
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(SCORE_FILE));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                scores.add(line);
-            }
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+    public static List<ScoreEntry> getTop10Scores() {
+        List<ScoreEntry> scores = new ArrayList<>();
+        FileHandle file = Gdx.files.local(SCORE_FILE);
+        if (file.exists()) {
+            // Load scores from the JSON file
+            scores = json.fromJson(ArrayList.class, ScoreEntry.class, file);
+        } else {
+            System.out.println("File does not exist: " + SCORE_FILE);
         }
-        scores.sort(Comparator.comparingDouble(Score::extractScore).reversed());
+        scores.sort(Comparator.comparingDouble(ScoreEntry::getScore).reversed());
         return scores.size() > 10 ? scores.subList(0, 10) : scores;
     }
+
 
     /**
      * Saves a new high score to the score file.
@@ -58,22 +62,33 @@ public class Score {
      * @param scorePercentage The score percentage achieved by the player
      */
     public static void saveScore(String playerName, int scorePercentage) {
-        List<String> scores = getTop10Scores();
-        scores.add(playerName + "," + scorePercentage);
-        scores.sort(Comparator.comparingDouble(Score::extractScore).reversed());
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(SCORE_FILE));
-            for (String score : scores) {
-                writer.write(score);
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        List<ScoreEntry> scores = getTop10Scores();
+        scores.add(new ScoreEntry(playerName, scorePercentage));
+        scores.sort(Comparator.comparingDouble(ScoreEntry::getScore).reversed());
+        FileHandle file = Gdx.files.local(SCORE_FILE);
+        // Write scores to the JSON file
+        file.writeString(json.prettyPrint(scores), false);
     }
 
-    private static double extractScore(String scoreEntry) {
-        String[] parts = scoreEntry.split(",");
-        return Double.parseDouble(parts[1]);
+    public static class ScoreEntry {
+        private String playerName;
+        private int score;
+
+        public ScoreEntry() {
+            this("", 0);
+        }
+
+        public ScoreEntry(String playerName, int score) {
+            this.playerName = playerName;
+            this.score = score;
+        }
+
+        public String getPlayerName() {
+            return playerName;
+        }
+
+        public int getScore() {
+            return score;
+        }
     }
 }

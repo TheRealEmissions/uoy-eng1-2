@@ -1,6 +1,5 @@
 package com.eng1.game.screens;
 
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -16,6 +15,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.eng1.game.game.Score;
 import com.eng1.game.game.player.Statistics;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,7 +28,7 @@ public class EndScreen implements Screen {
     private final Stage stage;
     private final Skin skin;
     private int scorePercentage;
-    private List<String> topScores;
+    private List<Score.ScoreEntry> topScores = new ArrayList<>();
 
     /**
      * Constructor for the EndScreen class.
@@ -67,14 +67,22 @@ public class EndScreen implements Screen {
         stage.addActor(table);
 
         Label gameOverLabel = new Label("Game Over! You got " + scorePercentage + "% on your test!", skin);
+        gameOverLabel.setFontScale(1.5f);
         table.add(gameOverLabel).colspan(2);
         table.row().pad(10, 0, 0, 10);
 
+        Label classificationLabel = new Label("Classification: " + Score.getClassification(scorePercentage), skin);
+        classificationLabel.setFontScale(1.2f);
+        table.add(classificationLabel).colspan(2);
+        table.row().pad(10, 0, 0, 10);
+
         Label achievementLabel = new Label("Achievements:", skin);
+        achievementLabel.setFontScale(1.2f);
         table.add(achievementLabel).colspan(2);
         table.row().pad(10, 0, 0, 10);
 
         final TextButton continueButton = new TextButton("Continue", skin);
+        continueButton.getLabel().setFontScale(1.2f);
         table.add(continueButton).colspan(2);
         continueButton.addListener(new ChangeListener() {
             @Override
@@ -93,8 +101,8 @@ public class EndScreen implements Screen {
         if (topScores.size() < 10) {
             return 0;
         }
-        String[] lastScoreEntry = topScores.get(topScores.size() - 1).split(",");
-        return Float.parseFloat(lastScoreEntry[1]);
+        Score.ScoreEntry lastScoreEntry = topScores.get(topScores.size() - 1);
+        return lastScoreEntry.getScore();
     }
 
     private void showHighScoreEntryScreen() {
@@ -105,18 +113,22 @@ public class EndScreen implements Screen {
         stage.addActor(table);
 
         Label highScoreLabel = new Label("Congratulations! You got a high score!", skin);
-        table.add(highScoreLabel).colspan(2);
+        highScoreLabel.setFontScale(1.5f);
+        table.add(highScoreLabel).colspan(2).padBottom(20);
         table.row().pad(10, 0, 0, 10);
 
         Label nameLabel = new Label("Enter your name:", skin);
+        nameLabel.setFontScale(1.2f);
         table.add(nameLabel).colspan(2);
         table.row().pad(10, 0, 0, 10);
 
         final TextField nameField = new TextField("", skin);
+        nameField.getStyle().font.getData().setScale(1.2f);
         table.add(nameField).colspan(2);
         table.row().pad(10, 0, 0, 10);
 
-        final TextButton submitButton = new TextButton("Press Enter to save", skin);
+        final TextButton submitButton = new TextButton("Save to leaderboard", skin);
+        submitButton.getLabel().setFontScale(1.2f);
         table.add(submitButton).colspan(2);
         submitButton.addListener(new ChangeListener() {
             @Override
@@ -128,14 +140,7 @@ public class EndScreen implements Screen {
         });
 
         stage.setKeyboardFocus(submitButton);
-        submitButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-                    submitButton.fire(new ChangeListener.ChangeEvent());
-                }
-            }
-        });
+
     }
 
     private void showLeaderboardScreen() {
@@ -146,25 +151,29 @@ public class EndScreen implements Screen {
         stage.addActor(table);
 
         Label leaderboardLabel = new Label("Leaderboard", skin);
+        leaderboardLabel.setFontScale(1.5f);
         table.add(leaderboardLabel).colspan(2);
         table.row().pad(10, 0, 0, 10);
 
         topScores = Score.getTop10Scores(); // Retrieve the top 10 scores from the Score class
         for (int i = 0; i < topScores.size(); i++) {
-            Label scoreEntry = new Label((i + 1) + ". " + topScores.get(i), skin);
-            table.add(scoreEntry).left().pad(5);
+            Score.ScoreEntry scoreEntry = topScores.get(i);
+            Label playerScore = new Label((i + 1) + ". " + scoreEntry.getPlayerName() + ": " + scoreEntry.getScore(), skin);
+            playerScore.setFontScale(1.2f);
+            table.add(playerScore).left().pad(5);
             table.row();
         }
 
-        final TextButton quitButton = new TextButton("Press Enter to quit", skin);
+        final TextButton quitButton = new TextButton("Home", skin);
+        quitButton.getLabel().setFontScale(1.2f);
         quitButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-               Gdx.app.exit();
+                Screens.MENU.setAsCurrent();
             }
         });
 
-        table.add(quitButton).colspan(2);
+        table.add(quitButton).colspan(2).padTop(20);
         stage.setKeyboardFocus(quitButton);
     }
 
