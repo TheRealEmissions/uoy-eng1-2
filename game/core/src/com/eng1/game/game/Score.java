@@ -76,10 +76,6 @@ public class Score {
         private final String playerName;
         private final int score;
 
-        public ScoreEntry() {
-            this("", 0);
-        }
-
         public ScoreEntry(String playerName, int score) {
             this.playerName = playerName;
             this.score = score;
