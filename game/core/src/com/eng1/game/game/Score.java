@@ -54,7 +54,6 @@ public class Score {
         return scores.size() > 10 ? scores.subList(0, 10) : scores;
     }
 
-
     /**
      * Saves a new high score to the score file.
      *
@@ -69,7 +68,6 @@ public class Score {
         // Write scores to the JSON file
         file.writeString(json.prettyPrint(scores), false);
     }
-
 
     @Getter
     public static class ScoreEntry {
