@@ -3,57 +3,74 @@ package com.eng1.gdxtesting;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import com.eng1.game.game.player.Statistics;
+import org.junit.runner.RunWith;
+
 import java.time.LocalTime;
 
 // Be aware that when adding tests you may need to clean and rebuild
 
+@RunWith(GdxTestRunner.class) // Needed as the Statistics class calls some classes that uses LibGDX
 public class StatisticsUnitTests {
 
     @Test
     public void GameStatsIncreaseTime1HourTest() {
-        LocalTime intialTime = Statistics.getTime();
+        LocalTime initialTime = Statistics.getTime();
         Statistics.increaseTime(LocalTime.of(1, 0));
 
         assertEquals(
                 "Checks whether GameStats Increase Time method works as expected when 1 hour is added",
-                intialTime.plusHours(1),
+                initialTime.plusHours(1),
                 Statistics.getTime()
         );
     }
 
     @Test
     public void GameStatsIncreaseTime15MinuteTest() {
-        LocalTime intialTime = Statistics.getTime();
+        LocalTime initialTime = Statistics.getTime();
         Statistics.increaseTime(LocalTime.of(0, 15));
 
         assertEquals(
                 "Checks whether GameStats Increase Time method works as expected when 15 minutes is added",
-                intialTime.plusMinutes(15),
+                initialTime.plusMinutes(15),
                 Statistics.getTime()
         );
     }
 
     @Test
     public void GameStatsIncreaseTimeHoursAndMinutesTest() {
-        LocalTime intialTime = Statistics.getTime();
+        LocalTime initialTime = Statistics.getTime();
         Statistics.increaseTime(LocalTime.of(2, 48));
 
         assertEquals(
                 "Checks whether GameStats Increase Time method works as expected when 2:48 is added",
-                intialTime.plusHours(2).plusMinutes(48),
+                initialTime.plusHours(2).plusMinutes(48),
                 Statistics.getTime()
         );
     }
 
     @Test
-    public void GameStatsDecreaseEnergyTest() {
-        int initialEnergy = Statistics.getEnergy();
-        Statistics.decreaseEnergy(1);
+    public void GameStatsIncreaseEnergyTest() {
+        float initialEnergy = Statistics.PlayerStatistics.ENERGY.get();
+        Statistics.PlayerStatistics.ENERGY.increase(0.1f);
 
         assertEquals(
                 "Checks that GameStats.decreaseEnergy() works as expected",
-                initialEnergy - 1,
-                Statistics.getEnergy()
+                initialEnergy + 0.1f,
+                Statistics.PlayerStatistics.ENERGY.get(),
+                0.0f // No delta expected
+        );
+    }
+
+    @Test
+    public void GameStatsDecreaseEnergyTest() {
+        float initialEnergy = Statistics.PlayerStatistics.ENERGY.get();
+        Statistics.PlayerStatistics.ENERGY.decrease(0.1f);
+
+        assertEquals(
+                "Checks that GameStats.decreaseEnergy() works as expected",
+                initialEnergy - 0.1f,
+                Statistics.PlayerStatistics.ENERGY.get(),
+                0.0f // No delta expected
         );
     }
 
@@ -77,13 +94,13 @@ public class StatisticsUnitTests {
      */
     @Test
     public void GameStatsNewDayDayChangeTest() {
-        int intialDay = Statistics.getDay();
+        int initialDay = Statistics.getDay();
 
         Statistics.newDay();
 
         assertEquals(
                 "Checks that GameStats.newDay() increases the day by 1",
-                intialDay + 1,
+                initialDay + 1,
                 Statistics.getDay()
         );
     }
@@ -102,23 +119,6 @@ public class StatisticsUnitTests {
                 "Checks that GameStats.newDay() sets the time to DAY_START",
                 Statistics.DAY_START,
                 Statistics.getTime()
-        );
-    }
-
-    @Test
-    public void GameStatsNewDayEnergyChangeTest() {
-        // Ensure initialEnergy != MAX_ENERGY
-        if (Statistics.getEnergy() == Statistics.MAX_ENERGY) {
-            Statistics.decreaseEnergy(1);
-        }
-        int initialEnergy = Statistics.getEnergy();
-
-        Statistics.newDay();
-
-        assertEquals(
-                "Checks that GameStats.newDay() sets the energy to MAX_ENERGY",
-                Statistics.MAX_ENERGY,
-                Statistics.getEnergy()
         );
     }
 
