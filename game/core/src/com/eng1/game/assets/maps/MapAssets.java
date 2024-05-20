@@ -10,25 +10,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
+import static com.eng1.game.assets.maps.MapAssetPaths.*;
+
 public enum MapAssets implements Assets<TiledMap> {
     HOME(
-        () -> MapLoader.load("maps/map8 (home)/home.tmx"),
+        () -> MapLoader.load(HOME_MAP_PATH),
         "go into your house"
     ),
     GYM(
-        () -> MapLoader.load("maps/map9 (gym)/gym.tmx"),
+        () -> MapLoader.load(GYM_MAP_PATH),
         "go into the Gym"
     ),
     CS_BUILDING(
-        () -> MapLoader.load("maps/map10 (cs-building)/computer-science-building.tmx"),
+        () -> MapLoader.load(CS_BUILDING_MAP_PATH),
         "go into the Computer Science Building"
     ),
     PIAZZA(
-        () -> MapLoader.load("maps/map11 (piazza)/piazza.tmx"),
+        () -> MapLoader.load(PIAZZA_MAP_PATH),
         "go into the Piazza"
     ),
     NEW_WORLD(
-        () -> MapLoader.load("maps/newWorldMap/newWorldMap.tmx"),
+        () -> MapLoader.load(NEW_WORLD_MAP_PATH),
         "go to Campus East"
     );
 
