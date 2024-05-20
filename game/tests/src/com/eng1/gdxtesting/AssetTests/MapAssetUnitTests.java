@@ -5,8 +5,8 @@ import com.eng1.gdxtesting.GdxTestRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static com.eng1.gdxtesting.AssetTests.AssetTestsUtils.assetTestReflectionStaticPath;
-import static com.eng1.gdxtesting.AssetTests.AssetTestsUtils.generateDefaultMessage;
+import static com.eng1.gdxtesting.AssetTests.AssetUnitTestsUtils.assetTestReflectionStaticPath;
+import static com.eng1.gdxtesting.AssetTests.AssetUnitTestsUtils.generateDefaultMessage;
 
 @RunWith(GdxTestRunner.class)
 public class MapAssetUnitTests {

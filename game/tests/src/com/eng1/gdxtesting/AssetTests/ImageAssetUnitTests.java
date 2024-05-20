@@ -1,8 +1,7 @@
 package com.eng1.gdxtesting.AssetTests;
 
-import static com.eng1.gdxtesting.AssetTests.AssetTestsUtils.assetTestReflectionStaticPath;
-import static com.eng1.gdxtesting.AssetTests.AssetTestsUtils.generateDefaultMessage;
-import static com.eng1.gdxtesting.ReflectionMethods.GeneralReflectionMethods.getStaticFieldString;
+import static com.eng1.gdxtesting.AssetTests.AssetUnitTestsUtils.assetTestReflectionStaticPath;
+import static com.eng1.gdxtesting.AssetTests.AssetUnitTestsUtils.generateDefaultMessage;
 import static org.junit.Assert.assertTrue;
 
 import com.eng1.game.assets.images.ImageAssetPaths;
@@ -10,10 +9,8 @@ import com.eng1.gdxtesting.GdxTestRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.badlogic.gdx.Gdx;
-
 @RunWith(GdxTestRunner.class)
-public class ImageAssetTests {
+public class ImageAssetUnitTests {
     @Test
     public void testMainMenuTitleAssetExists() {
         assetTestReflectionStaticPath(

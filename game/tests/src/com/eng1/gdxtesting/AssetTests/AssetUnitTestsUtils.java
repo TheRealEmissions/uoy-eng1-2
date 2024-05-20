@@ -5,7 +5,7 @@ import com.badlogic.gdx.Gdx;
 import static com.eng1.gdxtesting.ReflectionMethods.GeneralReflectionMethods.getStaticFieldString;
 import static org.junit.Assert.assertTrue;
 
-public class AssetTestsUtils {
+public class AssetUnitTestsUtils {
     protected static void assetTestWithPath(String path, String message) {
         assertTrue(
                 message,
