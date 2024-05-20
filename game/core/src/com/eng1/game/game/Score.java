@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Json;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -42,7 +44,7 @@ public class Score {
      * @return A list of the top 10 scores in the format Name,Score
      */
     public static List<ScoreEntry> getTop10Scores() {
-        List<ScoreEntry> scores = new ArrayList<>();
+        ArrayList<ScoreEntry> scores = new ArrayList<>();
         FileHandle file = Gdx.files.local(SCORE_FILE);
         if (file.exists()) {
             // Load scores from the JSON file
@@ -70,6 +72,8 @@ public class Score {
         file.writeString(json.prettyPrint(scores), false);
     }
 
+    @Getter
+    @NoArgsConstructor(force = true)
     public static class ScoreEntry {
         private final String playerName;
         private final int score;
