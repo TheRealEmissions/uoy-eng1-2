@@ -1,7 +1,9 @@
 package com.eng1.gdxtesting;
 
+import static com.eng1.gdxtesting.ReflectionMethods.GeneralReflectionMethods.getStaticFieldString;
 import static org.junit.Assert.assertTrue;
 
+import com.eng1.game.assets.images.ImageAssetPaths;
 import com.eng1.game.game.player.Player;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,17 +13,36 @@ import com.badlogic.gdx.Gdx;
 @RunWith(GdxTestRunner.class)
 public class AssetTests {
     @Test
+    public void testMainMenuTitleAssetExists() {
+        String mainMenuTitlePath = getStaticFieldString(ImageAssetPaths.class, "MAIN_MENU_TITLE_PATH");
+        assertTrue("Testing whether the asset for the main menu title exists",
+                    Gdx.files.internal(mainMenuTitlePath).exists()
+                    );
+    }
+
+    @Test
+    public void testNewWordMapOverviewExists() {
+        String newWorldMapOverviewPath = getStaticFieldString(ImageAssetPaths.class, "NEW_WORLD_MAP_OVERVIEW_PATH");
+        assertTrue("Testing whether the asset for the new world map overview exists",
+                Gdx.files.internal(newWorldMapOverviewPath).exists()
+        );
+    }
+
+    @Test
     public void testCharacter1AssetExists() {
-        assertTrue("Testing whether the asset for character 1 exists", Gdx.files.internal(Player.CHAR1).exists());
+        String char1AssetPath = getStaticFieldString(ImageAssetPaths.class, "PLAYER_CHARACTER_1_PATH");
+        assertTrue("Testing whether the asset for character 1 exists", Gdx.files.internal(char1AssetPath).exists());
     }
 
     @Test
     public void testCharacter2AssetExists() {
-        assertTrue("Testing whether the asset for character 2 exists", Gdx.files.internal(Player.CHAR2).exists());
+        String char2AssetPath = getStaticFieldString(ImageAssetPaths.class, "PLAYER_CHARACTER_2_PATH");
+        assertTrue("Testing whether the asset for character 1 exists", Gdx.files.internal(char2AssetPath).exists());
     }
 
     @Test
     public void testCharacter3AssetExists() {
-        assertTrue("Testing whether the asset for character 3 exists", Gdx.files.internal(Player.CHAR3).exists());
+        String char3AssetPath = getStaticFieldString(ImageAssetPaths.class, "PLAYER_CHARACTER_3_PATH");
+        assertTrue("Testing whether the asset for character 1 exists", Gdx.files.internal(char3AssetPath).exists());
     }
 }
