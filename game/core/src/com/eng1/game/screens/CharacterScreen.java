@@ -87,7 +87,7 @@ public class CharacterScreen extends ScreenAdapter {
             public void changed(ChangeEvent event, Actor actor) {
                 PlayScreen.setSelectedCharacter(ImageAssets.PLAYER_CHARACTER_1); // Set selected character
                 // Change the screen to the main game screen
-                Screens.MAIN.setAsCurrent();
+                Screens.INSTRUCTION.setAsCurrent();
             }
         });
 
@@ -95,7 +95,7 @@ public class CharacterScreen extends ScreenAdapter {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 PlayScreen.setSelectedCharacter(ImageAssets.PLAYER_CHARACTER_2);
-                Screens.MAIN.setAsCurrent();
+                Screens.INSTRUCTION.setAsCurrent();
             }
         });
 
@@ -103,7 +103,7 @@ public class CharacterScreen extends ScreenAdapter {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 PlayScreen.setSelectedCharacter(ImageAssets.PLAYER_CHARACTER_3);
-                Screens.MAIN.setAsCurrent();
+                Screens.INSTRUCTION.setAsCurrent();
             }
         });
     }

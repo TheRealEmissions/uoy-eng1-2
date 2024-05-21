@@ -22,7 +22,9 @@ public enum Screens {
     END(EndScreen::new),
     CHARACTER(CharacterScreen::new),
     LOADING(LoadingScreen::new),
-    PLAY(PlayScreen::new);
+    PLAY(PlayScreen::new),
+
+    INSTRUCTION(InstructionScreen::new);
 
     private static final HeslingtonHustle parent = HeslingtonHustle.getInstance();
 
