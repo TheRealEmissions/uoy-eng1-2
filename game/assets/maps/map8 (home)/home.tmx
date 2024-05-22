@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" width="22" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="12">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="22" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="12">
  <tileset firstgid="1" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="17024" columns="16">
   <image source="Interiors_16x16.png" trans="000000" width="256" height="17024"/>
  </tileset>
@@ -306,7 +306,7 @@
 </data>
  </layer>
  <objectgroup id="10" name="activities">
-  <object id="1" name="Read A Book" x="31.0201" y="260.293" width="49.679" height="16.4431">
+  <object id="1" name="Read A Book" x="30.248" y="256.432" width="49.679" height="21.0758">
    <properties>
     <property name="activity_str" value="read a book"/>
     <property name="activity_time" type="int" value="1"/>
@@ -315,7 +315,7 @@
     <property name="is_activity" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="3" name="Make A Meal" x="175.485" y="160" width="48" height="17.8194">
+  <object id="3" name="Make A Meal" x="175.485" y="156.525" width="48" height="24.3823">
    <properties>
     <property name="activity_str" value="make some food"/>
     <property name="activity_time" type="int" value="2"/>
@@ -324,16 +324,16 @@
     <property name="is_activity" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="4" name="Have A Snack" x="108.547" y="160.105" width="21.3177" height="19.102">
+  <object id="4" name="Have A Snack" x="108.933" y="163.58" width="21.3177" height="22.9626">
    <properties>
-    <property name="activityStr" value="have a snack"/>
-    <property name="activityTime" type="int" value="1"/>
-    <property name="activityType" value="eat"/>
-    <property name="changeAmount" value="0.1, 0"/>
-    <property name="isActivity" type="bool" value="true"/>
+    <property name="activity_str" value="have a snack"/>
+    <property name="activity_time" type="int" value="1"/>
+    <property name="activity_type" value="eat"/>
+    <property name="change_stats" value="0.1,0"/>
+    <property name="is_activity" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="5" name="Go To Bed" x="225.094" y="255.381" width="31.9532" height="35.9415">
+  <object id="5" name="Go To Bed" x="225.094" y="255.381" width="31.9532" height="43.2766">
    <properties>
     <property name="activity_str" value="go to bed"/>
     <property name="activity_time" type="int" value="0"/>
@@ -342,7 +342,7 @@
     <property name="is_activity" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="6" name="Study At Desk" x="300.429" y="299.695" width="21.3177" height="35.9415">
+  <object id="6" name="Study At Desk" x="300.429" y="299.695" width="36.7599" height="35.9415">
    <properties>
     <property name="activity_str" value="study at your desk"/>
     <property name="activity_time" type="int" value="3"/>

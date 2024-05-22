@@ -342,7 +342,7 @@
 </data>
  </layer>
  <objectgroup id="9" name="activities">
-  <object id="1" name="study" x="253.318" y="229.501" width="19.222" height="56.2929">
+  <object id="1" name="study" x="249.888" y="229.501" width="22.6519" height="56.2929">
    <properties>
     <property name="activity_str" value="study"/>
     <property name="activity_time" type="int" value="3"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="360" height="136" tilewidth="16" tileheight="16" infinite="0" nextlayerid="28" nextobjectid="26">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="360" height="136" tilewidth="16" tileheight="16" infinite="0" nextlayerid="28" nextobjectid="28">
  <tileset firstgid="1" name="trees" tilewidth="16" tileheight="16" tilecount="2304" columns="48">
   <image source="Tileset_20_MV.png" width="768" height="768"/>
   <tile id="0">
@@ -30918,7 +30918,7 @@
 </data>
  </layer>
  <objectgroup id="23" name="activities">
-  <object id="15" name="daydream" x="2895.75" y="1454.5" width="58.2859" height="120.546">
+  <object id="15" name="daydream" x="2895.75" y="1454.5" width="79.6737" height="120.546">
    <properties>
     <property name="activity_str" value="daydream"/>
     <property name="activity_time" type="int" value="1"/>
@@ -30927,7 +30927,7 @@
     <property name="is_activity" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="17" name="daydream" x="3767.71" y="2037.85" width="58.2859" height="120.546">
+  <object id="17" name="daydream" x="3758.2" y="2037.85" width="67.7916" height="120.546">
    <properties>
     <property name="activity_str" value="daydream"/>
     <property name="activity_time" type="int" value="1"/>
@@ -30954,21 +30954,21 @@
     <property name="is_activity" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="20" name="hang out" x="2065.66" y="1837.18" width="130.3" height="113.754">
+  <object id="26" name="hang out" x="2071.12" y="1842.62" width="112.731" height="103.175">
    <properties>
-    <property name="activity_str" value="hang out with friends"/>
-    <property name="activity_time" value="3"/>
+    <property name="activity_str" value="see friends"/>
+    <property name="activity_time" type="int" value="3"/>
     <property name="activity_type" value="relax"/>
-    <property name="change_stats" value="0.2,0.2"/>
+    <property name="change_stats" value="0.2,0.15"/>
     <property name="is_activity" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="22" name="go to courtyard" x="1678.63" y="1832.95" width="130.3" height="113.754">
+  <object id="27" name="pub" x="1685.84" y="1851.74" width="112.731" height="103.175">
    <properties>
     <property name="activity_str" value="go to courtyard"/>
-    <property name="activity_time" value="2"/>
+    <property name="activity_time" type="int" value="2"/>
     <property name="activity_type" value="relax"/>
-    <property name="change_stats" value="0.25,0.4"/>
+    <property name="change_stats" value="0.35,0.2"/>
     <property name="is_activity" type="bool" value="true"/>
    </properties>
   </object>
