@@ -34,7 +34,7 @@ const HeroSection = () => {
                             <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 ">Requirements</h5>
                             <p className="font-normal text-gray-700 pb-5">Here is a link to our requirements PDF.</p>
                             <a className="cursor-pointer" href="/old_deliverables/requirements.pdf" target="_blank"
-                               rel="noopener noreferrer" download>
+                               rel="noopener noreferrer">
                                 <h6 className="text-sm ghosted text-blue-500">/requirements.pdf</h6>
                             </a>
                         </div>
@@ -46,7 +46,7 @@ const HeroSection = () => {
                             <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 ">Architecture</h5>
                             <p className="font-normal text-gray-700 pb-5">Here is a link to our architecture PDF.</p>
                             <a className="cursor-pointer" href="/old_deliverables/architecture.pdf" target="_blank"
-                               rel="noopener noreferrer" download>
+                               rel="noopener noreferrer">
                                 <h6 className="text-sm ghosted text-blue-500">/architecture.pdf</h6>
                             </a>
                         </div>
@@ -57,7 +57,7 @@ const HeroSection = () => {
                             <p className="font-normal text-gray-700 pb-5">Here is a link to our method selection and
                                 planning PDF.</p>
                             <a className="cursor-pointer" href="/old_deliverables/methodselection.pdf" target="_blank"
-                               rel="noopener noreferrer" download>
+                               rel="noopener noreferrer">
                                 <h6 className="text-sm ghosted text-blue-500">/methodselectionandplanning.pdf</h6>
                             </a>
                         </div>
@@ -70,7 +70,7 @@ const HeroSection = () => {
                             <p className="font-normal text-gray-700 pb-5 ">Here is a link to our risk assessment and
                                 mitigation PDF.</p>
                             <a className="cursor-pointer" href="/old_deliverables/riskassessment.pdf" target="_blank"
-                               rel="noopener noreferrer" download>
+                               rel="noopener noreferrer">
                                 <h6 className="text-sm ghosted text-blue-500">/riskassessment.pdf</h6>
                             </a>
                         </div>
@@ -79,7 +79,7 @@ const HeroSection = () => {
                             <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 ">Implementation</h5>
                             <p className="font-normal text-gray-700 pb-5">Here is a link to our implementation PDF.</p>
                             <a className="cursor-pointer" href="/old_deliverables/implementation.pdf" target="_blank"
-                               rel="noopener noreferrer" download>
+                               rel="noopener noreferrer">
                                 <h6 className="text-sm ghosted text-blue-500">/implementation.pdf</h6>
                             </a>
                         </div>
@@ -112,7 +112,7 @@ const HeroSection = () => {
                             <p className="text-xs font-normal text-gray-700 pb-5">Here is a link to our requirements
                                 PDF.</p>
                             <a className="cursor-pointer" href="/old_deliverables/requirements.pdf" target="_blank"
-                               rel="noopener noreferrer" download>
+                               rel="noopener noreferrer">
                                 <h6 className="text-sm ghosted text-blue-500">/requirements.pdf</h6>
                             </a>
                         </div>
@@ -124,7 +124,7 @@ const HeroSection = () => {
                             <p className="text-xs font-normal text-gray-700 pb-5">Here is a link to our architecture
                                 PDF.</p>
                             <a className="cursor-pointer" href="/old_deliverables/architecture.pdf" target="_blank"
-                               rel="noopener noreferrer" download>
+                               rel="noopener noreferrer">
                                 <h6 className="text-sm ghosted text-blue-500">/architecture.pdf</h6>
                             </a>
                         </div>
@@ -135,7 +135,7 @@ const HeroSection = () => {
                             <p className="text-xs font-normal text-gray-700 pb-5">Here is a link to our method selection
                                 and planning PDF.</p>
                             <a className="cursor-pointer" href="/old_deliverables/methodselection.pdf" target="_blank"
-                               rel="noopener noreferrer" download>
+                               rel="noopener noreferrer">
                                 <h6 className="text-sm ghosted text-blue-500">/methodplanning.pdf</h6>
                             </a>
                         </div>
@@ -148,7 +148,7 @@ const HeroSection = () => {
                             <p className="text-xs font-normal text-gray-700 pb-5">Here is a link to our risk assessment
                                 and mitigation PDF.</p>
                             <a className="cursor-pointer" href="/old_deliverables/riskassessment.pdf" target="_blank"
-                               rel="noopener noreferrer" download>
+                               rel="noopener noreferrer">
                                 <h6 className="text-sm ghosted text-blue-500">/riskassessment.pdf</h6>
                             </a>
                         </div>
@@ -158,7 +158,7 @@ const HeroSection = () => {
                             <p className="text-xs font-normal text-gray-700 pb-5">Here is a link to our implementation
                                 PDF.</p>
                             <a className="cursor-pointer" href="/old_deliverables/implementation.pdf" target="_blank"
-                               rel="noopener noreferrer" download>
+                               rel="noopener noreferrer">
                                 <h6 className="text-sm ghosted text-blue-500">/implementation.pdf</h6>
                             </a>
                         </div>
