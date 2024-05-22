@@ -2,6 +2,7 @@ package com.eng1.game.game.activity;
 
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapProperties;
+import com.eng1.game.game.achievement.Achievements;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
@@ -20,6 +21,7 @@ public final class ActivityMapObject {
     private final Activities activity;
     private final int advanceTimeBy;
     private final @Unmodifiable List<Float> changeStats;
+    private final List<Achievements> achievements;
 
     private ActivityMapObject(@NotNull MapObject object) {
         MapProperties properties = object.getProperties();
@@ -29,6 +31,9 @@ public final class ActivityMapObject {
         this.changeStats = Arrays.stream(properties.get("change_stats", String.class).split(",", -1))
                 .map(x -> x.isEmpty() ? 0 : Float.parseFloat(x))
                 .collect(Collectors.toUnmodifiableList());
+        this.achievements = Arrays.stream(properties.get("activity_achievements", String.class).split(","))
+                .map(Achievements::fromString)
+                .collect(Collectors.toList());
     }
 
     public static ActivityMapObject fromMapObject(@NotNull MapObject object) {
