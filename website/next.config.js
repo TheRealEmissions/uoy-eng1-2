@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     output: 'export',
-    }
-    
-    module.exports = nextConfig
+    assetPrefix: './',
+    trailingSlash: true,
+}
+
+module.exports = nextConfig;
