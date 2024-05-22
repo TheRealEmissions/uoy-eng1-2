@@ -2,6 +2,7 @@ package com.eng1.game.screens;
 
 import com.badlogic.gdx.Screen;
 import com.eng1.game.HeslingtonHustle;
+import com.eng1.game.game.Score;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -20,6 +21,8 @@ public enum Screens {
     PREFERENCES(PreferencesScreen::new),
     MAIN(MainScreen::new),
     END(EndScreen::new),
+    HIGHSCORE(() -> new HighScoreEntryScreen(Score.calculateScorePercentage())),
+    LEADERBOARD(LeaderboardScreen::new),
     CHARACTER(CharacterScreen::new),
     LOADING(LoadingScreen::new),
     PLAY(PlayScreen::new);

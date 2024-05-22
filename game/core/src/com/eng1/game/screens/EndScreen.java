@@ -1,8 +1,7 @@
 package com.eng1.game.screens;
 
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -12,27 +11,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.eng1.game.game.Score;
-import com.eng1.game.game.player.Statistics;
 
-import java.util.Arrays;
-import java.util.Map;
-
-/**
- * Represents the Endscreen screen of the game.
- * Allows the player see their final score
- */
 public class EndScreen implements Screen {
+    private final Stage stage = new Stage(new ScreenViewport());
+    private final Skin skin;
+    private int scorePercentage;
 
-    private final Stage stage;
-
-
-    /**
-     * Constructor for the EndScreen class.
-     * Initializes the parent orchestrator and creates a new stage for UI rendering.
-     */
     public EndScreen() {
-        // create stage and set it as input processor
-        stage = new Stage(new ScreenViewport());
+        this.skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
     }
 
     @Override
@@ -40,91 +26,73 @@ public class EndScreen implements Screen {
         stage.clear();
         Gdx.input.setInputProcessor(stage);
 
-        // Create a table that fills the screen. Everything else will go inside this table.
+        // Calculate the scorePercentage
+        this.scorePercentage = Score.calculateScorePercentage();
+
+        showGameOverScreen();
+    }
+
+    private void showGameOverScreen() {
+        stage.clear();
         Table table = new Table();
         table.setFillParent(true);
         stage.addActor(table);
 
-        // temporary until we have asset manager in
-        Skin skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
+        Label gameOverLabel = new Label("Game Over! You got " + scorePercentage + "% on your test!", skin);
+        gameOverLabel.setFontScale(1.5F);
+        table.add(gameOverLabel).colspan(2);
+        table.row().pad(10.0F, 0.0F, 0.0F, 10.0F);
 
-        float scoreTotal = Arrays.stream(Statistics.PlayerStatistics.values()).map(Statistics.PlayerStatistics::getTotal).reduce(0f, Float::sum);
-        float maxTotal = Statistics.MAX_SCORE;
+        Label classificationLabel = new Label("Classification: " + Score.getClassification((float) scorePercentage), skin);
+        classificationLabel.setFontScale(1.2F);
+        table.add(classificationLabel).colspan(2);
+        table.row().pad(10.0F, 0.0F, 0.0F, 10.0F);
 
-        float score = (scoreTotal / maxTotal) * 0.8f;
-        int scorePercentage = (int) Math.floor(score * 100);
+        Label achievementLabel = new Label("Achievements:", skin);
+        achievementLabel.setFontScale(1.2F);
+        table.add(achievementLabel).colspan(2);
+        table.row().pad(10.0F, 0.0F, 0.0F, 10.0F);
 
-        // Add labels
-        Label titleLabel = new Label("Heslington Hustle", skin);
-        Label scoreLabel = new Label("Score: " + scorePercentage + "%", skin); // Retrieve the final score from Activity
-        Label classification = new Label("Classification: " + Score.getClassification(scorePercentage), skin);
+        TextButton continueButton = new TextButton("Continue", skin);
+        continueButton.getLabel().setFontScale(1.2F);
+        table.add(continueButton).colspan(2);
 
-
-        // Add actors to the table
-        table.add(titleLabel).colspan(2);
-        table.row().pad(10, 0, 0, 10);
-
-        // Display completed activities
-        Map<String, Integer> completedActivities = Map.of();
-        for (String type : completedActivities.keySet()) {
-            table.add(new Label(type + ": " + completedActivities.get(type), skin)).left().pad(10);
-            table.row();
-        }
-        table.row().pad(10, 0, 0, 10);
-
-        table.add(scoreLabel).row();
-        table.add(classification).row();
-
-        // quit game button
-        final TextButton quitButton = new TextButton("Quit", skin);
-        quitButton.addListener(new ChangeListener() {
+        continueButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Gdx.app.exit();
+                if (scorePercentage > Score.getLastScore()) {
+                    Screens.HIGHSCORE.setAsCurrent();
+                } else {
+                    Screens.LEADERBOARD.setAsCurrent();
+                }
             }
         });
 
-        table.row().pad(10, 0, 0, 10);
-        table.add(quitButton).colspan(50);
+        stage.setKeyboardFocus(continueButton);
     }
-
 
     @Override
     public void render(float delta) {
-        // clear the screen ready for next set of images to be drawn
-        Gdx.gl.glClearColor(0f, 0f, 0f, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        // tell our stage to do actions and draw itself
-        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+        Gdx.gl.glClearColor(0.0F, 0.0F, 0.0F, 1.0F);
+        Gdx.gl.glClear(16384);
+        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 0.033333335F));
         stage.draw();
-
     }
 
     @Override
     public void resize(int width, int height) {
-        // change the stage's viewport when the screen size is changed
         stage.getViewport().update(width, height, true);
     }
 
     @Override
-    public void pause() {
-        // Not needed
-    }
+    public void pause() {}
 
     @Override
-    public void resume() {
-        // Not needed
-    }
+    public void resume() {}
 
     @Override
-    public void hide() {
-        // Not needed
-    }
+    public void hide() {}
 
     @Override
-    public void dispose() {
-        // Not needed
-    }
-
+    public void dispose() {}
 }
