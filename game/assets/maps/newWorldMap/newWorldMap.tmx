@@ -30920,7 +30920,7 @@
  <objectgroup id="23" name="activities">
   <object id="15" name="daydream" x="2895.75" y="1454.5" width="79.6737" height="120.546">
    <properties>
-    <property name="activity_achievements" value="DREAMWEAVER"/>
+    <property name="activity_achievements" value="DREAMWEAVER,WELL_ROUNDED"/>
     <property name="activity_str" value="daydream"/>
     <property name="activity_time" type="int" value="1"/>
     <property name="activity_type" value="nap"/>
