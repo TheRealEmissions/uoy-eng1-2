@@ -1,4 +1,6 @@
 # Heslington Hustle
+By Liam Martin, Aaliya Williams, Lucy Crabtree, Kai Nichol, Sammy Hori, Tim Gorst, Zac Ribbins
+
 
 ## Description
 Welcome to Heslington Hustle! This is an exciting and immersive 2D pixel game, based on the last week of exams!.  
@@ -18,13 +20,6 @@ To play the game, simply visit our website [here](https://eng1-team3-website.ver
 - [Variety of activities]: Go to the pub, Attend teaching hours, Daydream... The possibilities are endless!
 - [Leaderboard]: Compete against your friends and see who can get the best score!
 - [Hidden Streaks]: Can you figure out the best activities to get the highest score possible?
-
-## Screenshots
-![New Map](<img width="1437" alt="updated_map" src="https://github.com/TheRealEmissions/uoy-eng1-2/assets/120254125/2ea91df8-5899-4b82-80ff-3a57974d3fb6">
-)
-![Screenshot 2](screenshot2.png)
-![Screenshot 3](screenshot3.png)
-
 
 ## Credits
 - [LimeZu](https://limezu.itch.io/): Game Artwork 
