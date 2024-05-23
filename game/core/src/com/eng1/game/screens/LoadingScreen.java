@@ -3,7 +3,6 @@ package com.eng1.game.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.eng1.game.HeslingtonHustle;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 /**

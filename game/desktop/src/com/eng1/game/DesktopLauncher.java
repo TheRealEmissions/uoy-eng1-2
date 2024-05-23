@@ -1,7 +1,5 @@
 package com.eng1.game;
-import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.graphics.glutils.HdpiMode;
-import com.eng1.game.HeslingtonHustle;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;

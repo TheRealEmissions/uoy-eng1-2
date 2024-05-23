@@ -1,7 +1,6 @@
 package com.eng1.game.assets.maps;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.eng1.game.assets.Assets;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;

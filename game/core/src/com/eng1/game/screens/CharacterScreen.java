@@ -88,9 +88,6 @@ public class CharacterScreen extends ScreenAdapter {
          */
         public static final Image CHARACTER3_IMAGE = new Image(ImageAssets.PLAYER_CHARACTER_3.get());
 
-        /**
-         * Static initializer block that sets up the font scales for the labels and the sizes for the images.
-         */
         static {
             TITLE_LABEL.setFontScale(2f);
             CHARACTER1_BUTTON.getLabel().setFontScale(1.6f);

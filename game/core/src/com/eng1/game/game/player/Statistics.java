@@ -1,7 +1,6 @@
 package com.eng1.game.game.player;
 
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
-import com.eng1.game.game.activity.Activities;
 import lombok.Getter;
 import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.NotNull;
@@ -278,7 +277,6 @@ public class Statistics {
      * The score starts at 0 and increases over time as the player progresses in the game.
      * It represents the total points that the player has gained throughout the game.
      *
-     * @return The current score of the player.
      * @deprecated in favour of {@link com.eng1.game.game.Score}
      */
     @Getter
@@ -306,7 +304,6 @@ public class Statistics {
      * However, time is displayed 1 hour ahead to the player due to rolling over behaviour of {@link LocalTime}
      * The time increases as the player performs activities in the game.
      *
-     * @return The current time in the game.
      */
     @Getter
     private static LocalTime time = LocalTime.of(7, 0);
