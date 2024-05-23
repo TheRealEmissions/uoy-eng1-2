@@ -86,8 +86,9 @@ public class PlayScreen implements Screen {
         // scale map
         defaultViewportWidth.computeIfAbsent(old, k -> camera.viewportWidth);
         defaultViewportHeight.computeIfAbsent(old, k -> camera.viewportHeight);
-        if (defaultViewportWidth.get(map) != null) {
-            camera.viewportWidth = defaultViewportWidth.get(map);
+        Float defaultViewWidth = defaultViewportWidth.get(map);
+        if (defaultViewWidth != null) {
+            camera.viewportWidth = defaultViewWidth;
             camera.viewportHeight = defaultViewportHeight.get(map);
         } else {
             // use map width and height, but maintain aspect ratio
@@ -240,6 +241,7 @@ public class PlayScreen implements Screen {
         camera.position.y = Math.min(mapHeight - camera.viewportHeight / 2, Math.max(camera.viewportHeight / 2, camera.position.y));
 
         camera.update();
+        player.update(delta);
         player.draw(batch);
 
         for (String layerName : topLayer) {
