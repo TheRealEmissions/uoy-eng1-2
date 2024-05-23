@@ -332,7 +332,7 @@
   </object>
   <object id="2" name="get a snack" x="207.808" y="119.314" width="84.7185" height="28.7373">
    <properties>
-    <property name="activity_achievements" value="SNACK_MASTER, WELL_ROUNDED"/>
+    <property name="activity_achievements" value="SNACK_MASTER,WELL_ROUNDED"/>
     <property name="activity_str" value="have a snack"/>
     <property name="activity_time" type="int" value="1"/>
     <property name="activity_type" value="eat"/>
@@ -352,7 +352,7 @@
   </object>
  </objectgroup>
  <objectgroup id="10" name="spawnpoints">
-  <object id="6" name="transition" x="128.813" y="506.231" width="30.1882" height="20.7169">
+  <object id="6" name="transition" x="124.491" y="506.231" width="34.5097" height="20.7169">
    <properties>
     <property name="map_id" value="NEW_WORLD"/>
     <property name="spawnpoint" value="P7hdS"/>
