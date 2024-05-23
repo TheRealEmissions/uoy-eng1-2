@@ -28,8 +28,8 @@ public class MenuScreen extends ScreenAdapter {
     private final Stage stage; // Stage for handling UI elements
     private final Skin uiSkin = SkinAssets.UI.get(); // Skin for UI elements
     private final Table table = new Table(); // Table for organizing UI elements
-    private final Image mapOverview = new Image(ImageAssets.NEW_WORLD_MAP_OVERVIEW.get());
-    private final ShapeRenderer shapeRenderer = new ShapeRenderer();
+    private final Image mapOverview = new Image(ImageAssets.NEW_WORLD_MAP_OVERVIEW.get()); // Image of the map overview
+    private final ShapeRenderer shapeRenderer = new ShapeRenderer(); // ShapeRenderer for drawing shapes
 
     @UtilityClass
     private class TableContents {

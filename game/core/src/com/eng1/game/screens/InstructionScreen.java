@@ -24,14 +24,23 @@ import lombok.experimental.UtilityClass;
  * @since v2 -- New screen added to make the game more user-friendly
  */
 public class InstructionScreen extends ScreenAdapter {
-    private final Stage stage; // Stage for handling UI elements
-    private final Skin uiSkin = SkinAssets.UI.get(); // Skin for UI elements
-    private final Table table = new Table(); // Table for organizing UI elements
+    // The stage where the UI elements are drawn and interacted with.
+    private final Stage stage;
+
+    // The skin used for styling the UI elements.
+    private final Skin uiSkin = SkinAssets.UI.get();
+
+    // The table used for organizing the UI elements on the stage.
+    private final Table table = new Table();
+
+    // The image of the map overview displayed on the instruction screen.
     private final Image mapOverview = new Image(ImageAssets.NEW_WORLD_MAP_OVERVIEW.get());
+
+    // The ShapeRenderer used for drawing shapes, in this case, a semi-transparent overlay.
     private final ShapeRenderer shapeRenderer = new ShapeRenderer();
 
     @UtilityClass
-    private class InstructionContents{
+    private class InstructionContents {
         private static final Skin UI_SKIN = SkinAssets.UI.get();
         private static final Label TITLE = new Label("Welcome to Heslington Hustle!", UI_SKIN);
         private static final Label INTRO = new Label("You wake up in your student accommodation.\n" +
