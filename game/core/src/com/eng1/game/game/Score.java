@@ -44,7 +44,7 @@ public class Score {
      *
      * @return A list of the top 10 scores in the format Name,Score
      */
-    public static List<ScoreEntry> getTop10Scores() {
+    public static @NotNull List<ScoreEntry> getTop10Scores() {
         ArrayList<ScoreEntry> scores = new ArrayList<>();
         FileHandle file = Gdx.files.local(SCORE_FILE);
         if (file.exists()) {
