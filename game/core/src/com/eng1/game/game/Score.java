@@ -98,6 +98,8 @@ public class Score {
             score += achievement.getScore() / 100;
         }
 
+        score = Math.min(score, 1.0f);
+
         return (int) Math.floor(score * 100);
     }
 
