@@ -2,13 +2,14 @@ package com.eng1.game.audio.music;
 
 import com.eng1.game.audio.AudioManager;
 import com.eng1.game.audio.music.elements.BackgroundMusic;
-import com.eng1.game.settings.MusicPreferences;
 import com.eng1.game.settings.Preferences;
 import com.eng1.game.settings.SoundPreferences;
+import lombok.Getter;
 
 public class MusicManager implements AudioManager {
 
     public static final BackgroundMusic BACKGROUND_MUSIC = new BackgroundMusic();
+    @Getter
     private static final MusicManager instance = new MusicManager();
 
     private MusicManager() {
@@ -29,7 +30,7 @@ public class MusicManager implements AudioManager {
         BACKGROUND_MUSIC.dispose();
     }
 
-    public static MusicManager getInstance() {
-        return instance;
+    public void setVolume(float volume) {
+        BACKGROUND_MUSIC.setVolume(volume);
     }
 }

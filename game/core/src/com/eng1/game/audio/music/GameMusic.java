@@ -3,11 +3,13 @@ package com.eng1.game.audio.music;
 
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.Gdx;
+import lombok.Getter;
 import org.jetbrains.annotations.Range;
 
 
 
-public abstract  class GameMusic implements Music {
+@Getter
+public abstract class GameMusic implements Music {
     protected final Music music;
 
     protected GameMusic(String path) {
@@ -64,10 +66,6 @@ public abstract  class GameMusic implements Music {
 
     public void setOnCompletionListener(Music.OnCompletionListener listener) {
         this.music.setOnCompletionListener(listener);
-    }
-
-    public Music getMusic() {
-        return this.music;
     }
 
 }
