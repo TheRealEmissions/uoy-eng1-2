@@ -7,7 +7,7 @@ import lombok.Setter;
  * Links with {@link Achievements#DREAMWEAVER}
  * This achievement is achieved by daydreaming more than 4 times a week.
  *
- * The class is annotated with @Setter and @Getter from the Lombok library, which automatically generates getter and setter methods for its fields.
+ * The class is annotated with {@link Setter} and {@link Getter} from the Lombok library, which automatically generates getter and setter methods for its fields.
  */
 @Setter
 @Getter
