@@ -30940,7 +30940,7 @@
   </object>
   <object id="18" name="play basketball" x="4589.31" y="1286.48" width="564.241" height="581.766">
    <properties>
-    <property name="activity_achievements" value="FITNESS_FANATIC"/>
+    <property name="activity_achievements" value="FITNESS_FANATIC, WELL_ROUNDED"/>
     <property name="activity_str" value="play basketball"/>
     <property name="activity_time" type="int" value="1"/>
     <property name="activity_type" value="relax"/>
@@ -30950,7 +30950,7 @@
   </object>
   <object id="19" name="play football" x="3906.09" y="1123.8" width="564.241" height="776.182">
    <properties>
-    <property name="activity_achievements" value="FITNESS_FANATIC"/>
+    <property name="activity_achievements" value="FITNESS_FANATIC, WELL_ROUNDED"/>
     <property name="activity_str" value="play football"/>
     <property name="activity_time" type="int" value="2"/>
     <property name="activity_type" value="relax"/>
@@ -30960,7 +30960,7 @@
   </object>
   <object id="26" name="hang out" x="2071.12" y="1781.56" width="112.731" height="164.237">
    <properties>
-    <property name="activity_achievements" value="SOCIAL_BUTTERFLY"/>
+    <property name="activity_achievements" value="SOCIAL_BUTTERFLY, WELL_ROUNDED"/>
     <property name="activity_str" value="see friends"/>
     <property name="activity_time" type="int" value="3"/>
     <property name="activity_type" value="relax"/>
@@ -30970,7 +30970,7 @@
   </object>
   <object id="27" name="pub" x="1685.84" y="1792.24" width="112.731" height="162.671">
    <properties>
-    <property name="activity_achievements" value="SOCIAL_BUTTERFLY"/>
+    <property name="activity_achievements" value="SOCIAL_BUTTERFLY, WELL_ROUNDED"/>
     <property name="activity_str" value="go to courtyard"/>
     <property name="activity_time" type="int" value="2"/>
     <property name="activity_type" value="relax"/>
