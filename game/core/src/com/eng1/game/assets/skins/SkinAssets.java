@@ -16,12 +16,11 @@ import static com.eng1.game.assets.skins.SkinAssetPaths.UISKIN_JSON_PATH;
  * Each enum constant is associated with a {@link Supplier} that can be used to create new instances of the {@link Skin}.
  */
 public enum SkinAssets implements Assets<Skin> {
-    UI(() -> new Skin(Gdx.files.internal(UISKIN_JSON_PATH)));
     /**
      * Associated with a {@link Supplier} that creates a new instance of the {@link Skin} class.
      * The Supplier loads the {@link Skin} from the "skin/uiskin.json" file located in the internal storage.
      */
-    UI(() -> new Skin(Gdx.files.internal("skin/uiskin.json")));
+    UI(() -> new Skin(Gdx.files.internal(UISKIN_JSON_PATH)));
 
     /**
      * A {@link List} of {@link Skin} objects that have been loaded.
