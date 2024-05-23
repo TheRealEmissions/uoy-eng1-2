@@ -6,7 +6,9 @@ import com.badlogic.gdx.Input;
 import com.eng1.game.assets.images.ImageAssets;
 import com.eng1.game.assets.maps.MapAssets;
 import com.eng1.game.assets.skins.SkinAssets;
-import com.eng1.game.game.player.Player;
+import com.eng1.game.audio.AudioManager;
+import com.eng1.game.audio.music.MusicManager;
+import com.eng1.game.audio.sounds.SoundsManager;
 import com.eng1.game.game.player.Statistics;
 import com.eng1.game.screens.*;
 import lombok.Getter;
@@ -30,6 +32,12 @@ public class HeslingtonHustle extends Game {
 
 	@Override
 	public void create() {
+
+
+		AudioManager musicManager = MusicManager.getInstance();
+		musicManager.onEnable();
+		AudioManager soundManager = SoundsManager.getInstance();
+		soundManager.onEnable();
 		Screens.LOADING.setAsCurrent();
 	}
 
@@ -59,5 +67,9 @@ public class HeslingtonHustle extends Game {
 		MapAssets.disposeAll();
 		Screens.disposeAll();
 		Statistics.dispose();
+		AudioManager musicManager = MusicManager.getInstance();
+		musicManager.onDisable();
+		AudioManager soundManager = SoundsManager.getInstance();
+		soundManager.onDisable();
 	}
 }
