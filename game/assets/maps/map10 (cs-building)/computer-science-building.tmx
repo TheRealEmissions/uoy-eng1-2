@@ -364,6 +364,7 @@
   </object>
   <object id="3" name="nap" x="21.2815" y="129.272" width="51.4874" height="26.7735">
    <properties>
+    <property name="activity_achievements" value="WELL_ROUNDED"/>
     <property name="activity_str" value="have a nap"/>
     <property name="activity_time" type="int" value="1"/>
     <property name="activity_type" value="nap"/>

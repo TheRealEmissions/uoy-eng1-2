@@ -338,6 +338,7 @@
   </object>
   <object id="5" name="Go To Bed" x="225.094" y="255.381" width="31.9532" height="43.2766">
    <properties>
+    <property name="activity_achievements" value="WELL_ROUNDED"/>
     <property name="activity_str" value="go to bed"/>
     <property name="activity_time" type="int" value="0"/>
     <property name="activity_type" value="sleep"/>
