@@ -279,8 +279,10 @@ public class Statistics {
      * It represents the total points that the player has gained throughout the game.
      *
      * @return The current score of the player.
+     * @deprecated in favour of {@link com.eng1.game.game.Score}
      */
     @Getter
+    @Deprecated(forRemoval = true)
     private static int score = 0;
     /**
      * The maximum number of days in the game.
@@ -385,7 +387,9 @@ public class Statistics {
      * It represents the total points that the player has gained throughout the game.
      *
      * @param score The amount to increase the player's score by.
+     * @deprecated in favour of {@link com.eng1.game.game.Score}
      */
+    @Deprecated(forRemoval = true)
     public static void increaseScore(int score) {
         Statistics.score += score;
     }
