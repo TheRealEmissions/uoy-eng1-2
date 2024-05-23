@@ -112,7 +112,10 @@ public class Statistics {
     public static final LocalTime DAY_END = LocalTime.of(23, 0); //When the player has to sleep
 
     public static void newDay() {
-        //Sets time and energy for the new day, increases day count
+        // Sets time for the new day, increases day count.
+        // The players energy and daily study is reset too, but via the
+        // Activities enum (i.e. it's reset by activating a SLEEP activity
+        // rather than a new day happening)
         Statistics.time = DAY_START;
         Statistics.day++;
     }
