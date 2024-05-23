@@ -8,7 +8,10 @@ import com.eng1.game.assets.maps.MapAssets;
 import com.eng1.game.assets.skins.SkinAssets;
 import com.eng1.game.game.player.Statistics;
 import com.eng1.game.screens.*;
+import com.eng1.game.audio.AudioManager;
+import com.eng1.game.audio.music.MusicManager;
 import lombok.Getter;
+
 
 /**
  * The main game class responsible for managing screens.
@@ -18,6 +21,7 @@ import lombok.Getter;
  * -- now uses the {@link Screens} enum to switch screens and this class no longer stores all the screens <p>
  * -- removed changeScreen() as {@link Screens} enum now handles screen switching <p>
  */
+
 public class HeslingtonHustle extends Game {
 	@Getter
 	private static HeslingtonHustle instance;
@@ -29,12 +33,8 @@ public class HeslingtonHustle extends Game {
 
 	@Override
 	public void create() {
-
-
-/*		AudioManager musicManager = MusicManager.getInstance();
+		AudioManager musicManager = MusicManager.getInstance();
 		musicManager.onEnable();
-		AudioManager soundManager = SoundsManager.getInstance();
-		soundManager.onEnable();*/
 		Screens.LOADING.setAsCurrent();
 	}
 
@@ -64,9 +64,7 @@ public class HeslingtonHustle extends Game {
 		MapAssets.disposeAll();
 		Screens.disposeAll();
 		Statistics.dispose();
-/*		AudioManager musicManager = MusicManager.getInstance();
+		AudioManager musicManager = MusicManager.getInstance();
 		musicManager.onDisable();
-		AudioManager soundManager = SoundsManager.getInstance();
-		soundManager.onDisable();*/
 	}
 }
