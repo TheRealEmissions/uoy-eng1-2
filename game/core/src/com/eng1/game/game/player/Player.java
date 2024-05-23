@@ -274,25 +274,25 @@ public class Player extends Sprite implements InputProcessor {
                 Achievement achievementRef = achievement.getAchievementRef();
                 if (achievementRef instanceof DreamweaverAchievement) {
                     DreamweaverAchievement dreamweaverAchievement = (DreamweaverAchievement) achievementRef;
-
+                    dreamweaverAchievement.daydream();
                 } else if (achievementRef instanceof FitnessFanaticAchievement) {
                     FitnessFanaticAchievement fitnessFanaticAchievement = (FitnessFanaticAchievement) achievementRef;
-
+                    fitnessFanaticAchievement.exercise();
                 } else if (achievementRef instanceof ScholarlySprinterAchievement) {
                     ScholarlySprinterAchievement scholarlySprinterAchievement = (ScholarlySprinterAchievement) achievementRef;
-
+                    scholarlySprinterAchievement.study(Statistics.getDay());
                 } else if (achievementRef instanceof SnackMasterAchievement) {
                     SnackMasterAchievement snackMasterAchievement = (SnackMasterAchievement) achievementRef;
-
+                    snackMasterAchievement.snack();
                 } else if (achievementRef instanceof SocialButterflyAchievement) {
                     SocialButterflyAchievement socialButterflyAchievement = (SocialButterflyAchievement) achievementRef;
-
+                    socialButterflyAchievement.socialise();
                 } else if (achievementRef instanceof TeachersPetAchievement) {
                     TeachersPetAchievement teachersPetAchievement = (TeachersPetAchievement) achievementRef;
-
+                    teachersPetAchievement.attendTeachingHours();
                 } else if (achievementRef instanceof WellRoundedAchievement) {
                     WellRoundedAchievement wellRoundedAchievement = (WellRoundedAchievement) achievementRef;
-
+                    wellRoundedAchievement.addActivity(Statistics.getDay(), activityRef);
                 }
             }
         }
