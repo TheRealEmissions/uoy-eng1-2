@@ -35,6 +35,7 @@ public enum Activities {
     }
 
     public static @Nullable Activities fromString(String string) {
+        if (string == null || string.isEmpty()) return null;
         for (Activities activity : values()) {
             if (activity.name().equalsIgnoreCase(string)) {
                 return activity;

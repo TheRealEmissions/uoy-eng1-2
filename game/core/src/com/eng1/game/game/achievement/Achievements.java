@@ -35,6 +35,7 @@ public enum Achievements {
     }
 
     public static @Nullable Achievements fromString(String string) {
+        if (string == null || string.isEmpty()) return null;
         for (Achievements achievement : values()) {
             if (achievement.name().equalsIgnoreCase(string)) {
                 return achievement;
