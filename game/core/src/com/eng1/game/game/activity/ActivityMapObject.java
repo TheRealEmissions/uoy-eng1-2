@@ -31,7 +31,7 @@ public final class ActivityMapObject {
         this.changeStats = Arrays.stream(properties.get("change_stats", String.class).split(",", -1))
                 .map(x -> x.isEmpty() ? 0 : Float.parseFloat(x))
                 .collect(Collectors.toUnmodifiableList());
-        this.achievements = Arrays.stream(properties.get("activity_achievements", String.class).split(","))
+        this.achievements = Arrays.stream(properties.get("activity_achievements", "", String.class).split(","))
                 .map(Achievements::fromString)
                 .collect(Collectors.toList());
     }

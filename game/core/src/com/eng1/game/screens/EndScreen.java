@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.eng1.game.game.Score;
+import com.eng1.game.game.achievement.Achievements;
 
 public class EndScreen implements Screen {
     private final Stage stage = new Stage(new ScreenViewport());
@@ -52,6 +53,15 @@ public class EndScreen implements Screen {
         achievementLabel.setFontScale(1.2F);
         table.add(achievementLabel).colspan(2);
         table.row().pad(10.0F, 0.0F, 0.0F, 10.0F);
+
+        Achievements[] achievements = Achievements.values();
+        for (Achievements achievement : achievements) {
+            if (!achievement.hasAchieved()) continue;
+            Label label = new Label(achievement.getName() + " - " + achievement.getDescription(), skin);
+            label.setFontScale(1.0F);
+            table.add(label).colspan(2);
+            table.row().pad(5.0F, 0.0F, 0.0F, 10.0F);
+        }
 
         TextButton continueButton = new TextButton("Continue", skin);
         continueButton.getLabel().setFontScale(1.2F);

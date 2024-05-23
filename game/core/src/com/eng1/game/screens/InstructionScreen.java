@@ -41,10 +41,11 @@ public class InstructionScreen extends ScreenAdapter {
                 "Yes, you do need sleep, even if you are hesitant to admit it!", UI_SKIN);
         private static final Label INSTRUCTIONS = new Label("Welcome to the game!\n\n" +
                 "Use the following controls to navigate:\n" +
-                "W - Move Up\n" +
-                "A - Move Left\n" +
-                "S - Move Down\n" +
-                "D - Move Right\n\n", UI_SKIN);
+                "W / ↑ - Move Up\n" +
+                "A / ← - Move Left\n" +
+                "S / ↓ - Move Down\n" +
+                "D / → - Move Right\n" +
+                "Press ESC anytime to pause \n\n", UI_SKIN);
 
         private static final Label START = new Label("Press Enter to start!", UI_SKIN);
 

@@ -3,6 +3,7 @@ package com.eng1.game.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Json;
+import com.eng1.game.game.achievement.Achievements;
 import com.eng1.game.game.player.Statistics;
 
 import lombok.Getter;
@@ -43,7 +44,7 @@ public class Score {
      *
      * @return A list of the top 10 scores in the format Name,Score
      */
-    public static List<ScoreEntry> getTop10Scores() {
+    public static @NotNull List<ScoreEntry> getTop10Scores() {
         ArrayList<ScoreEntry> scores = new ArrayList<>();
         FileHandle file = Gdx.files.local(SCORE_FILE);
         if (file.exists()) {
@@ -90,6 +91,13 @@ public class Score {
                 .reduce(0f, Float::sum);
         float maxTotal = Statistics.MAX_SCORE;
         float score = (scoreTotal / maxTotal) * 0.8f;
+
+        Achievements[] achievements = Achievements.values();
+        for (Achievements achievement : achievements) {
+            if (!achievement.hasAchieved()) continue;
+            score += achievement.getScore() / 100;
+        }
+
         return (int) Math.floor(score * 100);
     }
 

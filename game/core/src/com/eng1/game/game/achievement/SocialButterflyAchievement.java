@@ -5,11 +5,11 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class FitnessFanaticAchievement implements Achievement {
-    //Fitness Fanatic
-    //Achieve by being active at least 3 times a week.
-    //(Do cardio, lift some weights, play football, play basketball)
-    //4%
+public class SocialButterflyAchievement implements Achievement {
+    //Social Butterfly
+    //Achieve by hanging out with friends or going to the pub at least 3 times in a week
+    //(Hang out with friends, Go to courtyard)
+    //2%
 
     private int total = 0;
 
@@ -18,7 +18,7 @@ public class FitnessFanaticAchievement implements Achievement {
         return total >= 3;
     }
 
-    public void exercise() {
+    public void socialise() {
         total++;
     }
 
