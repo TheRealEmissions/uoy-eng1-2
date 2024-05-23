@@ -344,6 +344,7 @@
  <objectgroup id="9" name="activities">
   <object id="1" name="study" x="249.888" y="229.501" width="22.6519" height="56.2929">
    <properties>
+    <property name="activity_achievements" value="SCHOLARLY_SPRINTER, WELL_ROUNDED"/>
     <property name="activity_str" value="study"/>
     <property name="activity_time" type="int" value="3"/>
     <property name="activity_type" value="study"/>
@@ -353,6 +354,7 @@
   </object>
   <object id="2" name="attend teaching hours" x="118.764" y="128.586" width="34.3249" height="27.46">
    <properties>
+    <property name="activity_achievements" value="TEACHERS_PET, WELL_ROUNDED"/>
     <property name="activity_str" value="attend teaching hours"/>
     <property name="activity_time" type="int" value="1"/>
     <property name="activity_type" value="study"/>

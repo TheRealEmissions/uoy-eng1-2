@@ -308,6 +308,7 @@
  <objectgroup id="10" name="activities">
   <object id="1" name="Read A Book" x="30.248" y="256.432" width="49.679" height="21.0758">
    <properties>
+    <property name="activity_achievements" value="WELL_ROUNDED"/>
     <property name="activity_str" value="read a book"/>
     <property name="activity_time" type="int" value="1"/>
     <property name="activity_type" value="relax"/>
@@ -317,6 +318,7 @@
   </object>
   <object id="3" name="Make A Meal" x="175.485" y="156.525" width="48" height="24.3823">
    <properties>
+    <property name="activity_achievements" value="WELL_ROUNDED"/>
     <property name="activity_str" value="make some food"/>
     <property name="activity_time" type="int" value="2"/>
     <property name="activity_type" value="eat"/>
@@ -326,6 +328,7 @@
   </object>
   <object id="4" name="Have A Snack" x="108.933" y="163.58" width="21.3177" height="22.9626">
    <properties>
+    <property name="activity_achievements" value="SNACK_MASTER, WELL_ROUNDED"/>
     <property name="activity_str" value="have a snack"/>
     <property name="activity_time" type="int" value="1"/>
     <property name="activity_type" value="eat"/>
@@ -344,6 +347,7 @@
   </object>
   <object id="6" name="Study At Desk" x="300.429" y="299.695" width="36.7599" height="35.9415">
    <properties>
+    <property name="activity_achievements" value="SCHOLARLY_SPRINTER, WELL_ROUNDED"/>
     <property name="activity_str" value="study at your desk"/>
     <property name="activity_time" type="int" value="3"/>
     <property name="activity_type" value="study"/>
