@@ -258,7 +258,7 @@
  <objectgroup id="9" name="activities">
   <object id="1" name="lift some weights" x="147.506" y="170.738" width="39.3212" height="27.669">
    <properties>
-    <property name="activity_achievements" value="FITNESS_FANATIC, WELL_ROUNDED"/>
+    <property name="activity_achievements" value="FITNESS_FANATIC,WELL_ROUNDED"/>
     <property name="activity_str" value="do some cardio"/>
     <property name="activity_time" type="int" value="2"/>
     <property name="activity_type" value="relax"/>
@@ -268,7 +268,7 @@
   </object>
   <object id="2" name="do some cardio" x="114" y="256.376" width="32.9145" height="40.7938">
    <properties>
-    <property name="activity_achievements" value="FITNESS_FANATIC, WELL_ROUNDED"/>
+    <property name="activity_achievements" value="FITNESS_FANATIC,WELL_ROUNDED"/>
     <property name="activity_str" value="do some cardio"/>
     <property name="activity_time" type="int" value="1"/>
     <property name="activity_type" value="relax"/>
@@ -285,7 +285,7 @@
   </object>
  </objectgroup>
  <objectgroup id="11" name="spawnpoints">
-  <object id="6" name="transition" x="161.587" y="389.327" width="28.9999" height="24.7377">
+  <object id="6" name="transition" x="159.006" y="389.327" width="34.1612" height="26.028">
    <properties>
     <property name="map_id" value="NEW_WORLD"/>
     <property name="spawnpoint" value="73Hndnk"/>
