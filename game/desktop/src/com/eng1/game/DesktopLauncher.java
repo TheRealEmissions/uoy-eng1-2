@@ -18,7 +18,6 @@ public class DesktopLauncher {
 		config.setHdpiMode(HdpiMode.Logical);
 		config.setWindowSizeLimits(800, 480, -1, -1);
 		config.setWindowedMode(1920, 1080);
-		//config.setFullscreenMode(Lwjgl3ApplicationConfiguration.getDisplayMode());
 		new Lwjgl3Application(new HeslingtonHustle(), config);
 	}
 }

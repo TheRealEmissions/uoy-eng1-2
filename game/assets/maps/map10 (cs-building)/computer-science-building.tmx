@@ -342,8 +342,9 @@
 </data>
  </layer>
  <objectgroup id="9" name="activities">
-  <object id="1" name="study" x="253.318" y="229.501" width="19.222" height="56.2929">
+  <object id="1" name="study" x="249.888" y="229.501" width="22.6519" height="56.2929">
    <properties>
+    <property name="activity_achievements" value="SCHOLARLY_SPRINTER,WELL_ROUNDED"/>
     <property name="activity_str" value="study"/>
     <property name="activity_time" type="int" value="3"/>
     <property name="activity_type" value="study"/>
@@ -353,6 +354,7 @@
   </object>
   <object id="2" name="attend teaching hours" x="118.764" y="128.586" width="34.3249" height="27.46">
    <properties>
+    <property name="activity_achievements" value="TEACHERS_PET,WELL_ROUNDED"/>
     <property name="activity_str" value="attend teaching hours"/>
     <property name="activity_time" type="int" value="1"/>
     <property name="activity_type" value="study"/>
@@ -362,6 +364,7 @@
   </object>
   <object id="3" name="nap" x="21.2815" y="129.272" width="51.4874" height="26.7735">
    <properties>
+    <property name="activity_achievements" value="WELL_ROUNDED"/>
     <property name="activity_str" value="have a nap"/>
     <property name="activity_time" type="int" value="1"/>
     <property name="activity_type" value="nap"/>
@@ -378,7 +381,7 @@
   </object>
  </objectgroup>
  <objectgroup id="11" name="spawnpoints">
-  <object id="7" name="transition" x="113.719" y="469.535" width="28.627" height="23.135">
+  <object id="7" name="transition" x="108.032" y="469.535" width="37.8691" height="25.9787">
    <properties>
     <property name="map_id" value="NEW_WORLD"/>
     <property name="spawnpoint" value="C97Sbh"/>

@@ -15,14 +15,14 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.eng1.game.assets.skins.SkinAssets;
+import com.eng1.game.audio.music.MusicManager;
 import com.eng1.game.settings.Preferences;
+import com.eng1.game.settings.SoundPreferences;
 import lombok.experimental.UtilityClass;
 
 /**
  * Represents the preferences screen of the game.
  * Allows the player to adjust game settings such as volume and enable/disable music and sound effects.
- * Currently redundant apart from ability to quit game
- *
  */
 public class PreferencesScreen implements Screen {
     private final Stage stage; // Stage for handling UI elements
@@ -80,7 +80,6 @@ public class PreferencesScreen implements Screen {
         table.setOrigin(Align.center);
         table.setPosition(0, 0);
 
-        float width = Gdx.graphics.getWidth();
         float itemWidth = TableContents.BACK_BUTTON.getWidth() * 8f;
         float itemHeight = TableContents.BACK_BUTTON.getHeight() * 2f;
 
@@ -94,16 +93,6 @@ public class PreferencesScreen implements Screen {
         table.row().pad(10, 0, 0, 10);
         table.add(TableContents.MUSIC_TOGGLE_LABEL).left();
         table.add(TableContents.MUSIC_CHECKBOX)
-            .pad(10, 0, 10, 0);
-        table.row().pad(10, 0, 0, 10);
-        table.add(TableContents.VOLUME_SOUND_LABEL).left();
-        table.add(TableContents.SOUND_MUSIC_SLIDER)
-            .height(itemHeight)
-            .width(itemWidth)
-            .pad(10, 15, 10, 0);
-        table.row().pad(10, 0, 25, 10);
-        table.add(TableContents.SOUND_TOGGLE_LABEL).left();
-        table.add(TableContents.SOUND_EFFECTS_CHECKBOX)
             .pad(10, 0, 10, 0);
         table.row().pad(10, 0, 0, 10);
         table.add(TableContents.BACK_BUTTON)
@@ -136,14 +125,18 @@ public class PreferencesScreen implements Screen {
 
         final Slider volumeMusicSlider = TableContents.VOLUME_MUSIC_SLIDER;
         volumeMusicSlider.addListener(event -> {
-            Preferences.MUSIC.setVolume(volumeMusicSlider.getValue());
+            SoundPreferences preference = Preferences.SOUND;
+            preference.setVolume(volumeMusicSlider.getValue());
+            MusicManager.getInstance().setVolume(volumeMusicSlider.getValue());
+
             return false;
         });
 
         // sound volume
         final Slider soundMusicSlider = TableContents.SOUND_MUSIC_SLIDER;
         soundMusicSlider.addListener(event -> {
-            Preferences.SOUND.setVolume(soundMusicSlider.getValue());
+            SoundPreferences preference = Preferences.SOUND;
+            preference.setVolume(soundMusicSlider.getValue());
             return false;
         });
 
@@ -151,7 +144,11 @@ public class PreferencesScreen implements Screen {
         final CheckBox musicCheckbox = TableContents.MUSIC_CHECKBOX;
         musicCheckbox.addListener(event -> {
             boolean enabled = musicCheckbox.isChecked();
-            Preferences.MUSIC.setEnabled(enabled);
+            if(enabled) {
+                MusicManager.getInstance().onEnable();
+            } else {
+                MusicManager.getInstance().onDisable();
+            }
             return false;
         });
 
