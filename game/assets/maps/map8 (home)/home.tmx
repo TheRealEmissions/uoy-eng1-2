@@ -326,6 +326,7 @@
   </object>
   <object id="4" name="Have A Snack" x="108.933" y="163.58" width="21.3177" height="22.9626">
    <properties>
+    <property name="activity_achievements" value="SNACK_MASTER"/>
     <property name="activity_str" value="have a snack"/>
     <property name="activity_time" type="int" value="1"/>
     <property name="activity_type" value="eat"/>
@@ -344,6 +345,7 @@
   </object>
   <object id="6" name="Study At Desk" x="300.429" y="299.695" width="36.7599" height="35.9415">
    <properties>
+    <property name="activity_achievements" value="SCHOLARLY_SPRINTER"/>
     <property name="activity_str" value="study at your desk"/>
     <property name="activity_time" type="int" value="3"/>
     <property name="activity_type" value="study"/>

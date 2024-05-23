@@ -331,6 +331,7 @@
   </object>
   <object id="2" name="get a snack" x="207.808" y="119.314" width="84.7185" height="28.7373">
    <properties>
+    <property name="activity_achievements" value="SNACK_MASTER"/>
     <property name="activity_str" value="have a snack"/>
     <property name="activity_time" type="int" value="1"/>
     <property name="activity_type" value="eat"/>

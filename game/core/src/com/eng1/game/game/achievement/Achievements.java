@@ -13,7 +13,8 @@ public enum Achievements {
     SNACK_MASTER(new SnackMasterAchievement(),1, "Snacked 5 out of 7 days in the week"),
     SCHOLARLY_SPRINTER(new ScholarlySprinterAchievement(),6, "Studying once every day in the week"),
     WELL_ROUNDED(new WellRoundedAchievement(),2, "Participated in all activities in the week"),
-    TEACHERS_PET(new TeachersPetAchievement(),3, "Went to teaching hours more than twice in a week");
+    TEACHERS_PET(new TeachersPetAchievement(),3, "Went to teaching hours more than twice in a week"),
+    SOCIAL_BUTTERFLY(new SocialButterflyAchievement(), 2, "Socialized with friends at least 3 times in the week");
 
     private final float score;
     private final String description;
