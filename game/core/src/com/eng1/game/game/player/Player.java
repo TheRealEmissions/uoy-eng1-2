@@ -62,12 +62,6 @@ public class Player extends Sprite implements InputProcessor {
         setScale(3);
     }
 
-    @Override
-    public void draw(Batch batch) {
-        update(Gdx.graphics.getDeltaTime());
-        super.draw(batch);
-    }
-
     public void drawHud(Batch batch) {
         if (potentialActivity != null && canDoActivity != null) {
             Label label;
