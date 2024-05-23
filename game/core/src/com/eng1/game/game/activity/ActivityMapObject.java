@@ -7,10 +7,7 @@ import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Getter
@@ -33,6 +30,7 @@ public final class ActivityMapObject {
                 .collect(Collectors.toUnmodifiableList());
         this.achievements = Arrays.stream(properties.get("activity_achievements", "", String.class).split(","))
                 .map(Achievements::fromString)
+                .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }
 
