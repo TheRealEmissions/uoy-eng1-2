@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
+import static com.eng1.game.assets.maps.MapAssetPaths.*;
+
 /**
  * The {@link MapAssets} enum represents different map assets in the game.
  * Each enum constant is associated with a specific map file and a transition description.
@@ -24,7 +26,7 @@ public enum MapAssets implements Assets<TiledMap> {
      * The transition description is "go into your house", which is shown on the screen when the player transitions to this location.
      */
     HOME(
-        () -> MapLoader.load("maps/map8 (home)/home.tmx"),
+        () -> MapLoader.load(HOME_MAP_PATH),
         "go into your house"
     ),
     /**
@@ -33,7 +35,7 @@ public enum MapAssets implements Assets<TiledMap> {
      * The transition description is "go into the Gym", which is shown on the screen when the player transitions to this location.
      */
     GYM(
-        () -> MapLoader.load("maps/map9 (gym)/gym.tmx"),
+        () -> MapLoader.load(GYM_MAP_PATH),
         "go into the Gym"
     ),
     /**
@@ -42,7 +44,7 @@ public enum MapAssets implements Assets<TiledMap> {
      * The transition description is "go into the Computer Science Building", which is shown on the screen when the player transitions to this location.
      */
     CS_BUILDING(
-        () -> MapLoader.load("maps/map10 (cs-building)/computer-science-building.tmx"),
+        () -> MapLoader.load(CS_BUILDING_MAP_PATH),
         "go into the Computer Science Building"
     ),
     /**
@@ -51,7 +53,7 @@ public enum MapAssets implements Assets<TiledMap> {
      * The transition description is "go into the Piazza", which is shown on the screen when the player transitions to this location.
      */
     PIAZZA(
-        () -> MapLoader.load("maps/map11 (piazza)/piazza.tmx"),
+        () -> MapLoader.load(PIAZZA_MAP_PATH),
         "go into the Piazza"
     ),
     /**
@@ -60,7 +62,7 @@ public enum MapAssets implements Assets<TiledMap> {
      * The transition description is "go to Campus East", which is shown on the screen when the player transitions to this location.
      */
     NEW_WORLD(
-        () -> MapLoader.load("maps/newWorldMap/newWorldMap.tmx"),
+        () -> MapLoader.load(NEW_WORLD_MAP_PATH),
         "go to Campus East"
     );
 

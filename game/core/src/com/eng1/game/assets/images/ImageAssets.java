@@ -8,6 +8,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.*;
 import java.util.function.Supplier;
 
+import static com.eng1.game.assets.images.ImageAssetPaths.*;
+
 
 /**
  * The {@link ImageAssets} enum implements the {@link Assets} interface with {@link Texture} as the type parameter.
@@ -18,6 +20,11 @@ import java.util.function.Supplier;
  * The enum also provides methods to dispose of loaded textures to free up memory resources.
  */
 public enum ImageAssets implements Assets<Texture> {
+    MAIN_MENU_TITLE(() -> new Texture(Gdx.files.internal(MAIN_MENU_TITLE_PATH))),
+    NEW_WORLD_MAP_OVERVIEW(() -> new Texture(Gdx.files.internal(NEW_WORLD_MAP_OVERVIEW_PATH))),
+    PLAYER_CHARACTER_1(() -> new Texture(Gdx.files.internal(PLAYER_CHARACTER_1_PATH))),
+    PLAYER_CHARACTER_2(() -> new Texture(Gdx.files.internal(PLAYER_CHARACTER_2_PATH))),
+    PLAYER_CHARACTER_3(() -> new Texture(Gdx.files.internal(PLAYER_CHARACTER_3_PATH)));
     /**
      * MAIN_MENU_TITLE: Represents the main menu title image.
      * The {@link Supplier} associated with this enum constant loads the image from the internal file "images/main_menu_title.png".
