@@ -1,6 +1,7 @@
 # Heslington Hustle
 By Liam Martin, Aaliya Williams, Lucy Crabtree, Kai Nichol, Sammy Hori, Tim Gorst, Zac Ribbins
 
+![image](https://github.com/user-attachments/assets/7a1d4492-0082-4ffd-8878-2687d74d981e)
 
 ## Description
 Welcome to Heslington Hustle! This is an exciting and immersive 2D pixel game, based on the last week of exams!.  
